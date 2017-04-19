@@ -1,0 +1,337 @@
+# i3 config file (v4)
+#
+# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+#
+# This config file uses keycodes (bindsym) and was written for the QWERTY
+# layout.
+#
+# To get a config file with the same key positions, but for your current
+# layout, use the i3-config-wizard
+#
+
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+font pango: FontAwesome 10
+
+# This font is widely installed, provides lots of unicode glyphs, right-to-left
+# text rendering and scalability on retina/hidpi displays (thanks to pango).
+#font pango:DejaVu Sans Mono 8
+
+# Before i3 v4.8, we used to recommend this one as the default:
+# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+# The font above is very space-efficient, that is, it looks good, sharp and
+# clear in small sizes. However, its unicode glyph coverage is limited, the old
+# X core fonts rendering does not support right-to-left and this being a bitmap
+# font, it doesn’t scale on retina/hidpi displays.
+
+# use these keys for focus, movement, and resize directions when reaching for
+# the arrows is not convenient
+# I like to do this with emacs style
+set $up p
+set $down n
+set $left b
+set $right f
+
+# use Mouse+Mod1 to drag floating windows to their wanted position
+floating_modifier Mod1
+
+# start a terminal
+bindsym Mod4+Return exec konsole
+
+# kill focused window
+bindsym Mod4+Shift+q kill
+
+# start j4-dmenu (a program launcher) with my personal preferences for desktop files
+bindsym Mod4+d exec ~/.i3/j4menubin.sh
+
+# bindsym Mod4+d exec rofi -show drun -c ~/.i3/rofi/config # run -lines 5 -eh 2 
+
+# bindsym Mod4+d exec rofi -show run -lines 5 -eh 2 -opacity "60"
+# There also is the (new) i3-dmenu-desktop which only displays applications
+# shipping a .desktop file. It is a wrapper around dmenu, so you need that
+# installed.
+#bindsym Mod4+d exec --no-startup-id i3-dmenu-desktop
+
+# change focus
+bindsym Mod4+$left focus left
+bindsym Mod4+$down focus down
+bindsym Mod4+$up focus up
+bindsym Mod4+$right focus right
+
+# alternatively, you can use the cursor keys:
+bindsym Mod4+Left focus left
+bindsym Mod4+Down focus down
+bindsym Mod4+Up focus up
+bindsym Mod4+Right focus right
+
+# move focused window
+bindsym Mod4+Shift+$left move left
+bindsym Mod4+Shift+$down move down
+bindsym Mod4+Shift+$up move up
+bindsym Mod4+Shift+$right move right
+
+# alternatively, you can use the cursor keys:
+bindsym Mod4+Shift+Left move left
+bindsym Mod4+Shift+Down move down
+bindsym Mod4+Shift+Up move up
+bindsym Mod4+Shift+Right move right
+
+# split in horizontal orientation
+bindsym Mod4+h split h
+
+# split in vertical orientation
+bindsym Mod4+v split v
+
+# enter fullscreen mode for the focused container
+bindsym f11 fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym Mod4+s layout stacking
+bindsym Mod4+w layout tabbed
+bindsym Mod4+e layout toggle split
+
+# toggle tiling / floating
+bindsym Mod4+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym Mod4+space focus mode_toggle
+
+# focus the parent container
+bindsym Mod4+a focus parent
+
+# focus the child container
+#bindsym Mod4+d focus child
+
+# move the currently focused window to the scratchpad
+bindsym Mod4+Shift+minus move scratchpad
+
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+bindsym Mod4+minus scratchpad show
+
+set $workspace1 "1 "
+set $workspace3 "3 Emacs"
+set $workspace4 "4 "
+set $workspace9 "9 "
+set $workspace10 "10 MultiMedia "
+
+set $base00 #101218
+set $base01 #1f222d
+set $base02 #252936
+set $base03 #7780a1
+set $base04 #C0C5CE
+set $base05 #d1d4e0
+set $base06 #C9CCDB
+set $base07 #ffffff
+set $base08 #ee829f
+set $base09 #f99170
+set $base0A #ffefcc
+set $base0B #a5ffe1
+set $base0C #97e0ff
+set $base0D #97bbf7
+set $base0E #c0b7f9
+set $base0F #fcc09e
+
+# switch to workspace
+bindsym Mod4+1 workspace $workspace1
+bindsym Mod4+2 workspace 2
+bindsym Mod4+3 workspace $workspace3
+bindsym Mod4+4 workspace $workspace4
+bindsym Mod4+5 workspace 5
+bindsym Mod4+6 workspace 6
+bindsym Mod4+7 workspace 7
+bindsym Mod4+8 workspace 8
+bindsym Mod4+9 workspace $workspace9
+bindsym Mod4+0 workspace $workspace10
+
+# move focused container to workspace
+bindsym Mod4+Shift+1 move container to workspace $Workspace1
+bindsym Mod4+Shift+2 move container to workspace 2
+bindsym Mod4+Shift+3 move container to workspace $workspace3
+bindsym Mod4+Shift+4 move container to workspace $workspace4
+bindsym Mod4+Shift+5 move container to workspace 5
+bindsym Mod4+Shift+6 move container to workspace 6
+bindsym Mod4+Shift+7 move container to workspace 7
+bindsym Mod4+Shift+8 move container to workspace 8
+bindsym Mod4+Shift+9 move container to workspace $workspace9
+bindsym Mod4+Shift+0 move container to workspace $workspace10
+
+# assign [title="Spotify"] $workspace10
+for_window [class="Spotify"] move window to workspace $workspace10
+assign [title="Popcorn Time"] $workspace10
+assign [class="Firefox"] $workspace1
+assign [class="Chromium"] $workspace1
+assign [class="Emacs"] $workspace3
+assign [class="konsole"] $workspace4
+assign [class="Telegram"] $workspace9
+assign [class="Thunderbird"] $workspace9
+
+# Las ventanas de org-capture se abren en el workspace en el que nos encontremos
+# assign [class=Emacs floating]
+for_window [class="Emacs" title="capture"] floating enable
+for_window [class="Emacs" title="capture"] resize set 300 300
+for_window [class="Emacs" title="capture"] move position center
+for_window [class="Emacs" title="capture"] move container to workspace current
+
+# Cuando abro el gestor de archivos normalmente es para hacer algo en
+# el osea que lo hacemos centrado y flotante
+
+for_window [class="Pcmanfm"] floating enable
+for_window [class="Pcmanfm"] resize set 600 700
+for_window [class="Pcmanfm"] move position center
+
+
+# Volume control
+bindsym XF86AudioLowerVolume exec /usr/bin/pactl set-sink-volume 0 '-5%'
+bindsym XF86AudioRaiseVolume exec /usr/bin/pactl set-sink-volume 0 '+5%'
+bindsym XF86AudioMute exec /usr/bin/pactl set-sink-mute 0 'toggle'
+
+# brigthness control
+bindsym XF86MonBrightnessUp exec light -p -A 10 # increase screen brightness
+bindsym XF86MonBrightnessDown exec light -p -U 10 # decrease screen brightness
+
+# reload the configuration file
+bindsym Mod4+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym Mod4+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym Mod4+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym $left       resize shrink width 10 px or 10 ppt
+        bindsym $down       resize grow height 10 px or 10 ppt
+        bindsym $up         resize shrink height 10 px or 10 ppt
+        bindsym $right      resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left        resize shrink width 10 px or 10 ppt
+        bindsym Down        resize grow height 10 px or 10 ppt
+        bindsym Up          resize shrink height 10 px or 10 ppt
+        bindsym Right       resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym Mod4+r mode "resize"
+
+# org-capture mode
+set $mode_capture Capture (b) bug (i) idea (t) task (e) event (l) link (a) agenda
+mode "$mode_capture" {
+     bindsym b exec emacsclient -a "" -F '((title . "capture"))' -c -e '(org-capture nil "b")', mode "default"
+     bindsym i exec emacsclient -a "" -F '((title . "capture"))' -c -e '(org-capture nil "i")', mode "default"
+     bindsym t exec emacsclient -a "" -F '((title . "capture"))' -c -e '(org-capture nil "t")', mode "default"
+     bindsym e exec emacsclient -a "" -F '((title . "capture"))' -c -e '(org-capture nil "e")', mode "default"
+     bindsym l exec emacsclient -a "" -F '((title . "capture"))' -c -e '(org-capture nil "r")', mode "default"
+     bindsym a exec emacsclient -c -a "" -e "(my-org-agenda-list)", mode "default"
+
+     bindsym Return mode "default"
+     bindsym Escape mode "default"
+}
+bindsym Mod4+c mode "$mode_capture"
+
+# mode for open emacs
+set $mode_emacs (c) emacs client (e) emacs instance
+mode "$mode_emacs" {
+     bindsym c exec emacsclient -c -a "", mode "default"
+     bindsym e exec emacs, mode "default"
+
+     bindsym Return mode "default"
+     bindsym Escape mode "default"
+}
+
+bindsym Mod4+t mode "$mode_emacs"
+
+set $mode_launcher (f) Firefox (c) Chromium (p) Pcmanfs
+mode "$mode_launcher" {
+     bindsym f exec firefox, mode "default"
+     bindsym g exec chromium, mode "default"
+     bindsym p exec pcmanfm, mode "default"
+     bindsym Escape mode "default"
+     bindsym Return mode "default"
+     
+}
+
+bindsym Mod4+Tab mode "$mode_launcher"
+
+##
+# system mode from:
+# https://github.com/andreatta/config/blob/master/i3/config
+##
+set $mode_system    [L]OCK       LOG[O]UT       [S]USPEND       [R]EBOOT       [P]OWEROFF
+
+mode "$mode_system" {
+    bindsym l exec $psst ~/.i3/i3exit.sh lock, mode "default"
+    bindsym o exec $psst ~/.i3/i3exit.sh logout, mode "default"
+    bindsym s exec $psst ~/.i3/i3exit.sh suspend, mode "default"
+    bindsym r exec $psst ~/.i3/i3exit.sh reboot, mode "default"
+    bindsym p exec $psst ~/.i3/i3exit.sh poweroff, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym Mod4+Escape exec i3lock
+bindsym Mod4+Shift+Escape mode "$mode_system"
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+#bar {
+#        status_command i3blocks -c ~/.i3/i3blocks/i3blocks.conf
+#}
+
+# Widow Colours
+#                         border  background text    indicator
+
+
+
+bar {
+  #status_command i3status
+        status_command i3blocks -c ~/.i3/i3blocks/i3blocks.conf
+	font pango: System San Francisco Display, FontAwesome 10
+        position bottom
+        strip_workspace_numbers no
+        #bindsym button4 nop
+        #bindsym button5 nop
+  colors {
+    separator #666666
+    background #222222
+    statusline #dddddd
+    focused_workspace #0088CC #0088CC #ffffff
+    active_workspace #333333 #333333 #ffffff
+    inactive_workspace #333333 #333333 #888888
+    urgent_workspace #2f343a #900000 #ffffff
+  }
+}
+
+
+# default apps
+exec albert
+exec enpass  --no-startup-id
+exec octopi-notifier --no-startup-id
+exec nm-applet  --no-startup-id
+exec spotify
+exec thunderbird
+exec owncloud --no-startup-id
+exec emacsclient -c -a "" -e "(my-org-agenda-list)"
+
+# desktop wallpaper
+exec_always feh --bg-scale /home/rafa/Pictures/river.jpg
+
+# capture screen
+bindsym Print exec spectacle
+
+client.focused #0088CC #0088CC #ffffff #dddddd
+client.focused_inactive #333333 #333333 #888888 #292d2e
+client.unfocused #333333 #333333 #888888 #292d2e
+client.urgent #2f343a #900000 #ffffff #900000
+
