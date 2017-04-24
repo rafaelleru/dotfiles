@@ -165,7 +165,7 @@ assign [class="Emacs"] $workspace3
 assign [class="konsole"] $workspace4
 assign [class="Telegram"] $workspace9
 assign [class="Thunderbird"] $workspace9
-
+assign [class="jetbrains-studio"] 5
 # Las ventanas de org-capture se abren en el workspace en el que nos encontremos
 # assign [class=Emacs floating]
 for_window [class="Emacs" title="capture"] floating enable
