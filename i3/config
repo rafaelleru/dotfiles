@@ -317,7 +317,6 @@ bar {
 # default apps
 exec albert
 exec enpass  --no-startup-id
-exec octopi-notifier --no-startup-id
 exec nm-applet  --no-startup-id
 exec spotify
 exec thunderbird
