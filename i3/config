@@ -33,7 +33,7 @@ set $left b
 set $right f
 
 # use Mouse+Mod1 to drag floating windows to their wanted position
-floating_modifier Mod1
+floating_modifier Mod4
 
 # start a terminal
 bindsym Mod4+Return exec konsole
@@ -166,6 +166,8 @@ assign [class="konsole"] $workspace4
 assign [class="Telegram"] $workspace9
 assign [class="Thunderbird"] $workspace9
 assign [class="jetbrains-studio"] 5
+assign [class="com-install4j-runtime-launcher-UnixLauncher"] 5 #visual_paradigm
+
 # Las ventanas de org-capture se abren en el workspace en el que nos encontremos
 # assign [class=Emacs floating]
 for_window [class="Emacs" title="capture"] floating enable
@@ -173,12 +175,15 @@ for_window [class="Emacs" title="capture"] resize set 300 300
 for_window [class="Emacs" title="capture"] move position center
 for_window [class="Emacs" title="capture"] move container to workspace current
 
-# Cuando abro el gestor de archivos normalmente es para hacer algo en
+# Cuando abro el gestor de archivos normalmente es para hacer algo rapido en
 # el osea que lo hacemos centrado y flotante
 
 for_window [class="Pcmanfm"] floating enable
 for_window [class="Pcmanfm"] resize set 600 700
 for_window [class="Pcmanfm"] move position center
+
+# ventanas flotantes de firefox en current workspace
+for_window [class=Firefox floating] move container to workspace current
 
 
 # Volume control
@@ -318,13 +323,15 @@ bar {
 exec albert
 exec enpass  --no-startup-id
 exec nm-applet  --no-startup-id
+exec blueman-applet --no-startup-id
 exec spotify
 exec thunderbird
+exec /home/rafa/Downloads/tsetup.0.10.20/Telegram/Telegram -- %u
 exec owncloud --no-startup-id
 exec emacsclient -c -a "" -e "(my-org-agenda-list)"
 
 # desktop wallpaper
-exec_always feh --bg-scale /home/rafa/Pictures/river.jpg
+exec_always feh --bg-scale /home/rafa/Pictures/mountain.jpg
 
 # capture screen
 bindsym Print exec spectacle
