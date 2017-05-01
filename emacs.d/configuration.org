@@ -458,17 +458,21 @@ y   #+BEGIN_SRC emacs-lisp :tangle no
 #+RESULTS:
 
 ** Multiples cursores, muy practico para editar html.
+   #+BEGIN_SRC emacs-lisp
+     (use-package multiple-cursors
+       :ensure t)
+   #+END_SRC
 ** dumb jump
    #+BEGIN_SRC emacs-lisp
      (use-package dumb-jump
-     :ensure
-     :bind 
-     (("M-j o" . dumb-jump-go-other-window)
-         ("M-j j" . dumb-jump-go)
-         ("M-j x" . dumb-jump-go-prefer-external)
-         ("M-j z" . dumb-jump-go-prefer-external-other-window))
-     :config (setq dumb-jump-selector 'helm)
-     )
+       :ensure
+       :bind 
+       (("C-x g o" . dumb-jump-go-other-window)
+        ("C-x g j" . dumb-jump-go)
+        ("C-x g x" . dumb-jump-go-prefer-external)
+        ("C-x g z" . dumb-jump-go-prefer-external-other-window))
+       :config (setq dumb-jump-selector 'helm)
+       )
    #+END_SRC
 
    #+RESULTS:
