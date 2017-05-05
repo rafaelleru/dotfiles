@@ -60,6 +60,12 @@ static const Layout layouts[] = {
 	{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
 
+#define XF86MonBrightnessDown		0x1008ff03
+#define XF86MonBrightnessUp			0x1008ff02
+#define XF86AudioMute				0x1008ff12
+#define XF86AudioLowerVolume		0x1008ff11
+#define XF86AudioRaiseVolume	0x1008ff13
+
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
@@ -70,12 +76,23 @@ static const char *termcmd[]  = { "st", NULL };
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", NULL };
 static const char *j4menucmd[] = { "/home/rafa/.i3/j4menubin.sh", NULL };
+static const char *cmdbrightnessup[]  = { "light", "-p", "-A", "10", NULL };
+static const char *cmdbrightnessdown[]  = { "light", "-p", "-U", "10", NULL };
+static const char *cmdsoundup[]  = { "amixer", "-q", "sset", "Master", "5%+", NULL };
+static const char *cmdsounddown[]  = { "amixer", "-q", "sset", "Master", "5%-", NULL };
+static const char *cmdsoundtoggle[] = { "amixer", "-q", "sset", "Master", "toggle", NULL };
+
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_grave,  togglescratch,  {.v = scratchpadcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
+	{ 0,                            XF86MonBrightnessDown,     spawn,         {.v = cmdbrightnessdown } },
+	{ 0,                            XF86MonBrightnessUp,       spawn,         {.v = cmdbrightnessup } },
+	{ 0,                            XF86AudioMute,			   spawn,          {.v = cmdsoundtoggle } },
+	{ 0,                            XF86AudioRaiseVolume,      spawn,          {.v = cmdsoundup } },
+	{ 0,                            XF86AudioLowerVolume,      spawn,              {.v = cmdsounddown } },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
