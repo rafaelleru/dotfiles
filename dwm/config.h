@@ -15,7 +15,7 @@ static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
-static const char col_cyan[]        = "#005577";
+static const char col_cyan[]        = "#0088CC";//"#005577";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
@@ -36,8 +36,8 @@ static const Rule rules[] = {
 	{ "Chromium", NULL,       NULL,       1 << 0,       0,           -1 },
 	{ "konsole",  NULL,       NULL,       1 << 3,       0,           -1 },
 	{ "Emacs",    NULL,       NULL,       1 << 2,       0,           -1 },
-	{ "Emacs",    NULL,       "capture",  -1,         1,           -1 },
-	
+	{ "Emacs",    NULL,       "Capture",  -1,           1,           -1 },
+	{ "Thunderbird", NULL,    NULL,       1 << 7,       0,           -1 },
 };
 
 /* layout(s) */
@@ -72,7 +72,7 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *termcmd[]  = { "st", NULL };
+static const char *termcmd[]  = { "konsole", NULL };
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", NULL };
 static const char *j4menucmd[] = { "/home/rafa/.i3/j4menubin.sh", NULL };
@@ -81,6 +81,9 @@ static const char *cmdbrightnessdown[]  = { "light", "-p", "-U", "10", NULL };
 static const char *cmdsoundup[]  = { "amixer", "-q", "sset", "Master", "5%+", NULL };
 static const char *cmdsounddown[]  = { "amixer", "-q", "sset", "Master", "5%-", NULL };
 static const char *cmdsoundtoggle[] = { "amixer", "-q", "sset", "Master", "toggle", NULL };
+// TODO: Fix this, more simple than script.
+//static const char *cmdemacscapture[] = { "emacsclient", "-a", "", "-F", "'((title . \"Capture\"))'", "-e", "'(org-capture)'" ,"-c", NULL };
+static const char * cmdemacscapture[] = { "/home/rafa/mis_programas/dotfiles/dwm/capture.sh", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -90,7 +93,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ 0,                            XF86MonBrightnessDown,     spawn,         {.v = cmdbrightnessdown } },
 	{ 0,                            XF86MonBrightnessUp,       spawn,         {.v = cmdbrightnessup } },
-	{ 0,                            XF86AudioMute,			   spawn,          {.v = cmdsoundtoggle } },
+	{ 0,                            XF86AudioMute,		   spawn,          {.v = cmdsoundtoggle } },
 	{ 0,                            XF86AudioRaiseVolume,      spawn,          {.v = cmdsoundup } },
 	{ 0,                            XF86AudioLowerVolume,      spawn,              {.v = cmdsounddown } },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
@@ -114,6 +117,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
 	{ MODKEY,                       XK_a,      spawn,          {.v = j4menucmd } },
+	{ MODKEY,                       XK_c,      spawn,          {.v = cmdemacscapture } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
