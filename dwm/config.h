@@ -38,6 +38,7 @@ static const Rule rules[] = {
 	{ "Emacs",    NULL,       NULL,       1 << 2,       0,           -1 },
 	{ "Emacs",    NULL,       "Capture",  -1,           1,           -1 },
 	{ "Thunderbird", NULL,    NULL,       1 << 7,       0,           -1 },
+	{ "jetbrains-studio", NULL, NULL,     1 << 4        0            -1 },
 };
 
 /* layout(s) */
@@ -82,8 +83,8 @@ static const char *cmdsoundup[]  = { "amixer", "-q", "sset", "Master", "5%+", NU
 static const char *cmdsounddown[]  = { "amixer", "-q", "sset", "Master", "5%-", NULL };
 static const char *cmdsoundtoggle[] = { "amixer", "-q", "sset", "Master", "toggle", NULL };
 // TODO: Fix this, more simple than script.
-//static const char *cmdemacscapture[] = { "emacsclient", "-a", "", "-F", "'((title . \"Capture\"))'", "-e", "'(org-capture)'" ,"-c", NULL };
-static const char * cmdemacscapture[] = { "/home/rafa/mis_programas/dotfiles/dwm/capture.sh", NULL };
+static const char *cmdemacscapture[] = { "emacsclient", "-a", "", "-e", "'(make-capture-frame)'", "-c", NULL };
+//static const char * cmdemacscapture[] = { "/home/rafa/mis_programas/dotfiles/dwm/capture.sh", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
