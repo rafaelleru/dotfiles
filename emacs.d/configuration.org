@@ -462,6 +462,9 @@ y   #+BEGIN_SRC emacs-lisp :tangle no
      (use-package multiple-cursors
        :ensure t)
    #+END_SRC
+
+   #+RESULTS:
+
 ** dumb jump
    #+BEGIN_SRC emacs-lisp
      (use-package dumb-jump
@@ -877,8 +880,8 @@ Presionar =C-c o i= para abrir *index.org*
       (defun make-capture-frame ()
         "Create a new frame and run org-capture."
         (interactive)
-        (make-frame '((name . "capture")))
-        (select-frame-by-name "capture")
+        (make-frame '((name . "Capture")))
+        (select-frame-by-name "Capture")
         (noflet ((switch-to-buffer-other-window (buf) (switch-to-buffer buf)))
           (delete-other-windows)
           (org-capture)))
@@ -888,7 +891,7 @@ Presionar =C-c o i= para abrir *index.org*
     #+END_SRC
 
     #+RESULTS:
-    | delete-frame |
+    | (lambda nil (org-gcal-sync)) | delete-frame |
 
     ;; TODO: fix delete-other-windows
     #+RESULTS:
