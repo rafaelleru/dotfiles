@@ -43,6 +43,7 @@ static const struct arg args[] = {
 	{ ram_perc, "RAM: %1s ", NULL },
 	{ disk_free, "HOME: %1s ", "/home"},
 	{ vol_perc, "V: %1s ", "/dev/mixer1"},
-	{ battery_perc, "BAT: %1s ", "BAT0"},
+	{ battery_perc, "BAT: %1s", "BAT0"},
+	{ battery_state, "%0s ", "BAT0"},
 	{ datetime, "%s",     "%F %T" },
 };
