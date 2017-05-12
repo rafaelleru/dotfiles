@@ -38,7 +38,7 @@ static const Rule rules[] = {
 	{ "Emacs",    NULL,       NULL,       1 << 2,       0,           -1 },
 	{ "Emacs",    NULL,       "Capture",  -1,           1,           -1 },
 	{ "Thunderbird", NULL,    NULL,       1 << 7,       0,           -1 },
-	{ "jetbrains-studio", NULL, NULL,     1 << 4        0            -1 },
+	{ "jetbrains-studio", NULL, NULL,     1 << 4,        0,            -1 },
 };
 
 /* layout(s) */
@@ -72,7 +72,9 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+//static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+//Fix capture for now.
+static const char *dmenucmd[] = { "j4-dmenu-desktop", "--term=", "konsole", NULL};
 static const char *termcmd[]  = { "konsole", NULL };
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", NULL };
