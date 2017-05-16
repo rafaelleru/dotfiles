@@ -100,6 +100,7 @@ alias horario='cat ~/Asignaturas1617.txt'
 alias orderUGR='python3 ~/mis_programas/OrderUGR/orderUGR.py'
 alias suspend='i3lock && systemctl suspend'
 alias capture='emacsclient -a "" -c -e "(make-capture-frame)"'
+alias et='emacsclient -a "" -t'
 screenfetch
 
 # added by travis gem
