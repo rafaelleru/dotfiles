@@ -376,6 +376,14 @@ y   #+BEGIN_SRC emacs-lisp :tangle no
    #+RESULTS:
    : t
 
+** Hydra
+   #+BEGIN_SRC emacs-lisp
+        (use-package hydra
+          :ensure t)
+   #+END_SRC
+
+   #+RESULTS:
+
 * elfeed
   #+BEGIN_SRC emacs-lisp
     (use-package elfeed
@@ -464,6 +472,21 @@ y   #+BEGIN_SRC emacs-lisp :tangle no
    #+END_SRC
 
    #+RESULTS:
+
+*** Hydra para multiple cursors.
+    #+BEGIN_SRC emacs-lisp
+      (defhydra hydra-multiple-cursors (global-map "C-c m")
+        "multiple cursors"
+        (">" mc/mark-next-like-this "next like this")
+        ("<" mc/mark-previous-like-this "previous like this")
+        ("c" mc/edit-lines "edit lines")
+        ("e" mc/edit-ends-of-lines "edit end of lines")
+        ("b" mc/edit-beginnings-of-lines "edit begin of lines")
+        )
+    #+END_SRC
+
+    #+RESULTS:
+    : hydra-multiple-cursors/body
 
 ** dumb jump
    #+BEGIN_SRC emacs-lisp
@@ -604,6 +627,14 @@ y   #+BEGIN_SRC emacs-lisp :tangle no
 
    #+RESULTS:
    : ecl-mode
+
+** PDDL domain
+   #+BEGIN_SRC emacs-lisp
+     (require 'pddl-mode "~/.emacs.d/ppdl-mode.el")
+   #+END_SRC
+
+   #+RESULTS:
+   : pddl-mode
 
 * Magit
    #+BEGIN_SRC emacs-lisp
@@ -864,32 +895,33 @@ Presionar =C-c o i= para abrir *index.org*
 *** Frame para capturas.
     De [[https://github.com/zamansky/using-emacs/blob/master/myinit.org][Zamansky]]
     #+BEGIN_SRC emacs-lisp
-      (defadvice org-capture-finalize 
-          (after delete-capture-frame activate)  
-        "Advise capture-finalize to close the frame"  
-        (if (equal "capture" (frame-parameter nil 'name))  
-    	(delete-frame)))
+        (defadvice org-capture-finalize 
+    	(after delete-capture-frame activate)  
+          "Advise capture-finalize to close the frame"  
+          (if (equal "capture" (frame-parameter nil 'name))  
+          (delete-frame)))
 
-      (defadvice org-capture-destroy 
-          (after delete-capture-frame activate)  
-        "Advise capture-destroy to close the frame"  
-        (if (equal "capture" (frame-parameter nil 'name))  
-    	(delete-frame)))  
+        (defadvice org-capture-destroy 
+    	(after delete-capture-frame activate)  
+          "Advise capture-destroy to close the frame"  
+          (if (equal "capture" (frame-parameter nil 'name))  
+          (delete-frame)))  
 
-      (use-package noflet
-        :ensure t)
+        (use-package noflet
+          :ensure t)
 
-      (defun make-capture-frame ()
-        "Create a new frame and run org-capture."
-        (interactive)
-        (make-frame '((name . "Capture")))
-        (select-frame-by-name "Capture")
-        (noflet ((switch-to-buffer-other-window (buf) (switch-to-buffer buf)))
-          (delete-other-windows)
-          (org-capture)))
+        (defun make-capture-frame ()
+          "Create a new frame and run org-capture."
+          (interactive)
+          (make-frame '((name . "Capture")))
+          (select-frame-by-name "Capture")
+          (noflet ((switch-to-buffer-other-window (buf) (switch-to-buffer buf)))
+    	(delete-other-windows)
+    	(delete-other-frames)
+    	(org-capture)))
 
-      (add-hook 'org-capture-mode-hook 'delete-other-windows)
-      (add-hook 'org-capture-after-finalize-hook 'delete-frame)
+        (add-hook 'org-capture-mode-hook 'delete-other-windows)
+        (add-hook 'org-capture-after-finalize-hook 'delete-frame)
     #+END_SRC
 
     #+RESULTS:
