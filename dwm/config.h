@@ -38,7 +38,8 @@ static const Rule rules[] = {
 	{ "Emacs",    NULL,       NULL,       1 << 2,       0,           -1 },
 	{ "Emacs",    NULL,       "Capture",  -1,           1,           -1 },
 	{ "Thunderbird", NULL,    NULL,       1 << 7,       0,           -1 },
-	{ "jetbrains-studio", NULL, NULL,     1 << 4,        0,            -1 },
+	{ "jetbrains-studio", NULL, NULL,     1 << 4,        0,          -1 },
+	{ "Pcmanfm",  NULL,       NULL,       -1,           1,           -1 },
 };
 
 /* layout(s) */
