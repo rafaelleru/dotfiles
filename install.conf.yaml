@@ -1,0 +1,16 @@
+- defaults:
+    link:
+      relink: true
+
+- clean: ['~']
+
+- link:
+    ~/.dotfiles: ''
+    ~/.emacs.d: emacs.d
+    ~/.emacs : emacs
+    ~/.Xresources: Xresources
+    ~/.zshrc: zshrc
+    ~/.i3: i3
+    
+- shell:
+  - [git submodule update --init --recursive, Installing submodules]
