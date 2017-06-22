@@ -1,0 +1,13 @@
+- pacaur:
+  - chromium
+  - nautilus
+  - urxvt
+  - gnome-calendar
+  - blueman
+  - network-manager-applet
+  - okular
+  - emacs
+  - ttf-inconsolata
+  - arc-gtk-theme
+  - lxappearance
+  - system-san-francisco-font-git
