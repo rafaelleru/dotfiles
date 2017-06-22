@@ -26,31 +26,30 @@ font pango: FontAwesome 10
 
 # use these keys for focus, movement, and resize directions when reaching for
 # the arrows is not convenient
-# I like to do this with emacs style
-set $up p
-set $down n
-set $left b
-set $right f
+set $up l
+set $down k
+set $left j
+set $right semicolon
 
 # use Mouse+Mod1 to drag floating windows to their wanted position
-floating_modifier Mod4
+floating_modifier Mod1
 
 # start a terminal
-bindsym Mod4+Return exec urxvt
+bindsym Mod4+Return exec konsole
 
 # kill focused window
 bindsym Mod4+Shift+q kill
 
-# start j4-dmenu (a program launcher) with my personal preferences for desktop files
-bindsym Mod4+d exec ~/.i3/j4menubin.sh
+# start dmenu (a program launcher)
+#bindsym Mod4+d exec dmenu_run
 
-# bindsym Mod4+d exec rofi -show drun -c ~/.i3/rofi/config # run -lines 5 -eh 2 
+bindsym Mod4+d exec rofi -show drun -c ~/.i3/rofi/config # run -lines 5 -eh 2 
 
 # bindsym Mod4+d exec rofi -show run -lines 5 -eh 2 -opacity "60"
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
-#bindsym Mod4+d exec --no-startup-id i3-dmenu-desktop
+# bindsym Mod4+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
 bindsym Mod4+$left focus left
@@ -83,7 +82,7 @@ bindsym Mod4+h split h
 bindsym Mod4+v split v
 
 # enter fullscreen mode for the focused container
-bindsym f11 fullscreen toggle
+bindsym Mod4+Shift+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym Mod4+s layout stacking
@@ -165,25 +164,20 @@ assign [class="Emacs"] $workspace3
 assign [class="konsole"] $workspace4
 assign [class="Telegram"] $workspace9
 assign [class="Thunderbird"] $workspace9
-assign [class="jetbrains-studio"] 5
-assign [class="com-install4j-runtime-launcher-UnixLauncher"] 5 #visual_paradigm
 
 # Las ventanas de org-capture se abren en el workspace en el que nos encontremos
 # assign [class=Emacs floating]
 for_window [class="Emacs" title="capture"] floating enable
 for_window [class="Emacs" title="capture"] resize set 300 300
 for_window [class="Emacs" title="capture"] move position center
-for_window [class="Emacs" title="capture"] move container to workspace current
 
-# Cuando abro el gestor de archivos normalmente es para hacer algo rapido en
+
+# Cuando abro el gestor de archivos normalmente es para hacer algo en
 # el osea que lo hacemos centrado y flotante
 
 for_window [class="Pcmanfm"] floating enable
 for_window [class="Pcmanfm"] resize set 600 700
 for_window [class="Pcmanfm"] move position center
-
-# ventanas flotantes de firefox en current workspace
-for_window [class=Firefox floating] move container to workspace current
 
 
 # Volume control
@@ -229,14 +223,13 @@ mode "resize" {
 bindsym Mod4+r mode "resize"
 
 # org-capture mode
-set $mode_capture Capture (b) bug (i) idea (t) task (e) event (l) link (a) agenda
+set $mode_capture Capture (b) bug (i) idea (t) task (e) event (l) link
 mode "$mode_capture" {
      bindsym b exec emacsclient -a "" -F '((title . "capture"))' -c -e '(org-capture nil "b")', mode "default"
      bindsym i exec emacsclient -a "" -F '((title . "capture"))' -c -e '(org-capture nil "i")', mode "default"
      bindsym t exec emacsclient -a "" -F '((title . "capture"))' -c -e '(org-capture nil "t")', mode "default"
      bindsym e exec emacsclient -a "" -F '((title . "capture"))' -c -e '(org-capture nil "e")', mode "default"
-     bindsym l exec emacsclient -a "" -F '((title . "capture"))' -c -e '(org-capture nil "r")', mode "default"
-     bindsym a exec emacsclient -c -a "" -e "(my-org-agenda-list)", mode "default"
+     bindsym l exec emacsclient -a "" -F '((title . "capture"))' -c -e '(org-capture nil "r")', mode "default"			
 
      bindsym Return mode "default"
      bindsym Escape mode "default"
@@ -244,7 +237,7 @@ mode "$mode_capture" {
 bindsym Mod4+c mode "$mode_capture"
 
 # mode for open emacs
-set $mode_emacs (c) emacs client (e) emacs instance
+set $mode_emacs (c) emacs client (e) emacs instance (a) agenda
 mode "$mode_emacs" {
      bindsym c exec emacsclient -c -a "", mode "default"
      bindsym e exec emacs, mode "default"
@@ -255,38 +248,6 @@ mode "$mode_emacs" {
 
 bindsym Mod4+t mode "$mode_emacs"
 
-set $mode_launcher (f) Firefox (c) Chromium (p) Pcmanfs
-mode "$mode_launcher" {
-     bindsym f exec firefox, mode "default"
-     bindsym g exec chromium, mode "default"
-     bindsym p exec pcmanfm, mode "default"
-     bindsym Escape mode "default"
-     bindsym Return mode "default"
-     
-}
-
-bindsym Mod4+Tab mode "$mode_launcher"
-
-##
-# system mode from:
-# https://github.com/andreatta/config/blob/master/i3/config
-##
-set $mode_system    [L]OCK       LOG[O]UT       [S]USPEND       [R]EBOOT       [P]OWEROFF
-
-mode "$mode_system" {
-    bindsym l exec $psst ~/.i3/i3exit.sh lock, mode "default"
-    bindsym o exec $psst ~/.i3/i3exit.sh logout, mode "default"
-    bindsym s exec $psst ~/.i3/i3exit.sh suspend, mode "default"
-    bindsym r exec $psst ~/.i3/i3exit.sh reboot, mode "default"
-    bindsym p exec $psst ~/.i3/i3exit.sh poweroff, mode "default"
-
-    # back to normal: Enter or Escape
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-
-bindsym Mod4+Escape exec i3lock
-bindsym Mod4+Shift+Escape mode "$mode_system"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -296,48 +257,48 @@ bindsym Mod4+Shift+Escape mode "$mode_system"
 
 # Widow Colours
 #                         border  background text    indicator
+  client.focused          $base01 $base01    $base07 $base0F
+  client.focused_inactive $base02 $base02    $base03 $base0F
+  client.unfocused        $base02 $base02    $base03 $base0F
+  client.urgent           $base02 $base08    $base00 $base0F
 
 
 
 bar {
-  #status_command i3status
+        #status_command i3status
         status_command i3blocks -c ~/.i3/i3blocks/i3blocks.conf
 	font pango: System San Francisco Display, FontAwesome 10
         position bottom
         strip_workspace_numbers no
         #bindsym button4 nop
         #bindsym button5 nop
-  colors {
-    separator #666666
-    background #222222
-    statusline #dddddd
-    focused_workspace #0088CC #0088CC #ffffff
-    active_workspace #333333 #333333 #ffffff
-    inactive_workspace #333333 #333333 #888888
-    urgent_workspace #2f343a #900000 #ffffff
-  }
+        colors {
+              separator $base03
+              background $base01
+              statusline $base05
+	      #                  border  background text
+              focused_workspace  $base01 $base01    $base07
+              active_workspace   $base01 $base02    $base03
+              inactive_workspace $base01 $base01    $base03
+              urgent_workspace   $base01 $base01    $base08
+    }
 }
 
 
 # default apps
 exec albert
 exec enpass  --no-startup-id
+exec octopi-notifier --no-startup-id
 exec nm-applet  --no-startup-id
-exec blueman-applet --no-startup-id
 exec spotify
 exec thunderbird
-exec /home/rafa/Downloads/tsetup.0.10.20/Telegram/Telegram -- %u
-exec owncloud --no-startup-id
+exec nextcloud
 exec emacsclient -c -a "" -e "(my-org-agenda-list)"
 
 # desktop wallpaper
-exec_always feh --bg-scale /home/rafa/Pictures/mountain.jpg
+exec_always feh --bg-scale /home/rafa/Pictures/river.jpg
 
-# capture screen
+# apps frequently used
+bindsym Mod4+f exec firefox
 bindsym Print exec spectacle
-
-client.focused #0088CC #0088CC #ffffff #dddddd
-client.focused_inactive #333333 #333333 #888888 #292d2e
-client.unfocused #333333 #333333 #888888 #292d2e
-client.urgent #2f343a #900000 #ffffff #900000
-
+bindsym Mod4+p exec pcmanfm

@@ -36,7 +36,7 @@ set $right f
 floating_modifier Mod4
 
 # start a terminal
-bindsym Mod4+Return exec urxvt
+bindsym Mod4+Return exec konsole
 
 # kill focused window
 bindsym Mod4+Shift+q kill
@@ -166,8 +166,6 @@ assign [class="konsole"] $workspace4
 assign [class="Telegram"] $workspace9
 assign [class="Thunderbird"] $workspace9
 assign [class="jetbrains-studio"] 5
-assign [class="com-install4j-runtime-launcher-UnixLauncher"] 5 #visual_paradigm
-
 # Las ventanas de org-capture se abren en el workspace en el que nos encontremos
 # assign [class=Emacs floating]
 for_window [class="Emacs" title="capture"] floating enable
@@ -175,7 +173,7 @@ for_window [class="Emacs" title="capture"] resize set 300 300
 for_window [class="Emacs" title="capture"] move position center
 for_window [class="Emacs" title="capture"] move container to workspace current
 
-# Cuando abro el gestor de archivos normalmente es para hacer algo rapido en
+# Cuando abro el gestor de archivos normalmente es para hacer algo en
 # el osea que lo hacemos centrado y flotante
 
 for_window [class="Pcmanfm"] floating enable
