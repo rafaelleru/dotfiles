@@ -11,7 +11,7 @@
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango: FontAwesome 10
+font pango: San Francisco System Display 9
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -27,16 +27,16 @@ font pango: FontAwesome 10
 # use these keys for focus, movement, and resize directions when reaching for
 # the arrows is not convenient
 # I like to do this with emacs style
-set $up p
-set $down n
-set $left b
-set $right f
+set $up i
+set $down k
+set $left j
+set $right l
 
 # use Mouse+Mod1 to drag floating windows to their wanted position
 floating_modifier Mod4
 
 # start a terminal
-bindsym Mod4+Return exec urxvt
+bindsym Mod4+Return exec urxvt -e "tmux"
 
 # kill focused window
 bindsym Mod4+Shift+q kill
@@ -109,11 +109,16 @@ bindsym Mod4+Shift+minus move scratchpad
 # If there are multiple scratchpad windows, this command cycles through them.
 bindsym Mod4+minus scratchpad show
 
-set $workspace1 "1 "
-set $workspace3 "3 Emacs"
-set $workspace4 "4 "
-set $workspace9 "9 "
-set $workspace10 "10 MultiMedia "
+set $workspace1 1
+#"1 "
+set $workspace3 3
+#"3 Emacs"
+set $workspace4 4
+#"4 "
+set $workspace9 9
+#"9 "
+set $workspace10 10
+#"10 MultiMedia "
 
 set $base00 #101218
 set $base01 #1f222d
@@ -166,7 +171,7 @@ assign [class="konsole"] $workspace4
 assign [class="Telegram"] $workspace9
 assign [class="Thunderbird"] $workspace9
 assign [class="jetbrains-studio"] 5
-assign [class="com-install4j-runtime-launcher-UnixLauncher"] 5 #visual_paradigm
+assign [class="com-install4j-runtime-launcher-UnixLauncher"] 5
 
 # Las ventanas de org-capture se abren en el workspace en el que nos encontremos
 # assign [class=Emacs floating]
@@ -243,35 +248,35 @@ mode "$mode_capture" {
 }
 bindsym Mod4+c mode "$mode_capture"
 
-# mode for open emacs
-set $mode_emacs (c) emacs client (e) emacs instance
-mode "$mode_emacs" {
-     bindsym c exec emacsclient -c -a "", mode "default"
-     bindsym e exec emacs, mode "default"
+# # mode for open emacs
+# set $mode_emacs (c) emacs client (e) emacs instance
+# mode "$mode_emacs" {
+#      bindsym c exec emacsclient -c -a "", mode "default"
+#      bindsym e exec emacs, mode "default"
 
-     bindsym Return mode "default"
-     bindsym Escape mode "default"
-}
+#      bindsym Return mode "default"
+#      bindsym Escape mode "default"
+# }
 
-bindsym Mod4+t mode "$mode_emacs"
+# bindsym Mod4+t mode "$mode_emacs"
 
-set $mode_launcher (f) Firefox (c) Chromium (p) Pcmanfs
-mode "$mode_launcher" {
-     bindsym f exec firefox, mode "default"
-     bindsym g exec chromium, mode "default"
-     bindsym p exec pcmanfm, mode "default"
-     bindsym Escape mode "default"
-     bindsym Return mode "default"
+# set $mode_launcher (f) Firefox (c) Chromium (p) Pcmanfs
+# mode "$mode_launcher" {
+#      bindsym f exec firefox, mode "default"
+#      bindsym g exec chromium, mode "default"
+#      bindsym p exec pcmanfm, mode "default"
+#      bindsym Escape mode "default"
+#      bindsym Return mode "default"
      
-}
+# }
 
-bindsym Mod4+Tab mode "$mode_launcher"
+# bindsym Mod4+Tab mode "$mode_launcher"
 
 ##
 # system mode from:
 # https://github.com/andreatta/config/blob/master/i3/config
 ##
-set $mode_system    [L]OCK       LOG[O]UT       [S]USPEND       [R]EBOOT       [P]OWEROFF
+set $mode_system    [L]OCK       LOG[O]UT       [S]USPEND       [R]EBOOT       [P]OWEROFF
 
 mode "$mode_system" {
     bindsym l exec $psst ~/.i3/i3exit.sh lock, mode "default"
@@ -302,8 +307,8 @@ bindsym Mod4+Shift+Escape mode "$mode_system"
 bar {
   #status_command i3status
         status_command i3blocks -c ~/.i3/i3blocks/i3blocks.conf
-	font pango: System San Francisco Display, FontAwesome 10
-        position bottom
+	font pango: System San Francisco Display, FontAwesome 9
+        position top
         strip_workspace_numbers no
         #bindsym button4 nop
         #bindsym button5 nop
@@ -320,18 +325,16 @@ bar {
 
 
 # default apps
-exec albert
+# exec albert
 exec enpass  --no-startup-id
 exec nm-applet  --no-startup-id
-exec blueman-applet --no-startup-id
-exec spotify
+# exec blueman-applet --no-startup-id no funciona
 exec thunderbird
 exec /home/rafa/Downloads/tsetup.0.10.20/Telegram/Telegram -- %u
-exec owncloud --no-startup-id
-exec emacsclient -c -a "" -e "(my-org-agenda-list)"
+exec emacs --daemon
 
 # desktop wallpaper
-exec_always feh --bg-scale /home/rafa/Pictures/mountain.jpg
+exec_always feh --bg-scale /home/rafa/.i3/wallpaper_2.jpg
 
 # capture screen
 bindsym Print exec spectacle
