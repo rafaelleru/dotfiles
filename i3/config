@@ -172,7 +172,8 @@ assign [class="Telegram"] $workspace9
 assign [class="Thunderbird"] $workspace9
 assign [class="jetbrains-studio"] 5
 assign [class="com-install4j-runtime-launcher-UnixLauncher"] 5
-
+assign [class="transmission"] 6
+assign [class="Nautilus"] 6
 # Las ventanas de org-capture se abren en el workspace en el que nos encontremos
 # assign [class=Emacs floating]
 for_window [class="Emacs" title="capture"] floating enable
@@ -334,13 +335,12 @@ exec /home/rafa/Downloads/tsetup.0.10.20/Telegram/Telegram -- %u
 exec emacs --daemon
 
 # desktop wallpaper
-exec_always feh --bg-scale /home/rafa/.i3/wallpaper_2.jpg
+exec_always feh --bg-scale /home/rafa/.i3/wallpaper.png
 
 # capture screen
 bindsym Print exec spectacle
 
-client.focused #0088CC #0088CC #ffffff #dddddd
+client.focused #e7e8eb #e7e8eb #666666 #e7e8eb
 client.focused_inactive #333333 #333333 #888888 #292d2e
 client.unfocused #333333 #333333 #888888 #292d2e
 client.urgent #2f343a #900000 #ffffff #900000
-
