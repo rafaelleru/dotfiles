@@ -36,13 +36,13 @@ set $right l
 floating_modifier Mod4
 
 # start a terminal
-bindsym Mod4+Return exec urxvt -e "tmux"
+bindsym Mod4+Return exec urxvt
 
 # kill focused window
 bindsym Mod4+Shift+q kill
 
 # start j4-dmenu (a program launcher) with my personal preferences for desktop files
-bindsym Mod4+d exec ~/.i3/j4menubin.sh
+bindsym Mod4+d exec dmenu_run 
 
 # bindsym Mod4+d exec rofi -show drun -c ~/.i3/rofi/config # run -lines 5 -eh 2 
 
@@ -198,8 +198,8 @@ bindsym XF86AudioRaiseVolume exec /usr/bin/pactl set-sink-volume 0 '+5%'
 bindsym XF86AudioMute exec /usr/bin/pactl set-sink-mute 0 'toggle'
 
 # brigthness control
-bindsym XF86MonBrightnessUp exec light -p -A 10 # increase screen brightness
-bindsym XF86MonBrightnessDown exec light -p -U 10 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec xbacklight -inc '5%' # light -p -A 10 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec '5%' # light -p -U 10 # decrease screen brightness
 
 # reload the configuration file
 bindsym Mod4+Shift+c reload
@@ -333,14 +333,15 @@ exec nm-applet  --no-startup-id
 exec thunderbird
 exec /home/rafa/Downloads/tsetup.0.10.20/Telegram/Telegram -- %u
 exec emacs --daemon
-
+exec "setxkbmap -layout es"
+exec compton
 # desktop wallpaper
 exec_always feh --bg-scale /home/rafa/.i3/wallpaper.png
 
 # capture screen
 bindsym Print exec spectacle
 
-client.focused #e7e8eb #e7e8eb #666666 #e7e8eb
+client.focused #2f343f #2f343f #ffffff #2f343f
 client.focused_inactive #333333 #333333 #888888 #292d2e
 client.unfocused #333333 #333333 #888888 #292d2e
 client.urgent #2f343a #900000 #ffffff #900000
