@@ -335,6 +335,7 @@ exec /home/rafa/Downloads/tsetup.0.10.20/Telegram/Telegram -- %u
 exec emacs --daemon
 exec "setxkbmap -layout es"
 exec compton
+
 # desktop wallpaper
 exec_always feh --bg-scale /home/rafa/.i3/wallpaper.png
 
@@ -343,5 +344,5 @@ bindsym Print exec spectacle
 
 client.focused #2f343f #2f343f #ffffff #2f343f
 client.focused_inactive #333333 #333333 #888888 #292d2e
-client.unfocused #333333 #333333 #888888 #292d2e
+client.unfocused  #2f343f #2f343f #888888 #292d2e
 client.urgent #2f343a #900000 #ffffff #900000
