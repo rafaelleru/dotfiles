@@ -1,6 +1,7 @@
 #+TITLE: Configuracion de emacs.
 
 Credits to Harry R. Schwartz, [[https://github.com/hrs/dotfiles/blob/master/emacs.d/configuration.org][@hrs]],  [[https://github.com/zamansky/using-emacs/blob/master/myinit.org][Zamansky]].
+
 * Informacion personal
 #+BEGIN_SRC emacs-lisp
   (setq user-full-name "Rafael Leyva Ruiz"
@@ -35,13 +36,13 @@ Credits to Harry R. Schwartz, [[https://github.com/hrs/dotfiles/blob/master/emac
 
 * Ajustes de la interfaz
 ** Ocultar botones que no uso y la barra de scroll.
-#+BEGIN_SRC emacs-lisp
-  (tool-bar-mode -1)
-  (menu-bar-mode 1) ;Voy a probar a tenerla un tiempo
-  (scroll-bar-mode -1)
-#+END_SRC
+    #+BEGIN_SRC emacs-lisp
+      (tool-bar-mode -1)
+      (menu-bar-mode 1)
+      (scroll-bar-mode -1)
+    #+END_SRC
 
-#+RESULTS:
+    #+RESULTS:
 
 ** tema personalizado
    #+BEGIN_SRC emacs-lisp
@@ -67,9 +68,9 @@ Credits to Harry R. Schwartz, [[https://github.com/hrs/dotfiles/blob/master/emac
 	 (setq solarized-height-plus-3 1.0)
 	 (setq solarized-height-plus-4 1.0)
 	 (setq solarized-high-contrast-mode-line t)
-	 ;(load-theme 'solarized-dark t)
 	 (load-theme 'solarized-dark t)
      )
+
      (add-hook 'after-init-hook 'load-my-theme)
      (when window-system
        (lambda) (load-my-theme))
@@ -84,53 +85,52 @@ Credits to Harry R. Schwartz, [[https://github.com/hrs/dotfiles/blob/master/emac
    : load-my-white-theme
 
 ** Fuente Inconsolata
-*** TODO hacer las mismas funciones para Inconsolata-ttf
    Permite ademas cambiar el tamaño de la ventana y la fuente para presentaciones por ejemplo.
-#+BEGIN_SRC emacs-lisp
-  (setq hrs/default-font "Inconsolata")
-  (setq hrs/default-font-size 13)
-  (setq hrs/current-font-size hrs/default-font-size)
+    #+BEGIN_SRC emacs-lisp
+      (setq hrs/default-font "Inconsolata")
+      (setq hrs/default-font-size 13)
+      (setq hrs/current-font-size hrs/default-font-size)
 
-  (defun set-font () 
-    (interactive)
-    (setq hrs/default-font "Source Code Pro")
-    (setq hrs/default-font-size 12)
-    (setq hrs/current-font-size hrs/default-font-size))
+      (defun set-font () 
+	(interactive)
+	(setq hrs/default-font "Source Code Pro")
+	(setq hrs/default-font-size 12)
+	(setq hrs/current-font-size hrs/default-font-size))
 
-  (setq hrs/font-change-increment 1.1)
+      (setq hrs/font-change-increment 1.1)
 
-  (defun hrs/set-font-size ()
-    "Set the font to `hrs/default-font' at `hrs/current-font-size'."
-    (set-frame-font
-     (concat hrs/default-font "-" (number-to-string hrs/current-font-size))))
+      (defun hrs/set-font-size ()
+	"Set the font to `hrs/default-font' at `hrs/current-font-size'."
+	(set-frame-font
+	 (concat hrs/default-font "-" (number-to-string hrs/current-font-size))))
 
-  (defun hrs/reset-font-size ()
-    "Change font size back to `hrs/default-font-size'."
-    (interactive)
-    (setq hrs/current-font-size hrs/default-font-size)
-    (hrs/set-font-size))
+      (defun hrs/reset-font-size ()
+	"Change font size back to `hrs/default-font-size'."
+	(interactive)
+	(setq hrs/current-font-size hrs/default-font-size)
+	(hrs/set-font-size))
 
-  (defun hrs/increase-font-size ()
-    "Increase current font size by a factor of `hrs/font-change-increment'."
-    (interactive)
-    (setq hrs/current-font-size
-	  (ceiling (* hrs/current-font-size hrs/font-change-increment)))
-    (hrs/set-font-size))
+      (defun hrs/increase-font-size ()
+	"Increase current font size by a factor of `hrs/font-change-increment'."
+	(interactive)
+	(setq hrs/current-font-size
+	      (ceiling (* hrs/current-font-size hrs/font-change-increment)))
+	(hrs/set-font-size))
 
-  (defun hrs/decrease-font-size ()
-    "Decrease current font size by a factor of `hrs/font-change-increment', down to a minimum size of 1."
-    (interactive)
-    (setq hrs/current-font-size
-	  (max 1
-	       (floor (/ hrs/current-font-size hrs/font-change-increment))))
-    (hrs/set-font-size))
+      (defun hrs/decrease-font-size ()
+	"Decrease current font size by a factor of `hrs/font-change-increment', down to a minimum size of 1."
+	(interactive)
+	(setq hrs/current-font-size
+	      (max 1
+		   (floor (/ hrs/current-font-size hrs/font-change-increment))))
+	(hrs/set-font-size))
 
-  (define-key global-map (kbd "C-)") 'hrs/reset-font-size)
-  (define-key global-map (kbd "C-+") 'hrs/increase-font-size)
-  (define-key global-map (kbd "C-_") 'hrs/decrease-font-size)
-  (define-key global-map (kbd "C--") 'hrs/decrease-font-size)
-  (hrs/set-font-size)
-#+END_SRC
+      (define-key global-map (kbd "C-)") 'hrs/reset-font-size)
+      (define-key global-map (kbd "C-+") 'hrs/increase-font-size)
+      (define-key global-map (kbd "C-_") 'hrs/decrease-font-size)
+      (define-key global-map (kbd "C--") 'hrs/decrease-font-size)
+      (hrs/set-font-size)
+    #+END_SRC
 
 #+RESULTS:
 
@@ -140,11 +140,11 @@ Credits to Harry R. Schwartz, [[https://github.com/hrs/dotfiles/blob/master/emac
    #+END_SRC
 
    #+RESULTS:
-   | t | global-hl-line-mode | load-my-theme | x-wm-set-size-hint | table--make-cell-map |
+   | global-hl-line-mode | load-my-theme | x-wm-set-size-hint | table--make-cell-map |
 
 ** Ver coincidencia de parentesis
    #+BEGIN_SRC emacs-lisp
-  (show-paren-mode 1)
+     (show-paren-mode 1)
    #+END_SRC
 
    #+RESULTS:
@@ -152,27 +152,27 @@ Credits to Harry R. Schwartz, [[https://github.com/hrs/dotfiles/blob/master/emac
 
 ** Tamaño al abrir una nueva ventana de emacs
    #+BEGIN_SRC emacs-lisp
-  (when window-system (set-frame-size (selected-frame) 130 45))
+     (when window-system (set-frame-size (selected-frame) 130 45))
    #+END_SRC
 
    #+RESULTS:
 
 ** No mover el cursor al hacer scroll con el raton
-#+BEGIN_SRC emacs-lisp
-  (defun scroll-down-keep-cursor ()
-    (interactive)
-    (scroll-down 1))
-  (defun scroll-up-keep-cursor ()
-    (interactive)
-    (scroll-up 1))
-#+END_SRC
+    #+BEGIN_SRC emacs-lisp
+      (defun scroll-down-keep-cursor ()
+	(interactive)
+	(scroll-down 1))
+      (defun scroll-up-keep-cursor ()
+	(interactive)
+	(scroll-up 1))
+    #+END_SRC
 
 #+RESULTS:
 : scroll-up-keep-cursor
 
 ** Activar ido mode (cambiado por ivy-mode y swiper)
-   #+BEGIN_SRC emacs-lisp
-      ;(ido-mode t)
+   #+BEGIN_SRC emacs-lisp :tangle no
+      (ido-mode t)
    #+END_SRC
 
    #+RESULTS:
@@ -238,15 +238,14 @@ Credits to Harry R. Schwartz, [[https://github.com/hrs/dotfiles/blob/master/emac
 
    #+RESULTS:
    : t
-** enable linum mode on open buffer
-*** TODO chapuzon
-y   #+BEGIN_SRC emacs-lisp :tangle no
-     (add-hook 'after-init-hook (global-linum-mode 1))
-     (add-hook 'after-helm-)
+** Modo terminal
+   #+BEGIN_SRC emacs-lisp :tangle no
+   (add-hook 'term-mode-hook '(set-background-color white))
    #+END_SRC
 
    #+RESULTS:
-   | t | x-wm-set-size-hint | global-hl-todo-mode | global-hl-line-mode | load-my-theme | table--make-cell-map |
+   | set-background-color | white |                                                               |
+   | lambda               | nil   | (local-set-key (kbd C-c C-k) (quote kill-buffer-this-buffer)) |
 
 * Utilidades
 ** seleccionar con =C-==
@@ -276,25 +275,18 @@ y   #+BEGIN_SRC emacs-lisp :tangle no
 *** Mirar helm (parece mas potente)
     https://github.com/emacs-helm/helm
     https://github.com/abo-abo/swiper-helm
-   #+BEGIN_SRC emacs-lisp 
-   (use-package ivy
-   :ensure t
-   :config
-   (ivy-mode 1))
+   #+BEGIN_SRC emacs-lisp :tangle no
+     (use-package ivy
+     :ensure t
+     :config
+     (ivy-mode 1))
 
      (use-package swiper
-     :ensure t)
-     (use-package counsel
-     :ensure t)
-     (setq ivy-use-virtual-buffers t)
-     (global-set-key "\C-s" 'swiper)
-     (global-set-key "\C-r" 'swiper)
-     (global-set-key (kbd "C-c C-r") 'ivy-resume)
-     (global-set-key (kbd "M-x") 'counsel-M-x)
-     (global-set-key (kbd "C-x C-f") 'counsel-find-file)
-     (setq ivy-use-virtual-buffers t)
-     (setq ivy-display-style 'fancy)
-     (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
+       :ensure t)
+
+       (use-package counsel
+       :ensure t)
+     ;(setq ivy-use-virtual-buffers t)
    #+END_SRC
 
    #+RESULTS:
@@ -312,6 +304,16 @@ y   #+BEGIN_SRC emacs-lisp :tangle no
        (global-set-key (kbd "M-x") 'helm-M-x)
        (global-set-key (kbd "M-y") 'helm-show-kill-ring)
        (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action))
+
+     (use-package swiper-helm
+       :ensure t
+       :config
+       (global-set-key "\C-s" 'swiper-helm)
+       (global-set-key "\C-r" 'swiper-helm)
+       (global-set-key (kbd "C-c C-r") 'ivy-resume)
+       (setq ivy-use-virtual-buffers t)
+       (setq ivy-display-style 'fancy)
+       (define-key read-expression-map (kbd "C-r") 'counsel-expression-history))
    #+END_SRC
 
    #+RESULTS:
@@ -433,17 +435,18 @@ y   #+BEGIN_SRC emacs-lisp :tangle no
    #+RESULTS:
 
 ** Autocomplete mode.
-   #+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp 
      (use-package auto-complete
        :ensure t
        :config
        (ac-config-default)
-       (global-auto-complete-mode t))
-     ;(global-set-key (kbd "C--") auto-complete-
+       (global-auto-complete-mode -1))
+
+     (add-hook 'org-mode-hook 'auto-complete-mode)
    #+END_SRC
 
    #+RESULTS:
-   : t
+   | auto-complete-mode | (lambda nil (org-bullets-mode t)) | er/add-org-mode-expansions | #[0 \300\301\302\303\304$\207 [add-hook change-major-mode-hook org-show-block-all append local] 5] | #[0 \300\301\302\303\304$\207 [add-hook change-major-mode-hook org-babel-show-result-all append local] 5] | org-babel-result-hide-spec | org-babel-hide-all-hashes | org-ac/setup-current-buffer | auto-revert-mode |
 
 ** Yasnippet.
    #+BEGIN_SRC emacs-lisp
@@ -456,16 +459,19 @@ y   #+BEGIN_SRC emacs-lisp :tangle no
    #+RESULTS:
 ** Activar company mode de modo global y flycheck para colorear la sintaxis
    #+BEGIN_SRC emacs-lisp
-     ;  (add-hook 'after-init-hook 'global-company-mode)
-     ;  (add-hook 'after-init-hook #'global-flycheck-mode)
-
      (use-package flycheck
        :ensure t
        :init
        (global-flycheck-mode t))
+
+     (use-package company
+       :ensure t
+       :config
+       (global-company-mode t))
    #+END_SRC
 
-#+RESULTS:
+   #+RESULTS:
+   : t
 
 ** Multiples cursores, muy practico para editar html.
    #+BEGIN_SRC emacs-lisp
@@ -508,13 +514,16 @@ y   #+BEGIN_SRC emacs-lisp :tangle no
 ** Python
 *** autocomplete con company Jedi
    #+BEGIN_SRC emacs-lisp :tangle no
+     (use-package company-jedi
+       :ensure t)
+
      (defun my/python-mode-hook ()
        (add-to-list 'company-backends 'company-jedi))
      (add-hook 'python-mode-hook 'my/python-mode-hook)
    #+END_SRC
 
    #+RESULTS:
-   | my/python-mode-hook |
+   | my/python-mode-hook | elpy-mode | er/add-python-mode-expansions |
 
 *** elpy
     utilidades de IDE python en emacs
@@ -531,6 +540,23 @@ y   #+BEGIN_SRC emacs-lisp :tangle no
     : t
 
 ** C ++
+*** autocomplete C/C++ headers from .h files in a project
+    #+BEGIN_SRC emacs-lisp :tangle no
+      (use-package auto-complete-c-headers
+	:ensure t
+	:config
+	(defun my:ac-c-headers-init ()
+	  (require 'auto-complete-c-headers)
+	  (add-to-list 'ac-sources 'ac-source-c-headers)))
+
+      (add-hook 'c++-mode-hook 'my:ac-c-headers-init)
+      (add-hook 'c-mode-hook 'my:ac-c-headers-init)
+    #+END_SRC
+
+    #+RESULTS:
+    | irony-mode | my:ac-c-headers-init |
+
+*** Irony-mode
    #+BEGIN_SRC emacs-lisp
      (use-package irony
        :ensure t)
@@ -543,6 +569,8 @@ y   #+BEGIN_SRC emacs-lisp :tangle no
        :config
        (flycheck-irony-setup))
 
+     (use-package company-irony-c-headers
+       :ensure t)
 
      (add-hook 'c++-mode-hook 'irony-mode)
      (add-hook 'c-mode-hook 'irony-mode)
@@ -550,6 +578,7 @@ y   #+BEGIN_SRC emacs-lisp :tangle no
 
      ;; replace the `completion-at-point' and `complete-symbol' bindings in
      ;; irony-mode's buffers by irony-mode's function
+
      (defun my-irony-mode-hook ()
        (define-key irony-mode-map [remap completion-at-point]
 	 'irony-completion-at-point-async)
@@ -558,15 +587,87 @@ y   #+BEGIN_SRC emacs-lisp :tangle no
        ;; (define-key irony-mode-map [remap comment-region]
        ;;   'compile)
        (eval-after-load 'company
-	 '(add-to-list 'company-backends 'company-irony)))
+	 '(add-to-list 'company-backends '(company-irony-c-headers company-irony))))
+
      (add-hook 'irony-mode-hook 'my-irony-mode-hook)
      (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
    #+END_SRC
 
    #+RESULTS:
    | irony-cdb-autosetup-compile-options | my-irony-mode-hook |
+
+*** modern c++ font lock
+    #+BEGIN_SRC emacs-lisp
+      (use-package modern-cpp-font-lock
+	:ensure t
+	:config
+	(modern-c++-font-lock-global-mode t))
+    #+END_SRC
+
+    #+RESULTS:
+    : t
+
+*** Rtags 
+    #+BEGIN_SRC emacs-lisp
+      (add-hook 'c-mode-hook 'rtags-start-process-unless-running)
+      (add-hook 'c++-mode-hook 'rtags-start-process-unless-running)
+      (add-hook 'objc-mode-hook 'rtags-start-process-unless-running)
+      (setq rtags-completions-enabled t)
+      (setq rtags-autostart-diagnostics t)
+      (rtags-enable-standard-keybindings)
+    #+END_SRC
+
+    #+RESULTS:
+    : rtags-location-stack-visualize
+
+**** heml integration
+    #+BEGIN_SRC emacs-lisp
+      (use-package helm-rtags
+	:ensure t
+	:config
+	(setq rtags-use-helm t)
+	)
+      (setq rtags-display-result-backend 'helm)
+    #+END_SRC
+
+    #+RESULTS:
+    : helm
+
+**** company-rtags support
+    #+BEGIN_SRC emacs-lisp
+      (use-package company-rtags
+	:ensure t
+	:config
+	(setq rtags-completions-enabled t)
+	(eval-after-load 'company
+	  '(add-to-list 'company-backends 'company-rtags))
+	(setq rtags-autostart-diagnostics t)
+	(rtags-enable-standard-keybindings))
+    #+END_SRC
+
+    #+RESULTS:
+    : t
+
+**** flycheck rtags integration
+      #+BEGIN_SRC emacs-lisp
+	(use-package flycheck-rtags
+	  :ensure t
+	  :config
+	  (defun my-flycheck-rtags-setup ()
+	    (flycheck-select-check 'rtags)
+	    (setq-local flycheck-highlighting-mode nil)
+	    (setq-local flycheck-check-syntax-automatically nil))
+	  )
+
+	(add-hook 'c-mode-common-hook #'my-flycheck-rtags-setup)
+
+      #+END_SRC
+
+      #+RESULTS:
+      | my-flycheck-rtags-setup | ac-cc-mode-setup |
+
 ** javascript
-   #+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp :tangle no
      (use-package js2
        :ensure t
        :config
@@ -584,7 +685,9 @@ y   #+BEGIN_SRC emacs-lisp :tangle no
 *** Vuejs mode
     #+BEGIN_SRC emacs-lisp
       (use-package vue-mode
-	:ensure t)
+	:ensure t
+	:config
+	(setq mmm-submode-decoration-level 0))
     #+END_SRC
 
     #+RESULTS:
@@ -739,12 +842,12 @@ y   #+BEGIN_SRC emacs-lisp :tangle no
    : t
 
 *** No cambiar de ventana al editar un snippet de codigo
-#+BEGIN_SRC emacs-lisp
-  (setq org-src-window-setup 'current-window)
-#+END_SRC
+    #+BEGIN_SRC emacs-lisp
+      ((setq org-src-window-setup 'current-window)
+    #+END_SRC
 
-#+RESULTS:
-: current-window
+    #+RESULTS:
+    : current-window
 
 ** GTD y ideas en org-mode
 *** Keywords TODO
@@ -1148,10 +1251,10 @@ Ademas incluimos este paquete en todos los documetos de latex que exportemos
   #+RESULTS:
 
   Activar las flechas para navegar por undo Tree mode (parece que no me hace falta hacer esto)
-  #+BEGIN_SRC emacs-lisp
-    ;(add-hook 'undo-tree-mode-hook
-    ; 	  (lambda ()
-    ;	    (enable-arrow-keys)))
+  #+BEGIN_SRC emacs-lisp :tangle no
+    (add-hook 'undo-tree-mode-hook
+     	  (lambda ()
+    	    (enable-arrow-keys)))
   #+END_SRC
 
   #+RESULTS:
@@ -1224,7 +1327,7 @@ Ademas incluimos este paquete en todos los documetos de latex que exportemos
    | (lambda (frame) (select-frame frame) (load-my-theme) (set-font)) | x-dnd-init-frame |
 * Atajos personalizados
 ** al abrir la lista de buffer cambiar directamente a esa ventana
-  Cuando ejecuto =C-x C-b= normalmente quiero hacer algo como eliminar varios buffers a la vez, por lo que cada vez que abra la lista de buffers quiero saltar a ella.
+   Cuando ejecuto =C-x C-b= normalmente quiero hacer algo como eliminar varios buffers a la vez, por lo que cada vez que abra la lista de buffers quiero saltar a ella.
   #+BEGIN_SRC emacs-lisp
     (global-set-key (kbd "C-x C-b") 'ibuffer)
   #+END_SRC
