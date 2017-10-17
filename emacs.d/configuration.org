@@ -140,7 +140,6 @@ Credits to Harry R. Schwartz, [[https://github.com/hrs/dotfiles/blob/master/emac
    #+END_SRC
 
    #+RESULTS:
-   | global-hl-line-mode | load-my-theme | x-wm-set-size-hint | table--make-cell-map |
 
 ** Ver coincidencia de parentesis
    #+BEGIN_SRC emacs-lisp
@@ -244,8 +243,7 @@ Credits to Harry R. Schwartz, [[https://github.com/hrs/dotfiles/blob/master/emac
    #+END_SRC
 
    #+RESULTS:
-   | set-background-color | white |                                                               |
-   | lambda               | nil   | (local-set-key (kbd C-c C-k) (quote kill-buffer-this-buffer)) |
+   | set-background-color | white |
 
 * Utilidades
 ** seleccionar con =C-==
@@ -290,7 +288,6 @@ Credits to Harry R. Schwartz, [[https://github.com/hrs/dotfiles/blob/master/emac
    #+END_SRC
 
    #+RESULTS:
-   : counsel-expression-history
 
 ** Helm
    #+BEGIN_SRC emacs-lisp
@@ -446,17 +443,8 @@ Credits to Harry R. Schwartz, [[https://github.com/hrs/dotfiles/blob/master/emac
    #+END_SRC
 
    #+RESULTS:
-   | auto-complete-mode | (lambda nil (org-bullets-mode t)) | er/add-org-mode-expansions | #[0 \300\301\302\303\304$\207 [add-hook change-major-mode-hook org-show-block-all append local] 5] | #[0 \300\301\302\303\304$\207 [add-hook change-major-mode-hook org-babel-show-result-all append local] 5] | org-babel-result-hide-spec | org-babel-hide-all-hashes | org-ac/setup-current-buffer | auto-revert-mode |
+   | (lambda nil (org-bullets-mode t)) | auto-complete-mode | er/add-org-mode-expansions | #[0 \300\301\302\303\304$\207 [add-hook change-major-mode-hook org-show-block-all append local] 5] | #[0 \300\301\302\303\304$\207 [add-hook change-major-mode-hook org-babel-show-result-all append local] 5] | org-babel-result-hide-spec | org-babel-hide-all-hashes | org-ac/setup-current-buffer | auto-revert-mode |
 
-** Yasnippet.
-   #+BEGIN_SRC emacs-lisp
-     (use-package yasnippet
-       :ensure t
-       :init
-       (yas-global-mode 1))
-   #+END_SRC
-
-   #+RESULTS:
 ** Activar company mode de modo global y flycheck para colorear la sintaxis
    #+BEGIN_SRC emacs-lisp
      (use-package flycheck
@@ -472,6 +460,17 @@ Credits to Harry R. Schwartz, [[https://github.com/hrs/dotfiles/blob/master/emac
 
    #+RESULTS:
    : t
+
+** Yasnippet.
+   #+BEGIN_SRC emacs-lisp
+     (use-package yasnippet
+       :ensure t
+       :init
+       (yas-global-mode 1)
+       (add-to-list 'company-backends 'company-yasnippet))
+   #+END_SRC
+
+   #+RESULTS:
 
 ** Multiples cursores, muy practico para editar html.
    #+BEGIN_SRC emacs-lisp
@@ -523,7 +522,7 @@ Credits to Harry R. Schwartz, [[https://github.com/hrs/dotfiles/blob/master/emac
    #+END_SRC
 
    #+RESULTS:
-   | my/python-mode-hook | elpy-mode | er/add-python-mode-expansions |
+   | my/python-mode-hook | (lambda nil (set (make-local-variable (quote yas-indent-line)) (quote fixed))) | elpy-mode | er/add-python-mode-expansions |
 
 *** elpy
     utilidades de IDE python en emacs
@@ -554,7 +553,7 @@ Credits to Harry R. Schwartz, [[https://github.com/hrs/dotfiles/blob/master/emac
     #+END_SRC
 
     #+RESULTS:
-    | irony-mode | my:ac-c-headers-init |
+    | my:ac-c-headers-init | (lambda nil (easy-menu-add-item nil (quote (C)) (rtags-submenu-list))) | er/add-cc-mode-expansions | rtags-start-process-unless-running | irony-mode |
 
 *** Irony-mode
    #+BEGIN_SRC emacs-lisp
@@ -584,17 +583,17 @@ Credits to Harry R. Schwartz, [[https://github.com/hrs/dotfiles/blob/master/emac
 	 'irony-completion-at-point-async)
        (define-key irony-mode-map [remap complete-symbol]
 	 'irony-completion-at-point-async)
-       ;; (define-key irony-mode-map [remap comment-region]
-       ;;   'compile)
+       ;; ;; (define-key irony-mode-map [remap comment-region]
+       ;; ;;   'compile)
        (eval-after-load 'company
 	 '(add-to-list 'company-backends '(company-irony-c-headers company-irony))))
 
-     (add-hook 'irony-mode-hook 'my-irony-mode-hook)
      (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+     (add-hook 'irony-mode-hook 'my-irony-mode-hook)
    #+END_SRC
 
    #+RESULTS:
-   | irony-cdb-autosetup-compile-options | my-irony-mode-hook |
+   | my-flycheck-rtags-setup | irony-cdb-autosetup-compile-options | my-irony-mode-hook |
 
 *** modern c++ font lock
     #+BEGIN_SRC emacs-lisp
@@ -659,12 +658,12 @@ Credits to Harry R. Schwartz, [[https://github.com/hrs/dotfiles/blob/master/emac
 	    (setq-local flycheck-check-syntax-automatically nil))
 	  )
 
-	(add-hook 'c-mode-common-hook #'my-flycheck-rtags-setup)
-
+	;(add-hook 'c-mode-common-hook #'my-flycheck-rtags-setup)
+	(add-hook 'irony-mode-hook 'my-flycheck-rtags-setup)
       #+END_SRC
 
       #+RESULTS:
-      | my-flycheck-rtags-setup | ac-cc-mode-setup |
+      | my-flycheck-rtags-setup | irony-cdb-autosetup-compile-options | my-irony-mode-hook |
 
 ** javascript
    #+BEGIN_SRC emacs-lisp :tangle no
@@ -691,6 +690,7 @@ Credits to Harry R. Schwartz, [[https://github.com/hrs/dotfiles/blob/master/emac
     #+END_SRC
 
     #+RESULTS:
+    : t
 
 ** html && css
    #+BEGIN_SRC emacs-lisp
@@ -763,11 +763,10 @@ Credits to Harry R. Schwartz, [[https://github.com/hrs/dotfiles/blob/master/emac
 
 ** PDDL domain
    #+BEGIN_SRC emacs-lisp :tangle no
-     (require 'pddl-mode "~/.emacs.d/ppdl-mode.el")
+     ;(require 'pddl-mode "~/.emacs.d/ppdl-mode.el")
    #+END_SRC
 
    #+RESULTS:
-   : pddl-mode
    
 * Magit
   #+BEGIN_SRC emacs-lisp
@@ -801,7 +800,7 @@ Credits to Harry R. Schwartz, [[https://github.com/hrs/dotfiles/blob/master/emac
    #+END_SRC
 
    #+RESULTS:
-   | er/add-org-mode-expansions | #[0 \300\301\302\303\304$\207 [add-hook change-major-mode-hook org-show-block-all append local] 5 |
+   | (lambda nil (org-bullets-mode t)) | auto-complete-mode | er/add-org-mode-expansions | #[0 \300\301\302\303\304$\207 [add-hook change-major-mode-hook org-show-block-all append local] 5] | #[0 \300\301\302\303\304$\207 [add-hook change-major-mode-hook org-babel-show-result-all append local] 5] | org-babel-result-hide-spec | org-babel-hide-all-hashes | org-ac/setup-current-buffer | auto-revert-mode |
 
 ** Activar puntos en vez de asteriscos, que mola mas.
    #+BEGIN_SRC emacs-lisp
@@ -843,7 +842,7 @@ Credits to Harry R. Schwartz, [[https://github.com/hrs/dotfiles/blob/master/emac
 
 *** No cambiar de ventana al editar un snippet de codigo
     #+BEGIN_SRC emacs-lisp
-      ((setq org-src-window-setup 'current-window)
+      (setq org-src-window-setup 'current-window)
     #+END_SRC
 
     #+RESULTS:
@@ -1065,7 +1064,7 @@ Presionar =C-c o i= para abrir *index.org*
     #+END_SRC
 
     #+RESULTS:
-    | (lambda nil (org-gcal-sync)) | delete-frame |
+    | delete-frame |
 
     ;; TODO: fix delete-other-windows
     #+RESULTS:
@@ -1128,10 +1127,12 @@ Presionar =C-c o i= para abrir *index.org*
      (org-babel-do-load-languages
       'org-babel-load-languages
       '((emacs-lisp . t)
-        (ruby . t)
-        (python . t)
-        (dot . t)
-        (gnuplot . t)))
+	(ruby . t)
+	(python . t)
+	(dot . t)
+	(gnuplot . t)))
+
+     (setq org-confirm-babel-evaluate nil)
    #+END_SRC
 
    #+RESULTS:
@@ -1249,21 +1250,11 @@ Ademas incluimos este paquete en todos los documetos de latex que exportemos
   #+END_SRC
 
   #+RESULTS:
-
-  Activar las flechas para navegar por undo Tree mode (parece que no me hace falta hacer esto)
-  #+BEGIN_SRC emacs-lisp :tangle no
-    (add-hook 'undo-tree-mode-hook
-     	  (lambda ()
-    	    (enable-arrow-keys)))
-  #+END_SRC
-
-  #+RESULTS:
-
 * Desactivo las flechas para no usarlas, que para algo tiene emacs tantos atajos
   #+BEGIN_SRC emacs-lisp
     (defun disable-arrow-keys ()
     (interactive)
-        ;;;Desactiva la nevagacion con las flechas
+	;;;Desactiva la nevagacion con las flechas
     (global-unset-key (kbd "<left>"))
     (global-unset-key (kbd "<right>"))
     (global-unset-key (kbd "<up>"))
@@ -1272,13 +1263,13 @@ Ademas incluimos este paquete en todos los documetos de latex que exportemos
 
     (defun enable-arrow-keys ()
     (interactive)
-        ;;;Activa la navegacion con flecha
+	;;;Activa la navegacion con flecha
      (global-set-key (kbd "<left>") 'left-char)
      (global-set-key (kbd "<right>")  'right-char)
      (global-set-key (kbd "<up>") 'previous-line)
      (global-set-key (kbd "<down>") 'next-line))
 
-    ;(disable-arrow-keys) He conseguido no usar las flechas al fin.
+    ;(disable-arrow-keys) He conseguido no usar las flechas al fin
   #+END_SRC
 
   #+RESULTS:
