@@ -1,6 +1,5 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-
 # Path to your oh-my-zsh installation.
   export ZSH=/home/rafa/.oh-my-zsh
 
@@ -8,7 +7,7 @@
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 #ZSH_THEME="Spaceship"
-ZSH_THEME="af-magic"
+ZSH_THEME="gitster"
 #ZSH_THEME="powerlevel9k/powerlevel9k"
 #POWERLEVEL9K_MODE='awesome-fontconfig'
 # Uncomment the following line to use case-sensitive completion.
@@ -53,7 +52,7 @@ ZSH_THEME="af-magic"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git shrink-path)
+plugins=(emacs git shrink-path vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -65,11 +64,11 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-   export EDITOR='emacsclient -c -a ""'
- else
-   export EDITOR='emacsclient -c -a ""'
- fi
+# if [[ -n $SSH_CONNECTION ]]; then
+#    export EDITOR='emacsclient -c -a ""'
+#  else
+#    export EDITOR='emacsclient -c -a ""'
+#  fi
 
 export TERM=xterm-256color
 # Compilation flags
@@ -100,7 +99,7 @@ alias horario='cat ~/Asignaturas1617.txt'
 alias orderUGR='python3 ~/mis_programas/OrderUGR/orderUGR.py'
 alias suspend='i3lock && systemctl suspend'
 alias capture='emacsclient -a "" -c -e "(make-capture-frame)"'
-alias et='emacsclient -a "" -t'
+alias ec='emacsclient -c'
 screenfetch
 
 # added by travis gem
