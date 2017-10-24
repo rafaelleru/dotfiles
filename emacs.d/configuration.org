@@ -25,7 +25,7 @@ Credits to Harry R. Schwartz, [[https://github.com/hrs/dotfiles/blob/master/emac
    #+RESULTS:
    : pallet
 
-** Use package 
+** Use package
    #+BEGIN_SRC emacs-lisp
      (unless (package-installed-p 'use-package)
        (package-refresh-contents)
@@ -282,7 +282,7 @@ Credits to Harry R. Schwartz, [[https://github.com/hrs/dotfiles/blob/master/emac
      (use-package swiper
        :ensure t)
 
-       (use-package counsel
+     (use-package counsel
        :ensure t)
      ;(setq ivy-use-virtual-buffers t)
    #+END_SRC
@@ -330,7 +330,7 @@ Credits to Harry R. Schwartz, [[https://github.com/hrs/dotfiles/blob/master/emac
      (use-package neotree
        :ensure t
        :config
-       (setq neo-theme (if (display-graphic-p) 'ascii 'arrow))
+       (setq neo-theme (if (display-graphic-p) 'icons 'ascii))
        (global-set-key (kbd "C-x n t") 'neotree-toggle))
    #+END_SRC
 
@@ -384,6 +384,74 @@ Credits to Harry R. Schwartz, [[https://github.com/hrs/dotfiles/blob/master/emac
    #+END_SRC
 
    #+RESULTS:
+** all the icons
+   #+BEGIN_SRC emacs-lisp
+     (use-package all-the-icons
+       :ensure t)
+
+     (use-package all-the-icons-dired
+       :ensure t
+       :config
+       (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
+
+     ;(use-package )
+   #+END_SRC
+
+   #+RESULTS:
+   : t
+** powerline
+   #+BEGIN_SRC emacs-lisp
+   
+   #+END_SRC
+* Evil-mode 
+   #+BEGIN_SRC emacs-lisp
+     (use-package evil
+       :ensure t
+       :config
+       (global-evil-leader-mode)
+       (evil-mode 1))
+   #+END_SRC
+
+   #+RESULTS:
+   : t
+  
+   Escapar de todos los lugares posibles
+ 
+   #+BEGIN_SRC emacs-lisp
+     (add-hook 'messages-buffer-mode-hook 'evil-insert-state)
+     (define-key evil-normal-state-map [escape] 'keyboard-quit)
+     (define-key evil-visual-state-map [escape] 'keyboard-quit)
+     (define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
+     (define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
+     (define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
+     (define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
+     (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
+     (with-current-buffer "*Messages*"
+       (evil-insert-state))
+     (add-hook 'special-mode-hook 'evil-insert-state)
+  #+END_SRC 
+
+  #+RESULTS:
+** evil-leader 
+   #+BEGIN_SRC emacs-lisp
+     (use-package evil-leader
+       :ensure t
+       :config
+       (evil-leader/set-leader ",")
+       (evil-leader/set-key
+	"," 'other-window
+	":" 'eval-expression
+	"b" 'helm-mini
+	"d" 'kill-this-buffer
+	"g" 'magit-status
+	"p" 'helm-show-kill-ring
+	"x" 'helm-M-x
+	"nt" 'neotree-toggle)
+       )
+   #+END_SRC
+
+   #+RESULTS:
+   : t
 
 * elfeed
   #+BEGIN_SRC emacs-lisp
@@ -437,7 +505,7 @@ Credits to Harry R. Schwartz, [[https://github.com/hrs/dotfiles/blob/master/emac
        :ensure t
        :config
        (ac-config-default)
-       (global-auto-complete-mode -1))
+       (global-auto-complete-mode 1))
 
      (add-hook 'org-mode-hook 'auto-complete-mode)
    #+END_SRC
@@ -455,7 +523,12 @@ Credits to Harry R. Schwartz, [[https://github.com/hrs/dotfiles/blob/master/emac
      (use-package company
        :ensure t
        :config
-       (global-company-mode t))
+       (global-company-mode t)
+       (setq company-echo-delay 0)
+       (global-set-key (kbd "C-*") 'company-complete)
+       (add-to-list 'company-backends 'company-elisp)
+       (add-to-list 'company-backends 'company-tern)
+       (add-to-list 'company-backends 'company-css))
    #+END_SRC
 
    #+RESULTS:
@@ -510,6 +583,23 @@ Credits to Harry R. Schwartz, [[https://github.com/hrs/dotfiles/blob/master/emac
 
    #+RESULTS:
 
+** minimap
+   #+BEGIN_SRC emacs-lisp
+     (use-package minimap
+       :ensure t
+       :config
+       (setq minimap-window-location 'right)
+       (setq minimap-always-recenter -1)
+       (setq minimap-minimum-width '0)
+       (setq minimap-width-fraction 0.1)
+       (setq minimap-update 1)
+       )
+
+   #+END_SRC
+
+   #+RESULTS:
+   : t
+
 ** Python
 *** autocomplete con company Jedi
    #+BEGIN_SRC emacs-lisp :tangle no
@@ -538,7 +628,7 @@ Credits to Harry R. Schwartz, [[https://github.com/hrs/dotfiles/blob/master/emac
     #+RESULTS:
     : t
 
-** C ++
+** C++
 *** autocomplete C/C++ headers from .h files in a project
     #+BEGIN_SRC emacs-lisp :tangle no
       (use-package auto-complete-c-headers
@@ -580,9 +670,9 @@ Credits to Harry R. Schwartz, [[https://github.com/hrs/dotfiles/blob/master/emac
 
      (defun my-irony-mode-hook ()
        (define-key irony-mode-map [remap completion-at-point]
-	 'irony-completion-at-point-async)
+	 'counsel-irony)
        (define-key irony-mode-map [remap complete-symbol]
-	 'irony-completion-at-point-async)
+	 'counsel-irony)
        ;; ;; (define-key irony-mode-map [remap comment-region]
        ;; ;;   'compile)
        (eval-after-load 'company
@@ -593,7 +683,7 @@ Credits to Harry R. Schwartz, [[https://github.com/hrs/dotfiles/blob/master/emac
    #+END_SRC
 
    #+RESULTS:
-   | my-flycheck-rtags-setup | irony-cdb-autosetup-compile-options | my-irony-mode-hook |
+   | my-flycheck-rtags-setup | my-irony-mode-hook | irony-cdb-autosetup-compile-options |
 
 *** modern c++ font lock
     #+BEGIN_SRC emacs-lisp
@@ -653,8 +743,8 @@ Credits to Harry R. Schwartz, [[https://github.com/hrs/dotfiles/blob/master/emac
 	  :ensure t
 	  :config
 	  (defun my-flycheck-rtags-setup ()
-	    (flycheck-select-check 'rtags)
-	    (setq-local flycheck-highlighting-mode nil)
+	    (flycheck-select-checker 'rtags)
+	    (setq-local flycheck-highlighting-mode 'symbols)
 	    (setq-local flycheck-check-syntax-automatically nil))
 	  )
 
@@ -663,30 +753,41 @@ Credits to Harry R. Schwartz, [[https://github.com/hrs/dotfiles/blob/master/emac
       #+END_SRC
 
       #+RESULTS:
-      | my-flycheck-rtags-setup | irony-cdb-autosetup-compile-options | my-irony-mode-hook |
+      | my-flycheck-rtags-setup | my-irony-mode-hook | irony-cdb-autosetup-compile-options |
 
 ** javascript
    #+BEGIN_SRC emacs-lisp :tangle no
-     (use-package js2
-       :ensure t
-       :config
-       (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode)))
+	  (use-package js2
+	    :ensure t
+	    :config
+	    (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode)))
 
-     (use-package eslint-fix
-       :ensure t
-       :config
-	(eval-after-load 'js2-mode
-	   '(add-hook 'js2-mode-hook (lambda () (add-hook 'after-save-hook 'eslint-fix nil t)))))
+     (setq js-indent-level 2)
+	  (use-package eslint-fix
+	    :ensure t
+	    :config
+	     (eval-after-load 'js2-mode
+		'(add-hook 'js2-mode-hook (lambda () (add-hook 'after-save-hook 'eslint-fix nil t)))))
    #+END_SRC
 
    #+RESULTS:
    : t
+   
+   #+BEGIN_SRC emacs-lisp
+     (use-package tern
+       :ensure t)
+
+     (use-package company-tern
+       :ensure t)
+   #+END_SRC
 *** Vuejs mode
     #+BEGIN_SRC emacs-lisp
+      (setq js-indent-level 2)
+      (add-hook 'js-mode-hook (lambda () (tern-mode t)))
       (use-package vue-mode
-	:ensure t
-	:config
-	(setq mmm-submode-decoration-level 0))
+	 :ensure t
+	 :config
+	 (setq mmm-submode-decoration-level 0))
     #+END_SRC
 
     #+RESULTS:
@@ -768,6 +869,13 @@ Credits to Harry R. Schwartz, [[https://github.com/hrs/dotfiles/blob/master/emac
 
    #+RESULTS:
    
+** Tratar CamelCase como palabras separadas.
+   #+BEGIN_SRC emacs-lisp
+   (global-subword-mode 1)
+   #+END_SRC
+
+   #+RESULTS:
+   : t
 * Magit
   #+BEGIN_SRC emacs-lisp
     (use-package magit
@@ -1333,3 +1441,20 @@ Ademas incluimos este paquete en todos los documetos de latex que exportemos
 
    #+RESULTS:
    : kill-this-buffer
+
+* Evil settings
+  #+BEGIN_SRC emacs-lisp
+    (add-hook 'messages-buffer-mode-hook 'evil-insert-state)
+    (define-key evil-normal-state-map [escape] 'keyboard-quit)
+    (define-key evil-visual-state-map [escape] 'keyboard-quit)
+    (define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
+    (define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
+    (define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
+    (define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
+    (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
+    (with-current-buffer "*Messages*"
+      (evil-insert-state))
+  #+END_SRC 
+
+  #+RESULTS:
+  
