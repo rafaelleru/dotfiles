@@ -35,6 +35,70 @@ Credits to Harry R. Schwartz, [[https://github.com/hrs/dotfiles/blob/master/emac
 
    #+RESULTS:
 
+* Evil-mode 
+   #+BEGIN_SRC emacs-lisp
+     (use-package evil
+       :ensure t
+       :config
+       (global-evil-leader-mode)
+       (evil-mode 1))
+   #+END_SRC
+
+   #+RESULTS:
+   : t
+  
+   Escapar de todos los lugares posibles
+ 
+   #+BEGIN_SRC emacs-lisp
+     (add-hook 'messages-buffer-mode-hook 'evil-insert-state)
+     (define-key evil-normal-state-map [escape] 'keyboard-quit)
+     (define-key evil-visual-state-map [escape] 'keyboard-quit)
+     (define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
+     (define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
+     (define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
+     (define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
+     (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
+     (with-current-buffer "*Messages*"
+       (evil-insert-state))
+     (add-hook 'special-mode-hook 'evil-insert-state)
+  #+END_SRC 
+
+  #+RESULTS:
+  
+  
+** evil-leader 
+   #+BEGIN_SRC emacs-lisp
+     (use-package evil-leader
+       :ensure t
+       :config
+       (evil-leader/set-leader ",")
+       (evil-leader/set-key
+	 "," 'other-window
+	 ";" 'comment-dwim
+	 ":" 'eval-expression
+	 "b" 'helm-mini
+	 "B" 'ibuffer
+	 "d" 'kill-this-buffer
+	 "g" 'magit-status
+	 "p" 'helm-show-kill-ring
+	 "x" 'helm-M-x
+	 "nt" 'neotree-toggle
+	 "-p" 'projectile-switch-project
+	 "-b" 'projectile-switch-to-buffer
+	 "-f" 'helm-projectile-find-file
+	 "-c" 'helm-projectile-compile-project
+	 "-h" 'helm-projectile
+	 "-u" 'helm-projectile-run-project
+	 "f" 'helm-find-files
+	 "r." 'rtags-find-symbol-at-point
+	 ;;"r>" 'rtags
+	 )
+       )
+   #+END_SRC
+
+   #+RESULTS:
+   : t
+
 * Ajustes de la interfaz
 ** Ocultar botones que no uso y la barra de scroll.
     #+BEGIN_SRC emacs-lisp
@@ -312,6 +376,11 @@ Credits to Harry R. Schwartz, [[https://github.com/hrs/dotfiles/blob/master/emac
        (setq ivy-use-virtual-buffers t)
        (setq ivy-display-style 'fancy)
        (define-key read-expression-map (kbd "C-r") 'counsel-expression-history))
+
+     (use-package helm-projectile
+       :ensure t
+       :config
+       (helm-projectile-on))
    #+END_SRC
 
    #+RESULTS:
@@ -415,65 +484,6 @@ Credits to Harry R. Schwartz, [[https://github.com/hrs/dotfiles/blob/master/emac
 
    #+RESULTS:
    | linum-mode | (linum-mode 1) | (linum-mode t) |
-
-* Evil-mode 
-   #+BEGIN_SRC emacs-lisp
-     (use-package evil
-       :ensure t
-       :config
-       (global-evil-leader-mode)
-       (evil-mode 1))
-   #+END_SRC
-
-   #+RESULTS:
-   : t
-  
-   Escapar de todos los lugares posibles
- 
-   #+BEGIN_SRC emacs-lisp
-     (add-hook 'messages-buffer-mode-hook 'evil-insert-state)
-     (define-key evil-normal-state-map [escape] 'keyboard-quit)
-     (define-key evil-visual-state-map [escape] 'keyboard-quit)
-     (define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
-     (define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
-     (define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
-     (define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
-     (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
-     (with-current-buffer "*Messages*"
-       (evil-insert-state))
-     (add-hook 'special-mode-hook 'evil-insert-state)
-  #+END_SRC 
-
-  #+RESULTS:
-** evil-leader 
-   #+BEGIN_SRC emacs-lisp
-     (use-package evil-leader
-	 :ensure t
-	 :config
-	 (evil-leader/set-leader ",")
-	 (evil-leader/set-key
-	   "," 'other-window
-	   ":" 'eval-expression
-	   "b" 'helm-mini
-	   "d" 'kill-this-buffer
-	   "g" 'magit-status
-	   "p" 'helm-show-kill-ring
-	   "x" 'helm-M-x
-	   "nt" 'neotree-toggle
-	   "-p" 'helm-projectile-switch-project
-	   "-b" 'helm-projectile-switch-to-buffer
-	   "-f" 'helm-projectile-find-file
-	   "-c" 'helm-projectile-compile-project
-	   "-u" 'helm-projectile-run-project
-	   "f" 'helm-find-files
-	   "r." 'rtags-find-symbol-at-point
-	   ;;"r>" 'rtags
-	   )
-	 )
-   #+END_SRC
-
-   #+RESULTS:
-   : t
 
 * elfeed
   #+BEGIN_SRC emacs-lisp
@@ -944,6 +954,13 @@ Credits to Harry R. Schwartz, [[https://github.com/hrs/dotfiles/blob/master/emac
 
    #+RESULTS:
    : t
+** Hacer que org no tenga scroll lateral.
+   #+BEGIN_SRC emacs-lisp
+     (add-hook 'org-mode-hook 'visual-line-mode)
+   #+END_SRC
+
+   #+RESULTS:
+   | visual-line-mode | (lambda nil (org-bullets-mode t)) | auto-complete-mode | er/add-org-mode-expansions | #[0 \300\301\302\303\304$\207 [add-hook change-major-mode-hook org-show-block-all append local] 5] | #[0 \300\301\302\303\304$\207 [add-hook change-major-mode-hook org-babel-show-result-all append local] 5] | org-babel-result-hide-spec | org-babel-hide-all-hashes | org-ac/setup-current-buffer | auto-revert-mode |
 
 ** En vez de puntos suspensivos mostrar flecha '⤵'
    #+BEGIN_SRC emacs-lisp
@@ -1294,6 +1311,20 @@ Ademas incluimos este paquete en todos los documetos de latex que exportemos
 
    #+RESULTS:
    : minted
+
+*** Export to hugo for bloging.
+    #+BEGIN_SRC emacs-lisp
+      (use-package ox-hugo
+	:ensure t
+	:after ox
+	:config
+	(setq org-hugo-default-section-directory "blog")
+	(setq org-hugo-base-dir "~/src/rafaelleru.github.io")
+	)
+    #+END_SRC
+
+    #+RESULTS:
+    : t
 
 ** Org-sync para gestionar los issues de github en orgmode
    #+BEGIN_SRC emacs-lisp
