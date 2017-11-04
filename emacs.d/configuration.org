@@ -246,7 +246,7 @@ Credits to Harry R. Schwartz, [[https://github.com/hrs/dotfiles/blob/master/emac
    #+BEGIN_SRC emacs-lisp
      (use-package winner
        :ensure t
-       :init
+       :config
        (winner-mode t))
    #+END_SRC
 
@@ -537,13 +537,14 @@ Credits to Harry R. Schwartz, [[https://github.com/hrs/dotfiles/blob/master/emac
        :ensure t
        :config
        (ac-config-default)
-       (global-auto-complete-mode 1))
+       )
 
      (add-hook 'org-mode-hook 'auto-complete-mode)
+     (add-hook 'emacs-lisp-mode-hook 'auto-complete-mode)
    #+END_SRC
 
    #+RESULTS:
-   | (lambda nil (org-bullets-mode t)) | auto-complete-mode | er/add-org-mode-expansions | #[0 \300\301\302\303\304$\207 [add-hook change-major-mode-hook org-show-block-all append local] 5] | #[0 \300\301\302\303\304$\207 [add-hook change-major-mode-hook org-babel-show-result-all append local] 5] | org-babel-result-hide-spec | org-babel-hide-all-hashes | org-ac/setup-current-buffer | auto-revert-mode |
+   | auto-complete-mode | ac-emacs-lisp-mode-setup |
 
 ** Activar company mode de modo global y flycheck para colorear la sintaxis
    #+BEGIN_SRC emacs-lisp
@@ -636,11 +637,12 @@ Credits to Harry R. Schwartz, [[https://github.com/hrs/dotfiles/blob/master/emac
 *** autocomplete con company Jedi
    #+BEGIN_SRC emacs-lisp :tangle no
      (use-package company-jedi
-       :ensure t)
-
-     (defun my/python-mode-hook ()
-       (add-to-list 'company-backends 'company-jedi))
-     (add-hook 'python-mode-hook 'my/python-mode-hook)
+       :ensure t
+       :config
+       (defun my/python-mode-hook ()
+	 (add-to-list 'company-backends 'company-jedi))
+       (add-hook 'python-mode-hook 'my/python-mode-hook)
+       )
    #+END_SRC
 
    #+RESULTS:
@@ -650,11 +652,11 @@ Credits to Harry R. Schwartz, [[https://github.com/hrs/dotfiles/blob/master/emac
     utilidades de IDE python en emacs
     #+BEGIN_SRC emacs-lisp
       (use-package elpy
-        :ensure t
-        :config
-        (add-hook 'python-mode-hook 'elpy-mode)
-        (add-hook 'elpy-mode-hook (auto-complete-mode -1))
-        )
+	:ensure t
+	:config
+	(add-hook 'python-mode-hook 'elpy-mode)
+	(add-hook 'elpy-mode-hook (auto-complete-mode -1))
+	)
     #+END_SRC
 
     #+RESULTS:
@@ -807,11 +809,22 @@ Credits to Harry R. Schwartz, [[https://github.com/hrs/dotfiles/blob/master/emac
    
    #+BEGIN_SRC emacs-lisp
      (use-package tern
-       :ensure t)
+       :ensure t
+       :config
+       (add-hook 'js-mode-hook (lambda () (tern-mode t)))
+       )
+
 
      (use-package company-tern
-       :ensure t)
+       :ensure t
+       :config
+       (add-to-list 'company-backends 'company-tern)
+       )
    #+END_SRC
+
+   #+RESULTS:
+   : t
+
 *** Vuejs mode
     #+BEGIN_SRC emacs-lisp
       (setq js-indent-level 2)
