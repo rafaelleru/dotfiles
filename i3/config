@@ -39,7 +39,7 @@ floating_modifier Mod4
 bindsym Mod4+Return exec urxvt
 
 # kill focused window
-bindsym Mod4+Shift+q kill
+bindsym Mod4+q kill
 
 # start j4-dmenu (a program launcher) with my personal preferences for desktop files
 bindsym Mod4+d exec dmenu_run 
@@ -166,7 +166,7 @@ for_window [class="Spotify"] move window to workspace $workspace10
 assign [title="Popcorn Time"] $workspace10
 assign [class="Firefox"] $workspace1
 assign [class="Chromium"] $workspace1
-assign [class="Emacs"] $workspace3
+# assign [class="Emacs"] $workspace3
 assign [class="konsole"] $workspace4
 assign [class="Telegram"] $workspace9
 assign [class="Thunderbird"] $workspace9
@@ -216,16 +216,16 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym $left       resize shrink width 10 px or 10 ppt
-        bindsym $down       resize grow height 10 px or 10 ppt
-        bindsym $up         resize shrink height 10 px or 10 ppt
-        bindsym $right      resize grow width 10 px or 10 ppt
+        bindsym $left       resize shrink width 1 px or 1 ppt
+        bindsym $down       resize grow height 1 px or 1 ppt
+        bindsym $up         resize shrink height 1 px or 1 ppt
+        bindsym $right      resize grow width 1 px or 1 ppt
 
         # same bindings, but for the arrow keys
-        bindsym Left        resize shrink width 10 px or 10 ppt
-        bindsym Down        resize grow height 10 px or 10 ppt
-        bindsym Up          resize shrink height 10 px or 10 ppt
-        bindsym Right       resize grow width 10 px or 10 ppt
+        bindsym Left        resize shrink width 1 px or 1 ppt
+        bindsym Down        resize grow height 1 px or 1 ppt
+        bindsym Up          resize shrink height 1 px or 1 ppt
+        bindsym Right       resize grow width 1 px or 1 ppt
 
         # back to normal: Enter or Escape
         bindsym Return mode "default"
@@ -249,30 +249,6 @@ mode "$mode_capture" {
 }
 bindsym Mod4+c mode "$mode_capture"
 
-# # mode for open emacs
-# set $mode_emacs (c) emacs client (e) emacs instance
-# mode "$mode_emacs" {
-#      bindsym c exec emacsclient -c -a "", mode "default"
-#      bindsym e exec emacs, mode "default"
-
-#      bindsym Return mode "default"
-#      bindsym Escape mode "default"
-# }
-
-# bindsym Mod4+t mode "$mode_emacs"
-
-# set $mode_launcher (f) Firefox (c) Chromium (p) Pcmanfs
-# mode "$mode_launcher" {
-#      bindsym f exec firefox, mode "default"
-#      bindsym g exec chromium, mode "default"
-#      bindsym p exec pcmanfm, mode "default"
-#      bindsym Escape mode "default"
-#      bindsym Return mode "default"
-     
-# }
-
-# bindsym Mod4+Tab mode "$mode_launcher"
-
 ##
 # system mode from:
 # https://github.com/andreatta/config/blob/master/i3/config
@@ -291,17 +267,8 @@ mode "$mode_system" {
     bindsym Escape mode "default"
 }
 
-bindsym Mod4+Escape exec i3lock
-bindsym Mod4+Shift+Escape mode "$mode_system"
-
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-#bar {
-#        status_command i3blocks -c ~/.i3/i3blocks/i3blocks.conf
-#}
-
-# Widow Colours
-#                         border  background text    indicator
+bindsym Mod4+Shift+Escape exec i3lock
+bindsym Mod4+Escape mode "$mode_system"
 
 bar {
   #status_command i3status
@@ -325,19 +292,21 @@ bar {
 
 # default apps
 # exec albert
+exec --no-startup-id "i3-msg 'workspace 9; append_layout ./workspace-9.json'"
 exec --no-startup-id enpass &
 exec --no-startup-id nm-applet &
 exec --no-startup-id pasystray  &
-
+# Hide the mouse cursor after a second
+exec --no-startup-id unclutter -idle 1 -noevents &
 exec thunderbird
 exec /home/rafa/Downloads/tsetup.0.10.20/Telegram/Telegram -- %u
 exec emacs --daemon
-exec "setxkbmap -layout es"
+exec "setxkbmap -layout es -option caps:escape"
+# exec "setxkbmap -option caps:escape" 
 exec compton
 
 # desktop wallpaper
 exec_always feh --bg-scale /home/rafa/.i3/wallpaper.png
-
 # capture screen
 bindsym Print exec spectacle
 
