@@ -38,6 +38,9 @@ floating_modifier Mod4
 # start a terminal
 bindsym Mod4+Return exec urxvt
 
+# start emacs frame
+bindsym Mod4+Shift+Return exec emacsclient -c -a ""
+
 # kill focused window
 bindsym Mod4+q kill
 
