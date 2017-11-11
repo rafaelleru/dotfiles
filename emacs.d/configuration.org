@@ -526,7 +526,9 @@ Credits to Harry R. Schwartz, [[https://github.com/hrs/dotfiles/blob/master/emac
      (use-package projectile
        :ensure t
        :init
-       (projectile-mode t))
+       (projectile-mode t)
+       (setq projectile-switch-project-action 'projectile-dired)
+       )
    #+END_SRC
 
    #+RESULTS:
@@ -547,6 +549,7 @@ Credits to Harry R. Schwartz, [[https://github.com/hrs/dotfiles/blob/master/emac
    | auto-complete-mode | ac-emacs-lisp-mode-setup |
 
 ** Activar company mode de modo global y flycheck para colorear la sintaxis
+
    #+BEGIN_SRC emacs-lisp
      (use-package flycheck
        :ensure t
@@ -558,6 +561,7 @@ Credits to Harry R. Schwartz, [[https://github.com/hrs/dotfiles/blob/master/emac
        :config
        (global-company-mode t)
        (setq company-echo-delay 0)
+       (setq company-idle-delay 0)
        (global-set-key (kbd "C-*") 'company-complete)
        (add-to-list 'company-backends 'company-elisp)
        (add-to-list 'company-backends 'company-tern)
@@ -646,7 +650,7 @@ Credits to Harry R. Schwartz, [[https://github.com/hrs/dotfiles/blob/master/emac
    #+END_SRC
 
    #+RESULTS:
-   | my/python-mode-hook | (lambda nil (set (make-local-variable (quote yas-indent-line)) (quote fixed))) | elpy-mode | er/add-python-mode-expansions |
+   : t
 
 *** elpy
     utilidades de IDE python en emacs
@@ -654,14 +658,24 @@ Credits to Harry R. Schwartz, [[https://github.com/hrs/dotfiles/blob/master/emac
       (use-package elpy
 	:ensure t
 	:config
-	(add-hook 'python-mode-hook 'elpy-mode)
-	(add-hook 'elpy-mode-hook (auto-complete-mode -1))
+	(elpy-enable)
+	(add-to-list 'company-backends 'elpy-company-backend)
 	)
     #+END_SRC
 
     #+RESULTS:
     : t
 
+*** Jupyter notebooks
+    #+BEGIN_SRC emacs-lisp
+      (use-package ein
+	:ensure t
+	:config
+	)
+    #+END_SRC
+
+    #+RESULTS:
+    
 ** C++
 *** autocomplete C/C++ headers from .h files in a project
     #+BEGIN_SRC emacs-lisp :tangle no
@@ -857,6 +871,15 @@ Credits to Harry R. Schwartz, [[https://github.com/hrs/dotfiles/blob/master/emac
 
    #+RESULTS:
    : t
+** Dart
+   #+BEGIN_SRC emacs-lisp
+     (use-package dart-mode
+       :ensure t
+       )
+   #+END_SRC
+
+   #+RESULTS:
+
 ** Latex
    No es un lenguaje de programcaion pero es donde mas sentido me parece que tiene (como html xD)
 *** autoparsear el buffer al cargarlo
@@ -925,9 +948,14 @@ Credits to Harry R. Schwartz, [[https://github.com/hrs/dotfiles/blob/master/emac
   #+BEGIN_SRC emacs-lisp
     (use-package magit
       :ensure t)
+    (use-package evil-magit
+      :ensure t
+      :config
+      (add-hook 'with-editor-mode-hook 'evil-insert-state))
   #+END_SRC
 
   #+RESULTS:
+  : t
 
    #+BEGIN_SRC emacs-lisp
      (global-set-key (kbd "M-g") 'magit-status)
@@ -1490,4 +1518,42 @@ Ademas incluimos este paquete en todos los documetos de latex que exportemos
    #+RESULTS:
    : kill-this-buffer
 
- 
+* Spaceline
+  #+BEGIN_SRC emacs-lisp 
+    ;;; package --- spaceline config
+    ;;; Code:
+    ;;; Commentary:
+
+    (use-package spaceline-all-the-icons
+      :ensure t
+      )
+
+    (use-package spaceline
+      :ensure t
+      :config
+      (require 'spaceline-config)
+      (spaceline-spacemacs-theme)
+      (setq powerline-default-separator 'bar)
+      (spaceline-helm-mode)
+      (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
+      )
+
+  #+END_SRC
+
+  #+RESULTS:
+  : t
+
+* powerline
+  #+BEGIN_SRC emacs-lisp :tangle no 
+    (use-package powerline
+      :ensure t
+      :config
+      (powerline-evil-vim-color-theme))
+
+    (use-package powerline-evil
+      :ensure t
+      :after powerline)
+  #+END_SRC
+
+  #+RESULTS:
+  : powerline-evil
