@@ -294,16 +294,14 @@ bar {
 
 
 # default apps
-# exec albert
-exec --no-startup-id "i3-msg 'workspace 9; append_layout ./workspace-9.json'"
 exec --no-startup-id enpass &
 exec --no-startup-id nm-applet &
 exec --no-startup-id pasystray  &
 # Hide the mouse cursor after a second
 exec --no-startup-id unclutter -idle 1 -noevents &
-exec thunderbird
-exec /home/rafa/Downloads/tsetup.0.10.20/Telegram/Telegram -- %u
-exec emacs --daemon
+exec thunderbird &
+exec /home/rafa/Downloads/tsetup.0.10.20/Telegram/Telegram -- %u &
+exec emacs --daemon &
 exec "setxkbmap -layout es -option caps:escape"
 # exec "setxkbmap -option caps:escape" 
 exec compton
@@ -317,6 +315,6 @@ client.focused #2f343f #2f343f #ffffff #2f343f
 client.focused_inactive #333333 #333333 #888888 #292d2e
 client.unfocused  #2f343f #2f343f #888888 #292d2e
 client.urgent #2f343a #900000 #ffffff #900000
-for_window [class="^.*"] border pixel 2
+for_window [class="^.*"] border pixel 1
 for_window [floating] border normal
 for_window [title="*(\[Corriendo\]|\[Apagada\])*"] floating enable
