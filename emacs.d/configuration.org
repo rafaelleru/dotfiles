@@ -1,6 +1,5 @@
 #+TITLE: Configuracion de emacs.
 
-Credits to Harry R. Schwartz, [[https://github.com/hrs/dotfiles/blob/master/emacs.d/configuration.org][@hrs]],  [[https://github.com/zamansky/using-emacs/blob/master/myinit.org][Zamansky]].
 
 * Informacion personal
 #+BEGIN_SRC emacs-lisp
@@ -127,13 +126,14 @@ Credits to Harry R. Schwartz, [[https://github.com/hrs/dotfiles/blob/master/emac
      (defun load-my-theme ()
 	 ;;;"""Carga mi tema solarized"""
 	 (interactive)
-	 (setq solarized-use-variable-pitch nil)
-	 (setq solarized-height-plus-1 1.0)
-	 (setq solarized-height-plus-2 1.0)
-	 (setq solarized-height-plus-3 1.0)
-	 (setq solarized-height-plus-4 1.0)
-	 (setq solarized-high-contrast-mode-line t)
-	 (load-theme 'solarized-dark t)
+	 ;; (setq solarized-use-variable-pitch nil)
+	 ;; (setq solarized-height-plus-1 1.0)
+	 ;; (setq solarized-height-plus-2 1.0)
+	 ;; (setq solarized-height-plus-3 1.0)
+	 ;; (setq solarized-height-plus-4 1.0)
+	 ;; (setq solarized-high-contrast-mode-line t)
+	 ;; (load-theme 'solarized-dark t)
+	 (load-theme 'snazzy t)
      )
 
      (add-hook 'after-init-hook 'load-my-theme)
@@ -520,6 +520,20 @@ Credits to Harry R. Schwartz, [[https://github.com/hrs/dotfiles/blob/master/emac
   #+RESULTS:
   | /data/Nextcloud/org/rss.org |
 
+* ledger
+  #+BEGIN_SRC emacs-lisp
+    (use-package ledger
+      :ensure t
+      )
+
+    (use-package evil-ledger
+      :ensure t
+      :after ledger
+      )
+  #+END_SRC
+
+  #+RESULTS:
+  
 * Ajustes para lenguajes de programacion
 ** projectile mode
    #+BEGIN_SRC emacs-lisp
