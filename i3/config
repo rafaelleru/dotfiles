@@ -275,7 +275,7 @@ bindsym Mod4+Escape mode "$mode_system"
 
 bar {
   #status_command i3status
-        status_command i3blocks -c ~/.i3/i3blocks/i3blocks.conf
+        status_command py3status -c ~/.i3/i3status.conf	# i3blocks -c ~/.i3/i3blocks/i3blocks.conf
 	font pango: System San Francisco Display, FontAwesome 9
         position top
         strip_workspace_numbers no
