@@ -7,7 +7,7 @@
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 #ZSH_THEME="Spaceship"
-ZSH_THEME="gitster"
+ZSH_THEME="pure"
 #ZSH_THEME="powerlevel9k/powerlevel9k"
 #POWERLEVEL9K_MODE='awesome-fontconfig'
 # Uncomment the following line to use case-sensitive completion.
@@ -100,7 +100,10 @@ alias orderUGR='python3 ~/mis_programas/OrderUGR/orderUGR.py'
 alias suspend='i3lock && systemctl suspend'
 alias capture='emacsclient -a "" -c -e "(make-capture-frame)"'
 alias ec='emacsclient -c'
+alias t='task'
 screenfetch
+
+export PATH=$PATH:~/src/flutter/bin
 
 # added by travis gem
 [ -f /home/rafa/.travis/travis.sh ] && source /home/rafa/.travis/travis.sh
