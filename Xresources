@@ -47,44 +47,71 @@ URxvt*termName: rxvt-unicode
 ! snazzy color  scheme !
 !!!!!!!!!!!!!!!!!!!!!!!!
 
-URxvt.background: #282a36
-URxvt.foreground: #eff0eb
+! URxvt.background: #282a36
+! URxvt.foreground: #eff0eb
 
-! original #86a2b0
-URxvt.colorUL: #eff0eb
-URxvt.underlineColor: #eff0eb
+! ! original #86a2b0
+! URxvt.colorUL: #eff0eb
+! URxvt.underlineColor: #eff0eb
 
-! black
-URxvt.color0  : #2E3436
-URxvt.color8  : #686868
+! ! black
+! URxvt.color0  : #2E3436
+! URxvt.color8  : #686868
 
-! red
-URxvt.color1  : #ff5c57
-URxvt.color9  : #ff5c57
+! ! red
+! URxvt.color1  : #ff5c57
+! URxvt.color9  : #ff5c57
 
-! green
-URxvt.color2  : #5af78e
-URxvt.color10 : #5af78e
+! ! green
+! URxvt.color2  : #5af78e
+! URxvt.color10 : #5af78e
 
-! yellow
-URxvt.color3  : #f3f99d
-URxvt.color11 : #f3f99d
+! ! yellow
+! URxvt.color3  : #f3f99d
+! URxvt.color11 : #f3f99d
 
-! blue
-URxvt.color4  : #57c7ff
-URxvt.color12 : #57c7ff
+! ! blue
+! URxvt.color4  : #57c7ff
+! URxvt.color12 : #57c7ff
 
-! magenta
-URxvt.color5  : #ff6ac1
-URxvt.color13 : #ff6ac1
+! ! magenta
+! URxvt.color5  : #ff6ac1
+! URxvt.color13 : #ff6ac1
 
-! cyan
-URxvt.color6  : #9aedfe
-URxvt.color14 : #9aedfe
+! ! cyan
+! URxvt.color6  : #9aedfe
+! URxvt.color14 : #9aedfe
 
-! white
-URxvt.color7  : #f1f1f0
-URxvt.color15 : #eff0eb
+! ! white
+! URxvt.color7  : #f1f1f0
+! URxvt.color15 : #eff0eb
+
+URxvt.background: black
+URxvt.foreground: white
+!! black dark/light
+*color0: #000000
+*color8: #808080
+!! red dark/light
+*color1: #ff0000
+*color9: #ff0000
+!! green dark/light
+*color2: #33ff00
+*color10: #33ff00
+!! yellow dark/light
+*color3: #ffff00
+*color11: #ffff00
+!! blue dark/light
+*color4: #0066ff
+*color12: #0066ff
+!! magenta dark/light
+*color5: #cc00ff
+*color13: #cc00ff
+!! cyan dark/light
+*color6: #00ffff
+*color14: #00ffff
+!! white dark/light
+*color7: #d0d0d0
+*color15: #ffffff
 
 !Extensions: clicable linkns, fullscreen, resize-fonts
 URxvt.perl-ext-common: default,matcher,fullscreen,resize-font
@@ -97,7 +124,7 @@ URxvt.resize-font.smaller: C-Down
 URxvt.resize-font.bigger: C-Up
 
 !url launcher
-URxvt.url-launcher: /usr/bin/chromium
+URxvt.url-launcher: /usr/bin/firefox
 URxvt.colorURL: #eee8d5
 !URxvt.keysym.M-S-Delete: perl:matcher:last
 !URxvt.keysym.M-Delete: perl:matcher:list
