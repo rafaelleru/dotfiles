@@ -7,7 +7,7 @@
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 #ZSH_THEME="Spaceship"
-ZSH_THEME="pure"
+ZSH_THEME="simple"
 #ZSH_THEME="powerlevel9k/powerlevel9k"
 #POWERLEVEL9K_MODE='awesome-fontconfig'
 # Uncomment the following line to use case-sensitive completion.
@@ -104,6 +104,7 @@ alias t='task'
 screenfetch
 
 export PATH=$PATH:~/src/flutter/bin
+export PATH=$PATH:~/.local/bin
 
 # added by travis gem
 [ -f /home/rafa/.travis/travis.sh ] && source /home/rafa/.travis/travis.sh
