@@ -133,7 +133,7 @@
 	 ;; (setq solarized-height-plus-4 1.0)
 	 ;; (setq solarized-high-contrast-mode-line t)
 	 ;; (load-theme 'solarized-dark t)
-	 (load-theme 'snazzy t)
+	 (load-theme 'gotham t)
      )
 
      (add-hook 'after-init-hook 'load-my-theme)
@@ -555,8 +555,8 @@
        (ac-config-default)
        )
 
-     (add-hook 'org-mode-hook 'auto-complete-mode)
-     (add-hook 'emacs-lisp-mode-hook 'auto-complete-mode)
+     ;; (add-hook 'org-mode-hook 'auto-complete-mode)
+     ;; (add-hook 'emacs-lisp-mode-hook 'auto-complete-mode)
    #+END_SRC
 
    #+RESULTS:
