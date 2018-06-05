@@ -11,7 +11,8 @@
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango: San Francisco System Display 9
+        
+font pango: Inconsolata, Terminus 14px  #Francisco System Display 10
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -36,7 +37,7 @@ set $right l
 floating_modifier Mod4
 
 # start a terminal
-bindsym Mod4+Return exec urxvt
+bindsym Mod4+Return exec urxvt -e tmux
 
 # start emacs frame
 bindsym Mod4+Shift+Return exec emacsclient -c -a ""
@@ -45,7 +46,8 @@ bindsym Mod4+Shift+Return exec emacsclient -c -a ""
 bindsym Mod4+q kill
 
 # start j4-dmenu (a program launcher) with my personal preferences for desktop files
-bindsym Mod4+d exec dmenu_run 
+bindsym Mod4+d exec dmenu_run -fn Inconsolata -l 10 # Terminus
+bindsym Mod4+y exec clipmenu
 
 # bindsym Mod4+d exec rofi -show drun -c ~/.i3/rofi/config # run -lines 5 -eh 2 
 
@@ -174,9 +176,12 @@ assign [class="konsole"] $workspace4
 assign [class="Telegram"] $workspace9
 assign [class="Thunderbird"] $workspace9
 assign [class="jetbrains-studio"] 5
+assign [class="jetbrains-pycharm-ce"] 5
 assign [class="com-install4j-runtime-launcher-UnixLauncher"] 5
 assign [class="transmission"] 6
 assign [class="Nautilus"] 6
+assign [class="Pcmanfm"] 6
+for_window [class="HipChat"] move window to workspace 8
 # Las ventanas de org-capture se abren en el workspace en el que nos encontremos
 # assign [class=Emacs floating]
 for_window [class="Emacs" title="capture"] floating enable
@@ -187,23 +192,22 @@ for_window [class="Emacs" title="capture"] move container to workspace current
 # Cuando abro el gestor de archivos normalmente es para hacer algo rapido en
 # el osea que lo hacemos centrado y flotante
 
-for_window [class="Pcmanfm"] floating enable
-for_window [class="Pcmanfm"] resize set 600 700
-for_window [class="Pcmanfm"] move position center
+#for_window [class="Pcmanfm"] floating enable
+#for_window [class="Pcmanfm"] resize set 600 700
+#for_window [class="Pcmanfm"] move position center
 
 # ventanas flotantes de firefox en current workspace
-for_window [class=Firefox floating] move container to workspace current
+#for_window [class="Firefox" floating] move container to workspace current
 
 
 # Volume control
-bindsym XF86AudioLowerVolume exec /usr/bin/pactl set-sink-volume 0 '-5%'
-bindsym XF86AudioRaiseVolume exec /usr/bin/pactl set-sink-volume 0 '+5%'
-bindsym XF86AudioMute exec /usr/bin/pactl set-sink-mute 0 'toggle'
+bindsym 0xffc6 exec /usr/bin/pactl set-sink-volume 0 '-5%'
+bindsym 0xffc7 exec /usr/bin/pactl set-sink-volume 0 '+5%'
+bindsym 0xffc8 exec /usr/bin/pactl set-sink-mute 0 'toggle'
 
 # brigthness control
-bindsym XF86MonBrightnessUp exec xbacklight -inc '5%' # light -p -A 10 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec '5%' # light -p -U 10 # decrease screen brightness
-
+bindsym 0xffc9 exec xbacklight -inc '5%' # light -p -A 10 # increase screen brightness
+bindsym 0xffd0 exec xbacklight -dec '5%' # light -p -U 10 # decrease screen brightness
 # reload the configuration file
 bindsym Mod4+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -238,19 +242,19 @@ mode "resize" {
 bindsym Mod4+r mode "resize"
 
 # org-capture mode
-set $mode_capture Capture (b) bug (i) idea (t) task (e) event (l) link (a) agenda
-mode "$mode_capture" {
-     bindsym b exec emacsclient -a "" -F '((title . "capture"))' -c -e '(org-capture nil "b")', mode "default"
-     bindsym i exec emacsclient -a "" -F '((title . "capture"))' -c -e '(org-capture nil "i")', mode "default"
-     bindsym t exec emacsclient -a "" -F '((title . "capture"))' -c -e '(org-capture nil "t")', mode "default"
-     bindsym e exec emacsclient -a "" -F '((title . "capture"))' -c -e '(org-capture nil "e")', mode "default"
-     bindsym l exec emacsclient -a "" -F '((title . "capture"))' -c -e '(org-capture nil "r")', mode "default"
-     bindsym a exec emacsclient -c -a "" -e "(my-org-agenda-list)", mode "default"
+# set $mode_capture Capture (b) bug (i) idea (t) task (e) event (l) link (a) agenda
+# mode "$mode_capture" {
+#      bindsym b exec emacsclient -a "" -F '((title . "capture"))' -c -e '(org-capture nil "b")', mode "default"
+#      bindsym i exec emacsclient -a "" -F '((title . "capture"))' -c -e '(org-capture nil "i")', mode "default"
+#      bindsym t exec emacsclient -a "" -F '((title . "capture"))' -c -e '(org-capture nil "t")', mode "default"
+#      bindsym e exec emacsclient -a "" -F '((title . "capture"))' -c -e '(org-capture nil "e")', mode "default"
+#      bindsym l exec emacsclient -a "" -F '((title . "capture"))' -c -e '(org-capture nil "r")', mode "default"
+#      bindsym a exec emacsclient -c -a "" -e "(my-org-agenda-list)", mode "default"
 
-     bindsym Return mode "default"
-     bindsym Escape mode "default"
-}
-bindsym Mod4+c mode "$mode_capture"
+#      bindsym Return mode "default"
+#      bindsym Escape mode "default"
+# }
+bindsym Mod4+c exec emacsclient -a "" -F '((title . "capture"))' -c ~/todo.org #"$mode_capture"
 
 ##
 # system mode from:
@@ -270,13 +274,42 @@ mode "$mode_system" {
     bindsym Escape mode "default"
 }
 
-bindsym Mod4+Shift+Escape exec i3lock
+bindsym Mod4+Shift+Escape exec i3lock -i /usr/share/backgrounds/Night_lights_by_Alberto_Salvia_Novella.png
 bindsym Mod4+Escape mode "$mode_system"
+
+set $music (n) , (b) , (p) 
+mode "$music" {
+  bindsym n exec --no-startup-id playerctl next, mode "default"
+  bindsym b exec --no-startup-id playerctl previous, mode "default"
+  bindsym p exec --no-startup-id playerctl play-pause, mode "default"
+
+  # back to normal
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+
+}
+
+bindsym Mod4+Shift+m mode "$music"
+
+set $output (v) VGA, (h) HDMI, (i) laptop, (t) toggle
+mode "$output" {
+  bindsym t exec "~/monitor.sh·", mode "default"
+  bindsym b exec --no-startup-id playerctl previous, mode "default"
+  bindsym p exec --no-startup-id playerctl play-pause, mode "default"
+
+  # back to normal
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+
+}
+
+bindsym Mod4+o mode "$output"
 
 bar {
   #status_command i3status
         status_command py3status -c ~/.i3/i3status.conf	# i3blocks -c ~/.i3/i3blocks/i3blocks.conf
-	font pango: System San Francisco Display, FontAwesome 9
+	#font pango: System San Francisco Display, FontAwesome 10
+       font pango: Inconsolata 11
         position top
         strip_workspace_numbers no
         #bindsym button4 nop
@@ -292,29 +325,31 @@ bar {
   }
 }
 
-
+exec --no-startup-id "bash ~/monitor.sh"
 # default apps
 exec --no-startup-id enpass &
 exec --no-startup-id nm-applet &
 exec --no-startup-id pasystray  &
+exec --no-startup-id hipchat4 &
 # Hide the mouse cursor after a second
 exec --no-startup-id unclutter -idle 1 -noevents &
 exec thunderbird &
-exec /home/rafa/Downloads/tsetup.0.10.20/Telegram/Telegram -- %u &
 exec emacs --daemon &
 exec "setxkbmap -layout es -option caps:escape"
+exec "tmux new -s rafa"
 # exec "setxkbmap -option caps:escape" 
+exec clipmenud &
 exec compton
 
 # desktop wallpaper
-exec_always feh --bg-scale /home/rafa/.i3/wallpaper.png
+exec_always feh --bg-scale /usr/share/backgrounds/TCP118v1_by_Tiziano_Consonni.jpg
 # capture screen
-bindsym Print exec spectacle
+bindsym Print exec gnome-screenshot
 
 client.focused #2f343f #2f343f #ffffff #2f343f
 client.focused_inactive #333333 #333333 #888888 #292d2e
 client.unfocused  #2f343f #2f343f #888888 #292d2e
 client.urgent #2f343a #900000 #ffffff #900000
 for_window [class="^.*"] border pixel 1
-for_window [floating] border normal
-for_window [title="*(\[Corriendo\]|\[Apagada\])*"] floating enable
+#for_window [floating] border normal
+#for_window [title="*(\[Corriendo\]|\[Apagada\])*"] floating enable
