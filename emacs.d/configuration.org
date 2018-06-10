@@ -16,7 +16,7 @@
 
 * Gestion de paquetes =melpa y cask=
 
-   #+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp :tangle no
      (require 'cask "~/.cask/cask.el")
      (cask-initialize)
      (require 'pallet)
@@ -27,9 +27,12 @@
 
 ** Use package
    #+BEGIN_SRC emacs-lisp
-     (unless (package-installed-p 'use-package)
-       (package-refresh-contents)
-       (package-install 'use-package))
+   (add-to-list 'package-archives
+   '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+   
+   (unless (package-installed-p 'use-package)
+   (package-refresh-contents)
+   (package-install 'use-package))
    #+END_SRC
 
    #+RESULTS:
@@ -70,17 +73,16 @@
      (use-package evil-leader
        :ensure t
        :config
-       (evil-leader/set-leader ",")
+       (evil-leader/set-leader "<SPC>")
        (evil-leader/set-key
-	 "," 'other-window
-	 ";" 'comment-dwim
+	 "w" 'other-window
 	 ":" 'eval-expression
-	 "b" 'helm-mini
+	 "bb" 'helm-mini
 	 "B" 'ibuffer
-	 "d" 'kill-this-buffer
+	 "bd" 'kill-this-buffer
 	 "g" 'magit-status
-	 "p" 'helm-show-kill-ring
-	 "x" 'helm-M-x
+	 "y" 'helm-show-kill-ring
+	 "<SPC>" 'helm-M-x
 	 "nt" 'neotree-toggle
 	 "-p" 'projectile-switch-project
 	 "-b" 'projectile-switch-to-buffer
@@ -93,10 +95,20 @@
 	 ;;"r>" 'rtags
 	 )
        )
+     (evil-leader/set-key-for-mode 'python-mode ",g" 'elpy-goto-definition)
    #+END_SRC
 
    #+RESULTS:
    : t
+   
+** evil-commentary
+   #+BEGIN_SRC emacs-lisp
+     (use-package evil-commentary
+       :ensure t
+       :config
+       (evil-commentary-mode)
+     )
+   #+END_SRC
 
 * Ajustes de la interfaz
 ** Ocultar botones que no uso y la barra de scroll.
@@ -111,29 +123,28 @@
 ** tema personalizado
    #+BEGIN_SRC emacs-lisp
 
-     (use-package gotham-theme
-       :ensure t)
 
      (use-package solarized-theme
        :ensure t)
 
-     (use-package danneskjold-theme
-       :ensure t)
+     ;(use-package danneskjold-theme
+     ;  :ensure t)
 
-     (use-package atom-one-dark-theme
-       :ensure t)
+     ;(use-package atom-one-dark-theme
+     ;  :ensure t)
+     ;(use-package gotham-theme
+     ;  :ensure t)
 
      (defun load-my-theme ()
 	 ;;;"""Carga mi tema solarized"""
 	 (interactive)
-	 ;; (setq solarized-use-variable-pitch nil)
-	 ;; (setq solarized-height-plus-1 1.0)
-	 ;; (setq solarized-height-plus-2 1.0)
-	 ;; (setq solarized-height-plus-3 1.0)
-	 ;; (setq solarized-height-plus-4 1.0)
-	 ;; (setq solarized-high-contrast-mode-line t)
-	 ;; (load-theme 'solarized-dark t)
-	 (load-theme 'gotham t)
+	  (setq solarized-use-variable-pitch nil)
+	  (setq solarized-height-plus-1 1.0)
+	  (setq solarized-height-plus-2 1.0)
+	  (setq solarized-height-plus-3 1.0)
+	  (setq solarized-height-plus-4 1.0)
+	  (setq solarized-high-contrast-mode-line t)
+	  (load-theme 'solarized-dark t)
      )
 
      (add-hook 'after-init-hook 'load-my-theme)
@@ -152,8 +163,12 @@
 ** Fuente Inconsolata
    Permite ademas cambiar el tamaño de la ventana y la fuente para presentaciones por ejemplo.
     #+BEGIN_SRC emacs-lisp
+      (use-package unicode-fonts
+	:ensure t
+	:config
+	(unicode-fonts-setup))
       (setq hrs/default-font "Inconsolata")
-      (setq hrs/default-font-size 13)
+      (setq hrs/default-font-size 11)
       (setq hrs/current-font-size hrs/default-font-size)
 
       (defun set-font () 
@@ -388,7 +403,7 @@
 
 *** helm-google 
     ¿Por qué no?
-    #+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp :tangle no
       (use-package helm-google
         :ensure t)
     #+END_SRC
@@ -455,7 +470,7 @@
 
    #+RESULTS:
 ** all the icons
-   #+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp :tangle no
      (use-package all-the-icons
        :ensure t)
 
@@ -498,7 +513,7 @@
   #+RESULTS:
   : ~/.emacs.d/elfeeddb
 
-  #+BEGIN_SRC emacs-lisp
+  #+BEGIN_SRC emacs-lisp :tangle no
     (use-package elfeed-goodies
     :ensure t
     :config 
@@ -509,7 +524,7 @@
   #+RESULTS:
   : elfeed-goodies/split-show-prev
 
-  #+BEGIN_SRC emacs-lisp
+  #+BEGIN_SRC emacs-lisp :tangle no
     (use-package elfeed-org
       :ensure t
       )
@@ -521,7 +536,7 @@
   | /data/Nextcloud/org/rss.org |
 
 * ledger
-  #+BEGIN_SRC emacs-lisp
+  #+BEGIN_SRC emacs-lisp :tangle no
     (use-package ledger
       :ensure t
       )
@@ -758,8 +773,8 @@
     #+RESULTS:
     : t
 
-*** Rtags 
-    #+BEGIN_SRC emacs-lisp
+*** TODO: Install Rtags 
+    #+BEGIN_SRC emacs-lisp :tangle no 
       (add-hook 'c-mode-hook 'rtags-start-process-unless-running)
       (add-hook 'c++-mode-hook 'rtags-start-process-unless-running)
       (add-hook 'objc-mode-hook 'rtags-start-process-unless-running)
@@ -926,7 +941,7 @@
 ** R
 ** Java
 *** JDEE
-    #+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp :tangle no
       (use-package jdee
         :ensure t
         :config
@@ -1233,36 +1248,37 @@ Presionar =C-c o i= para abrir *index.org*
 #+RESULTS:
 : org-capture-todo
 
-*** Frame para capturas.
+*** Frame para capturas. :tangle no
     De [[https://github.com/zamansky/using-emacs/blob/master/myinit.org][Zamansky]]
-    #+BEGIN_SRC emacs-lisp
-        (defadvice org-capture-finalize 
-    	(after delete-capture-frame activate)  
-          "Advise capture-finalize to close the frame"  
-          (if (equal "capture" (frame-parameter nil 'name))  
-          (delete-frame)))
+    #+BEGIN_SRC emacs-lisp :tangle no
+      (defadvice org-capture-finalize 
+      (after delete-capture-frame activate)  
+	"Advise capture-finalize to close the frame"  
+	(if (equal "capture" (frame-parameter nil 'name))  
+	(delete-frame)))
 
-        (defadvice org-capture-destroy 
-    	(after delete-capture-frame activate)  
-          "Advise capture-destroy to close the frame"  
-          (if (equal "capture" (frame-parameter nil 'name))  
-          (delete-frame)))  
+      (defadvice org-capture-destroy 
+      (after delete-capture-frame activate)  
+	"Advise capture-destroy to close the frame"  
+	(if (equal "capture" (frame-parameter nil 'name))  
+	(delete-frame)))  
 
-        (use-package noflet
-          :ensure t)
+      ;; (use-package noflet
+      ;;   :ensure t)
 
-        (defun make-capture-frame ()
-          "Create a new frame and run org-capture."
-          (interactive)
-          (make-frame '((name . "Capture")))
-          (select-frame-by-name "Capture")
-          (noflet ((switch-to-buffer-other-window (buf) (switch-to-buffer buf)))
-    	(delete-other-windows)
-    	(delete-other-frames)
-    	(org-capture)))
+      ;; (defun make-cap
+	  ture-frame ()
+	"Create a new frame and run org-capture."
+	(interactive)
+	(make-frame '((name . "Capture")))
+	(select-frame-by-name "Capture")
+	(noflet ((switch-to-buffer-other-window (buf) (switch-to-buffer buf)))
+      (delete-other-windows)
+      (delete-other-frames)
+      (org-capture)))
 
-        (add-hook 'org-capture-mode-hook 'delete-other-windows)
-        (add-hook 'org-capture-after-finalize-hook 'delete-frame)
+      (add-hook 'org-capture-mode-hook 'delete-other-windows)
+      (add-hook 'org-capture-after-finalize-hook 'delete-frame)
     #+END_SRC
 
     #+RESULTS:
