@@ -17,9 +17,8 @@
 * Gestion de paquetes =melpa y cask=
 
    #+BEGIN_SRC emacs-lisp
-     (require 'cask "~/.cask/cask.el")
-     (cask-initialize)
-     (require 'pallet)
+     (add-to-list 'package-archives
+                  '("melpa-stable" . "https://stable.melpa.org/packages/") t)
    #+END_SRC
 
    #+RESULTS:
@@ -41,10 +40,14 @@
        :config
        (global-evil-leader-mode)
        (evil-mode 1))
+
+     (use-package evil-comment
+       :ensure t
+       :config
+       (evil-commentary-mode t))
    #+END_SRC
 
    #+RESULTS:
-   : t
   
    Escapar de todos los lugares posibles
  
@@ -72,26 +75,27 @@
        :config
        (evil-leader/set-leader ",")
        (evil-leader/set-key
-	 "," 'other-window
-	 ";" 'comment-dwim
-	 ":" 'eval-expression
-	 "b" 'helm-mini
-	 "B" 'ibuffer
-	 "d" 'kill-this-buffer
-	 "g" 'magit-status
-	 "p" 'helm-show-kill-ring
-	 "x" 'helm-M-x
-	 "nt" 'neotree-toggle
-	 "-p" 'projectile-switch-project
-	 "-b" 'projectile-switch-to-buffer
-	 "-f" 'helm-projectile-find-file
-	 "-c" 'helm-projectile-compile-project
-	 "-h" 'helm-projectile
-	 "-u" 'helm-projectile-run-project
-	 "f" 'helm-find-files
-	 "r." 'rtags-find-symbol-at-point
-	 ;;"r>" 'rtags
-	 )
+         "," 'other-window
+         ";" 'comment-dwim
+         ":" 'eval-expression
+         "b" 'helm-mini
+         "B" 'ibuffer
+         "d" 'kill-this-buffer
+         "g" 'magit-status
+         "p" 'helm-show-kill-ring
+         "x" 'helm-M-x
+         "nt" 'neotree-toggle
+         "-p" 'projectile-switch-project
+         "-b" 'projectile-switch-to-buffer
+         "-f" 'helm-projectile-find-file
+         "-c" 'helm-projectile-compile-project
+         "-h" 'helm-projectile
+         "-u" 'helm-projectile-run-project
+         "f" 'helm-find-files
+         "r." 'rtags-find-symbol-at-point
+         ;;"r>" 'rtags
+         "e." 'elpy-goto-definition
+         )
        )
    #+END_SRC
 
@@ -355,7 +359,7 @@
    #+RESULTS:
 
 ** Helm
-   #+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp 
      (use-package helm
        :ensure t
        :config
@@ -670,11 +674,13 @@
     utilidades de IDE python en emacs
     #+BEGIN_SRC emacs-lisp
       (use-package elpy
-	:ensure t
-	:config
-	(elpy-enable)
-	(add-to-list 'company-backends 'elpy-company-backend)
-	)
+        :ensure t
+        :config
+        (elpy-enable)
+        (add-to-list 'company-backends 'elpy-company-backend)
+        (define-key elpy-mode-map (kbd "M-.") 'elpy-goto-definition)
+        (setq jedi:complete-on-dot t)
+        )
     #+END_SRC
 
     #+RESULTS:
@@ -690,133 +696,6 @@
 
     #+RESULTS:
     
-** C++
-*** autocomplete C/C++ headers from .h files in a project
-    #+BEGIN_SRC emacs-lisp :tangle no
-      (use-package auto-complete-c-headers
-	:ensure t
-	:config
-	(defun my:ac-c-headers-init ()
-	  (require 'auto-complete-c-headers)
-	  (add-to-list 'ac-sources 'ac-source-c-headers)))
-
-      (add-hook 'c++-mode-hook 'my:ac-c-headers-init)
-      (add-hook 'c-mode-hook 'my:ac-c-headers-init)
-    #+END_SRC
-
-    #+RESULTS:
-    | my:ac-c-headers-init | (lambda nil (easy-menu-add-item nil (quote (C)) (rtags-submenu-list))) | er/add-cc-mode-expansions | rtags-start-process-unless-running | irony-mode |
-
-*** Irony-mode
-   #+BEGIN_SRC emacs-lisp
-     (use-package irony
-       :ensure t)
-
-     (use-package company-irony
-       :ensure t)
-
-     (use-package flycheck-irony
-       :ensure t
-       :config
-       (flycheck-irony-setup))
-
-     (use-package company-irony-c-headers
-       :ensure t)
-
-     (add-hook 'c++-mode-hook 'irony-mode)
-     (add-hook 'c-mode-hook 'irony-mode)
-     (add-hook 'objc-mode-hook 'irony-mode)
-
-     ;; replace the `completion-at-point' and `complete-symbol' bindings in
-     ;; irony-mode's buffers by irony-mode's function
-
-     (defun my-irony-mode-hook ()
-       (define-key irony-mode-map [remap completion-at-point]
-	 'counsel-irony)
-       (define-key irony-mode-map [remap complete-symbol]
-	 'counsel-irony)
-       ;; ;; (define-key irony-mode-map [remap comment-region]
-       ;; ;;   'compile)
-       (eval-after-load 'company
-	 '(add-to-list 'company-backends '(company-irony-c-headers company-irony))))
-
-     (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
-     (add-hook 'irony-mode-hook 'my-irony-mode-hook)
-   #+END_SRC
-
-   #+RESULTS:
-   | my-flycheck-rtags-setup | my-irony-mode-hook | irony-cdb-autosetup-compile-options |
-
-*** modern c++ font lock
-    #+BEGIN_SRC emacs-lisp
-      (use-package modern-cpp-font-lock
-	:ensure t
-	:config
-	(modern-c++-font-lock-global-mode t))
-    #+END_SRC
-
-    #+RESULTS:
-    : t
-
-*** Rtags 
-    #+BEGIN_SRC emacs-lisp
-      (add-hook 'c-mode-hook 'rtags-start-process-unless-running)
-      (add-hook 'c++-mode-hook 'rtags-start-process-unless-running)
-      (add-hook 'objc-mode-hook 'rtags-start-process-unless-running)
-      (setq rtags-completions-enabled t)
-      (setq rtags-autostart-diagnostics t)
-      (rtags-enable-standard-keybindings)
-    #+END_SRC
-
-    #+RESULTS:
-    : rtags-location-stack-visualize
-
-**** heml integration
-    #+BEGIN_SRC emacs-lisp
-      (use-package helm-rtags
-	:ensure t
-	:config
-	(setq rtags-use-helm t)
-	)
-      (setq rtags-display-result-backend 'helm)
-    #+END_SRC
-
-    #+RESULTS:
-    : helm
-
-**** company-rtags support
-    #+BEGIN_SRC emacs-lisp
-      (use-package company-rtags
-	:ensure t
-	:config
-	(setq rtags-completions-enabled t)
-	(eval-after-load 'company
-	  '(add-to-list 'company-backends 'company-rtags))
-	(setq rtags-autostart-diagnostics t)
-	(rtags-enable-standard-keybindings))
-    #+END_SRC
-
-    #+RESULTS:
-    : t
-
-**** flycheck rtags integration
-      #+BEGIN_SRC emacs-lisp
-	(use-package flycheck-rtags
-	  :ensure t
-	  :config
-	  (defun my-flycheck-rtags-setup ()
-	    (flycheck-select-checker 'rtags)
-	    (setq-local flycheck-highlighting-mode 'symbols)
-	    (setq-local flycheck-check-syntax-automatically nil))
-	  )
-
-	;(add-hook 'c-mode-common-hook #'my-flycheck-rtags-setup)
-	(add-hook 'irony-mode-hook 'my-flycheck-rtags-setup)
-      #+END_SRC
-
-      #+RESULTS:
-      | my-flycheck-rtags-setup | my-irony-mode-hook | irony-cdb-autosetup-compile-options |
-
 ** javascript
    #+BEGIN_SRC emacs-lisp :tangle no
 	  (use-package js2
@@ -958,6 +837,29 @@
 
    #+RESULTS:
    : t
+** PHP
+   #+BEGIN_SRC emacs-lisp
+      (flycheck-define-checker my-php
+       "A PHP syntax checker using the PHP command line interpreter.
+
+     See URL `http://php.net/manual/en/features.commandline.php'."
+       :command ("php" "-l" "-d" "error_reporting=E_ALL" "-d" "display_errors=1"
+                 "-d" "log_errors=0" source)
+       :error-patterns
+       ((error line-start (or "Parse" "Fatal" "syntax") " error" (any ":" ",") " "
+               (message) " in " (file-name) " on line " line line-end))
+       :modes (php-mode php+-mode web-mode))
+
+     (defun my/php-mode ()
+       (flycheck-select-checker 'my-php)
+       )
+
+     (add-hook 'php-mode-hook 'my/php-mode)
+   #+END_SRC
+
+   #+RESULTS:
+   | my/php-mode | (flycheck-select-checker (quote my-php)) | flycheck-select-checker |
+
 * Magit
   #+BEGIN_SRC emacs-lisp
     (use-package magit
