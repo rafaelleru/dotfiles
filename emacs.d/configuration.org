@@ -118,31 +118,20 @@
 
 ** tema personalizado
    #+BEGIN_SRC emacs-lisp
-
-     ;; (use-package gotham-theme
-     ;;  :ensure t)
-
      (use-package solarized-theme
        :ensure t)
 
-     ;; (use-package danneskjold-theme
-     ;;   :ensure t)
-
-     ;; (use-package atom-one-dark-theme
-     ;;   :ensure t)
-
      (defun load-my-theme ()
-	 ;;;"""Carga mi tema solarized"""
-	 (interactive)
-	 ;; (setq solarized-use-variable-pitch nil)
-	 ;; (setq solarized-height-plus-1 1.0)
-	 ;; (setq solarized-height-plus-2 1.0)
-	 ;; (setq solarized-height-plus-3 1.0)
-	 ;; (setq solarized-height-plus-4 1.0)
-	 ;; (setq solarized-high-contrast-mode-line t)
-	 (load-theme 'solarized-dark t)
-	 ;;(load-theme 'gotham t)
-     )
+     ;;;"""Carga mi tema solarized"""
+       (interactive)
+       ;; (setq solarized-use-variable-pitch nil)
+       ;; (setq solarized-height-plus-1 1.0)
+       ;; (setq solarized-height-plus-2 1.0)
+       ;; (setq solarized-height-plus-3 1.0)
+       ;; (setq solarized-height-plus-4 1.0)
+       ;; (setq solarized-high-contrast-mode-line t)
+       (load-theme 'solarized-dark t)
+       )
 
      (add-hook 'after-init-hook 'load-my-theme)
      (when window-system
@@ -150,6 +139,7 @@
 
      (defun load-my-white-theme ()
        (interactive)
+       (disable-theme 'solarized-dark)
        (load-theme 'solarized-light t)
        )
    #+END_SRC
@@ -797,7 +787,7 @@
     : t
 
 *** Rtags
-    #+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp :tangle no
       (add-hook 'c-mode-hook 'rtags-start-process-unless-running)
       (add-hook 'c++-mode-hook 'rtags-start-process-unless-running)
       (add-hook 'objc-mode-hook 'rtags-start-process-unless-running)
