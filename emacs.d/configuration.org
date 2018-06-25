@@ -542,8 +542,8 @@
    #+RESULTS:
 
 ** Autocomplete mode.
-   #+BEGIN_SRC emacs-lisp :tangle no
-     (use-package auto-complete
+   #+BEGIN_SRC emacs-lisp
+     (use-package auto-complete :tangle no
        :ensure t
        :config
        (ac-config-default)
@@ -740,7 +740,7 @@
    #+RESULTS:
    : t
 
-   #+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp :tangle no
      (use-package tern
        :ensure t
        :config
