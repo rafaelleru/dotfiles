@@ -68,7 +68,7 @@
   #+RESULTS:
 
 
-** evil-leader
+* evil-leader
    #+BEGIN_SRC emacs-lisp
      (use-package evil-leader
        :ensure t
@@ -81,8 +81,8 @@
 	 "wj" 'evil-window-down
 	 "wk" 'evil-window-up
 	 "wd" 'delete-window
-	 "\"" 'split-window-vertically
-	 "%" 'split-window-horizontally
+	 "w\"" 'split-window-vertically
+	 "w%" 'split-window-horizontally
 	 "<SPC>" 'helm-M-x
 	 "bb" 'helm-mini
 	 "bd" 'kill-this-buffer
@@ -97,6 +97,7 @@
 	 "pc" 'helm-projectile-compile-project
 	 "ph" 'helm-projectile
 	 "pu" 'helm-projectile-run-project
+	 "pt" 'projectile-regenerate-tags
 	 "ff" 'helm-find-files
 	 ":" 'eval-expression
 	 )
@@ -409,7 +410,13 @@
        :ensure t
        :config
        (setq neo-theme (if (display-graphic-p) 'icons 'ascii))
-       (global-set-key (kbd "C-x n t") 'neotree-toggle))
+       (global-set-key (kbd "C-x n t") 'neotree-toggle)
+
+       (evil-define-key 'normal neotree-mode-map (kbd "TAB") 'neotree-enter)
+       (evil-define-key 'normal neotree-mode-map (kbd "SPC") 'neotree-quick-look)
+       (evil-define-key 'normal neotree-mode-map (kbd "q") 'neotree-hide)
+       (evil-define-key 'normal neotree-mode-map (kbd "RET") 'neotree-enter)
+       )
    #+END_SRC
 
    #+RESULTS:
@@ -494,7 +501,7 @@
    | linum-mode | (linum-mode 1) | (linum-mode t) |
 
 * elfeed
-  #+BEGIN_SRC emacs-lispa :tangle no
+  #+BEGIN_SRC emacs-lisp :tangle no
     (use-package elfeed
       :ensure t
       :init
@@ -534,7 +541,7 @@
      (use-package projectile
        :ensure t
        :init
-       (projectile-mode t)
+       (projectile-global-mode t)
        (setq projectile-switch-project-action 'projectile-dired)
        )
    #+END_SRC
@@ -542,8 +549,8 @@
    #+RESULTS:
 
 ** Autocomplete mode.
-   #+BEGIN_SRC emacs-lisp
-     (use-package auto-complete :tangle no
+   #+BEGIN_SRC emacs-lisp :tangle no
+     (use-package auto-complete
        :ensure t
        :config
        (ac-config-default)
@@ -577,6 +584,13 @@
        (add-to-list 'company-backends 'company-etags)
        (add-to-list 'company-backends 'company-yasnippet)
        )
+
+     (use-package company-quickhelp
+       :ensure t
+       :init
+       (company-quickhelp-mode))
+
+
 
      ;; Add yasnippet support for all company backends
      ;; https://github.com/syl20bnr/spacemacs/pull/179
@@ -942,7 +956,7 @@
    : t
 
 *** No cambiar de ventana al editar un snippet de codigo
-    #+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp :tangle no
       (setq org-src-window-setup 'current-window)
     #+END_SRC
 
@@ -1433,25 +1447,24 @@ Ademas incluimos este paquete en todos los documetos de latex que exportemos
 
 * Spaceline
   #+BEGIN_SRC emacs-lisp
-    ;;; package --- spaceline config
-    ;;; Code:
-    ;;; Commentary:
+	(use-package spaceline-all-the-icons
+	  :ensure t
+	  :config
+	  ;;(spaceline-all-the-icons-theme)
+	  ;;(setq spaceline-all-the-icons-primary-separator 'arrow)
+	  )
 
-    (use-package spaceline-all-the-icons
-      :ensure t
-      )
+	(use-package spaceline
+	  :ensure t
+	  :config
+	  (require 'spaceline-config)
+	  (spaceline-spacemacs-theme)
+	  (setq powerline-default-separator 'bar)
+	  (spaceline-helm-mode)
+	  (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
+	  )
 
-    (use-package spaceline
-      :ensure t
-      :config
-      (require 'spaceline-config)
-      (spaceline-spacemacs-theme)
-      (setq powerline-default-separator 'bar)
-      (spaceline-helm-mode)
-      (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
-      )
-
-  #+END_SRC
+   #+END_SRC
 
   #+RESULTS:
   : t
