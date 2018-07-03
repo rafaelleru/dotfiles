@@ -1033,7 +1033,7 @@
    | visual-line-mode | (lambda nil (org-bullets-mode t)) | auto-complete-mode | er/add-org-mode-expansions | #[0 \300\301\302\303\304$\207 [add-hook change-major-mode-hook org-show-block-all append local] 5] | #[0 \300\301\302\303\304$\207 [add-hook change-major-mode-hook org-babel-show-result-all append local] 5] | org-babel-result-hide-spec | org-babel-hide-all-hashes | org-ac/setup-current-buffer | auto-revert-mode |
 
 ** En vez de puntos suspensivos mostrar flecha '⤵'
-   #+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp :tangle no
      (setq org-ellipsis "⤵")
    #+END_SRC
 
