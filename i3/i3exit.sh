@@ -4,7 +4,7 @@
 ############################################################
 
 function lock {
-    i3lock --ignore-empty-password --show-failed-attempts
+    i3lock --ignore-empty-password --show-failed-attempts -i /usr/share/backgrounds/Night_lights_by_Alberto_Salvia_Novella.jpg
 }
 
 case "$1" in

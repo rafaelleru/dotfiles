@@ -16,10 +16,16 @@
 
 * Gestion de paquetes =melpa y cask=
 
+<<<<<<< HEAD
    #+BEGIN_SRC emacs-lisp :tangle no
      (require 'cask "~/.cask/cask.el")
      (cask-initialize)
      (require 'pallet)
+=======
+   #+BEGIN_SRC emacs-lisp
+     (add-to-list 'package-archives
+                  '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+>>>>>>> origin/work
    #+END_SRC
 
    #+RESULTS:
@@ -37,20 +43,24 @@
 
    #+RESULTS:
 
-* Evil-mode 
+* Evil-mode
    #+BEGIN_SRC emacs-lisp
      (use-package evil
        :ensure t
        :config
        (global-evil-leader-mode)
        (evil-mode 1))
+
+     (use-package evil-commentary
+       :ensure t
+       :config
+       (evil-commentary-mode t))
    #+END_SRC
 
    #+RESULTS:
-   : t
-  
+
    Escapar de todos los lugares posibles
- 
+
    #+BEGIN_SRC emacs-lisp
      (add-hook 'messages-buffer-mode-hook 'evil-insert-state)
      (define-key evil-normal-state-map [escape] 'keyboard-quit)
@@ -63,18 +73,19 @@
      (with-current-buffer "*Messages*"
        (evil-insert-state))
      (add-hook 'special-mode-hook 'evil-insert-state)
-  #+END_SRC 
+  #+END_SRC
 
   #+RESULTS:
-  
-  
-** evil-leader 
+
+
+** evil-leader
    #+BEGIN_SRC emacs-lisp
      (use-package evil-leader
        :ensure t
        :config
        (evil-leader/set-leader "<SPC>")
        (evil-leader/set-key
+<<<<<<< HEAD
 	 "w" 'other-window
 	 ":" 'eval-expression
 	 "bb" 'helm-mini
@@ -83,16 +94,32 @@
 	 "g" 'magit-status
 	 "y" 'helm-show-kill-ring
 	 "<SPC>" 'helm-M-x
+=======
+	 "wo" 'other-window
+	 "wh" 'evil-window-left
+	 "wl" 'evil-window-right
+	 "wj" 'evil-window-down
+	 "wk" 'evil-window-up
+	 "wd" 'delete-window
+	 "\"" 'split-window-vertically
+	 "%" 'split-window-horizontally
+	 "<SPC>" 'helm-M-x
+	 "bb" 'helm-mini
+	 "bd" 'kill-this-buffer
+	 "B" 'ibuffer
+	 "gg" 'magit-status
+	 "gc" 'magit-checkout
+	 "y" 'helm-show-kill-ring
+>>>>>>> origin/work
 	 "nt" 'neotree-toggle
-	 "-p" 'projectile-switch-project
-	 "-b" 'projectile-switch-to-buffer
-	 "-f" 'helm-projectile-find-file
-	 "-c" 'helm-projectile-compile-project
-	 "-h" 'helm-projectile
-	 "-u" 'helm-projectile-run-project
-	 "f" 'helm-find-files
-	 "r." 'rtags-find-symbol-at-point
-	 ;;"r>" 'rtags
+	 "pp" 'projectile-switch-project
+	 "pb" 'projectile-switch-to-buffer
+	 "pf" 'helm-projectile-find-file
+	 "pc" 'helm-projectile-compile-project
+	 "ph" 'helm-projectile
+	 "pu" 'helm-projectile-run-project
+	 "ff" 'helm-find-files
+	 ":" 'eval-expression
 	 )
        )
      (evil-leader/set-key-for-mode 'python-mode ",g" 'elpy-goto-definition)
@@ -123,10 +150,16 @@
 ** tema personalizado
    #+BEGIN_SRC emacs-lisp
 
+<<<<<<< HEAD
+=======
+     ;; (use-package gotham-theme
+     ;;  :ensure t)
+>>>>>>> origin/work
 
      (use-package solarized-theme
        :ensure t)
 
+<<<<<<< HEAD
      ;(use-package danneskjold-theme
      ;  :ensure t)
 
@@ -134,10 +167,18 @@
      ;  :ensure t)
      ;(use-package gotham-theme
      ;  :ensure t)
+=======
+     ;; (use-package danneskjold-theme
+     ;;   :ensure t)
+
+     ;; (use-package atom-one-dark-theme
+     ;;   :ensure t)
+>>>>>>> origin/work
 
      (defun load-my-theme ()
 	 ;;;"""Carga mi tema solarized"""
 	 (interactive)
+<<<<<<< HEAD
 	  (setq solarized-use-variable-pitch nil)
 	  (setq solarized-height-plus-1 1.0)
 	  (setq solarized-height-plus-2 1.0)
@@ -145,6 +186,16 @@
 	  (setq solarized-height-plus-4 1.0)
 	  (setq solarized-high-contrast-mode-line t)
 	  (load-theme 'solarized-dark t)
+=======
+	 ;; (setq solarized-use-variable-pitch nil)
+	 ;; (setq solarized-height-plus-1 1.0)
+	 ;; (setq solarized-height-plus-2 1.0)
+	 ;; (setq solarized-height-plus-3 1.0)
+	 ;; (setq solarized-height-plus-4 1.0)
+	 ;; (setq solarized-high-contrast-mode-line t)
+	 (load-theme 'solarized-dark t)
+	 ;;(load-theme 'gotham t)
+>>>>>>> origin/work
      )
 
      (add-hook 'after-init-hook 'load-my-theme)
@@ -171,7 +222,7 @@
       (setq hrs/default-font-size 11)
       (setq hrs/current-font-size hrs/default-font-size)
 
-      (defun set-font () 
+      (defun set-font ()
 	(interactive)
 	(setq hrs/default-font "Source Code Pro")
 	(setq hrs/default-font-size 12)
@@ -284,7 +335,7 @@
 
        (global-set-key [remap other-window] 'ace-window)
                                           ;(setq aw-scope 'frame)
-       :config 
+       :config
        (custom-set-faces
             '(aw-leading-char-face
               ((t (:inherit ace-jump-face-foreground :height 2.0))))))
@@ -341,7 +392,7 @@
 
 ** suena interesante (historial de portapapeles con ivy y counsel)
    https://www.youtube.com/watch?v=LReZI7VAy8w&index=20&list=PL9KxKa8NpFxIcNQa9js7dQQIHc81b0-Xg
-** atajo para ir directamente a una linea =goto-line= 
+** atajo para ir directamente a una linea =goto-line=
    #+BEGIN_SRC emacs-lisp
      (global-set-key (kbd "C-c C-g C-l") 'goto-line)
    #+END_SRC
@@ -401,7 +452,7 @@
    #+RESULTS:
    : t
 
-*** helm-google 
+*** helm-google
     ¿Por qué no?
     #+BEGIN_SRC emacs-lisp :tangle no
       (use-package helm-google
@@ -456,7 +507,7 @@
        (defengine google
          "http://www.google.com/search?ie=utf-8&oe=utf-8&q=%s"
          :keybinding "g")
-       ) 
+       )
    #+END_SRC
 
    #+RESULTS:
@@ -501,7 +552,7 @@
    | linum-mode | (linum-mode 1) | (linum-mode t) |
 
 * elfeed
-  #+BEGIN_SRC emacs-lisp
+  #+BEGIN_SRC emacs-lispa :tangle no
     (use-package elfeed
       :ensure t
       :init
@@ -516,7 +567,7 @@
   #+BEGIN_SRC emacs-lisp :tangle no
     (use-package elfeed-goodies
     :ensure t
-    :config 
+    :config
     )
     (elfeed-goodies/setup)
   #+END_SRC
@@ -535,6 +586,7 @@
   #+RESULTS:
   | /data/Nextcloud/org/rss.org |
 
+<<<<<<< HEAD
 * ledger
   #+BEGIN_SRC emacs-lisp :tangle no
     (use-package ledger
@@ -549,6 +601,8 @@
 
   #+RESULTS:
   
+=======
+>>>>>>> origin/work
 * Ajustes para lenguajes de programacion
 ** projectile mode
    #+BEGIN_SRC emacs-lisp
@@ -563,7 +617,7 @@
    #+RESULTS:
 
 ** Autocomplete mode.
-   #+BEGIN_SRC emacs-lisp 
+   #+BEGIN_SRC emacs-lisp :tangle no
      (use-package auto-complete
        :ensure t
        :config
@@ -590,11 +644,27 @@
        :config
        (global-company-mode t)
        (setq company-echo-delay 0)
-       (setq company-idle-delay 0)
-       (global-set-key (kbd "C-*") 'company-complete)
+       (setq company-idle-delay 0.1)
+       (global-set-key (kbd "?\t") 'company-complete)
        (add-to-list 'company-backends 'company-elisp)
        (add-to-list 'company-backends 'company-tern)
-       (add-to-list 'company-backends 'company-css))
+       (add-to-list 'company-backends 'company-css)
+       (add-to-list 'company-backends 'company-etags)
+       (add-to-list 'company-backends 'company-yasnippet)
+       )
+
+     ;; Add yasnippet support for all company backends
+     ;; https://github.com/syl20bnr/spacemacs/pull/179
+     (defvar company-mode/enable-yas t
+       "Enable yasnippet for all backends.")
+
+     (defun company-mode/backend-with-yas (backend)
+       (if (or (not company-mode/enable-yas) (and (listp backend) (member 'company-yasnippet backend)))
+	   backend
+	 (append (if (consp backend) backend (list backend))
+		 '(:with company-yasnippet))))
+
+     (setq company-backends (mapcar #'company-mode/backend-with-yas company-backends))
    #+END_SRC
 
    #+RESULTS:
@@ -606,7 +676,8 @@
        :ensure t
        :init
        (yas-global-mode 1)
-       (add-to-list 'company-backends 'company-yasnippet))
+       ;;(add-to-list 'company-backends 'company-yasnippet)
+       )
    #+END_SRC
 
    #+RESULTS:
@@ -638,7 +709,7 @@
    #+BEGIN_SRC emacs-lisp
      (use-package dumb-jump
        :ensure
-       :bind 
+       :bind
        (("C-x g o" . dumb-jump-go-other-window)
         ("C-x g j" . dumb-jump-go)
         ("C-x g x" . dumb-jump-go-prefer-external)
@@ -684,12 +755,26 @@
 *** elpy
     utilidades de IDE python en emacs
     #+BEGIN_SRC emacs-lisp
+      (add-hook 'python-mode-hook
+			    (lambda ()
+			      (setq indent-tabs-mode t)
+			      (setq tab-width 4)
+			      (setq py-indent-tabs-mode t)
+			      (setq python-indent-offset 4)
+			      (add-to-list 'write-file-functions 'delete-trailing-whitespace)))
+
       (use-package elpy
-	:ensure t
-	:config
-	(elpy-enable)
-	(add-to-list 'company-backends 'elpy-company-backend)
-	)
+	    :ensure t
+	    :config
+	    (elpy-enable)
+	    (add-to-list 'company-backends 'elpy-company-backend)
+	    (define-key elpy-mode-map (kbd "M-.") 'elpy-goto-definition)
+	    (delq 'elpy-module-flymake elpy-modules)
+	    (setq jedi:complete-on-dot t)
+	    )
+
+      (evil-leader/set-key-for-mode 'python-mode "d" 'elpy-goto-definition)
+      (evil-leader/set-key-for-mode 'python-mode "D" 'elpy-goto-definition-other-window)
     #+END_SRC
 
     #+RESULTS:
@@ -704,61 +789,15 @@
     #+END_SRC
 
     #+RESULTS:
-    
-** C++
-*** autocomplete C/C++ headers from .h files in a project
-    #+BEGIN_SRC emacs-lisp :tangle no
-      (use-package auto-complete-c-headers
-	:ensure t
-	:config
-	(defun my:ac-c-headers-init ()
-	  (require 'auto-complete-c-headers)
-	  (add-to-list 'ac-sources 'ac-source-c-headers)))
 
-      (add-hook 'c++-mode-hook 'my:ac-c-headers-init)
-      (add-hook 'c-mode-hook 'my:ac-c-headers-init)
-    #+END_SRC
-
-    #+RESULTS:
-    | my:ac-c-headers-init | (lambda nil (easy-menu-add-item nil (quote (C)) (rtags-submenu-list))) | er/add-cc-mode-expansions | rtags-start-process-unless-running | irony-mode |
-
-*** Irony-mode
-   #+BEGIN_SRC emacs-lisp
-     (use-package irony
-       :ensure t)
-
-     (use-package company-irony
-       :ensure t)
-
-     (use-package flycheck-irony
+** etags
+   #+BEGIN_SRC emacs-lisp :tangle no
+     (use-package helm-etags
        :ensure t
-       :config
-       (flycheck-irony-setup))
-
-     (use-package company-irony-c-headers
-       :ensure t)
-
-     (add-hook 'c++-mode-hook 'irony-mode)
-     (add-hook 'c-mode-hook 'irony-mode)
-     (add-hook 'objc-mode-hook 'irony-mode)
-
-     ;; replace the `completion-at-point' and `complete-symbol' bindings in
-     ;; irony-mode's buffers by irony-mode's function
-
-     (defun my-irony-mode-hook ()
-       (define-key irony-mode-map [remap completion-at-point]
-	 'counsel-irony)
-       (define-key irony-mode-map [remap complete-symbol]
-	 'counsel-irony)
-       ;; ;; (define-key irony-mode-map [remap comment-region]
-       ;; ;;   'compile)
-       (eval-after-load 'company
-	 '(add-to-list 'company-backends '(company-irony-c-headers company-irony))))
-
-     (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
-     (add-hook 'irony-mode-hook 'my-irony-mode-hook)
+       )
    #+END_SRC
 
+<<<<<<< HEAD
    #+RESULTS:
    | my-flycheck-rtags-setup | my-irony-mode-hook | irony-cdb-autosetup-compile-options |
 
@@ -832,6 +871,8 @@
       #+RESULTS:
       | my-flycheck-rtags-setup | my-irony-mode-hook | irony-cdb-autosetup-compile-options |
 
+=======
+>>>>>>> origin/work
 ** javascript
    #+BEGIN_SRC emacs-lisp :tangle no
 	  (use-package js2
@@ -849,7 +890,7 @@
 
    #+RESULTS:
    : t
-   
+
    #+BEGIN_SRC emacs-lisp
      (use-package tern
        :ensure t
@@ -884,10 +925,10 @@
 ** html && css
    #+BEGIN_SRC emacs-lisp
      (use-package rainbow-mode
-       :ensure t 
+       :ensure t
        :config
        (add-hook 'html-mode-hook
-        (lambda () 
+        (lambda ()
                   (rainbow-mode t)))
        (add-hook 'css-mode-hook
    	      (lambda ()
@@ -908,35 +949,6 @@
    #+END_SRC
 
    #+RESULTS:
-
-** Latex
-   No es un lenguaje de programcaion pero es donde mas sentido me parece que tiene (como html xD)
-*** autoparsear el buffer al cargarlo
-   #+BEGIN_SRC emacs-lisp
-     (setq TeX-parse-self t)
-   #+END_SRC
-
-   #+RESULTS:
-   : t
-
-*** Compilar siempre con pdflatex
-   #+BEGIN_SRC emacs-lisp
-     (setq TeX-PDF-mode t)
-   #+END_SRC
-
-   #+RESULTS:
-   : t
-
-*** Minor mode para matematicas, añade ademas ciertos atajos de teclado
-   #+BEGIN_SRC emacs-lisp
-     (add-hook 'LaTeX-mode-hook
-               (lambda ()
-                 (LaTeX-math-mode)
-                 (setq TeX-master t)))
-   #+END_SRC
-
-   #+RESULTS:
-   | lambda | nil | (LaTeX-math-mode) | (setq TeX-master t) |
 
 ** R
 ** Java
@@ -965,14 +977,37 @@
    #+END_SRC
 
    #+RESULTS:
-   
+
 ** Tratar CamelCase como palabras separadas.
-   #+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp :tangle no
    (global-subword-mode 1)
    #+END_SRC
 
    #+RESULTS:
    : t
+** PHP
+   #+BEGIN_SRC emacs-lisp
+      (flycheck-define-checker my-php
+       "A PHP syntax checker using the PHP command line interpreter.
+
+     See URL `http://php.net/manual/en/features.commandline.php'."
+       :command ("php" "-l" "-d" "error_reporting=E_ALL" "-d" "display_errors=1"
+                 "-d" "log_errors=0" source)
+       :error-patterns
+       ((error line-start (or "Parse" "Fatal" "syntax") " error" (any ":" ",") " "
+               (message) " in " (file-name) " on line " line line-end))
+       :modes (php-mode php+-mode web-mode))
+
+     (defun my/php-mode ()
+       (flycheck-select-checker 'my-php)
+       )
+
+     (add-hook 'php-mode-hook 'my/php-mode)
+   #+END_SRC
+
+   #+RESULTS:
+   | my/php-mode | (flycheck-select-checker (quote my-php)) | flycheck-select-checker |
+
 * Magit
   #+BEGIN_SRC emacs-lisp
     (use-package magit
@@ -988,7 +1023,7 @@
 
    #+BEGIN_SRC emacs-lisp
      (global-set-key (kbd "M-g") 'magit-status)
-   #+END_SRC 
+   #+END_SRC
 
    #+RESULTS:
    : magit-status
@@ -1126,7 +1161,7 @@
         (interactive)
         (org-todo 'done)
         (org-archive-subtree))
-      (define-key org-mode-map "\C-c\C-x\C-s" 'mark-done-and-archive) 
+      (define-key org-mode-map "\C-c\C-x\C-s" 'mark-done-and-archive)
 
       (defun mark-done-and-archive-agenda ()
         (interactive)
@@ -1251,6 +1286,7 @@ Presionar =C-c o i= para abrir *index.org*
 *** Frame para capturas. :tangle no
     De [[https://github.com/zamansky/using-emacs/blob/master/myinit.org][Zamansky]]
     #+BEGIN_SRC emacs-lisp :tangle no
+<<<<<<< HEAD
       (defadvice org-capture-finalize 
       (after delete-capture-frame activate)  
 	"Advise capture-finalize to close the frame"  
@@ -1279,6 +1315,35 @@ Presionar =C-c o i= para abrir *index.org*
 
       (add-hook 'org-capture-mode-hook 'delete-other-windows)
       (add-hook 'org-capture-after-finalize-hook 'delete-frame)
+=======
+        (defadvice org-capture-finalize
+    	(after delete-capture-frame activate)
+          "Advise capture-finalize to close the frame"
+          (if (equal "capture" (frame-parameter nil 'name))
+          (delete-frame)))
+
+        (defadvice org-capture-destroy
+    	(after delete-capture-frame activate)
+          "Advise capture-destroy to close the frame"
+          (if (equal "capture" (frame-parameter nil 'name))
+          (delete-frame)))
+
+        (use-package noflet
+          :ensure t)
+
+        (defun make-capture-frame ()
+          "Create a new frame and run org-capture."
+          (interactive)
+          (make-frame '((name . "Capture")))
+          (select-frame-by-name "Capture")
+          (noflet ((switch-to-buffer-other-window (buf) (switch-to-buffer buf)))
+    	(delete-other-windows)
+    	(delete-other-frames)
+    	(org-capture)))
+
+        (add-hook 'org-capture-mode-hook 'delete-other-windows)
+        (add-hook 'org-capture-after-finalize-hook 'delete-frame)
+>>>>>>> origin/work
     #+END_SRC
 
     #+RESULTS:
@@ -1413,7 +1478,7 @@ Ademas incluimos este paquete en todos los documetos de latex que exportemos
 **** TODO la funcion y aprender lisp xD
 ** funcion para actualizar el indice de cosas que leer en el navegador
    #+BEGIN_SRC emacs-lisp
-     ;; Auto-export org files to html when saved 
+     ;; Auto-export org files to html when saved
      (defun org-mode-export-hook()
        "Auto export html"
        (when (eq major-mode 'org-mode)
@@ -1425,7 +1490,7 @@ Ademas incluimos este paquete en todos los documetos de latex que exportemos
 
    #+RESULTS:
    | org-mode-export-hook |
-   
+
 * small-shell from [[https://github.com/vterron/dot-emacs][@pyctor]]
 #+BEGIN_SRC emacs-lisp
   (defun small-shell ()
@@ -1442,7 +1507,7 @@ Ademas incluimos este paquete en todos los documetos de latex que exportemos
       (when (eq window-height 12)
 	(delete-window t))))
 
-  ;; (add-hook 'eshell-exit-hook 
+  ;; (add-hook 'eshell-exit-hook
   ;; 	  (lambda ()
   ;; 	    ((if (eq window-height 12)
   ;; 		))))
@@ -1463,7 +1528,7 @@ Ademas incluimos este paquete en todos los documetos de latex que exportemos
    | lambda | nil | (local-set-key (kbd C-x C-k p) (delete-window)) |
 
 * pop-shell
-  #+BEGIN_SRC emacs-lisp 
+  #+BEGIN_SRC emacs-lisp
     (use-package shell-pop
       :ensure t
       :init
@@ -1473,7 +1538,7 @@ Ademas incluimos este paquete en todos los documetos de latex que exportemos
 
   #+RESULTS:
 
-* Undo Tree 
+* Undo Tree
   #+BEGIN_SRC emacs-lisp
     (use-package undo-tree
       :ensure t
@@ -1539,7 +1604,7 @@ Ademas incluimos este paquete en todos los documetos de latex que exportemos
 
   #+RESULTS:
   : ibuffer
-** kill-this-buffer con =C-x k= 
+** kill-this-buffer con =C-x k=
    Normalmente cuando ejecuto =C-x k= es para eliminar el buffer en el que estoy actualmente.
    #+BEGIN_SRC emacs-lisp
      (global-set-key (kbd "C-x k") 'kill-this-buffer)
@@ -1549,7 +1614,7 @@ Ademas incluimos este paquete en todos los documetos de latex que exportemos
    : kill-this-buffer
 
 * Spaceline
-  #+BEGIN_SRC emacs-lisp 
+  #+BEGIN_SRC emacs-lisp
     ;;; package --- spaceline config
     ;;; Code:
     ;;; Commentary:
@@ -1574,7 +1639,7 @@ Ademas incluimos este paquete en todos los documetos de latex que exportemos
   : t
 
 * powerline
-  #+BEGIN_SRC emacs-lisp :tangle no 
+  #+BEGIN_SRC emacs-lisp :tangle no
     (use-package powerline
       :ensure t
       :config
