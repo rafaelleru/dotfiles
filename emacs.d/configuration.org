@@ -16,16 +16,13 @@
 
 * Gestion de paquetes =melpa y cask=
 
-<<<<<<< HEAD
    #+BEGIN_SRC emacs-lisp :tangle no
      (require 'cask "~/.cask/cask.el")
      (cask-initialize)
      (require 'pallet)
-=======
    #+BEGIN_SRC emacs-lisp
      (add-to-list 'package-archives
                   '("melpa-stable" . "https://stable.melpa.org/packages/") t)
->>>>>>> origin/work
    #+END_SRC
 
    #+RESULTS:
@@ -85,16 +82,6 @@
        :config
        (evil-leader/set-leader "<SPC>")
        (evil-leader/set-key
-<<<<<<< HEAD
-	 "w" 'other-window
-	 ":" 'eval-expression
-	 "bb" 'helm-mini
-	 "B" 'ibuffer
-	 "bd" 'kill-this-buffer
-	 "g" 'magit-status
-	 "y" 'helm-show-kill-ring
-	 "<SPC>" 'helm-M-x
-=======
 	 "wo" 'other-window
 	 "wh" 'evil-window-left
 	 "wl" 'evil-window-right
@@ -110,7 +97,6 @@
 	 "gg" 'magit-status
 	 "gc" 'magit-checkout
 	 "y" 'helm-show-kill-ring
->>>>>>> origin/work
 	 "nt" 'neotree-toggle
 	 "pp" 'projectile-switch-project
 	 "pb" 'projectile-switch-to-buffer
@@ -150,35 +136,12 @@
 ** tema personalizado
    #+BEGIN_SRC emacs-lisp
 
-<<<<<<< HEAD
-=======
-     ;; (use-package gotham-theme
-     ;;  :ensure t)
->>>>>>> origin/work
-
      (use-package solarized-theme
        :ensure t)
-
-<<<<<<< HEAD
-     ;(use-package danneskjold-theme
-     ;  :ensure t)
-
-     ;(use-package atom-one-dark-theme
-     ;  :ensure t)
-     ;(use-package gotham-theme
-     ;  :ensure t)
-=======
-     ;; (use-package danneskjold-theme
-     ;;   :ensure t)
-
-     ;; (use-package atom-one-dark-theme
-     ;;   :ensure t)
->>>>>>> origin/work
 
      (defun load-my-theme ()
 	 ;;;"""Carga mi tema solarized"""
 	 (interactive)
-<<<<<<< HEAD
 	  (setq solarized-use-variable-pitch nil)
 	  (setq solarized-height-plus-1 1.0)
 	  (setq solarized-height-plus-2 1.0)
@@ -186,16 +149,6 @@
 	  (setq solarized-height-plus-4 1.0)
 	  (setq solarized-high-contrast-mode-line t)
 	  (load-theme 'solarized-dark t)
-=======
-	 ;; (setq solarized-use-variable-pitch nil)
-	 ;; (setq solarized-height-plus-1 1.0)
-	 ;; (setq solarized-height-plus-2 1.0)
-	 ;; (setq solarized-height-plus-3 1.0)
-	 ;; (setq solarized-height-plus-4 1.0)
-	 ;; (setq solarized-high-contrast-mode-line t)
-	 (load-theme 'solarized-dark t)
-	 ;;(load-theme 'gotham t)
->>>>>>> origin/work
      )
 
      (add-hook 'after-init-hook 'load-my-theme)
@@ -586,7 +539,6 @@
   #+RESULTS:
   | /data/Nextcloud/org/rss.org |
 
-<<<<<<< HEAD
 * ledger
   #+BEGIN_SRC emacs-lisp :tangle no
     (use-package ledger
@@ -797,7 +749,6 @@
        )
    #+END_SRC
 
-<<<<<<< HEAD
    #+RESULTS:
    | my-flycheck-rtags-setup | my-irony-mode-hook | irony-cdb-autosetup-compile-options |
 
@@ -1286,7 +1237,6 @@ Presionar =C-c o i= para abrir *index.org*
 *** Frame para capturas. :tangle no
     De [[https://github.com/zamansky/using-emacs/blob/master/myinit.org][Zamansky]]
     #+BEGIN_SRC emacs-lisp :tangle no
-<<<<<<< HEAD
       (defadvice org-capture-finalize 
       (after delete-capture-frame activate)  
 	"Advise capture-finalize to close the frame"  
@@ -1315,35 +1265,6 @@ Presionar =C-c o i= para abrir *index.org*
 
       (add-hook 'org-capture-mode-hook 'delete-other-windows)
       (add-hook 'org-capture-after-finalize-hook 'delete-frame)
-=======
-        (defadvice org-capture-finalize
-    	(after delete-capture-frame activate)
-          "Advise capture-finalize to close the frame"
-          (if (equal "capture" (frame-parameter nil 'name))
-          (delete-frame)))
-
-        (defadvice org-capture-destroy
-    	(after delete-capture-frame activate)
-          "Advise capture-destroy to close the frame"
-          (if (equal "capture" (frame-parameter nil 'name))
-          (delete-frame)))
-
-        (use-package noflet
-          :ensure t)
-
-        (defun make-capture-frame ()
-          "Create a new frame and run org-capture."
-          (interactive)
-          (make-frame '((name . "Capture")))
-          (select-frame-by-name "Capture")
-          (noflet ((switch-to-buffer-other-window (buf) (switch-to-buffer buf)))
-    	(delete-other-windows)
-    	(delete-other-frames)
-    	(org-capture)))
-
-        (add-hook 'org-capture-mode-hook 'delete-other-windows)
-        (add-hook 'org-capture-after-finalize-hook 'delete-frame)
->>>>>>> origin/work
     #+END_SRC
 
     #+RESULTS:
