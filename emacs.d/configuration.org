@@ -63,9 +63,12 @@
      (with-current-buffer "*Messages*"
        (evil-insert-state))
      (add-hook 'special-mode-hook 'evil-insert-state)
+
+     (define-key evil-visual-state-map (kbd "TAB") 'indent-region)
   #+END_SRC
 
   #+RESULTS:
+  : indent-region
 
 
 * evil-leader
