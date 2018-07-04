@@ -16,6 +16,10 @@
 
 * Gestion de paquetes =melpa y cask=
 
+   #+BEGIN_SRC emacs-lisp :tangle no
+     (require 'cask "~/.cask/cask.el")
+     (cask-initialize)
+     (require 'pallet)
    #+BEGIN_SRC emacs-lisp
      (add-to-list 'package-archives
                   '("melpa-stable" . "https://stable.melpa.org/packages/") t)
@@ -26,9 +30,12 @@
 
 ** Use package
    #+BEGIN_SRC emacs-lisp
-     (unless (package-installed-p 'use-package)
-       (package-refresh-contents)
-       (package-install 'use-package))
+   (add-to-list 'package-archives
+   '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+   
+   (unless (package-installed-p 'use-package)
+   (package-refresh-contents)
+   (package-install 'use-package))
    #+END_SRC
 
    #+RESULTS:
@@ -105,10 +112,20 @@
 	 ":" 'eval-expression
 	 )
        )
+     (evil-leader/set-key-for-mode 'python-mode ",g" 'elpy-goto-definition)
    #+END_SRC
 
    #+RESULTS:
    : t
+   
+** evil-commentary
+   #+BEGIN_SRC emacs-lisp
+     (use-package evil-commentary
+       :ensure t
+       :config
+       (evil-commentary-mode)
+     )
+   #+END_SRC
 
 * Ajustes de la interfaz
 ** Ocultar botones que no uso y la barra de scroll.
@@ -123,29 +140,19 @@
 ** tema personalizado
    #+BEGIN_SRC emacs-lisp
 
-     ;; (use-package gotham-theme
-     ;;  :ensure t)
-
      (use-package solarized-theme
        :ensure t)
-
-     ;; (use-package danneskjold-theme
-     ;;   :ensure t)
-
-     ;; (use-package atom-one-dark-theme
-     ;;   :ensure t)
 
      (defun load-my-theme ()
 	 ;;;"""Carga mi tema solarized"""
 	 (interactive)
-	 ;; (setq solarized-use-variable-pitch nil)
-	 ;; (setq solarized-height-plus-1 1.0)
-	 ;; (setq solarized-height-plus-2 1.0)
-	 ;; (setq solarized-height-plus-3 1.0)
-	 ;; (setq solarized-height-plus-4 1.0)
-	 ;; (setq solarized-high-contrast-mode-line t)
-	 (load-theme 'solarized-dark t)
-	 ;;(load-theme 'gotham t)
+	  (setq solarized-use-variable-pitch nil)
+	  (setq solarized-height-plus-1 1.0)
+	  (setq solarized-height-plus-2 1.0)
+	  (setq solarized-height-plus-3 1.0)
+	  (setq solarized-height-plus-4 1.0)
+	  (setq solarized-high-contrast-mode-line t)
+	  (load-theme 'solarized-dark t)
      )
 
      (add-hook 'after-init-hook 'load-my-theme)
@@ -164,8 +171,12 @@
 ** Fuente Inconsolata
    Permite ademas cambiar el tamaño de la ventana y la fuente para presentaciones por ejemplo.
     #+BEGIN_SRC emacs-lisp
+      (use-package unicode-fonts
+	:ensure t
+	:config
+	(unicode-fonts-setup))
       (setq hrs/default-font "Inconsolata")
-      (setq hrs/default-font-size 13)
+      (setq hrs/default-font-size 11)
       (setq hrs/current-font-size hrs/default-font-size)
 
       (defun set-font ()
@@ -538,6 +549,22 @@
   #+RESULTS:
   | /data/Nextcloud/org/rss.org |
 
+* ledger
+  #+BEGIN_SRC emacs-lisp :tangle no
+    (use-package ledger
+      :ensure t
+      )
+
+    (use-package evil-ledger
+      :ensure t
+      :after ledger
+      )
+  #+END_SRC
+
+  #+RESULTS:
+  
+=======
+>>>>>>> origin/work
 * Ajustes para lenguajes de programacion
 ** projectile mode
    #+BEGIN_SRC emacs-lisp
@@ -739,6 +766,81 @@
        )
    #+END_SRC
 
+   #+RESULTS:
+   | my-flycheck-rtags-setup | my-irony-mode-hook | irony-cdb-autosetup-compile-options |
+
+*** modern c++ font lock
+    #+BEGIN_SRC emacs-lisp
+      (use-package modern-cpp-font-lock
+	:ensure t
+	:config
+	(modern-c++-font-lock-global-mode t))
+    #+END_SRC
+
+    #+RESULTS:
+    : t
+
+*** TODO: Install Rtags 
+    #+BEGIN_SRC emacs-lisp :tangle no 
+      (add-hook 'c-mode-hook 'rtags-start-process-unless-running)
+      (add-hook 'c++-mode-hook 'rtags-start-process-unless-running)
+      (add-hook 'objc-mode-hook 'rtags-start-process-unless-running)
+      (setq rtags-completions-enabled t)
+      (setq rtags-autostart-diagnostics t)
+      (rtags-enable-standard-keybindings)
+    #+END_SRC
+
+    #+RESULTS:
+    : rtags-location-stack-visualize
+
+**** heml integration
+    #+BEGIN_SRC emacs-lisp
+      (use-package helm-rtags
+	:ensure t
+	:config
+	(setq rtags-use-helm t)
+	)
+      (setq rtags-display-result-backend 'helm)
+    #+END_SRC
+
+    #+RESULTS:
+    : helm
+
+**** company-rtags support
+    #+BEGIN_SRC emacs-lisp
+      (use-package company-rtags
+	:ensure t
+	:config
+	(setq rtags-completions-enabled t)
+	(eval-after-load 'company
+	  '(add-to-list 'company-backends 'company-rtags))
+	(setq rtags-autostart-diagnostics t)
+	(rtags-enable-standard-keybindings))
+    #+END_SRC
+
+    #+RESULTS:
+    : t
+
+**** flycheck rtags integration
+      #+BEGIN_SRC emacs-lisp
+	(use-package flycheck-rtags
+	  :ensure t
+	  :config
+	  (defun my-flycheck-rtags-setup ()
+	    (flycheck-select-checker 'rtags)
+	    (setq-local flycheck-highlighting-mode 'symbols)
+	    (setq-local flycheck-check-syntax-automatically nil))
+	  )
+
+	;(add-hook 'c-mode-common-hook #'my-flycheck-rtags-setup)
+	(add-hook 'irony-mode-hook 'my-flycheck-rtags-setup)
+      #+END_SRC
+
+      #+RESULTS:
+      | my-flycheck-rtags-setup | my-irony-mode-hook | irony-cdb-autosetup-compile-options |
+
+=======
+>>>>>>> origin/work
 ** javascript
    #+BEGIN_SRC emacs-lisp :tangle no
 	  (use-package js2
@@ -934,7 +1036,7 @@
    | visual-line-mode | (lambda nil (org-bullets-mode t)) | auto-complete-mode | er/add-org-mode-expansions | #[0 \300\301\302\303\304$\207 [add-hook change-major-mode-hook org-show-block-all append local] 5] | #[0 \300\301\302\303\304$\207 [add-hook change-major-mode-hook org-babel-show-result-all append local] 5] | org-babel-result-hide-spec | org-babel-hide-all-hashes | org-ac/setup-current-buffer | auto-revert-mode |
 
 ** En vez de puntos suspensivos mostrar flecha '⤵'
-   #+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp :tangle no
      (setq org-ellipsis "⤵")
    #+END_SRC
 
@@ -1149,36 +1251,37 @@ Presionar =C-c o i= para abrir *index.org*
 #+RESULTS:
 : org-capture-todo
 
-*** Frame para capturas.
+*** Frame para capturas. :tangle no
     De [[https://github.com/zamansky/using-emacs/blob/master/myinit.org][Zamansky]]
     #+BEGIN_SRC emacs-lisp :tangle no
-        (defadvice org-capture-finalize
-    	(after delete-capture-frame activate)
-          "Advise capture-finalize to close the frame"
-          (if (equal "capture" (frame-parameter nil 'name))
-          (delete-frame)))
+      (defadvice org-capture-finalize 
+      (after delete-capture-frame activate)  
+	"Advise capture-finalize to close the frame"  
+	(if (equal "capture" (frame-parameter nil 'name))  
+	(delete-frame)))
 
-        (defadvice org-capture-destroy
-    	(after delete-capture-frame activate)
-          "Advise capture-destroy to close the frame"
-          (if (equal "capture" (frame-parameter nil 'name))
-          (delete-frame)))
+      (defadvice org-capture-destroy 
+      (after delete-capture-frame activate)  
+	"Advise capture-destroy to close the frame"  
+	(if (equal "capture" (frame-parameter nil 'name))  
+	(delete-frame)))  
 
-        (use-package noflet
-          :ensure t)
+      ;; (use-package noflet
+      ;;   :ensure t)
 
-        (defun make-capture-frame ()
-          "Create a new frame and run org-capture."
-          (interactive)
-          (make-frame '((name . "Capture")))
-          (select-frame-by-name "Capture")
-          (noflet ((switch-to-buffer-other-window (buf) (switch-to-buffer buf)))
-    	(delete-other-windows)
-    	(delete-other-frames)
-    	(org-capture)))
+      ;; (defun make-cap
+	  ture-frame ()
+	"Create a new frame and run org-capture."
+	(interactive)
+	(make-frame '((name . "Capture")))
+	(select-frame-by-name "Capture")
+	(noflet ((switch-to-buffer-other-window (buf) (switch-to-buffer buf)))
+      (delete-other-windows)
+      (delete-other-frames)
+      (org-capture)))
 
-        (add-hook 'org-capture-mode-hook 'delete-other-windows)
-        (add-hook 'org-capture-after-finalize-hook 'delete-frame)
+      (add-hook 'org-capture-mode-hook 'delete-other-windows)
+      (add-hook 'org-capture-after-finalize-hook 'delete-frame)
     #+END_SRC
 
     #+RESULTS:

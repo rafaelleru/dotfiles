@@ -307,9 +307,8 @@ bindsym Mod4+o mode "$output"
 
 bar {
   #status_command i3status
-        status_command py3status -c ~/.i3/i3status.conf	# i3blocks -c ~/.i3/i3blocks/i3blocks.conf
-	#font pango: System San Francisco Display, FontAwesome 10
-       font pango: Inconsolata 11
+        status_command  py3status -c ~/.i3/i3status.conf
+	font pango: Inconsolata, System San Francisco Display, FontAwesome 11
         position top
         strip_workspace_numbers no
         #bindsym button4 nop
@@ -350,6 +349,6 @@ client.focused #2f343f #2f343f #ffffff #2f343f
 client.focused_inactive #333333 #333333 #888888 #292d2e
 client.unfocused  #2f343f #2f343f #888888 #292d2e
 client.urgent #2f343a #900000 #ffffff #900000
-for_window [class="^.*"] border pixel 1
-#for_window [floating] border normal
-#for_window [title="*(\[Corriendo\]|\[Apagada\])*"] floating enable
+# for_window [class="^.*"] border pixel 1
+# for_window [floating] border normal
+# for_window [title="*(\[Corriendo\]|\[Apagada\])*"] floating enable

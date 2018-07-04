@@ -1,15 +1,15 @@
 URxvt.font: xft:Inconsolata:size=13,xft:Inconsolata\ for\ Powerline:pixelsize=13
 !Rxvt.font: xft:"Fira Code":size=12, xft:Inconsolata\ for\ Powerline:pixelsize=12
-!URxvt.font: xft:Terminus (TTF):size=12
-!URxvt.font: xft:Iosevka:size=12
+!URxvt.font: xft:Terminus:size=12
+URxvt.font: xft:Inconsolata:size=12,xft:Hack:size=11
 !Urxvt.font: xft:Source Code Pro:size=12
 URxvt.scrollBar: true
 URxvt.scrollBar_right: true
 URxvt*termName: rxvt-unicode
 
 
-!Base16 Solarized
-Scheme: Ethan Schoonover (http://ethanschoonover.com/solarized)
+! Base16 Solarized
+! Scheme: Ethan Schoonover (http://ethanschoonover.com/solarized)
 
 URxvt*background:                     #002b36
 URxvt*foreground:                     #93a1a1
@@ -43,7 +43,6 @@ URxvt*color19:                        #586e75
 URxvt*color20:                        #839496
 URxvt*color21:                        #eee8d5
 
-Extensions: clicable linkns, fullscreen, resize-fonts
 URxvt.perl-ext-common: default,matcher,fullscreen,resize-font
 
 !Fullscreen key
