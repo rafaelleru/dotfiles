@@ -46,7 +46,7 @@
        :ensure t
        :config
        (global-evil-leader-mode)
-       (evil-mode 1))
+       (evil-mode t))
 
      (use-package evil-commentary
        :ensure t
@@ -135,7 +135,6 @@
 
 ** tema personalizado
    #+BEGIN_SRC emacs-lisp
-
      (use-package solarized-theme
        :ensure t)
 
@@ -157,6 +156,7 @@
 
      (defun load-my-white-theme ()
        (interactive)
+       (disable-theme 'solarized-dark)
        (load-theme 'solarized-light t)
        )
    #+END_SRC
@@ -617,6 +617,12 @@
 		 '(:with company-yasnippet))))
 
      (setq company-backends (mapcar #'company-mode/backend-with-yas company-backends))
+
+
+     (use-package company-quickhelp
+       :ensure t
+       :config
+       (company-quickhelp-mode t))
    #+END_SRC
 
    #+RESULTS:
@@ -782,6 +788,61 @@
        )
    #+END_SRC
 
+** C++
+*** autocomplete C/C++ headers from .h files in a project
+    #+BEGIN_SRC emacs-lisp :tangle no
+      (use-package auto-complete-c-headers
+	:ensure t
+	:config
+	(defun my:ac-c-headers-init ()
+	  (require 'auto-complete-c-headers)
+	  (add-to-list 'ac-sources 'ac-source-c-headers)))
+
+      (add-hook 'c++-mode-hook 'my:ac-c-headers-init)
+      (add-hook 'c-mode-hook 'my:ac-c-headers-init)
+    #+END_SRC
+
+    #+RESULTS:
+    | my:ac-c-headers-init | (lambda nil (easy-menu-add-item nil (quote (C)) (rtags-submenu-list))) | er/add-cc-mode-expansions | rtags-start-process-unless-running | irony-mode |
+
+*** Irony-mode
+   #+BEGIN_SRC emacs-lisp
+     (use-package irony
+       :ensure t)
+
+     (use-package company-irony
+       :ensure t)
+
+     (use-package flycheck-irony
+       :ensure t
+       :config
+       (flycheck-irony-setup))
+
+     (use-package company-irony-c-headers
+       :ensure t)
+
+     (add-hook 'c++-mode-hook 'irony-mode)
+     (add-hook 'c-mode-hook 'irony-mode)
+     (add-hook 'objc-mode-hook 'irony-mode)
+
+     ;; replace the `completion-at-point' and `complete-symbol' bindings in
+     ;; irony-mode's buffers by irony-mode's function
+
+     (defun my-irony-mode-hook ()
+       (define-key irony-mode-map [remap completion-at-point]
+	 'counsel-irony)
+       (define-key irony-mode-map [remap complete-symbol]
+	 'counsel-irony)
+       ;; ;; (define-key irony-mode-map [remap comment-region]
+       ;; ;;   'compile)
+       (eval-after-load 'company
+	 '(add-to-list 'company-backends '(company-irony-c-headers company-irony))))
+
+     (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+     (add-hook 'irony-mode-hook 'my-irony-mode-hook)
+   #+END_SRC
+
+>>>>>>> 7edf2a3821d20e31ba5acb3049ee645c0a17768b
    #+RESULTS:
    | my-flycheck-rtags-setup | my-irony-mode-hook | irony-cdb-autosetup-compile-options |
 
@@ -798,6 +859,9 @@
 
 *** TODO: Install Rtags 
     #+BEGIN_SRC emacs-lisp :tangle no 
+    =======
+*** Rtags
+    #+BEGIN_SRC emacs-lisp :tangle no
       (add-hook 'c-mode-hook 'rtags-start-process-unless-running)
       (add-hook 'c++-mode-hook 'rtags-start-process-unless-running)
       (add-hook 'objc-mode-hook 'rtags-start-process-unless-running)
@@ -855,8 +919,6 @@
       #+RESULTS:
       | my-flycheck-rtags-setup | my-irony-mode-hook | irony-cdb-autosetup-compile-options |
 
-=======
->>>>>>> origin/work
 ** javascript
    #+BEGIN_SRC emacs-lisp :tangle no
 	  (use-package js2
@@ -998,8 +1060,9 @@
       :ensure t)
     (use-package evil-magit
       :ensure t
-      :config
-      (add-hook 'with-editor-mode-hook 'evil-insert-state))
+      ;; :config
+      ;; (add-hook 'with-editor-mode-hook 'evil-insert-state)
+      )
   #+END_SRC
 
   #+RESULTS:
