@@ -597,7 +597,7 @@
        (global-company-mode t)
        (setq company-echo-delay 0)
        (setq company-idle-delay 0.1)
-       (global-set-key (kbd "?\t") 'company-complete)
+       (global-set-key (kbd "C-M-i") 'company-complete)
        (add-to-list 'company-backends 'company-elisp)
        (add-to-list 'company-backends 'company-tern)
        (add-to-list 'company-backends 'company-css)
@@ -620,7 +620,40 @@
    #+END_SRC
 
    #+RESULTS:
-   : t
+   | company-yasnippet    | :with         | company-yasnippet |                  |       |                   |
+   | company-etags        | :with         | company-yasnippet |                  |       |                   |
+   | company-css          | :with         | company-yasnippet |                  |       |                   |
+   | company-tern         | :with         | company-yasnippet |                  |       |                   |
+   | company-elisp        | :with         | company-yasnippet |                  |       |                   |
+   | company-yasnippet    | :with         | company-yasnippet |                  |       |                   |
+   | company-etags        | :with         | company-yasnippet |                  |       |                   |
+   | company-css          | :with         | company-yasnippet |                  |       |                   |
+   | company-tern         | :with         | company-yasnippet |                  |       |                   |
+   | company-elisp        | :with         | company-yasnippet |                  |       |                   |
+   | company-yasnippet    | :with         | company-yasnippet |                  |       |                   |
+   | company-etags        | :with         | company-yasnippet |                  |       |                   |
+   | company-css          | :with         | company-yasnippet |                  |       |                   |
+   | company-elisp        | :with         | company-yasnippet |                  |       |                   |
+   | company-tern         | :with         | company-yasnippet |                  |       |                   |
+   | company-rtags        | :with         | company-yasnippet |                  |       |                   |
+   | elpy-company-backend | :with         | company-yasnippet |                  |       |                   |
+   | company-yasnippet    | :with         | company-yasnippet |                  |       |                   |
+   | company-etags        | :with         | company-yasnippet |                  |       |                   |
+   | company-tern         | :with         | company-yasnippet |                  |       |                   |
+   | company-elisp        | :with         | company-yasnippet |                  |       |                   |
+   | company-bbdb         | :with         | company-yasnippet |                  |       |                   |
+   | company-nxml         | :with         | company-yasnippet |                  |       |                   |
+   | company-css          | :with         | company-yasnippet |                  |       |                   |
+   | company-eclim        | :with         | company-yasnippet |                  |       |                   |
+   | company-semantic     | :with         | company-yasnippet |                  |       |                   |
+   | company-clang        | :with         | company-yasnippet |                  |       |                   |
+   | company-xcode        | :with         | company-yasnippet |                  |       |                   |
+   | company-cmake        | :with         | company-yasnippet |                  |       |                   |
+   | company-capf         | :with         | company-yasnippet |                  |       |                   |
+   | company-files        | :with         | company-yasnippet |                  |       |                   |
+   | company-dabbrev-code | company-gtags | company-etags     | company-keywords | :with | company-yasnippet |
+   | company-oddmuse      | :with         | company-yasnippet |                  |       |                   |
+   | company-dabbrev      | :with         | company-yasnippet |                  |       |                   |
 
 ** Yasnippet.
    #+BEGIN_SRC emacs-lisp
