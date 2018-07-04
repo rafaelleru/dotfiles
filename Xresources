@@ -1,4 +1,4 @@
-Rxvt.font: xft:Inconsolata:size=12,xft:Inconsolata\ for\ Powerline:pixelsize=12
+URxvt.font: xft:Inconsolata:size=13,xft:Inconsolata\ for\ Powerline:pixelsize=13
 !Rxvt.font: xft:"Fira Code":size=12, xft:Inconsolata\ for\ Powerline:pixelsize=12
 !URxvt.font: xft:Terminus (TTF):size=12
 !URxvt.font: xft:Iosevka:size=12
@@ -8,112 +8,42 @@ URxvt.scrollBar_right: true
 URxvt*termName: rxvt-unicode
 
 
-! Base16 Solarized
-! Scheme: Ethan Schoonover (http://ethanschoonover.com/solarized)
+!Base16 Solarized
+Scheme: Ethan Schoonover (http://ethanschoonover.com/solarized)
 
-! URxvt*background:                     #002b36
-! URxvt*foreground:                     #93a1a1
-! URxvt*cursorColor:                    #93a1a1
+URxvt*background:                     #002b36
+URxvt*foreground:                     #93a1a1
+URxvt*cursorColor:                    #93a1a1
 
-! URxvt*scrollColor:                    #93a1a1
-! URxvt*highlightColor:                 #586e75
-! URxvt*highlightTextColor:             #839496
+URxvt*scrollColor:                    #93a1a1
+URxvt*highlightColor:                 #586e75
+URxvt*highlightTextColor:             #839496
 
-! URxvt*color0:                         #002b36
-! URxvt*color1:                         #dc322f
-! URxvt*color2:                         #859900
-! URxvt*color3:                         #b58900
-! URxvt*color4:                         #268bd2
-! URxvt*color5:                         #6c71c4
-! URxvt*color6:                         #2aa198
-! URxvt*color7:                         #93a1a1
-! URxvt*color8:                         #657b83
-! URxvt*color9:                         #dc322f
-! URxvt*color10:                        #859900
-! URxvt*color11:                        #b58900
-! URxvt*color12:                        #268bd2
-! URxvt*color13:                        #6c71c4
-! URxvt*color14:                        #2aa198
-! URxvt*color15:                        #fdf6e3
+URxvt*color0:                         #002b36
+URxvt*color1:                         #dc322f
+URxvt*color2:                         #859900
+URxvt*color3:                         #b58900
+URxvt*color4:                         #268bd2
+URxvt*color5:                         #6c71c4
+URxvt*color6:                         #2aa198
+URxvt*color7:                         #93a1a1
+URxvt*color8:                         #657b83
+URxvt*color9:                         #dc322f
+URxvt*color10:                        #859900
+URxvt*color11:                        #b58900
+URxvt*color12:                        #268bd2
+URxvt*color13:                        #6c71c4
+URxvt*color14:                        #2aa198
+URxvt*color15:                        #fdf6e3
 
-! URxvt*color16:                        #cb4b16
-! URxvt*color17:                        #d33682
-! URxvt*color18:                        #073642
-! URxvt*color19:                        #586e75
-! URxvt*color20:                        #839496
-! URxvt*color21:                        #eee8d5
+URxvt*color16:                        #cb4b16
+URxvt*color17:                        #d33682
+URxvt*color18:                        #073642
+URxvt*color19:                        #586e75
+URxvt*color20:                        #839496
+URxvt*color21:                        #eee8d5
 
-!!!!!!!!!!!!!!!!!!!!!!!!
-! snazzy color  scheme !
-!!!!!!!!!!!!!!!!!!!!!!!!
-
-! URxvt.background: #282a36
-! URxvt.foreground: #eff0eb
-
-! ! original #86a2b0
-! URxvt.colorUL: #eff0eb
-! URxvt.underlineColor: #eff0eb
-
-! ! black
-! URxvt.color0  : #2E3436
-! URxvt.color8  : #686868
-
-! ! red
-! URxvt.color1  : #ff5c57
-! URxvt.color9  : #ff5c57
-
-! ! green
-! URxvt.color2  : #5af78e
-! URxvt.color10 : #5af78e
-
-! ! yellow
-! URxvt.color3  : #f3f99d
-! URxvt.color11 : #f3f99d
-
-! ! blue
-! URxvt.color4  : #57c7ff
-! URxvt.color12 : #57c7ff
-
-! ! magenta
-! URxvt.color5  : #ff6ac1
-! URxvt.color13 : #ff6ac1
-
-! ! cyan
-! URxvt.color6  : #9aedfe
-! URxvt.color14 : #9aedfe
-
-! ! white
-! URxvt.color7  : #f1f1f0
-! URxvt.color15 : #eff0eb
-
-URxvt.background: black
-URxvt.foreground: white
-!! black dark/light
-*color0: #000000
-*color8: #808080
-!! red dark/light
-*color1: #ff0000
-*color9: #ff0000
-!! green dark/light
-*color2: #33ff00
-*color10: #33ff00
-!! yellow dark/light
-*color3: #ffff00
-*color11: #ffff00
-!! blue dark/light
-*color4: #0066ff
-*color12: #0066ff
-!! magenta dark/light
-*color5: #cc00ff
-*color13: #cc00ff
-!! cyan dark/light
-*color6: #00ffff
-*color14: #00ffff
-!! white dark/light
-*color7: #d0d0d0
-*color15: #ffffff
-
-!Extensions: clicable linkns, fullscreen, resize-fonts
+Extensions: clicable linkns, fullscreen, resize-fonts
 URxvt.perl-ext-common: default,matcher,fullscreen,resize-font
 
 !Fullscreen key
