@@ -15,5 +15,6 @@
     ~/.config/gtk-3.0: gtk-3.0
     ~/.fonts: fonts
     ~/.config/sway: sway
+    ~/.gitconfig: gitconfig
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
