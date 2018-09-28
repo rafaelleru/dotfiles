@@ -32,7 +32,7 @@
    #+BEGIN_SRC emacs-lisp
    (add-to-list 'package-archives
    '("melpa-stable" . "https://stable.melpa.org/packages/") t)
-   
+
    (unless (package-installed-p 'use-package)
    (package-refresh-contents)
    (package-install 'use-package))
@@ -77,7 +77,6 @@
   #+RESULTS:
   : indent-region
 
-
 * evil-leader
    #+BEGIN_SRC emacs-lisp
      (use-package evil-leader
@@ -85,6 +84,9 @@
        :config
        (evil-leader/set-leader "<SPC>")
        (evil-leader/set-key
+	 "<SPC>" 'helm-M-x
+
+	 ;; Window management
 	 "wo" 'other-window
 	 "wh" 'evil-window-left
 	 "wl" 'evil-window-right
@@ -92,15 +94,12 @@
 	 "wk" 'evil-window-up
 	 "wd" 'delete-window
 	 "w\"" 'split-window-vertically
+	 "wO"  'delete-other-windows
 	 "w%" 'split-window-horizontally
-	 "<SPC>" 'helm-M-x
-	 "bb" 'helm-mini
-	 "bd" 'kill-this-buffer
-	 "B" 'ibuffer
-	 "gg" 'magit-status
-	 "gc" 'magit-checkout
-	 "y" 'helm-show-kill-ring
-	 "nt" 'neotree-toggle
+	 "wM" 'delete-other-windows
+	 "wF" 'make-frame
+
+	 ;; projectile
 	 "pp" 'projectile-switch-project
 	 "pb" 'projectile-switch-to-buffer
 	 "pf" 'helm-projectile-find-file
@@ -108,16 +107,27 @@
 	 "ph" 'helm-projectile
 	 "pu" 'helm-projectile-run-project
 	 "pt" 'projectile-regenerate-tags
+
+
+	 "bb" 'helm-mini
+	 "bd" 'kill-this-buffer
+	 "B" 'ibuffer
+
+	 "gg" 'magit-status
+	 "gc" 'magit-checkout
+
+	 "y" 'helm-show-kill-ring
+	 "nt" 'neotree-toggle
 	 "ff" 'helm-find-files
 	 ":" 'eval-expression
+	 "/" 'swiper-helm
 	 )
        )
      (evil-leader/set-key-for-mode 'python-mode ",g" 'elpy-goto-definition)
    #+END_SRC
 
    #+RESULTS:
-   : t
-   
+
 ** evil-commentary
    #+BEGIN_SRC emacs-lisp
      (use-package evil-commentary
@@ -175,14 +185,14 @@
 	:ensure t
 	:config
 	(unicode-fonts-setup))
-      (setq hrs/default-font "Inconsolata")
-      (setq hrs/default-font-size 11)
+      (setq hrs/default-font "Terminus")
+      (setq hrs/default-font-size 13)
       (setq hrs/current-font-size hrs/default-font-size)
 
       (defun set-font ()
 	(interactive)
-	(setq hrs/default-font "Source Code Pro")
-	(setq hrs/default-font-size 12)
+	(setq hrs/default-font "Terminus")
+	(setq hrs/default-font-size 13)
 	(setq hrs/current-font-size hrs/default-font-size))
 
       (setq hrs/font-change-increment 1.1)
@@ -217,10 +227,11 @@
       (define-key global-map (kbd "C-+") 'hrs/increase-font-size)
       (define-key global-map (kbd "C-_") 'hrs/decrease-font-size)
       (define-key global-map (kbd "C--") 'hrs/decrease-font-size)
-      (hrs/set-font-size)
+      (set-font)
     #+END_SRC
 
 #+RESULTS:
+: 13
 
 ** Resaltar linea de edicion
    #+BEGIN_SRC emacs-lisp
@@ -562,7 +573,7 @@
   #+END_SRC
 
   #+RESULTS:
-  
+
 =======
 >>>>>>> origin/work
 * Ajustes para lenguajes de programacion
@@ -572,7 +583,6 @@
        :ensure t
        :init
        (projectile-global-mode t)
-       (setq projectile-switch-project-action 'projectile-dired)
        )
    #+END_SRC
 
@@ -607,7 +617,7 @@
        (global-company-mode t)
        (setq company-echo-delay 0)
        (setq company-idle-delay 0.1)
-       (global-set-key (kbd "?\t") 'company-complete)
+       (global-set-key (kbd "\t") 'company-complete)
        (add-to-list 'company-backends 'company-elisp)
        (add-to-list 'company-backends 'company-tern)
        (add-to-list 'company-backends 'company-css)
@@ -637,7 +647,30 @@
    #+END_SRC
 
    #+RESULTS:
-   : t
+   | company-yasnippet    | :with         | company-yasnippet |                  |       |                   |
+   | company-etags        | :with         | company-yasnippet |                  |       |                   |
+   | company-css          | :with         | company-yasnippet |                  |       |                   |
+   | company-tern         | :with         | company-yasnippet |                  |       |                   |
+   | company-elisp        | :with         | company-yasnippet |                  |       |                   |
+   | company-rtags        | :with         | company-yasnippet |                  |       |                   |
+   | elpy-company-backend | :with         | company-yasnippet |                  |       |                   |
+   | company-yasnippet    | :with         | company-yasnippet |                  |       |                   |
+   | company-etags        | :with         | company-yasnippet |                  |       |                   |
+   | company-tern         | :with         | company-yasnippet |                  |       |                   |
+   | company-elisp        | :with         | company-yasnippet |                  |       |                   |
+   | company-bbdb         | :with         | company-yasnippet |                  |       |                   |
+   | company-nxml         | :with         | company-yasnippet |                  |       |                   |
+   | company-css          | :with         | company-yasnippet |                  |       |                   |
+   | company-eclim        | :with         | company-yasnippet |                  |       |                   |
+   | company-semantic     | :with         | company-yasnippet |                  |       |                   |
+   | company-clang        | :with         | company-yasnippet |                  |       |                   |
+   | company-xcode        | :with         | company-yasnippet |                  |       |                   |
+   | company-cmake        | :with         | company-yasnippet |                  |       |                   |
+   | company-capf         | :with         | company-yasnippet |                  |       |                   |
+   | company-files        | :with         | company-yasnippet |                  |       |                   |
+   | company-dabbrev-code | company-gtags | company-etags     | company-keywords | :with | company-yasnippet |
+   | company-oddmuse      | :with         | company-yasnippet |                  |       |                   |
+   | company-dabbrev      | :with         | company-yasnippet |                  |       |                   |
 
 ** Yasnippet.
    #+BEGIN_SRC emacs-lisp
@@ -780,8 +813,8 @@
     #+RESULTS:
     : t
 
-*** TODO: Install Rtags 
-    #+BEGIN_SRC emacs-lisp :tangle no 
+*** TODO: Install Rtags
+    #+BEGIN_SRC emacs-lisp :tangle no
       (add-hook 'c-mode-hook 'rtags-start-process-unless-running)
       (add-hook 'c++-mode-hook 'rtags-start-process-unless-running)
       (add-hook 'objc-mode-hook 'rtags-start-process-unless-running)
@@ -955,15 +988,15 @@
    : t
 ** PHP
    #+BEGIN_SRC emacs-lisp
-      (flycheck-define-checker my-php
+     (flycheck-define-checker my-php
        "A PHP syntax checker using the PHP command line interpreter.
 
-     See URL `http://php.net/manual/en/features.commandline.php'."
+	See URL `http://php.net/manual/en/features.commandline.php'."
        :command ("php" "-l" "-d" "error_reporting=E_ALL" "-d" "display_errors=1"
-                 "-d" "log_errors=0" source)
+		 "-d" "log_errors=0" source)
        :error-patterns
        ((error line-start (or "Parse" "Fatal" "syntax") " error" (any ":" ",") " "
-               (message) " in " (file-name) " on line " line line-end))
+	       (message) " in " (file-name) " on line " line line-end))
        :modes (php-mode php+-mode web-mode))
 
      (defun my/php-mode ()
@@ -971,10 +1004,31 @@
        )
 
      (add-hook 'php-mode-hook 'my/php-mode)
+
+     (add-hook 'php-mode-hook
+	       '(lambda ()
+		  (auto-complete-mode t)
+		  (require 'ac-php)
+		  (setq ac-sources  '(ac-source-php ) )
+		  (yas-global-mode 1)
+		  (ac-php-core-eldoc-setup ) ;; enable eldoc
+
+		  (define-key php-mode-map  (kbd "C-]") 'ac-php-find-symbol-at-point)   ;goto define
+		  (define-key php-mode-map  (kbd "C-t") 'ac-php-location-stack-back)    ;go back
+		  ))
+
+
+     (add-hook 'php-mode-hook
+	       '(lambda ()
+		  (require 'company-php)
+		  (company-mode t)
+		  (ac-php-core-eldoc-setup) ;; enable eldoc
+		  (make-local-variable 'company-backends)
+		  (add-to-list 'company-backends 'company-ac-php-backend)))
    #+END_SRC
 
    #+RESULTS:
-   | my/php-mode | (flycheck-select-checker (quote my-php)) | flycheck-select-checker |
+   | (lambda nil (auto-complete-mode t) (require (quote ac-php)) (setq ac-sources (quote (ac-source-php))) (yas-global-mode 1) (ac-php-core-eldoc-setup) (define-key php-mode-map (kbd C-]) (quote ac-php-find-symbol-at-point)) (define-key php-mode-map (kbd C-t) (quote ac-php-location-stack-back))) | (lambda nil (require (quote company-php)) (company-mode t) (ac-php-core-eldoc-setup) (make-local-variable (quote company-backends)) (add-to-list (quote company-backends) (quote company-ac-php-backend))) | my/php-mode |
 
 * Magit
   #+BEGIN_SRC emacs-lisp
@@ -1254,17 +1308,17 @@ Presionar =C-c o i= para abrir *index.org*
 *** Frame para capturas. :tangle no
     De [[https://github.com/zamansky/using-emacs/blob/master/myinit.org][Zamansky]]
     #+BEGIN_SRC emacs-lisp :tangle no
-      (defadvice org-capture-finalize 
-      (after delete-capture-frame activate)  
-	"Advise capture-finalize to close the frame"  
-	(if (equal "capture" (frame-parameter nil 'name))  
+      (defadvice org-capture-finalize
+      (after delete-capture-frame activate)
+	"Advise capture-finalize to close the frame"
+	(if (equal "capture" (frame-parameter nil 'name))
 	(delete-frame)))
 
-      (defadvice org-capture-destroy 
-      (after delete-capture-frame activate)  
-	"Advise capture-destroy to close the frame"  
-	(if (equal "capture" (frame-parameter nil 'name))  
-	(delete-frame)))  
+      (defadvice org-capture-destroy
+      (after delete-capture-frame activate)
+	"Advise capture-destroy to close the frame"
+	(if (equal "capture" (frame-parameter nil 'name))
+	(delete-frame)))
 
       ;; (use-package noflet
       ;;   :ensure t)
