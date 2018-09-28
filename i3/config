@@ -338,7 +338,7 @@ bindsym Mod4+Shift+x move window to output left
 # exec --no-startup-id "bash ~/monitor.sh"
 exec --no-startup-id "mons --primary VGA1 -e right"
 # default apps
-exec --no-startup-id enpass &
+# exec --no-startup-id enpass &
 exec --no-startup-id nm-applet &
 exec --no-startup-id pasystray  &
 exec --no-startup-id slack &
@@ -347,7 +347,6 @@ exec --no-startup-id unclutter -idle 1 -noevents &
 exec thunderbird &
 exec emacs --daemon &
 exec "setxkbmap -layout es -option caps:escape"
-exec "tmux new -s rafa"
 # exec "setxkbmap -option caps:escape"
 exec clipmenud &
 exec compton

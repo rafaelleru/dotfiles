@@ -178,22 +178,25 @@
    #+RESULTS:
    : load-my-white-theme
 
-** Fuente Inconsolata
+** Fuente Terminus
    Permite ademas cambiar el tamaño de la ventana y la fuente para presentaciones por ejemplo.
     #+BEGIN_SRC emacs-lisp
       (use-package unicode-fonts
 	:ensure t
 	:config
 	(unicode-fonts-setup))
+
       (setq hrs/default-font "Terminus")
-      (setq hrs/default-font-size 13)
+      (setq hrs/default-font-size 15)
       (setq hrs/current-font-size hrs/default-font-size)
 
       (defun set-font ()
 	(interactive)
 	(setq hrs/default-font "Terminus")
 	(setq hrs/default-font-size 13)
-	(setq hrs/current-font-size hrs/default-font-size))
+	(setq hrs/current-font-size hrs/default-font-size)
+	(set-frame-font
+	 (concat hrs/default-font "-" (number-to-string hrs/current-font-size))))
 
       (setq hrs/font-change-increment 1.1)
 
@@ -231,7 +234,6 @@
     #+END_SRC
 
 #+RESULTS:
-: 13
 
 ** Resaltar linea de edicion
    #+BEGIN_SRC emacs-lisp
