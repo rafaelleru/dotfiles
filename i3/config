@@ -46,7 +46,7 @@ bindsym Mod4+Shift+Return exec emacsclient -c -a ""
 bindsym Mod4+q kill
 
 # start j4-dmenu (a program launcher) with my personal preferences for desktop files
-bindsym Mod4+d exec dmenu_run -fn Terminus -l 10 # Terminus
+bindsym Mod4+d exec dmenu_run -fn "Terminus-13" -l 10 # Terminus
 bindsym Mod4+y exec clipmenu
 
 # bindsym Mod4+d exec rofi -show drun -c ~/.i3/rofi/config # run -lines 5 -eh 2
@@ -331,7 +331,7 @@ bar {
   }
 }
 
-bindsym Mod4+p exec "/home/rleyva/bin/passmenu/passmenu -fn Inconsolata -l 10"
+bindsym Mod4+p exec "/home/rleyva/bin/passmenu/passmenu -fn 'Terminus-13' -l 10"
 bindsym Mod4+x move workspace to output left
 bindsym Mod4+Shift+x move window to output left
 
