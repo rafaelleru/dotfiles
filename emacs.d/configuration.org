@@ -187,17 +187,8 @@
 	(unicode-fonts-setup))
 
       (setq hrs/default-font "Terminus")
-      (setq hrs/default-font-size 15)
+      (setq hrs/default-font-size 13)
       (setq hrs/current-font-size hrs/default-font-size)
-
-      (defun set-font ()
-	(interactive)
-	(setq hrs/default-font "Terminus")
-	(setq hrs/default-font-size 13)
-	(setq hrs/current-font-size hrs/default-font-size)
-	(set-frame-font
-	 (concat hrs/default-font "-" (number-to-string hrs/current-font-size))))
-
       (setq hrs/font-change-increment 1.1)
 
       (defun hrs/set-font-size ()
@@ -230,7 +221,8 @@
       (define-key global-map (kbd "C-+") 'hrs/increase-font-size)
       (define-key global-map (kbd "C-_") 'hrs/decrease-font-size)
       (define-key global-map (kbd "C--") 'hrs/decrease-font-size)
-      (set-font)
+      (set-face-attribute 'default t :font
+			  (concat hrs/default-font "-" (number-to-string hrs/current-font-size)))
     #+END_SRC
 
 #+RESULTS:
