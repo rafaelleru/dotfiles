@@ -1,4 +1,4 @@
-URxvt.font: xft:Terminus:size=13,xft:Inconsolata\ for\ Powerline:pixelsize=13
+URxvt.font: xft:Terminus:size=15:antialias=true:autohint=true,xft:Hack:size=13,xft:Inconsolata\ for\ Powerline\ Mono:pixelsize=13
 !Rxvt.font: xft:"Fira Code":size=12, xft:Inconsolata\ for\ Powerline:pixelsize=12
 !URxvt.font: xft:Terminus:size=12
 !URxvt.font: xft:Inconsolata:size=12,xft:Hack:size=11
