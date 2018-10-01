@@ -32,7 +32,7 @@
    #+BEGIN_SRC emacs-lisp
    (add-to-list 'package-archives
    '("melpa-stable" . "https://stable.melpa.org/packages/") t)
-   
+
    (unless (package-installed-p 'use-package)
    (package-refresh-contents)
    (package-install 'use-package))
@@ -113,7 +113,7 @@
 
    #+RESULTS:
    : t
-   
+
 ** evil-commentary
    #+BEGIN_SRC emacs-lisp
      (use-package evil-commentary
@@ -281,17 +281,16 @@
        :init
 
        (defun my-ace-window ()
-         (interactive)
-         (linum-mode -1)
-         (ace-window 1)
-         (linum-mode 1))
+	 (interactive)
+	 (ace-window 1)
+	 )
 
        (global-set-key [remap other-window] 'ace-window)
-                                          ;(setq aw-scope 'frame)
+					  ;(setq aw-scope 'frame)
        :config
        (custom-set-faces
-            '(aw-leading-char-face
-              ((t (:inherit ace-jump-face-foreground :height 2.0))))))
+	    '(aw-leading-char-face
+	      ((t (:inherit ace-jump-face-foreground :height 2.0))))))
    #+END_SRC
 
    #+RESULTS:
@@ -498,11 +497,11 @@
 
 ** linum-mode
    #+BEGIN_SRC emacs-lisp
-     (add-hook 'prog-mode-hook 'linum-mode)
+     (setq display-line-numbers-mode t)
    #+END_SRC
 
    #+RESULTS:
-   | linum-mode | (linum-mode 1) | (linum-mode t) |
+   : t
 
 * elfeed
   #+BEGIN_SRC emacs-lispa :tangle no
@@ -552,7 +551,7 @@
   #+END_SRC
 
   #+RESULTS:
-  
+
 =======
 >>>>>>> origin/work
 * Ajustes para lenguajes de programacion
@@ -857,8 +856,8 @@
     #+RESULTS:
     : t
 
-*** TODO: Install Rtags 
-    #+BEGIN_SRC emacs-lisp :tangle no 
+*** TODO: Install Rtags
+    #+BEGIN_SRC emacs-lisp :tangle no
     =======
 *** Rtags
     #+BEGIN_SRC emacs-lisp :tangle no
@@ -1333,17 +1332,17 @@ Presionar =C-c o i= para abrir *index.org*
 *** Frame para capturas. :tangle no
     De [[https://github.com/zamansky/using-emacs/blob/master/myinit.org][Zamansky]]
     #+BEGIN_SRC emacs-lisp :tangle no
-      (defadvice org-capture-finalize 
-      (after delete-capture-frame activate)  
-	"Advise capture-finalize to close the frame"  
-	(if (equal "capture" (frame-parameter nil 'name))  
+      (defadvice org-capture-finalize
+      (after delete-capture-frame activate)
+	"Advise capture-finalize to close the frame"
+	(if (equal "capture" (frame-parameter nil 'name))
 	(delete-frame)))
 
-      (defadvice org-capture-destroy 
-      (after delete-capture-frame activate)  
-	"Advise capture-destroy to close the frame"  
-	(if (equal "capture" (frame-parameter nil 'name))  
-	(delete-frame)))  
+      (defadvice org-capture-destroy
+      (after delete-capture-frame activate)
+	"Advise capture-destroy to close the frame"
+	(if (equal "capture" (frame-parameter nil 'name))
+	(delete-frame)))
 
       ;; (use-package noflet
       ;;   :ensure t)
