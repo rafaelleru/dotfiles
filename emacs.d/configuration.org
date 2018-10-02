@@ -127,10 +127,7 @@
    #+END_SRC
 
    #+RESULTS:
-<<<<<<< HEAD
-=======
    : t
->>>>>>> origin/master
 
 ** evil-commentary
    #+BEGIN_SRC emacs-lisp
@@ -612,11 +609,7 @@
        (global-company-mode t)
        (setq company-echo-delay 0)
        (setq company-idle-delay 0.1)
-<<<<<<< HEAD
        (global-set-key (kbd "\t") 'company-complete)
-=======
-       (global-set-key (kbd "C-M-i") 'company-complete)
->>>>>>> origin/master
        (add-to-list 'company-backends 'company-elisp)
        (add-to-list 'company-backends 'company-tern)
        (add-to-list 'company-backends 'company-css)
@@ -644,54 +637,13 @@
 
      (setq company-backends (mapcar #'company-mode/backend-with-yas company-backends))
 
-<<<<<<< HEAD
-=======
-
      (use-package company-quickhelp
        :ensure t
        :config
        (company-quickhelp-mode t))
    #+END_SRC
 
->>>>>>> origin/master
    #+RESULTS:
-   | company-yasnippet    | :with         | company-yasnippet |                  |       |                   |
-   | company-etags        | :with         | company-yasnippet |                  |       |                   |
-   | company-css          | :with         | company-yasnippet |                  |       |                   |
-   | company-tern         | :with         | company-yasnippet |                  |       |                   |
-   | company-elisp        | :with         | company-yasnippet |                  |       |                   |
-<<<<<<< HEAD
-=======
-   | company-yasnippet    | :with         | company-yasnippet |                  |       |                   |
-   | company-etags        | :with         | company-yasnippet |                  |       |                   |
-   | company-css          | :with         | company-yasnippet |                  |       |                   |
-   | company-tern         | :with         | company-yasnippet |                  |       |                   |
-   | company-elisp        | :with         | company-yasnippet |                  |       |                   |
-   | company-yasnippet    | :with         | company-yasnippet |                  |       |                   |
-   | company-etags        | :with         | company-yasnippet |                  |       |                   |
-   | company-css          | :with         | company-yasnippet |                  |       |                   |
-   | company-elisp        | :with         | company-yasnippet |                  |       |                   |
-   | company-tern         | :with         | company-yasnippet |                  |       |                   |
->>>>>>> origin/master
-   | company-rtags        | :with         | company-yasnippet |                  |       |                   |
-   | elpy-company-backend | :with         | company-yasnippet |                  |       |                   |
-   | company-yasnippet    | :with         | company-yasnippet |                  |       |                   |
-   | company-etags        | :with         | company-yasnippet |                  |       |                   |
-   | company-tern         | :with         | company-yasnippet |                  |       |                   |
-   | company-elisp        | :with         | company-yasnippet |                  |       |                   |
-   | company-bbdb         | :with         | company-yasnippet |                  |       |                   |
-   | company-nxml         | :with         | company-yasnippet |                  |       |                   |
-   | company-css          | :with         | company-yasnippet |                  |       |                   |
-   | company-eclim        | :with         | company-yasnippet |                  |       |                   |
-   | company-semantic     | :with         | company-yasnippet |                  |       |                   |
-   | company-clang        | :with         | company-yasnippet |                  |       |                   |
-   | company-xcode        | :with         | company-yasnippet |                  |       |                   |
-   | company-cmake        | :with         | company-yasnippet |                  |       |                   |
-   | company-capf         | :with         | company-yasnippet |                  |       |                   |
-   | company-files        | :with         | company-yasnippet |                  |       |                   |
-   | company-dabbrev-code | company-gtags | company-etags     | company-keywords | :with | company-yasnippet |
-   | company-oddmuse      | :with         | company-yasnippet |                  |       |                   |
-   | company-dabbrev      | :with         | company-yasnippet |                  |       |                   |
 
 ** Yasnippet.
    #+BEGIN_SRC emacs-lisp
@@ -874,7 +826,6 @@
      (add-hook 'irony-mode-hook 'my-irony-mode-hook)
    #+END_SRC
 
->>>>>>> 7edf2a3821d20e31ba5acb3049ee645c0a17768b
    #+RESULTS:
    | my-flycheck-rtags-setup | my-irony-mode-hook | irony-cdb-autosetup-compile-options |
 
@@ -891,12 +842,9 @@
 
 *** TODO: Install Rtags
     #+BEGIN_SRC emacs-lisp :tangle no
-<<<<<<< HEAD
-=======
-    =======
+
 *** Rtags
     #+BEGIN_SRC emacs-lisp :tangle no
->>>>>>> origin/master
       (add-hook 'c-mode-hook 'rtags-start-process-unless-running)
       (add-hook 'c++-mode-hook 'rtags-start-process-unless-running)
       (add-hook 'objc-mode-hook 'rtags-start-process-unless-running)
