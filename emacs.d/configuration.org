@@ -46,7 +46,7 @@
        :ensure t
        :config
        (global-evil-leader-mode)
-       (evil-mode 1))
+       (evil-mode t))
 
      (use-package evil-commentary
        :ensure t
@@ -127,6 +127,10 @@
    #+END_SRC
 
    #+RESULTS:
+<<<<<<< HEAD
+=======
+   : t
+>>>>>>> origin/master
 
 ** evil-commentary
    #+BEGIN_SRC emacs-lisp
@@ -149,7 +153,6 @@
 
 ** tema personalizado
    #+BEGIN_SRC emacs-lisp
-
      (use-package solarized-theme
        :ensure t)
 
@@ -171,6 +174,7 @@
 
      (defun load-my-white-theme ()
        (interactive)
+       (disable-theme 'solarized-dark)
        (load-theme 'solarized-light t)
        )
    #+END_SRC
@@ -290,17 +294,16 @@
        :init
 
        (defun my-ace-window ()
-         (interactive)
-         (linum-mode -1)
-         (ace-window 1)
-         (linum-mode 1))
+	 (interactive)
+	 (ace-window 1)
+	 )
 
        (global-set-key [remap other-window] 'ace-window)
-                                          ;(setq aw-scope 'frame)
+					  ;(setq aw-scope 'frame)
        :config
        (custom-set-faces
-            '(aw-leading-char-face
-              ((t (:inherit ace-jump-face-foreground :height 2.0))))))
+	    '(aw-leading-char-face
+	      ((t (:inherit ace-jump-face-foreground :height 2.0))))))
    #+END_SRC
 
    #+RESULTS:
@@ -513,11 +516,11 @@
 
 ** linum-mode
    #+BEGIN_SRC emacs-lisp
-     (add-hook 'prog-mode-hook 'linum-mode)
+     (setq display-line-numbers-mode t)
    #+END_SRC
 
    #+RESULTS:
-   | linum-mode | (linum-mode 1) | (linum-mode t) |
+   : t
 
 * elfeed
   #+BEGIN_SRC emacs-lisp :tangle no
@@ -609,7 +612,11 @@
        (global-company-mode t)
        (setq company-echo-delay 0)
        (setq company-idle-delay 0.1)
+<<<<<<< HEAD
        (global-set-key (kbd "\t") 'company-complete)
+=======
+       (global-set-key (kbd "C-M-i") 'company-complete)
+>>>>>>> origin/master
        (add-to-list 'company-backends 'company-elisp)
        (add-to-list 'company-backends 'company-tern)
        (add-to-list 'company-backends 'company-css)
@@ -636,14 +643,36 @@
 		 '(:with company-yasnippet))))
 
      (setq company-backends (mapcar #'company-mode/backend-with-yas company-backends))
+
+<<<<<<< HEAD
+=======
+
+     (use-package company-quickhelp
+       :ensure t
+       :config
+       (company-quickhelp-mode t))
    #+END_SRC
 
+>>>>>>> origin/master
    #+RESULTS:
    | company-yasnippet    | :with         | company-yasnippet |                  |       |                   |
    | company-etags        | :with         | company-yasnippet |                  |       |                   |
    | company-css          | :with         | company-yasnippet |                  |       |                   |
    | company-tern         | :with         | company-yasnippet |                  |       |                   |
    | company-elisp        | :with         | company-yasnippet |                  |       |                   |
+<<<<<<< HEAD
+=======
+   | company-yasnippet    | :with         | company-yasnippet |                  |       |                   |
+   | company-etags        | :with         | company-yasnippet |                  |       |                   |
+   | company-css          | :with         | company-yasnippet |                  |       |                   |
+   | company-tern         | :with         | company-yasnippet |                  |       |                   |
+   | company-elisp        | :with         | company-yasnippet |                  |       |                   |
+   | company-yasnippet    | :with         | company-yasnippet |                  |       |                   |
+   | company-etags        | :with         | company-yasnippet |                  |       |                   |
+   | company-css          | :with         | company-yasnippet |                  |       |                   |
+   | company-elisp        | :with         | company-yasnippet |                  |       |                   |
+   | company-tern         | :with         | company-yasnippet |                  |       |                   |
+>>>>>>> origin/master
    | company-rtags        | :with         | company-yasnippet |                  |       |                   |
    | elpy-company-backend | :with         | company-yasnippet |                  |       |                   |
    | company-yasnippet    | :with         | company-yasnippet |                  |       |                   |
@@ -791,6 +820,61 @@
        )
    #+END_SRC
 
+** C++
+*** autocomplete C/C++ headers from .h files in a project
+    #+BEGIN_SRC emacs-lisp :tangle no
+      (use-package auto-complete-c-headers
+	:ensure t
+	:config
+	(defun my:ac-c-headers-init ()
+	  (require 'auto-complete-c-headers)
+	  (add-to-list 'ac-sources 'ac-source-c-headers)))
+
+      (add-hook 'c++-mode-hook 'my:ac-c-headers-init)
+      (add-hook 'c-mode-hook 'my:ac-c-headers-init)
+    #+END_SRC
+
+    #+RESULTS:
+    | my:ac-c-headers-init | (lambda nil (easy-menu-add-item nil (quote (C)) (rtags-submenu-list))) | er/add-cc-mode-expansions | rtags-start-process-unless-running | irony-mode |
+
+*** Irony-mode
+   #+BEGIN_SRC emacs-lisp
+     (use-package irony
+       :ensure t)
+
+     (use-package company-irony
+       :ensure t)
+
+     (use-package flycheck-irony
+       :ensure t
+       :config
+       (flycheck-irony-setup))
+
+     (use-package company-irony-c-headers
+       :ensure t)
+
+     (add-hook 'c++-mode-hook 'irony-mode)
+     (add-hook 'c-mode-hook 'irony-mode)
+     (add-hook 'objc-mode-hook 'irony-mode)
+
+     ;; replace the `completion-at-point' and `complete-symbol' bindings in
+     ;; irony-mode's buffers by irony-mode's function
+
+     (defun my-irony-mode-hook ()
+       (define-key irony-mode-map [remap completion-at-point]
+	 'counsel-irony)
+       (define-key irony-mode-map [remap complete-symbol]
+	 'counsel-irony)
+       ;; ;; (define-key irony-mode-map [remap comment-region]
+       ;; ;;   'compile)
+       (eval-after-load 'company
+	 '(add-to-list 'company-backends '(company-irony-c-headers company-irony))))
+
+     (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+     (add-hook 'irony-mode-hook 'my-irony-mode-hook)
+   #+END_SRC
+
+>>>>>>> 7edf2a3821d20e31ba5acb3049ee645c0a17768b
    #+RESULTS:
    | my-flycheck-rtags-setup | my-irony-mode-hook | irony-cdb-autosetup-compile-options |
 
@@ -807,6 +891,12 @@
 
 *** TODO: Install Rtags
     #+BEGIN_SRC emacs-lisp :tangle no
+<<<<<<< HEAD
+=======
+    =======
+*** Rtags
+    #+BEGIN_SRC emacs-lisp :tangle no
+>>>>>>> origin/master
       (add-hook 'c-mode-hook 'rtags-start-process-unless-running)
       (add-hook 'c++-mode-hook 'rtags-start-process-unless-running)
       (add-hook 'objc-mode-hook 'rtags-start-process-unless-running)
@@ -864,8 +954,6 @@
       #+RESULTS:
       | my-flycheck-rtags-setup | my-irony-mode-hook | irony-cdb-autosetup-compile-options |
 
-=======
->>>>>>> origin/work
 ** javascript
    #+BEGIN_SRC emacs-lisp :tangle no
 	  (use-package js2
@@ -1028,8 +1116,9 @@
       :ensure t)
     (use-package evil-magit
       :ensure t
-      :config
-      (add-hook 'with-editor-mode-hook 'evil-insert-state))
+      ;; :config
+      ;; (add-hook 'with-editor-mode-hook 'evil-insert-state)
+      )
   #+END_SRC
 
   #+RESULTS:

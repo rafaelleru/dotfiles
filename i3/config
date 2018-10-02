@@ -207,18 +207,20 @@ for_window [class="Emacs" title="capture"] move container to workspace current
 
 
 # Volume control
-# bindsym 0xffc6 exec /usr/bin/pactl set-sink-volume 0 '-5%'
-# bindsym 0xffc7 exec /usr/bin/pactl set-sink-volume 0 '+5%'
-# bindsym 0xffc8 exec /usr/bin/pactl set-sink-mute 0 'toggle'
+bindsym 0xffc6 exec /usr/bin/pactl set-sink-volume 0 '-5%'
+bindsym 0xffc7 exec /usr/bin/pactl set-sink-volume 0 '+5%'
+bindsym 0xffc8 exec /usr/bin/pactl set-sink-mute 0 'toggle'
 bindsym XF86AudioLowerVolume exec /usr/bin/pactl set-sink-volume 0 '-5%'
 bindsym XF86AudioRaiseVolume exec /usr/bin/pactl set-sink-volume 0 '+5%'
 bindsym XF86AudioMute exec /usr/bin/pactl set-sink-mute 0 'toggle'
 
 # brigthness control
-# bindsym 0xffc9 exec xbacklight -inc '5%' # light -p -A 10 # increase screen brightness
-# bindsym 0xffd0 exec xbacklight -dec '5%' # light -p -U 10 # decrease screen brightness
+bindsym 0xffc9 exec xbacklight -inc '5%' # light -p -A 10 # increase screen brightness
+bindsym 0xffd0 exec xbacklight -dec '5%' # light -p -U 10 # decrease screen brightness
 bindsym XF86MonBrightnessUp exec xbacklight -inc '5%' # light -p -A 10 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec '5%' # light -p -U 10 # decrease screen brightnes
+bindsym XF86MonBrightnessDown exec xbacklight -dec '5%' # light -p -U 10 # decrease screen brightness
+
 # reload the configuration file
 bindsym Mod4+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -352,6 +354,7 @@ exec --no-startup-id unclutter -idle 1 -noevents &
 exec thunderbird &
 exec emacs --daemon &
 exec "setxkbmap -layout es -option caps:escape"
+exec "tmux new -s rafa"
 # exec "setxkbmap -option caps:escape"
 exec clipmenud &
 exec compton
