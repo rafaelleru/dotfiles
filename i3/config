@@ -12,11 +12,7 @@
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 
-<<<<<<< HEAD
-font pango: Inconsolata, Terminus 14px  #Francisco System Display 10
-=======
 font pango:  Terminus 14 #,Inconsolata,  #Francisco System Display 10
->>>>>>> work
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -50,14 +46,8 @@ bindsym Mod4+Shift+Return exec emacsclient -c -a ""
 bindsym Mod4+q kill
 
 # start j4-dmenu (a program launcher) with my personal preferences for desktop files
-<<<<<<< HEAD
-bindsym Mod4+d exec dmenu_run -fn Inconsolata -l 10 # Terminus
-bindsym Mod4+y exec clipmenu -fn Inconsolata
-bindsym Mod4+p exec passmenu -fn Inconsolata -l 5
-=======
 bindsym Mod4+d exec dmenu_run -fn "Terminus-15" -l 10 # Terminus
 bindsym Mod4+y exec clipmenu
->>>>>>> work
 
 # bindsym Mod4+d exec rofi -show drun -c ~/.i3/rofi/config # run -lines 5 -eh 2
 
@@ -223,25 +213,12 @@ for_window [class="Emacs" title="capture"] move container to workspace current
 bindsym XF86AudioLowerVolume exec /usr/bin/pactl set-sink-volume 0 '-5%'
 bindsym XF86AudioRaiseVolume exec /usr/bin/pactl set-sink-volume 0 '+5%'
 bindsym XF86AudioMute exec /usr/bin/pactl set-sink-mute 0 'toggle'
-<<<<<<< HEAD
-
-bindsym XF86AudioLowerVolume exec /usr/bin/pactl set-sink-volume 0 '-5%'
-bindsym XF86AudioRaiseVolume exec /usr/bin/pactl set-sink-volume 0 '+5%'
-bindsym XF86AudioMute exec /usr/bin/pactl set-sink-mute 0 'toggle'
-=======
->>>>>>> work
 
 # brigthness control
 # bindsym 0xffc9 exec xbacklight -inc '5%' # light -p -A 10 # increase screen brightness
 # bindsym 0xffd0 exec xbacklight -dec '5%' # light -p -U 10 # decrease screen brightness
 bindsym XF86MonBrightnessUp exec xbacklight -inc '5%' # light -p -A 10 # increase screen brightness
-<<<<<<< HEAD
-bindsym XF86MonBrightnessDown exec xbacklight -dec '5%' # light -p -U 10 # decrease screen brightness
-
-=======
 bindsym XF86MonBrightnessDown exec xbacklight -dec '5%' # light -p -U 10 # decrease screen brightnes
->>>>>>> work
-# reload the configuration file
 bindsym Mod4+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym Mod4+Shift+r restart
@@ -374,10 +351,7 @@ exec --no-startup-id unclutter -idle 1 -noevents &
 exec thunderbird &
 exec emacs --daemon &
 exec "setxkbmap -layout es -option caps:escape"
-<<<<<<< HEAD
 exec "tmux new -s rafa"
-=======
->>>>>>> work
 # exec "setxkbmap -option caps:escape"
 exec clipmenud &
 exec compton

@@ -1,0 +1,13 @@
+*~
+\#*\#
+emacs.d/recentf
+emacs.d/*.cache
+*.png
+*.jpg
+emacs.d/.*
+emacs.d/Cask
+emacs.d/*.el*
+emacs.d/irony*
+*-swp
+*-bk
+emacs.d/*/
