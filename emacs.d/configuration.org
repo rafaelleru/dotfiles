@@ -1060,11 +1060,13 @@
 * Magit
   #+BEGIN_SRC emacs-lisp
     (use-package magit
-      :ensure t)
+      :ensure t
+      :config
+      (add-hook 'magit-mode-hook 'evil-normal-state))
     (use-package evil-magit
       :ensure t
-      ;; :config
-      ;; (add-hook 'with-editor-mode-hook 'evil-insert-state)
+      :config
+      (add-hook 'with-editor-mode-hook 'evil-insert-state)
       )
   #+END_SRC
 
