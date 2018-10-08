@@ -84,7 +84,7 @@
        :config
        (evil-leader/set-leader "<SPC>")
        (evil-leader/set-key
-	 "<SPC>" 'helm-M-x
+	 "<SPC>" 'counsel-M-x
 
 	 ;; Window management
 	 "ww" 'other-window
@@ -100,26 +100,26 @@
 	 "wF" 'make-frame
 
 	 ;; projectile
-	 "pp" 'projectile-switch-project
-	 "pb" 'projectile-switch-to-buffer
-	 "pf" 'helm-projectile-find-file
-	 "pc" 'helm-projectile-compile-project
-	 "ph" 'helm-projectile
-	 "pu" 'helm-projectile-run-project
+	 "pp" 'counsel-projectile-switch-project
+	 "pb" 'counsel-projectile-switch-to-buffer
+	 "pf" 'counsel-projectile-find-file
+	 "pc" 'projectile-compile-project
+	 "ph" 'counsel-projectile
+	 "pu" 'projectile-run-project
 	 "pt" 'projectile-regenerate-tags
 	 "pd" 'projectile-dired
 
 
-	 "bb" 'helm-mini
+	 "bb" 'ivy-switch-buffer
 	 "bd" 'kill-this-buffer
 	 "B" 'ibuffer
 
 	 "gg" 'magit-status
 	 "gc" 'magit-checkout
 
-	 "y" 'helm-show-kill-ring
+	 "y" 'counsel-yank-pop
 	 "nt" 'neotree-toggle
-	 "ff" 'helm-find-files
+	 "ff" 'counsel-find-file
 	 ":" 'eval-expression
 	 "/" 'swiper-helm
 	 )
@@ -193,6 +193,7 @@
       (setq hrs/font-change-increment 1.1)
 
       (defun hrs/set-font-size ()
+	(interactive)
 	"Set the font to `hrs/default-font' at `hrs/current-font-size'."
 	(set-frame-font
 	 (concat hrs/default-font "-" (number-to-string hrs/current-font-size))))
@@ -378,11 +379,14 @@
        :ensure t)
 
      (use-package counsel
-       :ensure t)
+       :ensure t
+       :config
+       (counsel-mode 1))
      ;(setq ivy-use-virtual-buffers t)
    #+END_SRC
 
    #+RESULTS:
+   : t
 
 ** Helm
    #+BEGIN_SRC emacs-lisp
@@ -390,7 +394,7 @@
        :ensure t
        :config
        (helm-autoresize-mode t)
-       (helm-mode t)
+       (helm-mode -1)
        (global-set-key (kbd "C-x C-f") 'helm-find-files); <del> borre hasta /
        (global-set-key (kbd "C-x b") 'helm-mini)
        (global-set-key (kbd "M-x") 'helm-M-x)
@@ -653,6 +657,10 @@
        :init
        (yas-global-mode 1)
        ;;(add-to-list 'company-backends 'company-yasnippet)
+       )
+
+     (use-package yasnippet-snippets
+       :ensure t
        )
    #+END_SRC
 
