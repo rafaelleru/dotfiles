@@ -45,7 +45,6 @@
      (use-package evil
        :ensure t
        :config
-       (global-evil-leader-mode)
        (evil-mode t))
 
      (use-package evil-commentary
@@ -55,6 +54,7 @@
    #+END_SRC
 
    #+RESULTS:
+   : t
 
    Escapar de todos los lugares posibles
 
@@ -82,6 +82,7 @@
      (use-package evil-leader
        :ensure t
        :config
+       (global-evil-leader-mode)
        (evil-leader/set-leader "<SPC>")
        (evil-leader/set-key
 	 "<SPC>" 'counsel-M-x
@@ -106,7 +107,8 @@
 	 "pc" 'projectile-compile-project
 	 "ph" 'counsel-projectile
 	 "pu" 'projectile-run-project
-	 "pt" 'projectile-regenerate-tags
+	 "pt" 'projectile-test-project
+	 "pT" 'projectile-regenerate-tags
 	 "pd" 'projectile-dired
 
 
@@ -114,6 +116,7 @@
 	 "bd" 'kill-this-buffer
 	 "B" 'ibuffer
 
+	 "gb" 'magit-blame
 	 "gg" 'magit-status
 	 "gc" 'magit-checkout
 
@@ -123,11 +126,12 @@
 	 ":" 'eval-expression
 	 "/" 'swiper-helm
 	 )
-       )
-     (evil-leader/set-key-for-mode 'python-mode ",g" 'elpy-goto-definition)
+       (evil-leader/set-key-for-mode 'php-mode "d" 'ac-php-find-symbol-at-point)
+     )
    #+END_SRC
 
    #+RESULTS:
+   : t
 
 ** evil-commentary
    #+BEGIN_SRC emacs-lisp
@@ -369,11 +373,13 @@
 *** Mirar helm (parece mas potente)
     https://github.com/emacs-helm/helm
     https://github.com/abo-abo/swiper-helm
-   #+BEGIN_SRC emacs-lisp :tangle no
+   #+BEGIN_SRC emacs-lisp
      (use-package ivy
      :ensure t
      :config
-     (ivy-mode 1))
+     (ivy-mode 1)
+     (setq ivy-re-builders-alist
+	   '((t . ivy--regex-ignore-order))))
 
      (use-package swiper
        :ensure t)
@@ -518,7 +524,7 @@
 
 ** linum-mode
    #+BEGIN_SRC emacs-lisp
-     (setq display-line-numbers-mode t)
+     (global-display-line-numbers-mode t)
    #+END_SRC
 
    #+RESULTS:
@@ -591,6 +597,7 @@
        :ensure t
        :config
        (ac-config-default)
+       (setq global-auto-complete-mode -1)
        )
 
      ;; (add-hook 'org-mode-hook 'auto-complete-mode)
@@ -598,7 +605,7 @@
    #+END_SRC
 
    #+RESULTS:
-   | auto-complete-mode | ac-emacs-lisp-mode-setup |
+   : t
 
 ** Activar company mode de modo global y flycheck para colorear la sintaxis
 
@@ -612,7 +619,7 @@
        :ensure t
        :config
        (global-company-mode t)
-       (setq company-echo-delay 0)
+       (setq company-echo-delay 0.1)
        (setq company-idle-delay 0.1)
        (global-set-key (kbd "\t") 'company-complete)
        (add-to-list 'company-backends 'company-elisp)
@@ -649,6 +656,7 @@
    #+END_SRC
 
    #+RESULTS:
+   : t
 
 ** Yasnippet.
    #+BEGIN_SRC emacs-lisp
@@ -665,6 +673,19 @@
    #+END_SRC
 
    #+RESULTS:
+
+** auto select indent
+   #+BEGIN_SRC emacs-lisp
+     (use-package dtrt-indent
+       :ensure t
+       :config
+       (dtrt-indent-mode 1)
+       (add-hook 'prog-mode-hook 'dtrt-indent-mode)
+       )
+   #+END_SRC
+
+   #+RESULTS:
+   : t
 
 ** Python
 *** autocomplete con company Jedi
@@ -1028,6 +1049,12 @@
    : t
 ** PHP
    #+BEGIN_SRC emacs-lisp
+     (use-package ac-php
+       :ensure t)
+
+     (use-package company-php
+       :ensure t)
+
      (flycheck-define-checker my-php
        "A PHP syntax checker using the PHP command line interpreter.
 
@@ -1066,6 +1093,9 @@
 		  (make-local-variable 'company-backends)
 		  (add-to-list 'company-backends 'company-ac-php-backend)))
    #+END_SRC
+
+   #+RESULTS:
+   | (lambda nil (setq-local indent-tabs-mode t) (require (quote company-php)) (company-mode t) (ac-php-core-eldoc-setup) (make-local-variable (quote company-backends)) (add-to-list (quote company-backends) (quote company-ac-php-backend))) | (lambda nil (require (quote ac-php)) (setq ac-sources (quote (ac-source-php))) (yas-global-mode 1) (ac-php-core-eldoc-setup) (define-key php-mode-map (kbd C-]) (quote ac-php-find-symbol-at-point)) (define-key php-mode-map (kbd C-t) (quote ac-php-location-stack-back))) | my/php-mode |
 
 * Magit
   #+BEGIN_SRC emacs-lisp
