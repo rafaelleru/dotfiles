@@ -183,8 +183,8 @@
 ** Fuente Terminus
    Terminus is the best font. I also like =inconsolata= and =hack= but always come back to terminus
    #+BEGIN_SRC emacs-lisp
-      (setq hrs/default-font "Terminus")
-      (setq hrs/default-font-size 13)
+      (setq hrs/default-font "Hack")
+      (setq hrs/default-font-size 11)
       (setq hrs/current-font-size hrs/default-font-size)
       (setq hrs/font-change-increment 1.1)
 
@@ -377,6 +377,7 @@
    #+RESULTS:
    | (lambda nil (setq mode-name Py)) | (lambda nil (set (make-local-variable (quote yas-indent-line)) (quote fixed))) | elpy-mode | er/add-python-mode-expansions | (lambda nil (setq indent-tabs-mode t) (setq tab-width 4) (setq py-indent-tabs-mode t) (setq python-indent-offset 4) (add-to-list (quote write-file-functions) (quote delete-trailing-whitespace))) |
 
+** TODO When new window put the cursor in new window
 * Utilidades
 ** Ivi mode y swiper
     https://github.com/emacs-helm/helm
@@ -524,19 +525,21 @@
      (global-set-key (kbd "C-c y P") 'copy-file-path)
 
 
-     ;; (defun copy-relative-path ()
-     ;;   "Copy projectile relative path of the editing file in the clipboard"
-     ;;   (interactive)
-     ;;   (when (member minor-mode projectile-mode)
-     ;;     (kill-new buffer-file-name '(string-remove-prefix projectile-project-root buffer-file-name))
-     ;;     )
-     ;;   )
+     (defun copy-relative-path ()
+       "Copy projectile relative path of the editing file in the clipboard"
+       (interactive)
+       ;; (when (member minor-mode-list "projectile-mode")
+	 (kill-new (file-relative-name buffer-file-name (projectile-project-root)))
+	;; )
+       )
 
-     ;;(file-relative-name buffer-file-name projectile-project-root)
+     (global-set-key (kbd "C-c y p") 'copy-relative-path)
+
+	  ;;(file-relative-name buffer-file-name projectile-project-root)
    #+END_SRC
 
    #+RESULTS:
-   : configuration.org
+   : copy-relative-path
 
 * Ajustes para lenguajes de programacion
 ** projectile mode
@@ -653,6 +656,7 @@
 		 (setq tab-width 4)
 		 (setq py-indent-tabs-mode t)
 		 (setq python-indent-offset 4)
+		 (add-hook 'prog-mode-hook 'dtrt-indent-mode)
 		 (add-to-list 'write-file-functions 'delete-trailing-whitespace)))
 
      (use-package elpy
@@ -661,15 +665,16 @@
        (elpy-enable)
        (add-to-list 'company-backends 'elpy-company-backend)
        (delq 'elpy-module-flymake elpy-modules)
+       (setq elpy-rpc-backend "jedi")
        (setq jedi:complete-on-dot t)
        )
 
      (evil-leader/set-key-for-mode 'python-mode "d" 'elpy-goto-definition)
      (evil-leader/set-key-for-mode 'python-mode "D" 'elpy-goto-definition-other-window)
+     (evil-leader/set-key-for-mode 'python-mode "v" 'pop-tag-mark)
    #+END_SRC
 
    #+RESULTS:
-   : t
 
 *** Jupyter notebooks
     #+BEGIN_SRC emacs-lisp
