@@ -16,15 +16,13 @@
 
 * Gestion de paquetes =melpa y cask=
 
-   #+BEGIN_SRC emacs-lisp :tangle no
-     (require 'pallet)
    #+BEGIN_SRC emacs-lisp
      (add-to-list 'package-archives
-                  '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+                  '("melpa" . "https://melpa.org/packages/") t)
    #+END_SRC
 
    #+RESULTS:
-   : pallet
+   : ((gnu . https://elpa.gnu.org/packages/) (melpa-stable . https://stable.melpa.org/packages/) (melpa . https://melpa.org/packages/))
 
 ** Use package
    #+BEGIN_SRC emacs-lisp
@@ -384,11 +382,11 @@
     https://github.com/abo-abo/swiper-helm
    #+BEGIN_SRC emacs-lisp
      (use-package ivy
-     :ensure t
-     :config
-     (ivy-mode 1)
-     (setq ivy-re-builders-alist
-	   '((t . ivy--regex-ignore-order))))
+       :ensure t
+       :config
+       (ivy-mode 1)
+       (setq ivy-initial-inputs-alist nil)
+       )
 
      (use-package swiper
        :ensure t)
@@ -397,7 +395,7 @@
        :ensure t
        :config
        (counsel-mode 1))
-     ;(setq ivy-use-virtual-buffers t)
+					     ;(setq ivy-use-virtual-buffers t)
    #+END_SRC
 
    #+RESULTS:
@@ -667,9 +665,19 @@
        (delq 'elpy-module-flymake elpy-modules)
        (setq elpy-rpc-backend "jedi")
        (setq jedi:complete-on-dot t)
+       (setq python-shell-interpreter "ipython"
+	   python-shell-interpreter-args "-i --simple-prompt")
        )
 
-     (evil-leader/set-key-for-mode 'python-mode "d" 'elpy-goto-definition)
+     (defun elpy-goto-definition-or-rgrep ()
+       "Go to the definition of the symbol at point, if found. Otherwise, run `elpy-rgrep-symbol'."
+       (interactive)
+       (ring-insert find-tag-marker-ring (point-marker))
+       (condition-case nil (elpy-goto-definition)
+	 (error (elpy-rgrep-symbol
+		 (concat "\\(def\\|class\\)\s" (thing-at-point 'symbol) "(")))))
+
+     (evil-leader/set-key-for-mode 'python-mode "d" 'elpy-goto-definition-or-rgrep)
      (evil-leader/set-key-for-mode 'python-mode "D" 'elpy-goto-definition-other-window)
      (evil-leader/set-key-for-mode 'python-mode "v" 'pop-tag-mark)
    #+END_SRC
@@ -1371,7 +1379,11 @@ Presionar =C-c o i= para abrir *index.org*
    #+BEGIN_SRC emacs-lisp
      (use-package ox-md)
      (use-package ox-beamer)
-     (use-package ox-reveal)
+     ;; (use-package ox-reveal)
+
+     (add-to-list 'load-path "~/.emacs.d/")
+     (load "ox-reveal.el")
+     (require 'ox-reveal)
    #+END_SRC
 
    #+RESULTS:
