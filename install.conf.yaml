@@ -17,5 +17,6 @@
     ~/.config/sway: sway
     ~/.gitconfig: gitconfig
     ~/.tmux.conf: tmux.conf
+    ~/bin: bin
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
