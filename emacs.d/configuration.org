@@ -95,6 +95,8 @@
 	 "w%" 'split-window-horizontally
 	 "wM" 'delete-other-windows
 	 "wF" 'make-frame
+	 "w{" 'shrink-window-horizontally
+	 "w}" 'enlarge-window-horizontally
 
 	 ;; projectile
 	 "pp" 'counsel-projectile-switch-project
@@ -161,7 +163,7 @@
 	  (setq solarized-height-plus-3 1.0)
 	  (setq solarized-height-plus-4 1.0)
 	  (setq solarized-high-contrast-mode-line t)
-	  (load-theme 'solarized-dark t)
+	  (load-theme 'kaolin-ocean t)
      )
 
      (add-hook 'after-init-hook 'rl/load-solarized-theme)
@@ -181,8 +183,8 @@
 ** Fuente Terminus
    Terminus is the best font. I also like =inconsolata= and =hack= but always come back to terminus
    #+BEGIN_SRC emacs-lisp
-      (setq hrs/default-font "Hack")
-      (setq hrs/default-font-size 11)
+      (setq hrs/default-font "Inconsolata for powerline")
+      (setq hrs/default-font-size 12)
       (setq hrs/current-font-size hrs/default-font-size)
       (setq hrs/font-change-increment 1.1)
 
