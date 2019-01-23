@@ -29,9 +29,9 @@ font pango: Terminus 12
 # use these keys for focus, movement, and resize directions when reaching for
 # the arrows is not convenient
 # I like to do this with emacs style
-set $up i
-set $down k
-set $left j
+set $up k
+set $down j
+set $left h
 set $right l
 
 # use Mouse+Mod1 to drag floating windows to their wanted position
@@ -84,7 +84,7 @@ bindsym Mod4+Shift+Up move up
 bindsym Mod4+Shift+Right move right
 
 # split in horizontal orientation
-bindsym Mod4+h split h
+bindsym Mod4+b split h
 
 # split in vertical orientation
 bindsym Mod4+v split v
@@ -179,13 +179,14 @@ for_window [class="Spotify"] move window to workspace $workspace10
 assign [title="Popcorn Time"] $workspace10
 assign [class="Firefox"] $workspace1
 assign [class="Chromium"] $workspace1
+assign [class="Google-chrome"] $workspace1
 # assign [class="Emacs"] $workspace3
 assign [class="konsole"] $workspace4
 assign [class="Telegram"] $workspace9
 assign [class="Thunderbird"] $workspace9
-assign [class="jetbrains-studio"] 5
-assign [class="jetbrains-pycharm-ce"] 6
-assign [class="com-install4j-runtime-launcher-UnixLauncher"] 5
+assign [class="jetbrains-*"] 7
+assign [class="jetbrains-*"] 7
+assign [class="com-install4j-runtime-launcher-UnixLauncher"] 7
 assign [class="transmission"] 6
 assign [class="Nautilus"] 6
 assign [class="Pcmanfm"] 6
@@ -196,9 +197,6 @@ for_window [class="Emacs" title="capture"] floating enable
 for_window [class="Emacs" title="capture"] resize set 300 300
 for_window [class="Emacs" title="capture"] move position center
 for_window [class="Emacs" title="capture"] move container to workspace current
-
-# Cuando abro el gestor de archivos normalmente es para hacer algo rapido en
-# el osea que lo hacemos centrado y flotante
 
 #for_window [class="Pcmanfm"] floating enable
 #for_window [class="Pcmanfm"] resize set 600 700
@@ -305,7 +303,7 @@ mode "$music" {
 
 bindsym Mod4+Shift+m mode "$music"
 
-set $output (v) VGA, (h) HDMI, (i) laptop, (t) toggle
+set $output (V) VGA, (H) HDMI, (I) laptop, (T) toggle
 mode "$output" {
   bindsym t exec "mons -o", mode "default"
   bindsym v exec mons -e right, mode "default"
@@ -365,7 +363,7 @@ exec clipmenud &
 exec compton
 
 # desktop wallpaper
-exec_always feh --bg-scale ~/Imágenes/yosemite-park.jpg
+exec_always feh --bg-scale /usr/share/backgrounds/gnome/adwaita-night.jpg #~/Imágenes/yosemite-park.jpg
 # capture screen
 bindsym Print exec gnome-screenshot
 
