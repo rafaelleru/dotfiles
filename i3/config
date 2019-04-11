@@ -38,7 +38,7 @@ set $right l
 floating_modifier Mod4
 
 # start a terminal
-bindsym Mod4+Return exec alacritty -e tmux
+bindsym Mod4+Return exec alacritty  --config-file ~/.config/alacritty/alacritty.yml -e "tmux"
 
 # start emacs frame
 bindsym Mod4+Shift+Return exec emacsclient -c -a ""
@@ -215,10 +215,8 @@ bindsym 0xffc8 exec /usr/bin/pactl set-sink-mute 0 'toggle'
 # bindsym XF86AudioMute exec /usr/bin/pactl set-sink-mute 0 'toggle'
 
 # brigthness control
-bindsym 0xffc9 exec xbacklight -inc '5%' # light -p -A 10 # increase screen brightness
-bindsym 0xffd0 exec xbacklight -dec '5%' # light -p -U 10 # decrease screen brightness
-# bindsym XF86MonBrightnessUp exec xbacklight -inc '5%' # light -p -A 10 # increase screen brightness
-# bindsym XF86MonBrightnessDown exec xbacklight -dec '5%' # light -p -U 10 # decrease screen brightnes
+bindsym XF86MonBrightnessUp exec light -A 10 # increase screen brightness
+bindsym XF86MonBrightnessDown exec light -U 10 # decrease screen brightnes
 
 # reload the configuration file
 bindsym Mod4+Shift+c reload
@@ -338,7 +336,7 @@ bar {
   }
 }
 
-bindsym Mod4+p exec passmenu -fn 'Terminus-13' -l 10
+bindsym Mod4+p exec /usr/share/doc/pass/examples/dmenu/passmenu -fn 'Terminus-13' -l 10
 # bindsym Mod4+p exec passmenu -fn 'Terminus-15' -l 10
 bindsym Mod4+x move workspace to output left
 bindsym Mod4+Shift+x move window to output left

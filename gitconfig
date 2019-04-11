@@ -11,3 +11,4 @@ a = add
 C = commit -am
 [core]
 	excludesfile = ~/.gitignore
+	editor = nvim

@@ -183,8 +183,8 @@
 ** Fuente Terminus
    Terminus is the best font. I also like =inconsolata= and =hack= but always come back to terminus
    #+BEGIN_SRC emacs-lisp
-      (setq hrs/default-font "Inconsolata for powerline")
-      (setq hrs/default-font-size 12)
+      (setq hrs/default-font "Hack")
+      (setq hrs/default-font-size 10.5)
       (setq hrs/current-font-size hrs/default-font-size)
       (setq hrs/font-change-increment 1.1)
 
@@ -221,6 +221,8 @@
       (define-key global-map (kbd "C--") 'hrs/decrease-font-size)
       (set-face-attribute 'default t :font
 			  (concat hrs/default-font "-" (number-to-string hrs/current-font-size)))
+     (when window-system
+       (lambda) (hrs/set-font-size))
     #+END_SRC
 
     #+RESULTS:
@@ -1073,7 +1075,7 @@
        :config
        (add-hook 'org-mode-hook
                  (lambda ()
-   		(org-bullets-mode t))))
+   		(org-bullets-mode nil))))
    #+END_SRC
 
    #+RESULTS:
