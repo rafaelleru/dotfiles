@@ -1,13 +1,14 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/rafa/.oh-my-zsh
+  export ZSH=/home/rl/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 #ZSH_THEME="Spaceship"
 ZSH_THEME="simple"
+ZSH_THEME="bira"
 #ZSH_THEME="powerlevel9k/powerlevel9k"
 #POWERLEVEL9K_MODE='awesome-fontconfig'
 # Uncomment the following line to use case-sensitive completion.
@@ -52,7 +53,7 @@ ZSH_THEME="simple"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(emacs git shrink-path vi-mode)
+plugins=(emacs git shrink-path vi-mode fzf)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -105,6 +106,11 @@ screenfetch
 
 export PATH=$PATH:~/src/flutter/bin
 export PATH=$PATH:~/.local/bin
+export PATH=$PATH:~/bin
 
 # added by travis gem
 [ -f /home/rafa/.travis/travis.sh ] && source /home/rafa/.travis/travis.sh
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+source  /usr/share/autojump/autojump.zsh
