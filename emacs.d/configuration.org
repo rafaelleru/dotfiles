@@ -76,56 +76,54 @@
 * evil-leader
    #+BEGIN_SRC emacs-lisp
      (use-package evil-leader
-       :ensure t
-       :config
-       (global-evil-leader-mode)
-       (evil-leader/set-leader "<SPC>")
-       (evil-leader/set-key
-	 "<SPC>" 'counsel-M-x
+	 :ensure t
+	 :config
+	 (global-evil-leader-mode)
+	 (evil-leader/set-leader "<SPC>")
+	 (evil-leader/set-key
+	     "<SPC>" 'helm-M-x
 
-	 ;; Window management
-	 "ww" 'other-window
-	 "wh" 'evil-window-left
-	 "wl" 'evil-window-right
-	 "wj" 'evil-window-down
-	 "wk" 'evil-window-up
-	 "wd" 'delete-window
-	 "w\"" 'split-window-vertically
-	 "wO"  'delete-other-windows
-	 "w%" 'split-window-horizontally
-	 "wM" 'delete-other-windows
-	 "wF" 'make-frame
-	 "w{" 'shrink-window-horizontally
-	 "w}" 'enlarge-window-horizontally
+	     ;; Window management
+	     "wo" 'other-window
+	     "wh" 'evil-window-left
+	     "wl" 'evil-window-right
+	     "wj" 'evil-window-down
+	     "wk" 'evil-window-up
+	     "wd" 'delete-window
+	     "w\"" 'split-window-vertically
+	     "wO"  'delete-other-windows
+	     "w%" 'split-window-horizontally
+	     "wM" 'delete-other-windows
+	     "wF" 'make-frame
 
-	 ;; projectile
-	 "pp" 'counsel-projectile-switch-project
-	 "pb" 'counsel-projectile-switch-to-buffer
-	 "pf" 'counsel-projectile-find-file
-	 "pc" 'projectile-compile-project
-	 "ph" 'counsel-projectile
-	 "pu" 'projectile-run-project
-	 "pt" 'projectile-test-project
-	 "pT" 'projectile-regenerate-tags
-	 "pd" 'projectile-dired
+	     ;; projectile
+	     "pp" 'projectile-switch-project
+	     "pb" 'projectile-switch-to-buffer
+	     "pf" 'helm-projectile-find-file
+	     "pd" 'helm-projectile-find-dir
+	     "pg" 'helm-projectile-grep
+	     "pc" 'helm-projectile-compile-project
+	     "ph" 'helm-projectile
+	     "pu" 'helm-projectile-run-project
+	     "pt" 'projectile-regenerate-tags
 
 
-	 "bb" 'ivy-switch-buffer
-	 "bd" 'kill-this-buffer
-	 "B" 'ibuffer
+	     "bb" 'helm-mini
+	     "bd" 'kill-this-buffer
+	     "B" 'ibuffer
 
-	 "gb" 'magit-blame
-	 "gg" 'magit-status
-	 "gc" 'magit-checkout
+	     "gg" 'magit-status
+	     "gc" 'magit-checkout
 
-	 "y" 'counsel-yank-pop
-	 "nt" 'neotree-toggle
-	 "ff" 'counsel-find-file
-	 ":" 'eval-expression
-	 "/" 'swiper-helm
+	     "y" 'helm-show-kill-ring
+	     "nt" 'neotree-toggle
+	     "ff" 'helm-find-files
+	     ":" 'eval-expression
+	     "/" 'swiper-helm
+	     "d" 'dumb-jump-go
+	     )
 	 )
-       (evil-leader/set-key-for-mode 'php-mode "d" 'ac-php-find-symbol-at-point)
-     )
+       ; (evil-leader/set-key-for-mode 'python-mode ",g" 'elpy-goto-definition)
    #+END_SRC
 
    #+RESULTS:
@@ -163,12 +161,13 @@
 	  (setq solarized-height-plus-3 1.0)
 	  (setq solarized-height-plus-4 1.0)
 	  (setq solarized-high-contrast-mode-line t)
-	  (load-theme 'kaolin-ocean t)
+	  (load-theme 'solarized-dark t)
      )
 
-     (add-hook 'after-init-hook 'rl/load-solarized-theme)
+     ;; (add-hook 'after-init-hook
+     ;; 	  (lambda) (load-theme 'spacemacs-dark t))
      (when window-system
-       (lambda) (rl/load-solarized-theme))
+       (lambda) (load-theme 'material t))
 
      (defun rl/load-white-theme ()
        (interactive)
@@ -178,12 +177,12 @@
    #+END_SRC
 
    #+RESULTS:
-   : load-my-white-theme
+   : rl/load-white-theme
 
 ** Fuente Terminus
    Terminus is the best font. I also like =inconsolata= and =hack= but always come back to terminus
    #+BEGIN_SRC emacs-lisp
-      (setq hrs/default-font "Hack")
+      (setq hrs/default-font "monospace")
       (setq hrs/default-font-size 10.5)
       (setq hrs/current-font-size hrs/default-font-size)
       (setq hrs/font-change-increment 1.1)
@@ -384,7 +383,7 @@
 ** Ivi mode y swiper
     https://github.com/emacs-helm/helm
     https://github.com/abo-abo/swiper-helm
-   #+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp :tangle no
      (use-package ivy
        :ensure t
        :config
@@ -406,7 +405,7 @@
    : t
 
 ** Helm
-   #+BEGIN_SRC emacs-lisp :tangle no
+   #+BEGIN_SRC emacs-lisp
      (use-package helm
        :ensure t
        :config
@@ -546,11 +545,12 @@
 * Ajustes para lenguajes de programacion
 ** projectile mode
    #+BEGIN_SRC emacs-lisp
-     (use-package projectile
-       :ensure t
-       :init
-       (projectile-global-mode t)
-       )
+	  (use-package projectile
+	    :ensure t
+	    :init
+	    (projectile-global-mode t)
+	    (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+	    )
    #+END_SRC
 
    #+RESULTS:
@@ -665,6 +665,7 @@
        :ensure t
        :config
        (elpy-enable)
+       (setq elpy-rpc-python-command "python3")
        (add-to-list 'company-backends 'elpy-company-backend)
        (delq 'elpy-module-flymake elpy-modules)
        (setq elpy-rpc-backend "jedi")
@@ -1385,9 +1386,9 @@ Presionar =C-c o i= para abrir *index.org*
      (use-package ox-beamer)
      ;; (use-package ox-reveal)
 
-     (add-to-list 'load-path "~/.emacs.d/")
-     (load "ox-reveal.el")
-     (require 'ox-reveal)
+     ;; (add-to-list 'load-path "~/.emacs.d/")
+     ;; (load "ox-reveal.el")
+     ;; (require 'ox-reveal)
    #+END_SRC
 
    #+RESULTS:
