@@ -15,6 +15,7 @@
     ~/.config/gtk-3.0: gtk-3.0
     ~/.fonts: fonts
     ~/.config/sway: sway
+    ~/.config/alacritty/alacritty.yml: alacritty.yml
     ~/.gitconfig: gitconfig
     ~/.tmux.conf: tmux.conf
     ~/bin: bin
