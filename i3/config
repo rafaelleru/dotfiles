@@ -90,7 +90,7 @@ bindsym Mod1+b split h
 bindsym Mod1+v split v
 
 # enter fullscreen mode for the focused container
-bindsym f11 fullscreen toggle
+bindsym Mod1+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym Mod1+s layout stacking
@@ -208,9 +208,12 @@ for_window [class="Gnome-calculator"] floating enable
 
 
 # Volume control
-bindsym 0xffc6 exec /usr/bin/pactl set-sink-volume 0 '-5%'
-bindsym 0xffc7 exec /usr/bin/pactl set-sink-volume 0 '+5%'
-bindsym 0xffc8 exec /usr/bin/pactl set-sink-mute 0 'toggle'
+bindsym 0xffc6 exec --no-startup-id ~/.i3/pactl_volume +5%
+bindsym 0xffc7 exec --no-startup-id ~/.i3/pactl_volume -5%
+bindsym 0xffc8 exec --no-startup-id ~/.i3/pactl_volume M
+# bindsym 0xffc6 exec /usr/bin/pactl set-sink-volume 0 '-5%'
+# bindsym 0xffc7 exec /usr/bin/pactl set-sink-volume 0 '+5%'
+# bindsym 0xffc8 exec /usr/bin/pactl set-sink-mute 0 'toggle'
 # bindsym XF86AudioLowerVolume exec /usr/bin/pactl set-sink-volume 0 '-5%'
 # bindsym XF86AudioRaiseVolume exec /usr/bin/pactl set-sink-volume 0 '+5%'
 # bindsym XF86AudioMute exec /usr/bin/pactl set-sink-mute 0 'toggle'
@@ -218,6 +221,9 @@ bindsym 0xffc8 exec /usr/bin/pactl set-sink-mute 0 'toggle'
 # brigthness control
 bindsym XF86MonBrightnessUp exec light -A 10 # increase screen brightness
 bindsym XF86MonBrightnessDown exec light -U 10 # decrease screen brightnes
+
+# cicle between output modes
+bindsym Mod1+o exec mons -n righ # decrease screen brightnes
 
 # reload the configuration file
 bindsym Mod1+Shift+c reload
@@ -303,6 +309,7 @@ mode "$music" {
 bindsym Mod1+Shift+m mode "$music"
 
 
+
 bindsym Mod1+Shift+o mode "$output"
 set $output (V) VGA, (H) HDMI, (I) laptop, (T) toggle
 mode "$output" {
@@ -363,6 +370,7 @@ exec --no-startup-id "mons -o"
 # default apps
 # exec --no-startup-id enpass &
 exec --no-startup-id nm-applet &
+exec --no-startup-id blueman-applet &
 exec --no-startup-id pasystray  &
 exec --no-startup-id slack &
 # Hide the mouse cursor after a second
