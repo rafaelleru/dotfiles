@@ -18,6 +18,7 @@
     ~/.config/alacritty/alacritty.yml: alacritty.yml
     ~/.gitconfig: gitconfig
     ~/.tmux.conf: tmux.conf
+    ~/.oh-my-zsh/themes/oxigen.zsh-theme: oxigen.zsh-theme
     ~/bin: bin
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
