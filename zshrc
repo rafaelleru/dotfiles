@@ -7,8 +7,7 @@
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 #ZSH_THEME="Spaceship"
-ZSH_THEME="simple"
-ZSH_THEME="bira"
+ZSH_THEME="oxide"
 #ZSH_THEME="powerlevel9k/powerlevel9k"
 #POWERLEVEL9K_MODE='awesome-fontconfig'
 # Uncomment the following line to use case-sensitive completion.
@@ -102,6 +101,7 @@ alias suspend='i3lock && systemctl suspend'
 alias capture='emacsclient -a "" -c -e "(make-capture-frame)"'
 alias ec='emacsclient -c'
 alias t='task'
+alias ssh_='/usr/bin/sshpass -f ~/myssh ssh'
 screenfetch
 
 export PATH=$PATH:~/src/flutter/bin
