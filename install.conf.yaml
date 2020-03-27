@@ -1,4 +1,5 @@
 - link:
+    ~/.config/alacritty/alacritty.yml: alacritty.yml
     ~/.config/nvim: nvim
     ~/.config/i3: i3
     ~/.tmux.conf: tmux.conf
