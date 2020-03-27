@@ -24,7 +24,8 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'vim-vdebug/vdebug'
 Plugin 'preservim/nerdcommenter'
 Plugin 'lifepillar/vim-solarized8'
-" Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plugin 'junegunn/fzf'
+" Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 
 
 call vundle#end()            " required
