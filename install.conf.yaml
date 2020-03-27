@@ -1,7 +1,10 @@
 - link:
+    ~/.bin: bin
     ~/.config/alacritty/alacritty.yml: alacritty.yml
     ~/.config/nvim: nvim
     ~/.config/i3: i3
+    ~/.fonts: fonts
+    ~/.gitconfig: gitconfig
     ~/.tmux.conf: tmux.conf
     ~/.zshrc: zshrc
 
