@@ -1,0 +1,14 @@
+[user]
+	name = Rafa leyva
+	email = rafaelleru95103@gmail.com
+
+[alias]
+lg = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+	llog = 	log --no-merges --abbrev-commit --oneline
+c = commit -m
+s = status
+a = add
+C = commit -am
+[core]
+	excludesfile = ~/.gitignore
+	editor = vim
