@@ -1,5 +1,7 @@
 - link:
     ~/.config/nvim: nvim
+    ~/.config/i3: i3
+    ~/.tmux.conf: tmux.conf
     ~/.zshrc: zshrc
 
 - shell:
