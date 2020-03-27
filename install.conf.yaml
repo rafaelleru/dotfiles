@@ -1,0 +1,5 @@
+- link:
+    ~/.config/nvim: nvim
+
+- shell:
+  - [git clone https://github.com/VundleVim/Vundle.vim.git nvim/bundle/Vundle.vim, Cloning vim submodule]
