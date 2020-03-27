@@ -1,3 +1,5 @@
+- clean: [~]
+
 - link:
     ~/.bin: bin
     ~/.config/alacritty/alacritty.yml: alacritty.yml
