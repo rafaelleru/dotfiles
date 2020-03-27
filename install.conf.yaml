@@ -1,5 +1,10 @@
 - link:
     ~/.config/nvim: nvim
+    ~/.zshrc: zshrc
 
 - shell:
   - [git clone https://github.com/VundleVim/Vundle.vim.git nvim/bundle/Vundle.vim, Cloning vim submodule]
+  -
+        command: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+        description: Installig oh my zsh! framework
+        stdout: true
