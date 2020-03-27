@@ -102,6 +102,7 @@ alias vim="nvim"
 alias vimconfig="nvim ~/.config/nvim/init.vim"
 alias i3config="nvim ~/.config/i3/config"
 alias mkdir="mkdir -p"
+alias ls="ls -lh"
 alias cp="cp -R"
 
 export PATH=$HOME/.bin:$HOME/.bin/scripts:/usr/local/bin:$PATH
