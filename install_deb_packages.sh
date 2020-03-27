@@ -9,11 +9,13 @@ sudo apt-get install snapd \
                      i3-wm \
                      dmenu \
                      tmux \
-                     alacritty \
 		     python3 \
 		     python3-dev \
+
+sudo snap --classic install alacritty
 
 # fzf should be downloaded from git in ubuntu
 
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-~/.fzf install --all --xdg --no-update-rc
+~/.fzf/install --all --xdg --no-update-rc
+
