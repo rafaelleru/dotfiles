@@ -17,7 +17,7 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'vim-ctrlspace/vim-ctrlspace'
 Plugin 'vim-scripts/indentpython.vim'
-Bundle 'Valloric/YouCompleteMe'
+Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'nvie/vim-flake8'
 Plugin 'scrooloose/nerdtree'
