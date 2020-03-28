@@ -4,7 +4,7 @@ sudo pacman -S git \
 	py3status \
 	tmux \
 	neovim \
-	python-nvim \
+	python-pynvim \
 	python \
 	cmake \
 	go \
@@ -12,7 +12,6 @@ sudo pacman -S git \
 	npm \
 	mono \
 	alacritty \
-	autojump \
 	fzf \
 
 # Uncomment this if using regular arch linux
