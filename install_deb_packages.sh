@@ -6,6 +6,7 @@ sudo apt-get upgrade
 sudo apt-get install snapd \
                      neovim \
 		     autojump \
+		     curl \
                      i3-wm \
                      py3status \
                      dmenu \
@@ -13,15 +14,15 @@ sudo apt-get install snapd \
                      zsh \
 		     python3 \
 		     python3-dev \
-		     # YouCompleteMe
 		     cmake \
 		     build-essential \
-		     go \
+		     golang \
 		     npm \
 		     mono-complete
 		     
-
-sudo snap --classic install alacritty
+cd /tmp
+wget https://github.com/alacritty/alacritty/releases/download/v0.4.0/Alacritty-v0.4.0-ubuntu_18_04_amd64.deb
+sudo dpkg -i Alacritty-v0.4.0-ubuntu_18_04_amd64.deb
 
 # fzf should be downloaded from git in ubuntu
 
