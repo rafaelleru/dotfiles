@@ -11,3 +11,4 @@ emacs.d/irony*
 *-swp
 *-bk
 emacs.d/*/
+nvim/.netrwhist
