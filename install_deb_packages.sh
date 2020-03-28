@@ -29,3 +29,4 @@ sudo dpkg -i Alacritty-v0.4.0-ubuntu_18_04_amd64.deb
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install --all --xdg --no-update-rc
 
+usermod --shell /usr/bin/zsh $USERNAME
