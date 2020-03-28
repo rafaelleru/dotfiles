@@ -10,6 +10,7 @@ sudo apt-get install snapd \
                      py3status \
                      dmenu \
                      tmux \
+                     zsh \
 		     python3 \
 		     python3-dev \
 		     # YouCompleteMe
