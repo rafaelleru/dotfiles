@@ -107,11 +107,21 @@ alias cp="cp -R"
 
 export PATH=$HOME/.bin:$HOME/.bin/scripts:/usr/local/bin:$PATH
 
-. /usr/share/autojump/autojump.sh
+if [ -f /usr/share/autojump/autojump.zsh ]; then
+	. /usr/share/autojump/autojump.zsh
+fi
 
 # This is for debian based installations
-[ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh ] && source "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh
+if [ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh ]; then
+	source "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh
+fi
 
 # This is for arch installations
-[ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
-[ -f /usr/share/fzf/completions.zsh ] && source /usr/share/fzf/completions.zsh
+if [ -f /usr/share/fzf/key-bindings.zsh ]; then
+	source /usr/share/fzf/key-bindings.zsh
+fi
+
+if [ -f /usr/share/fzf/completions.zsh ]; then
+	source /usr/share/fzf/completions.zsh
+fi
+
