@@ -18,6 +18,7 @@ sudo apt-get install snapd \
 		     build-essential \
 		     golang \
 		     npm \
+		     git \
 		     mono-complete
 		     
 cd /tmp

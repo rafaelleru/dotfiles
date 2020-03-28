@@ -109,4 +109,9 @@ export PATH=$HOME/.bin:$HOME/.bin/scripts:/usr/local/bin:$PATH
 
 . /usr/share/autojump/autojump.sh
 
+# This is for debian based installations
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh ] && source "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh
+
+# This is for arch installations
+[ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
+[ -f /usr/share/fzf/completions.zsh ] && source /usr/share/fzf/completions.zsh
