@@ -107,5 +107,6 @@ alias cp="cp -R"
 
 export PATH=$HOME/.bin:$HOME/.bin/scripts:/usr/local/bin:$PATH
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 . /usr/share/autojump/autojump.sh
+
+[ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh ] && source "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh
