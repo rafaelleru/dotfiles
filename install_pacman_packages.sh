@@ -1,11 +1,11 @@
+#!/bin/bash 
+
 sudo pacman -S git \
-	i3-wm \
 	py3status \
-	dmenu \
 	tmux \
 	neovim \
+	python-nvim \
 	python \
-	base-devel \
 	cmake \
 	go \
 	go-tools \
@@ -15,10 +15,16 @@ sudo pacman -S git \
 	autojump \
 	fzf \
 
+# Uncomment this if using regular arch linux
+#sudo pacman -Sy i3-wm 
+#sudo pacman -Sy dmenu
 
-# install yay
-cd /opt
-sudo git clone https://aur.archlinux.org/yay-git.git
-sudo chown -R $USERNAME:$USERNAME /yay-git
-cd yay-git
-makepkg -si
+
+## install yay
+#cd /opt
+#sudo git clone https://aur.archlinux.org/yay-git.git
+#sudo chown -R $USERNAME:$USERNAME /yay-git
+#cd yay-git
+#makepkg -si
+
+yay -S autojump
