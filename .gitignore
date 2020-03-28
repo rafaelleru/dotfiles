@@ -12,3 +12,4 @@ emacs.d/irony*
 *-bk
 emacs.d/*/
 nvim/.netrwhist
+fonts/.uuid
