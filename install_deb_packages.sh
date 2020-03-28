@@ -7,10 +7,18 @@ sudo apt-get install snapd \
                      neovim \
 		     autojump \
                      i3-wm \
+                     py3status \
                      dmenu \
                      tmux \
 		     python3 \
 		     python3-dev \
+		     # YouCompleteMe
+		     cmake \
+		     build-essential \
+		     go \
+		     npm \
+		     mono-complete
+		     
 
 sudo snap --classic install alacritty
 
