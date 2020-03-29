@@ -355,7 +355,7 @@ exec compton
 exec_always feh --bg-scale $WALLPAPER
 
 # capture screen
-bindsym Print exec screen-capture
+bindsym Print exec ~/dotfiles/bin/scripts/screen-capture-X11.sh
 
 client.focused #2f343f #2f343f #ffffff #2f343f
 client.focused_inactive #333333 #333333 #888888 #292d2e
