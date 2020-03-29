@@ -276,24 +276,6 @@ mode "$authenticate" {
 }
 
 
-bar {
-  	#status_command i3status
-	status_command  py3status -c ~/.config/i3/i3status.conf
-	font pango: Source Code Pro 11
-        position top
-        strip_workspace_numbers no
-  
-  	colors {
-		separator #666666
-   		background #2f343f
-  		statusline #dddddd
-   		focused_workspace #2f343f #fffff0 #2f343f
-   	 	active_workspace #333333 #333333 #ffffff
-   	 	inactive_workspace #2f343f #2f343f #ffffff
-   	 	urgent_workspace #2f343a #900000 #ffffff
-  	}
-}
-
 ###############################################################################################
 #
 #                           KEYBINDINGS
@@ -350,6 +332,7 @@ exec "setxkbmap -layout us -option caps:escape"
 exec dunst &
 exec clipmenud &
 exec compton
+exec --no-startup-id $HOME/dotfiles/bin/scripts/launch-polybar.sh &
 
 # desktop wallpaper
 exec_always feh --bg-scale $WALLPAPER
