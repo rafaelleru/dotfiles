@@ -5,6 +5,7 @@
     ~/.config/alacritty: alacritty
     ~/.config/nvim: nvim
     ~/.config/i3: i3
+    ~/.config/flake8: flake8
     ~/.fonts: fonts
     ~/.gitconfig: gitconfig
     ~/.tmux.conf: tmux.conf
