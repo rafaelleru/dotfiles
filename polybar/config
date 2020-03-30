@@ -55,6 +55,7 @@ font-0 = Source Code Pro:pixelsize=12;1
 font-1 = SauceCodePro Nerd Font:style=Regular:size=12;1
 font-2 = FontAwesome:pixelsize=12;1
 font-3 = Font Awesome 5 Free:pixelsize=12;1
+font-4 = Jam\-icons:style=Regular:pixelsize=12;1
 
 modules-left = i3 xwindow  
 ;modules-center = mpd
@@ -164,12 +165,12 @@ label = %percentage%
 [module/cpu]
 type = internal/cpu
 interval = 2
-label =   cpu: %percentage%%
+label =    %percentage%%
 
 [module/memory]
 type = internal/memory
 interval = 2
-label = RAM %gb_used%/%gb_free% SWAP: %gb_swap_used%/%gb_swap_free%
+label =  %gb_used%/%gb_free%  %gb_swap_used%/%gb_swap_free%
 
 [module/wlan]
 type = internal/network
@@ -196,7 +197,7 @@ label-disconnected =  %local_ip%
 [module/loadavg]
 type= custom/script
 exec = awk '{print $1}' < /proc/loadavg
-label = load: %output%
+label =  %output%
 format = <label>
 
 [module/date]
