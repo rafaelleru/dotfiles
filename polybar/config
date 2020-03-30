@@ -46,18 +46,18 @@ border-size = 0
 border-color = #00000000
 
 padding-left = 0
-padding-right = 2
+padding-right = 1
 
-module-margin-left = 1
+module-margin-left = 0
 module-margin-right = 1
 
-font-0 = Source Code Pro:pixelsize=12;1
-font-1 = SauceCodePro Nerd Font:style=Regular:size=12;1
+font-0 = Source Code Pro:pixelsize=13;1
+font-1 = SauceCodePro Nerd Font:style=Regular:size=13;1
 font-2 = FontAwesome:pixelsize=12;1
 font-3 = Font Awesome 5 Free:pixelsize=12;1
 font-4 = Jam\-icons:style=Regular:pixelsize=12;1
 
-modules-left = i3 xwindow  
+modules-left = i3 xwindow
 ;modules-center = mpd
 modules-right = memory cpu loadavg eth wlan backlight-acpi pulseaudio battery date
 
@@ -165,12 +165,12 @@ label = %percentage%
 [module/cpu]
 type = internal/cpu
 interval = 2
-label =    %percentage%%
+label =   %percentage%%
 
 [module/memory]
 type = internal/memory
 interval = 2
-label =  %gb_used%/%gb_free%  %gb_swap_used%/%gb_swap_free%
+label =  %gb_used%/%gb_total%  %gb_swap_used%/%gb_swap_total%
 
 [module/wlan]
 type = internal/network
@@ -178,7 +178,7 @@ interface = wlp2s0
 interval = 3.0
 
 format-connected = <label-connected>
-label-connected =   %local_ip% on %essid% (%signal%%)
+label-connected =  %local_ip% on %essid% (%signal%%)
 
 [module/eth]
 type = internal/network
