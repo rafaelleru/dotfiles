@@ -3,6 +3,7 @@ set hidden
 set encoding=utf-8
 set showtabline=0
 set clipboard=unnamed
+set termguicolors
 
 let mapleader = "\<Space>"
 
@@ -18,18 +19,21 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'vim-ctrlspace/vim-ctrlspace'
 Plugin 'vim-scripts/indentpython.vim'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'shawncplus/phpcomplete.vim'
 Plugin 'dense-analysis/ale'
 Plugin 'nvie/vim-flake8'
 Plugin 'scrooloose/nerdtree'
 Plugin 'vim-vdebug/vdebug'
 Plugin 'preservim/nerdcommenter'
 Plugin 'lifepillar/vim-solarized8'
+Plugin 'iCyMind/NeoSolarized'
 Plugin 'junegunn/fzf'
 Plugin 'airblade/vim-gitgutter'
 " Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
-
-
 call vundle#end()            " required
+
+colorscheme NeoSolarized
+
 filetype plugin indent on    " required
 
 au BufRead, BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
@@ -47,11 +51,14 @@ let g:CtrlSpaceDefaultMappingKey = "<C-space> "
 " let g:CtrlSpaceFileEngine = s:vimfiles . '/plugged/vim-ctrlspace' . '/bin/file_engine_' . s:os . '_amd64'
 
 let g:vdebug_options = {
-      \ 'port' : 9000,
+      \ 'port' : 9001,
       \ 'server' : '',
       \ 'path_maps': {
-        \ '/var/www/html/ws-api': '${VCS_DIR}/ws-api'
+        \ '/var/www/html/ws-api': '/home/rl/projects/ws-api'
       \ }
-      \}
+      \ }
 
-
+let g:phpcomplete_mappings = {
+  \ 'jump_to_def': ',g',
+  \ 'jump_to_def_tabnew': ',t',
+  \ }
