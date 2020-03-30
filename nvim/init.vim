@@ -25,6 +25,7 @@ Plugin 'vim-vdebug/vdebug'
 Plugin 'preservim/nerdcommenter'
 Plugin 'lifepillar/vim-solarized8'
 Plugin 'junegunn/fzf'
+Plugin 'airblade/vim-gitgutter'
 " Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 
 
