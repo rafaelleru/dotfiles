@@ -125,3 +125,4 @@ if [ -f /usr/share/fzf/completions.zsh ]; then
 	source /usr/share/fzf/completions.zsh
 fi
 
+screenfetch -E
