@@ -17,3 +17,6 @@
 [submodule "bin/clipmenu"]
 	path = bin/clipmenu
 	url = https://github.com/cdown/clipmenu
+[submodule "bin/earthwall"]
+	path = bin/earthwall
+	url = https://www.github.com/rafaelleru/earthwall.git
