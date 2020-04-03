@@ -249,12 +249,10 @@ mode "$music" {
 
 
 bindsym Mod1+Shift+o mode "$output"
-set $output (V) VGA, (H) HDMI, (I) laptop, (T) toggle
+
+set $output (V) VGA, (H) HDMI, (I) laptop, (T) toggle, (O) cicle
 mode "$output" {
-  bindsym t exec "mons -o", mode "default"
-  bindsym v exec mons -e right, mode "default"
-  bindsym h exec mons -O 1, mode "default"
-  bindsym i exec mons -e right --auto, mode "default"
+  bindsym o exec "mons -n right"
 
   # back to normal
   bindsym Return mode "default"
