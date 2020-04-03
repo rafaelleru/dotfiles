@@ -333,7 +333,7 @@ exec compton
 exec --no-startup-id $HOME/dotfiles/bin/scripts/launch-polybar.sh &
 
 # desktop wallpaper
-exec_always feh --bg-scale $WALLPAPER
+exec_always $HOME/bin/earthwall/earthwall.sh &
 
 # capture screen
 bindsym Print exec ~/dotfiles/bin/scripts/screen-capture-X11.sh
