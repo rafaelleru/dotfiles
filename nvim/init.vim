@@ -51,12 +51,13 @@ let g:CtrlSpaceDefaultMappingKey = "<C-space> "
 " let g:CtrlSpaceFileEngine = s:vimfiles . '/plugged/vim-ctrlspace' . '/bin/file_engine_' . s:os . '_amd64'
 
 let g:vdebug_options = {
-      \ 'port' : 9001,
+      \ 'port' : 9002,
       \ 'server' : '',
       \ 'path_maps': {
         \ '/var/www/html/ws-api': '/home/rl/projects/ws-api'
       \ }
       \ }
+ let g:vdebug_features = { 'max_children': 128 }
 
 let g:phpcomplete_mappings = {
   \ 'jump_to_def': ',g',
