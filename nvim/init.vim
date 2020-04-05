@@ -1,5 +1,13 @@
 set number
+set showmode
+set showcmd
+set wildmenu
+set ruler
 set hidden
+set autoindent
+set hlsearch
+set showmatch
+set ignorecase
 set encoding=utf-8
 set showtabline=0
 set clipboard=unnamed
