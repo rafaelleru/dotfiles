@@ -101,6 +101,7 @@ source $ZSH/oh-my-zsh.sh
 alias vim="nvim"
 alias vimconfig="nvim ~/.config/nvim/init.vim"
 alias i3config="nvim ~/.config/i3/config"
+alias dwmconfig="nvim ~/dotfiles/suckless/dwm/config.h"
 alias mkdir="mkdir -p"
 alias ls="ls -lh"
 alias cp="cp -R"
