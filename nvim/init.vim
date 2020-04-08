@@ -19,6 +19,7 @@ set nocompatible              " required
 filetype off                  " required
 
 set rtp+=~/.config/nvim/bundle/Vundle.vim
+set rtp+=~/.vim/bundle
 set rtp+=~/.fzf
 
 call vundle#begin()
@@ -37,6 +38,7 @@ Plugin 'lifepillar/vim-solarized8'
 Plugin 'iCyMind/NeoSolarized'
 Plugin 'junegunn/fzf'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'airblade/vim-fugitive'
 " Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 call vundle#end()            " required
 
