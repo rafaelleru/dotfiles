@@ -65,8 +65,8 @@ static const struct arg args[] = {
 	/* function format          argument */
 	//{ run_command, " ",           "echo `light`" },
 	//{ vol_perc, "%s",           "Master" },
-	{ cpu_perc, ": %1s%% ", NULL },
-	{ load_avg, "L: %1s|", NULL },
+	{ cpu_perc, " %1s%% ", NULL },
+	{ load_avg, " %1s|", NULL },
 	{ ram_perc, " %1s%% ", NULL },
 	{ swap_perc, " %1s%%|", NULL },
 	{ disk_free, "HOME: %1s|", "/"},
