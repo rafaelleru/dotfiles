@@ -1,7 +1,7 @@
-/home/rl/dotfiles/bin/earthwall/earthwall.sh&
+$HOME/bin/earthwall/earthwall.sh&
 pulseaudio --daemonize
+clipmenud&
 compton&
-slack&
 thunderbird&
 slstatus&
 clipmenud&
