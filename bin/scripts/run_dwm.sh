@@ -3,6 +3,9 @@ pulseaudio --daemonize
 clipmenud&
 compton&
 thunderbird&
-slstatus&
+#slstatus&
 clipmenud&
-dwm
+$HOME/dotfiles/bin/scripts/status.sh&
+
+exec dwm 2> /tmp/dwm.log
+
