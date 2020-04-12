@@ -13,6 +13,7 @@ sudo pacman -S git \
 	mono \
 	alacritty \
 	fzf \
+	light
 
 # Uncomment this if using regular arch linux
 #sudo pacman -Sy i3-wm 
