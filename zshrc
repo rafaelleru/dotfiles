@@ -105,6 +105,8 @@ alias dwmconfig="nvim ~/dotfiles/suckless/dwm/config.h"
 alias mkdir="mkdir -p"
 alias ls="ls -lh"
 alias cp="cp -R"
+alias dps="docker ps"
+alias glg="git lg"
 
 export PATH=$HOME/.bin:$HOME/.bin/scripts:/usr/local/bin:$PATH
 
