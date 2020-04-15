@@ -40,6 +40,8 @@ Plugin 'junegunn/fzf'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'airblade/vim-fugitive'
 " Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
 call vundle#end()            " required
 
 colorscheme NeoSolarized
@@ -59,6 +61,10 @@ let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 
 let g:CtrlSpaceDefaultMappingKey = "<C-space> "
 " let g:CtrlSpaceFileEngine = s:vimfiles . '/plugged/vim-ctrlspace' . '/bin/file_engine_' . s:os . '_amd64'
+"
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-n>"
+let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 
 let g:vdebug_options = {
       \ 'port' : 9002,
