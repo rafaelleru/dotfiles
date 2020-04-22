@@ -45,7 +45,7 @@ Plugin 'honza/vim-snippets'
 call vundle#end()            " required
 
 colorscheme NeoSolarized
-
+let g:neosolarized_termtrans=1
 filetype plugin indent on    " required
 
 au BufRead, BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
