@@ -65,10 +65,25 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
+static const char *passmenucmd[]  = { "/home/rl/bin/passmenu", NULL };
+static const char *soundupcmd[]  = { "amixer", "-q", "sset", "Master", "5%+", NULL };
+static const char *sounddowncmd[]  = { "amixer", "-q", "sset", "Master", "5%-", NULL };
+static const char *soundtogglecmd[]  = { "amixer", "-q", "sset", "Master", "toggle", NULL };
+
+
+/* defined keys */
+#define XF86MonBrightnessDown		0x1008ff03
+#define XF86MonBrightnessUp			0x1008ff02
+#define XF86AudioMute				0x1008ff12
+#define XF86AudioLowerVolume		0x1008ff11
+#define XF86AudioRaiseVolume		0x1008ff13
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
+	{ 0,                       	XF86AudioRaiseVolume,      spawn,          {.v = soundupcmd } },
+	{ 0,                       	XF86AudioLowerVolume,      spawn,          {.v = sounddowncmd } },
+	{ MODKEY,               	XK_o,      spawn,          {.v = passmenucmd } },
 	//{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
