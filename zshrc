@@ -107,6 +107,7 @@ alias ls="ls -lh"
 alias cp="cp -R"
 alias dps="docker ps"
 alias glg="git lg"
+alias tmux="TERM=xterm-256color tmux"
 
 export PATH=$HOME/.bin:$HOME/.bin/scripts:/usr/local/bin:$PATH
 
