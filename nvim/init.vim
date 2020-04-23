@@ -79,3 +79,16 @@ let g:phpcomplete_mappings = {
   \ 'jump_to_def': ',g',
   \ 'jump_to_def_tabnew': ',t',
   \ }
+
+
+" statusline
+set statusline=
+set statusline+=\ %y
+set statusline+=\ %r
+set statusline+=%#CursorLineNr#
+set statusline+=\ %F
+set statusline+=\ %M
+set statusline+=%= "Right side settings
+set statusline+=%#Search#
+set statusline+=\ %c:%l/%L
+set statusline+=\ [%p%%]
