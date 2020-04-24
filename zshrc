@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/.bin:/usr/local/bin:$PATH
+export PATH=$HOME/.bin:/usr/local/bin:/snap/bin/:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -99,6 +99,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
 alias vim="nvim"
+alias v="nvim"
 alias vimconfig="nvim ~/.config/nvim/init.vim"
 alias i3config="nvim ~/.config/i3/config"
 alias dwmconfig="nvim ~/dotfiles/suckless/dwm/config.h"
@@ -128,5 +129,10 @@ fi
 if [ -f /usr/share/fzf/completions.zsh ]; then
 	source /usr/share/fzf/completions.zsh
 fi
+
+#Chromium API Keys
+export GOOGLE_API_KEY="AIzaSyDUIXvzVrt5OkVsgXhQ6NFfvWlA44by-aw"
+export GOOGLE_DEFAULT_CLIENT_ID="449907151817.apps.googleusercontent.com"
+export GOOGLE_DEFAULT_CLIENT_SECRET="miEreAep8nuvTdvLums6qyLK"
 
 screenfetch -E
