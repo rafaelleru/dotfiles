@@ -1,0 +1,43 @@
+# af-magic.zsh-theme
+# Repo: https://github.com/andyfleming/oh-my-zsh
+# Direct Link: https://github.com/andyfleming/oh-my-zsh/blob/master/themes/af-magic.zsh-theme
+
+
+# settings
+typeset +H return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
+typeset +H my_gray="$FG[237]"
+typeset +H my_orange="$FG[214]"
+
+# separator dashes size
+function afmagic_dashes {
+	[[ -n "${VIRTUAL_ENV-}" && -z "${VIRTUAL_ENV_DISABLE_PROMPT-}" && "$PS1" = \(* ]] \
+		&& echo $(( COLUMNS - ${#VIRTUAL_ENV} - 3 )) \
+		|| echo $COLUMNS
+}
+
+# primary prompt
+PS1='$FG[237]${(l.$(afmagic_dashes)..-.)}%{$reset_color%}
+$FG[240]%n@%m%{$reset_color%}% $FG[032] %~$FG[075]($FG[078]$(git_prompt_info)$(git_commits_behind)$(git_commits_ahead)$FG[075])%{$reset_color%}$(hg_prompt_info) $FG[105]%(!.#.»)%{$reset_color%}  '
+PS2='%{$fg[red]%}\ %{$reset_color%}'
+RPS1='${return_code}'
+
+# right prompt
+(( $+functions[virtualenv_prompt_info] )) && RPS1+='$(virtualenv_prompt_info)'
+
+# git settings
+ZSH_THEME_GIT_PROMPT_PREFIX=""
+ZSH_THEME_GIT_PROMPT_CLEAN="%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_DIRTY="$my_orange*%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_SUFFIX=""
+ZSH_THEME_GIT_COMMITS_BEHIND_PREFIX=" -"
+ZSH_THEME_GIT_COMMITS_AHEAD_PREFIX=" +"
+
+# hg settings
+ZSH_THEME_HG_PROMPT_PREFIX="$FG[075]($FG[078]"
+ZSH_THEME_HG_PROMPT_CLEAN=""
+ZSH_THEME_HG_PROMPT_DIRTY="$my_orange*%{$reset_color%}"
+ZSH_THEME_HG_PROMPT_SUFFIX="$FG[075])%{$reset_color%}"
+
+# virtualenv settings
+ZSH_THEME_VIRTUALENV_PREFIX=" $FG[075]["
+ZSH_THEME_VIRTUALENV_SUFFIX="]%{$reset_color%}"
