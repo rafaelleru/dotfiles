@@ -15,9 +15,26 @@ function afmagic_dashes {
 		|| echo $COLUMNS
 }
 
+
+function git_info() {
+	p=$(git_prompt_info)
+
+	if [[ -n $p ]]; then
+		p="%{$reset_color%}[$p"
+
+		if [[ -n $(git_commits_behind) || -n $(git_commits_ahead) ]]; then
+			p="$p $(git_commits_ahead)$(git_commits_behind)"
+		fi
+
+		p="$p]%{$reset_color%}"
+	fi
+	
+	echo $p
+}
+
 # primary prompt
 PS1='$FG[237]${(l.$(afmagic_dashes)..-.)}%{$reset_color%}
-$FG[240]%n@%m%{$reset_color%}% $FG[032] %~$FG[075]($FG[078]$(git_prompt_info)$(git_commits_behind)$(git_commits_ahead)$FG[075])%{$reset_color%}$(hg_prompt_info) $FG[105]%(!.#.»)%{$reset_color%}  '
+$FG[240]%n@%m%{$reset_color%}% $FG[032] %~$(git_info)%{$reset_color%}$(hg_prompt_info) $FG[105]%(!.#.»)%{$reset_color%} '
 PS2='%{$fg[red]%}\ %{$reset_color%}'
 RPS1='${return_code}'
 
@@ -29,9 +46,10 @@ ZSH_THEME_GIT_PROMPT_PREFIX=""
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_DIRTY="$my_orange*%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX=""
-ZSH_THEME_GIT_COMMITS_BEHIND_PREFIX=" $FG[001]-"
+
+ZSH_THEME_GIT_COMMITS_BEHIND_PREFIX="$FG[001]-"
 ZSH_THEME_GIT_COMMITS_BEHIND_SUFFIX="%{$reset_color%}"
-ZSH_THEME_GIT_COMMITS_AHEAD_PREFIX=" $FG[002]+"
+ZSH_THEME_GIT_COMMITS_AHEAD_PREFIX="$FG[002]+"
 ZSH_THEME_GIT_COMMITS_AHEAD_SUFFIX="%{$reset_color%}"
 
 # hg settings
