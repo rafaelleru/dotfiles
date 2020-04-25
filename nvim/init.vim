@@ -92,3 +92,10 @@ set statusline+=%= "Right side settings
 set statusline+=%#Search#
 set statusline+=\ %c:%l/%L
 set statusline+=\ [%p%%]
+
+
+" Keeps track of all changes done, thhis way if I can recover changes even in
+" a closed file
+"
+set undofile
+set undodir=$HOME/.local/vim_undo_dir
