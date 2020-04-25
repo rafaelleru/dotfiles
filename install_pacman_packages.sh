@@ -1,7 +1,6 @@
 #!/bin/bash 
 
 sudo pacman -S git \
-	py3status \
 	tmux \
 	neovim \
 	python-pynvim \
@@ -13,6 +12,7 @@ sudo pacman -S git \
 	mono \
 	alacritty \
 	fzf \
+	scrot \
 	light
 
 # Uncomment this if using regular arch linux
