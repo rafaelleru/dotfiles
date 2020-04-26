@@ -25,7 +25,6 @@ set rtp+=~/.fzf
 call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
-Plugin 'vim-ctrlspace/vim-ctrlspace'
 Plugin 'vim-scripts/indentpython.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'shawncplus/phpcomplete.vim'
@@ -59,8 +58,6 @@ map <leader>ff :FZF~<CR>
 
 let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 
-let g:CtrlSpaceDefaultMappingKey = "<C-space> "
-" let g:CtrlSpaceFileEngine = s:vimfiles . '/plugged/vim-ctrlspace' . '/bin/file_engine_' . s:os . '_amd64'
 "
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-n>"
@@ -92,7 +89,6 @@ set statusline+=%= "Right side settings
 set statusline+=%#Search#
 set statusline+=\ %c:%l/%L
 set statusline+=\ [%p%%]
-
 
 " Keeps track of all changes done, thhis way if I can recover changes even in
 " a closed file
