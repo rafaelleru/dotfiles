@@ -10,6 +10,7 @@
     ~/.gitconfig: gitconfig
     ~/.config/polybar: polybar
     ~/.profile: profile
+    ~/.oh-my-zsh/custom/themes/rafaelleru.zsh-theme: oh-my-zsh/custom/themes/rafaelleru.zsh-theme
     ~/.tmux.conf: tmux.conf
     ~/.zshrc: zshrc
 
