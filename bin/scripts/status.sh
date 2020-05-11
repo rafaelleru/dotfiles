@@ -3,9 +3,13 @@
 while true
 do
 	date=`date '+%Y-%m-%d %H:%M:%S'`
-	bat=$(cat /sys/class/power_supply/BAT0/capacity)%\ $(cat /sys/class/power_supply/BAT0/status)
+	if [[ -f '/sys/class/power_supply/BAT0/capacity' ]]; then
+		bat='|  '$(cat /sys/class/power_supply/BAT0/capacity)%\ $(cat /sys/class/power_supply/BAT0/status)
+	else
+		bat=''
+	fi
 	vol=`amixer get Master | tail -n1 | grep -Po '\\[\\K[^%]*' | head -n1`
-	wifi_name=`nmcli | grep -m 1 wlp3s0 | cut -d ' ' -f 4`
+	wifi_name=`nmcli | grep -m 1 wlp2s0 | cut -d ' ' -f 4`
 	mem=`free -h | grep Mem: | awk 'OFS="/" {print $3, $2}'`
 	swap=`free -h | grep Swap: | awk 'OFS="/" {print $3, $2}'`
 	brightness=$(light)\%
@@ -15,6 +19,6 @@ do
 
 # This line is here in case I cannot use utf-8 fonts. This should not happen since fonts are in my dotfiles repository
 #echo "CPU: $cpu | RAM: $mem | SWAP: $swap | LOAD: $load | WIFI: $wifi_name | BRIGHTNESS: $brightness | VOL: $vol % | BAT: $bat | $date"
-	xsetroot -name " $cpu| $load| $mem| $swap| $wifi_name| $brightness| $vol%|  $bat|$date"
+	xsetroot -name " $cpu| $load| $mem| $swap| $wifi_name| $brightness| $vol%$bat|$date"
 	sleep 1
 done
