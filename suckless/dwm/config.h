@@ -66,6 +66,7 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
 static const char *passmenucmd[]  = { "/home/rl/bin/passmenu", NULL };
+static const char *clipmenucmd[]  = { "/home/rl/bin/clipmenu/clipmenu", NULL };
 static const char *soundupcmd[]  = { "amixer", "-q", "sset", "Master", "5%+", NULL };
 static const char *sounddowncmd[]  = { "amixer", "-q", "sset", "Master", "5%-", NULL };
 static const char *soundtogglecmd[]  = { "amixer", "-q", "sset", "Master", "toggle", NULL };
@@ -84,6 +85,7 @@ static Key keys[] = {
 	{ 0,                       	XF86AudioRaiseVolume,      spawn,          {.v = soundupcmd } },
 	{ 0,                       	XF86AudioLowerVolume,      spawn,          {.v = sounddowncmd } },
 	{ MODKEY,               	XK_o,      spawn,          {.v = passmenucmd } },
+	{ MODKEY,               	XK_y,      spawn,          {.v = clipmenucmd } },
 	//{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
