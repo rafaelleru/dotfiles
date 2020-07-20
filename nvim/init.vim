@@ -41,6 +41,7 @@ Plugin 'airblade/vim-fugitive'
 " Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
+Plugin 'alfredodeza/jacinto.vim'
 call vundle#end()            " required
 
 colorscheme NeoSolarized
@@ -51,6 +52,8 @@ au BufRead, BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 let python_highlight_all=1
 syntax on
 
+"Get the 2-space YAML as the default when hit carriage return after the colon
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 let g:ycm_autoclose_preview_window_after_completion=1
 map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
@@ -95,3 +98,4 @@ set statusline+=\ [%p%%]
 "
 set undofile
 set undodir=$HOME/.local/vim_undo_dir
+
