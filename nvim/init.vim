@@ -26,8 +26,8 @@ call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
 Plugin 'vim-scripts/indentpython.vim'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'shawncplus/phpcomplete.vim'
+"Plugin 'Valloric/YouCompleteMe'
+Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 Plugin 'dense-analysis/ale'
 Plugin 'nvie/vim-flake8'
 Plugin 'scrooloose/nerdtree'
@@ -56,7 +56,7 @@ syntax on
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 let g:ycm_autoclose_preview_window_after_completion=1
-map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+map <leader>g <Plug>(coc-definition)
 map <leader>ff :FZF~<CR>
 
 let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
@@ -73,13 +73,17 @@ let g:vdebug_options = {
         \ '/var/www/html/ws-api': '/home/rl/projects/ws-api'
       \ }
       \ }
- let g:vdebug_features = { 'max_children': 128 }
+let g:vdebug_features = { 'max_children': 128 }
 
-let g:phpcomplete_mappings = {
-  \ 'jump_to_def': ',g',
-  \ 'jump_to_def_tabnew': ',t',
-  \ }
-
+let g:ymc_language_server =
+  \ [ 
+  \   {
+  \     'name': 'php',
+  \     'cmdline': [ 'intelephense', '--stdio' ],
+  \     'filetypes': [ 'php' ],
+  \     'project_root_files': [ '.git', 'compose.json' ]
+  \   }
+  \ ]
 
 " statusline
 set statusline=
