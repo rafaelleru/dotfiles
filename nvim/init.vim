@@ -42,9 +42,12 @@ Plugin 'airblade/vim-fugitive'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'alfredodeza/jacinto.vim'
+Plugin 'vimoxide/vim-cinnabar'
+Plugin 'luochen1990/indent-detector.vim'
+Plugin 'lervag/vimtex'
 call vundle#end()            " required
 
-colorscheme NeoSolarized
+colorscheme cinnabar
 let g:neosolarized_termtrans=1
 filetype plugin indent on    " required
 
@@ -58,6 +61,7 @@ autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 let g:ycm_autoclose_preview_window_after_completion=1
 map <leader>g <Plug>(coc-definition)
 map <leader>ff :FZF~<CR>
+map <leader>n :NERDTreeToggle<CR> 
 
 let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 
@@ -65,6 +69,17 @@ let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-n>"
 let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+
+" use <tab> for trigger completion and navigate to the next complete item
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+inoremap <silent><expr> <Tab>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<Tab>" :
+      \ coc#refresh()
 
 let g:vdebug_options = {
       \ 'port' : 9002,
@@ -97,7 +112,7 @@ set statusline+=%#Search#
 set statusline+=\ %c:%l/%L
 set statusline+=\ [%p%%]
 
-" Keeps track of all changes done, thhis way if I can recover changes even in
+" Keeps track of all changes done, this way if I can recover changes even in
 " a closed file
 "
 set undofile
