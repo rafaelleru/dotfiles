@@ -138,3 +138,5 @@ export GOOGLE_DEFAULT_CLIENT_ID="449907151817.apps.googleusercontent.com"
 export GOOGLE_DEFAULT_CLIENT_SECRET="miEreAep8nuvTdvLums6qyLK"
 
 screenfetch -E
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
