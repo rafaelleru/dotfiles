@@ -1,0 +1,115 @@
+set realname = "Rafael Leyva"
+set from = "rafaelleru95103@gmail.com"
+
+# If you have another address:
+alternates "rafaelleru95103@correo.ugr.es"
+
+source "rafaelleru"
+source "rafael.leyva"
+
+set mail_check = 60
+
+###############
+# Pager settings
+#
+ignore *
+unignore From Message-ID Date To Cc Bcc Subject
+
+set pager_stop
+unset markers
+
+# Prefer plain text to html.
+# However, for brain dead clients that bundle attachments inside a
+# multipart/alternative, prefer that alternative.
+alternative_order multipart/mixed multipart/related text/plain
+
+# Consult mime.types for determining types of these attachments
+mime_lookup application/octet-stream
+
+# This requires a ~/.mailcap entry with the copiousoutput flag, such as:
+# text/html; lynx -dump -width ${COLUMNS:-80} %s; nametemplate=%s.html; copiousoutput
+auto_view text/html
+
+###############
+# Index settings
+#
+set quit = ask-yes
+
+# Remember to `mkdir -p ~/.neomutt/hcache` first:
+set header_cache= "~/.neomutt/hcache"
+set message_cachedir="~/.neomutt/cache/"
+
+###############
+# Message composition settings
+#
+set edit_headers
+
+set editor = "nvim"
+
+set mime_type_query_command = "xdg-mime query filetype"
+
+# lbdb is a versatile contact query tool.
+# Invoke via ctrl-t in an address prompt
+set query_command = "/usr/bin/lbdbq"
+
+###############
+# GnuPG
+#
+#unset crypt_use_gpgme
+#source /usr/local/share/doc/neomutt/samples/gpg.rc
+#set pgp_default_key = "0x1234567890ABCDEF"
+#set crypt_opportunistic_encrypt
+#set postpone_encrypt
+
+
+# Ordenar los mensajes por fecha descendenttemente
+set sort = reverse-date
+
+set sidebar_visible
+set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
+set mail_check_stats
+
+bind index,pager \CK sidebar-prev
+# Ctrl-Shift-P – Previous Mailbox
+bind index,pager \CJ sidebar-next
+# Ctrl-Shift-N – Next Mailbox
+bind index,pager \CO sidebar-open
+# Ctrl-Shift-O – Open Highlighted Mailbox
+#
+bind index,pager  \CR imap-fetch-mail 
+
+#
+#set sidebar_short_path
+# Shorten mailbox names
+set sidebar_delim_chars="/"
+# Delete everything up to the last / character
+set sidebar_folder_indent
+# Indent folders whose names we've shortened
+set sidebar_indent_string="  "
+# Indent with two spaces
+#
+#
+# status bar, date format, finding stuff etc.
+set status_chars = " *%A"
+set status_format = "[ Folder: %f ] [%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]%>─%?p?( %p postponed )?"
+set date_format = "%d.%m.%Y %H:%M"
+set index_format = "[%Z] %?X?A&-? %D  %-20.20F  %s"
+set sort = threads
+set sort_aux = reverse-last-date-received
+set uncollapse_jump
+set sort_re
+set reply_regexp = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
+set quote_regexp = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
+set send_charset = "utf-8:iso-8859-1:us-ascii"
+set charset = "utf-8"
+
+# Pager View Options
+set pager_index_lines = 10
+set pager_context = 3
+set pager_stop
+set menu_scroll
+set tilde
+unset markers
+
+set mailcap_path 	= ~/.neomutt/mailcap
+alternative_order text/plain text/html
