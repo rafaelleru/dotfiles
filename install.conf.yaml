@@ -13,6 +13,7 @@
     ~/.oh-my-zsh/custom/themes/rafaelleru.zsh-theme: oh-my-zsh/custom/themes/rafaelleru.zsh-theme
     ~/.tmux.conf: tmux.conf
     ~/.zshrc: zshrc
+    ~/.neomutt/neomuttrc: neomuttrc
 
 - shell:
   - [git clone https://github.com/VundleVim/Vundle.vim.git nvim/bundle/Vundle.vim, Cloning vim submodule]
