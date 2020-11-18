@@ -2,3 +2,5 @@
 .gitconfig
 fonts/.uuid
 nvim/.netrwhist
+neomutt/hcache
+neomutt/cache
