@@ -12,11 +12,11 @@ unset record                # Gmail auto-stores in "+[Gmail].Sent Mail"
 unset trash                 # Unset, deletion will remove labels
 set postponed = "" 
 
-mailboxes = =INBOX =Amazon =Compras =CrossFit =Github =Newsletter
+mailboxes = =INBOX =facturas =Amazon =Compras =CrossFit =Github =Newsletter
 
 # msmtp is a solid SMTP client.
 # neomutt also has built-in SMTP, or you can use an MTA like exim4 or postfix.
 set sendmail = "/usr/bin/msmtp"
-set smtp_pass = "`gpg --batch -q --decrypt ~/.neomutt/account.gpg`"
+set smtp_pass = "`gpg --batch -q --decrypt ~/.password-store/google.com.gpg`"
 set smtp_url=smtps://rafaelleru95103@gmail.com@smtp.gmail.com:465
 set ssl_force_tls = yes
