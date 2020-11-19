@@ -1,5 +1,6 @@
 source $HOME/.profile
-$HOME/bin/earthwall/earthwall.sh&
+# $HOME/bin/earthwall/earthwall.sh&
+feh --bg-scale /home/rl/Pictures/wallpaper.jpg
 start-pulseaudio-x11
 clipmenud&
 compton&

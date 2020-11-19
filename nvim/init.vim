@@ -1,4 +1,4 @@
-set relativenumber
+set number relativenumber
 set showmode
 set showcmd
 set wildmenu
@@ -45,6 +45,8 @@ Plugin 'alfredodeza/jacinto.vim'
 Plugin 'vimoxide/vim-cinnabar'
 Plugin 'luochen1990/indent-detector.vim'
 Plugin 'lervag/vimtex'
+Plugin 'xolox/vim-notes'
+Plugin 'xolox/vim-misc'
 call vundle#end()            " required
 
 colorscheme cinnabar
@@ -117,4 +119,6 @@ set statusline+=\ [%p%%]
 "
 set undofile
 set undodir=$HOME/.local/vim_undo_dir
+
+" LaTeX flavor
 let g:tex_flavor = 'latex'
