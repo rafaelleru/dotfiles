@@ -117,4 +117,4 @@ set statusline+=\ [%p%%]
 "
 set undofile
 set undodir=$HOME/.local/vim_undo_dir
-
+let g:tex_flavor = 'latex'
