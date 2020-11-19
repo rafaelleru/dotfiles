@@ -1,10 +1,12 @@
 set realname = "Rafael Leyva"
 set from = "rafaelleru95103@gmail.com"
 
+# If you have another address:
+alternates "rafaelleru95103@correo.ugr.es"
+
 source "colors"
 source "rafaelleru"
 #source "rafael.leyva"
-#
 set mbox_type="Maildir"
 
 set mail_check = 60
