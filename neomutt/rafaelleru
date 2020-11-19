@@ -4,7 +4,7 @@ set imap_user = "rafaelleru95103@gmail.com"
 # Previous command won't work in some shells. You can use the following:
 # echo -n 'mypassword' | gpg --encrypt -r 0x1234567890ABCDEF > ~/.neomutt/account.gpg
 # !!! But be warned your password will be saved to shell history.
-set imap_pass = "`gpg --batch -q --decrypt ~/.neomutt/account.gpg`"
+set imap_pass = "`gpg --batch -q --decrypt ~/.password-store/google.com.gpg`"
 
 set folder = imaps://rafaelleru95103@imap.gmail.com//
 set spoolfile = "+INBOX"
