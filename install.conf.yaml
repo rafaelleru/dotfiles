@@ -14,9 +14,12 @@
     ~/.tmux.conf: tmux.conf
     ~/.zshrc: zshrc
     ~/.neomutt/neomuttrc: neomuttrc
+    ~/.config/systemd/user/mbsync.service: mbsync.service
+    ~/.config/systemd/user/mbsync.timer: mbsync.timer
 
 - shell:
   - [git clone https://github.com/VundleVim/Vundle.vim.git nvim/bundle/Vundle.vim, Cloning vim submodule]
   - [sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --keep-zshrc --unattended, Installig oh my zsh! framework]
   - [git clone https://github.com/cdown/clipnotify.git ~/bin/clipnotify && cd ~/bin/clipnotify && make && sudo install -D -m755 ~/bin/clipnotify/clipnotify /usr/bin/clipnotify]
   - [git clone https://github.com/cdown/clipmenu.git ~/bin/clipmenu && cd ~/bin/clipmenu && sudo make install]
+  - [systemctl --user enable mbsync; systemctl --user start mbsync]
