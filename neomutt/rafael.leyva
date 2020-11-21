@@ -1,23 +1,19 @@
-set imap_user = "rafael.leyva@4iq.com"
-
-# echo -n "$(read -s;echo -n "$REPLY")" | gpg --encrypt -r 0x1234567890ABCDEF > ~/.neomutt/account.gpg
-# Previous command won't work in some shells. You can use the following:
-# echo -n 'mypassword' | gpg --encrypt -r 0x1234567890ABCDEF > ~/.neomutt/account.gpg
-# !!! But be warned your password will be saved to shell history.
-set imap_pass = "`gpg --batch -q --decrypt ~/.password-store/work/4iq.google.com.gpg`"
-
-set folder = imaps://rafael.leyva@4iq.com@imap.gmail.com//
-set spoolfile = "+INBOX"
-unset record                # Gmail auto-stores in "+[Gmail].Sent Mail"
-unset trash                 # Unset, deletion will remove labels
-set postponed = "" 
-
-mailboxes = =INBOX =BitBucket =JIRA =Confluence
-
+set folder="/home/rl/.mail/4iq"
+mailboxes ="Inbox"
+mailboxes `find ~/.mail/4iq/* -maxdepth 0 -type d | grep -v "tmp\|new\|cur" | sed 's|/home/rl/.mail/4iq/|=\"|g' | sed 's|$|\"|g' | tr '\n' ' '`
+set spoolfile="/home/rl/.mail/4iq/Inbox"
+set from = "rafael.leyva@4iq.com"
+set use_from = "yes"
+set reply_to = "yes"
+#set sendmail = "msmtp -a account1"
+set sendmail_wait = 0
+set mbox = "+gmail/INBOX"
+set postponed = "+gmail/Drafts"
+set record = "+gmail/Sent"
 
 # msmtp is a solid SMTP client.
 # neomutt also has built-in SMTP, or you can use an MTA like exim4 or postfix.
 set sendmail = "/usr/bin/msmtp"
-set smtp_pass = "`gpg --batch -q --decrypt ~/.neomutt/account.gpg`"
+set smtp_pass = "`cat $HOME/.secrets/4iq`"
 set smtp_url=smtps://rafael.leyva@4iq.com@smtp.gmail.com:465
 set ssl_force_tls = yes

@@ -1,8 +1,12 @@
+# Automatically create missing mailboxes, both locally and on the server
+Create Both
+# Save the synchronization state files in the relevant directory
+SyncState *
+
 IMAPAccount gmail
 # Address to connect to
 Host imap.gmail.com
 User rafaelleru95103@gmail.com
-
 # This is far from ideal but will work for now
 PassCmd "cat $HOME/.secrets/gmail"
 # Use SSL
@@ -28,7 +32,33 @@ Slave :gmail-local:
 Patterns * ![Gmail]* "[Gmail]/Sent Mail" "[Gmail]/Starred" "[Gmail]/All Mail"
 # Or include everything
 #Patterns *
-# Automatically create missing mailboxes, both locally and on the server
-Create Both
-# Save the synchronization state files in the relevant directory
-SyncState *
+
+IMAPAccount 4iq
+# Address to connect to
+Host imap.gmail.com
+User rafael.leyva@4iq.com
+# This is far from ideal but will work for now
+PassCmd "cat $HOME/.secrets/4iq"
+# Use SSL
+SSLType IMAPS
+# The following line should work. If get certificate errors, uncomment the two following lines and read the "Troubleshooting" section.
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+#CertificateFile ~/.cert/imap.gmail.com.pem
+#CertificateFile ~/.cert/Equifax_Secure_CA.pem
+
+IMAPStore 4iq-remote
+Account 4iq
+
+MaildirStore 4iq-local
+SubFolders Verbatim
+# The trailing "/" is important
+Path ~/.mail/4iq/
+Inbox ~/.mail/4iq/Inbox
+
+Channel 4iq
+Master :4iq-remote:
+Slave :4iq-local:
+# Exclude everything under the internal [Gmail] folder, except the interesting folders
+Patterns * ![Gmail]* "[Gmail]/Sent Mail" "[Gmail]/Starred" "[Gmail]/All Mail"
+# Or include everything
+#Patterns *

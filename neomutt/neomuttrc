@@ -141,6 +141,7 @@ bind index                      \Cy previous-line
 
 bind pager,index                d   noop
 bind pager,index                dd  delete-message
+bind pager,index                u   undelete-message
 
 # Mail & Reply
 bind index                      \Cm list-reply # Doesn't work currently
