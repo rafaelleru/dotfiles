@@ -103,6 +103,7 @@ source $ZSH/oh-my-zsh.sh
 alias vim="nvim"
 alias v="nvim"
 alias t="task"
+alias nnn="nnn -de"
 alias vimconfig="nvim ~/.config/nvim/init.vim"
 alias i3config="nvim ~/.config/i3/config"
 alias dwmconfig="nvim ~/dotfiles/suckless/dwm/config.h"
