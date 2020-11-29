@@ -1,5 +1,9 @@
 - clean: ["~"]
 
+- shell:
+  - [mkdir -p ~/.config/systemd/user/]
+  - [mkdir -p ~/.mail/gmail]
+
 - link:
     ~/.bin: bin
     ~/.config/alacritty: alacritty
@@ -13,7 +17,7 @@
     ~/.oh-my-zsh/custom/themes/rafaelleru.zsh-theme: oh-my-zsh/custom/themes/rafaelleru.zsh-theme
     ~/.tmux.conf: tmux.conf
     ~/.zshrc: zshrc
-    ~/.neomutt/neomuttrc: neomuttrc
+    ~/.neomutt: neomutt
     ~/.config/systemd/user/mbsync.service: mbsync.service
     ~/.config/systemd/user/mbsync.timer: mbsync.timer
 

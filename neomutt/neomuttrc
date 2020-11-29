@@ -1,12 +1,11 @@
 set realname = "Rafael Leyva"
 set from = "rafaelleru95103@gmail.com"
 
-# If you have another address:
-alternates "rafaelleru95103@correo.ugr.es"
-
 source "colors"
 source "rafaelleru"
 #source "rafael.leyva"
+#
+set mbox_type="Maildir"
 
 set mail_check = 60
 
@@ -66,6 +65,7 @@ set query_command = "/usr/bin/lbdbq"
 # Ordenar los mensajes por fecha descendenttemente
 set sort = reverse-date
 
+# TODO: Checkk format
 set sidebar_visible
 set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
 set mail_check_stats
@@ -77,7 +77,6 @@ bind index,pager \CJ sidebar-next
 bind index,pager \CO sidebar-open
 # Ctrl-Shift-O – Open Highlighted Mailbox
 #
-bind index,pager  \CR imap-fetch-mail 
 
 #
 #set sidebar_short_path
