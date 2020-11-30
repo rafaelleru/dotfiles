@@ -10,7 +10,7 @@ set showmatch
 set ignorecase
 set encoding=utf-8
 set showtabline=0
-set clipboard=unnamed
+set clipboard=unnamedplus
 set termguicolors
 
 let mapleader = "\<Space>"
@@ -49,8 +49,8 @@ Plugin 'xolox/vim-notes'
 Plugin 'xolox/vim-misc'
 call vundle#end()            " required
 
-colorscheme cinnabar
-let g:neosolarized_termtrans=1
+colorscheme solarized8
+"let g:neosolarized_termtrans=1
 filetype plugin indent on    " required
 
 au BufRead, BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/

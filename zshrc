@@ -113,6 +113,8 @@ alias cp="cp -R"
 alias dps="docker ps"
 alias glg="git lg"
 alias tmux="TERM=xterm-256color tmux"
+alias py="python3"
+alias y="yay"
 
 export PATH=$HOME/.bin:$HOME/.bin/scripts:/usr/local/bin:$PATH
 
@@ -144,3 +146,5 @@ screenfetch -E
 export MANPAGER='nvim +Man!'
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+source /opt/anaconda/bin/activate root

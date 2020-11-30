@@ -18,6 +18,7 @@
     ~/.tmux.conf: tmux.conf
     ~/.zshrc: zshrc
     ~/.neomutt: neomutt
+    ~/.mbsyncrc: mbsyncrc
     ~/.config/systemd/user/mbsync.service: mbsync.service
     ~/.config/systemd/user/mbsync.timer: mbsync.timer
 
