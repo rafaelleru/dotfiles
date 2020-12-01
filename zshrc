@@ -122,6 +122,10 @@ if [ -f /usr/share/autojump/autojump.zsh ]; then
 	. /usr/share/autojump/autojump.zsh
 fi
 
+if [ -d $HOME/bin/fzf/ ]; then
+	export FZF_BASE=$HOME/bin/fzf
+fi
+
 # This is for debian based installations
 if [ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh ]; then
 	source "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh
