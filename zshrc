@@ -1,6 +1,12 @@
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/.bin:/usr/local/bin:/snap/bin/:$PATH
 
+# This should be done before loading plugins
+if [ -d $HOME/bin/fzf/ ]; then
+	export FZF_BASE=$HOME/bin/fzf
+fi
+
+
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -122,10 +128,6 @@ if [ -f /usr/share/autojump/autojump.zsh ]; then
 	. /usr/share/autojump/autojump.zsh
 fi
 
-if [ -d $HOME/bin/fzf/ ]; then
-	export FZF_BASE=$HOME/bin/fzf
-fi
-
 # This is for debian based installations
 if [ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh ]; then
 	source "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh
@@ -151,4 +153,6 @@ export MANPAGER='nvim +Man!'
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
-source /opt/anaconda/bin/activate root
+if [ -d /opt/anaconda/bin ]; then
+	source /opt/anaconda/bin/activate root
+fi
