@@ -1,8 +1,10 @@
 - clean: ["~"]
+- clean: ["~/.oh-my-zsh/custom/themes/rafaelleru.zsh-theme"]
 
-- shell:
-  - [mkdir -p ~/.config/systemd/user/]
-  - [mkdir -p ~/.mail/gmail]
+- create:
+  - ~/.config/systemd/user/
+  - ~/.mail/gmail
+  - ~/.mail/4iq
 
 - link:
     ~/.bin: bin
@@ -21,10 +23,3 @@
     ~/.mbsyncrc: mbsyncrc
     ~/.config/systemd/user/mbsync.service: mbsync.service
     ~/.config/systemd/user/mbsync.timer: mbsync.timer
-
-- shell:
-  - [git clone https://github.com/VundleVim/Vundle.vim.git nvim/bundle/Vundle.vim, Cloning vim submodule]
-  - [sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --keep-zshrc --unattended, Installig oh my zsh! framework]
-  - [git clone https://github.com/cdown/clipnotify.git ~/bin/clipnotify && cd ~/bin/clipnotify && make && sudo install -D -m755 ~/bin/clipnotify/clipnotify /usr/bin/clipnotify]
-  - [git clone https://github.com/cdown/clipmenu.git ~/bin/clipmenu && cd ~/bin/clipmenu && sudo make install]
-  - [systemctl --user enable mbsync.timer; systemctl --user start mbsync.timer]
