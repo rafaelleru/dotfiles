@@ -121,6 +121,7 @@ alias glg="git lg"
 alias tmux="TERM=xterm-256color tmux"
 alias py="python3"
 alias y="yay"
+alias apt="sudo apt"
 
 export PATH=$HOME/.bin:$HOME/.bin/scripts:/usr/local/bin:$PATH
 
