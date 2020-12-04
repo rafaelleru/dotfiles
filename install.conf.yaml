@@ -1,5 +1,6 @@
 - clean: ["~"]
 - clean: ["~/.oh-my-zsh/custom/themes/rafaelleru.zsh-theme"]
+- clean: ["~/bin/scripts"]
 
 - create:
   - ~/.config/systemd/user/
@@ -7,19 +8,19 @@
   - ~/.mail/4iq
 
 - link:
-    ~/.bin: bin
     ~/.config/alacritty: alacritty
     ~/.config/nvim: nvim
     ~/.config/i3: i3
     ~/.config/flake8: flake8
-    ~/.fonts: fonts
-    ~/.gitconfig: gitconfig
     ~/.config/polybar: polybar
-    ~/.profile: profile
-    ~/.oh-my-zsh/custom/themes/rafaelleru.zsh-theme: oh-my-zsh/custom/themes/rafaelleru.zsh-theme
-    ~/.tmux.conf: tmux.conf
-    ~/.zshrc: zshrc
-    ~/.neomutt: neomutt
-    ~/.mbsyncrc: mbsyncrc
     ~/.config/systemd/user/mbsync.service: mbsync.service
     ~/.config/systemd/user/mbsync.timer: mbsync.timer
+    ~/bin/scripts: bin/scripts
+    ~/.gitconfig: gitconfig
+    ~/.mbsyncrc: mbsyncrc
+    ~/.profile: profile
+    ~/.neomutt: neomutt
+    ~/.zshrc: zshrc
+    ~/.oh-my-zsh/custom/themes/rafaelleru.zsh-theme: oh-my-zsh/custom/themes/rafaelleru.zsh-theme
+    ~/.fonts: fonts
+    ~/.tmux.conf: tmux.conf

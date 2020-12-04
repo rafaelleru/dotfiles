@@ -3,31 +3,19 @@
 sudo apt get update
 sudo apt-get upgrade
 
-sudo apt-get install snapd \
-                     neovim \
-		     autojump \
-		     curl \
-                     i3-wm \
-                     py3status \
-                     dmenu \
-                     tmux \
-                     zsh \
-		     python3 \
-		     python3-dev \
-		     cmake \
-		     build-essential \
-		     golang \
-		     npm \
-		     git \
-		     mono-complete
-		     
-cd /tmp
-wget https://github.com/alacritty/alacritty/releases/download/v0.4.0/Alacritty-v0.4.0-ubuntu_18_04_amd64.deb
-sudo dpkg -i Alacritty-v0.4.0-ubuntu_18_04_amd64.deb
-
-# fzf should be downloaded from git in ubuntu
-
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-~/.fzf/install --all --xdg --no-update-rc
-
-usermod --shell /usr/bin/zsh $USERNAME
+sudo apt-get install curl \
+			git\
+			xorg \
+			libx11-dev libxft-dev libxinerama-dev xdm suckless-tools dmenu \ #dwm
+			cmake pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev python3 \ #alacritty
+			zsh tmux neovim python3-neovim \  #dev
+			neomutt \
+			isync \
+			snapd \
+		     	autojump \
+		     	curl \
+		     	python3-dev \
+		     	build-essential \
+		     	golang \
+		     	npm \
+		     	mono-complete 
