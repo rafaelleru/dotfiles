@@ -1,18 +1,19 @@
 #!/bin/bash
 
-if [[ $(id -u) != 0 ]]; then
-	echo "Please run this as sudo"
-	exit
-fi
+# TODO: cuando se ejecuta como sudo toma como user root
+#if [[ $(id -u) != 0 ]]; then
+	#echo "Please run this as sudo"
+	#exit
+#fi
 
-apt install git 
+sudo apt install git 
 
 # Necesito mis dotfiles para configurar dwm
 # TODO de momento vamos a usar dotbot, 
 git clone https://github.com/rafaelleru/dotfiles.git $HOME/dotfiles
 cd $HOME/dotfiles
 git checkout build-solid-script
-bash install_deb_packages.sh
+sudo bash install_deb_packages.sh
 bash install
 
 # Obtener mi copia version patcheada de dwm e instalarla en el sistema
@@ -20,17 +21,17 @@ git clone https://github.com/rafaelleru/dwm.git $HOME/bin/dwm
 
 cd $HOME/bin/dwm
 make
-make install
+sudo make install
 
 # Obtenemos los programas que ejecuta dwm para que no falle y los instalamos
 git clone https://github.com/cdown/clipnotify.git $HOME/bin/clipnotify
 cd $HOME/bin/clipnotify
 make
-install -D -m755 $HOME/bin/clipnotify/clipnotify /usr/bin/clipnotify
+sudo install -D -m755 $HOME/bin/clipnotify/clipnotify /usr/bin/clipnotify
 
 git clone https://github.com/cdown/clipmenu.git $HOME/bin/clipmenu
 cd $HOME/bin/clipmenu
-make install
+sudo make install
 
 ln -s $HOME/dotfiles/bin/passmenu $HOME/bin/passmenu
 
@@ -46,7 +47,7 @@ rustup override set stable
 rustup update stable
 
 # Build alacritty
-cargo build --release
+sudo cargo build --release
 
 # Configurar vim bundle
 git clone https://github.com/VundleVim/Vundle.vim.git nvim/bundle/Vundle.vim
@@ -60,9 +61,10 @@ systemctl --user start mbsync.timer
 git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/bin/fzf
 $HOME/bin/fzf/install --all --xdg --no-update-rc
 
-usermod --shell /usr/bin/zsh $USERNAME
+sudo usermod --shell /usr/bin/zsh $USERNAME
 
 # Quitamos gdm3 y habilitamos xdm
-systemctl disable gdm3
-systemctl enable xdm
+# TODO: Al instalar xdm eso se hace automaticamente pero necesita confirmacion manual
+#systemctl disable gdm3
+#systemctl enable xdm
 systemctl reboot
