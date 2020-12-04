@@ -47,7 +47,7 @@ rustup override set stable
 rustup update stable
 
 # Build alacritty
-sudo cargo build --release
+cargo build --release
 ln -s $HOME/bin/alacritty_src/target/release/alacritty $HOME/bin/
 
 # Configurar vim bundle
