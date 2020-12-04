@@ -3,6 +3,7 @@
 - clean: ["~/bin/scripts"]
 
 - create:
+  - ~/bin
   - ~/.config/systemd/user/
   - ~/.mail/gmail
   - ~/.mail/4iq
@@ -24,3 +25,4 @@
     ~/.oh-my-zsh/custom/themes/rafaelleru.zsh-theme: oh-my-zsh/custom/themes/rafaelleru.zsh-theme
     ~/.fonts: fonts
     ~/.tmux.conf: tmux.conf
+    ~/.xsession: xsession
