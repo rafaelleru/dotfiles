@@ -8,6 +8,7 @@ sudo apt-get install -y curl \
 			xorg \
 			libx11-dev libxft-dev libxinerama-dev xdm suckless-tools dmenu \
 			cmake pkg-config libfreetype6-dev libfontconfig1-dev libxfixes-dev libxcb-xfixes0-dev python3 \
+			xsel \
 			zsh tmux neovim python3-neovim \
 			neomutt \
 			isync \
