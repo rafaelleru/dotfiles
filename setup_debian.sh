@@ -36,8 +36,8 @@ sudo make install
 ln -s $HOME/dotfiles/bin/passmenu $HOME/bin/passmenu
 
 # En ubuntu no podemos obtener alacritty de los repositorios asi que lo vamos a construir (La version snap tiene errores)
-git clone https://github.com/alacritty/alacritty.git $HOME/bin/alacritty
-cd $HOME/bin/alacritty
+git clone https://github.com/alacritty/alacritty.git $HOME/bin/alacritty_src
+cd $HOME/bin/alacritty_src
 
 # Instalar rust y cargo para construir alacritty https://github.com/alacritty/alacritty/blob/master/INSTALL.md#prerequisites
 # TODO: Quitar entrada manual al instalar
