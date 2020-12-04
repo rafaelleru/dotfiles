@@ -1,5 +1,13 @@
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/.bin:/usr/local/bin:/snap/bin/:$PATH
+export PATH=$HOME/bin/scripts:$PATH
+export PATH=$HOME/bin:$PATH
+
+# This should be done before loading plugins
+if [ -d $HOME/bin/fzf/ ]; then
+	export FZF_BASE=$HOME/bin/fzf
+fi
+
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -108,13 +116,14 @@ alias vimconfig="nvim ~/.config/nvim/init.vim"
 alias i3config="nvim ~/.config/i3/config"
 alias dwmconfig="nvim ~/dotfiles/suckless/dwm/config.h"
 alias mkdir="mkdir -p"
-alias ls="ls -lh"
+alias ls="ls --color -lh"
 alias cp="cp -R"
 alias dps="docker ps"
 alias glg="git lg"
-alias tmux="TERM=xterm-256color tmux"
+alias tmux="TERM=xterm-256color tmux -u"
 alias py="python3"
 alias y="yay"
+alias apt="sudo apt"
 
 export PATH=$HOME/.bin:$HOME/.bin/scripts:/usr/local/bin:$PATH
 
@@ -147,4 +156,8 @@ export MANPAGER='nvim +Man!'
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
-source /opt/anaconda/bin/activate root
+if [ -d /opt/anaconda/bin ]; then
+	source /opt/anaconda/bin/activate root
+fi
+
+source $HOME/.aliases.zsh

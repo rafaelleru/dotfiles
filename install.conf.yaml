@@ -1,30 +1,30 @@
 - clean: ["~"]
+- clean: ["~/.oh-my-zsh/custom/themes/rafaelleru.zsh-theme"]
+- clean: ["~/bin/scripts"]
+- clean: ["~/bin/dwm/config.h"]
 
-- shell:
-  - [mkdir -p ~/.config/systemd/user/]
-  - [mkdir -p ~/.mail/gmail]
+- create:
+  - ~/bin
+  - ~/.config/systemd/user/
+  - ~/.mail/gmail
+  - ~/.mail/4iq
 
 - link:
-    ~/.bin: bin
     ~/.config/alacritty: alacritty
+    ~/bin/dwm/config.h: suckless/dwm/config.h
     ~/.config/nvim: nvim
     ~/.config/i3: i3
     ~/.config/flake8: flake8
-    ~/.fonts: fonts
-    ~/.gitconfig: gitconfig
     ~/.config/polybar: polybar
-    ~/.profile: profile
-    ~/.oh-my-zsh/custom/themes/rafaelleru.zsh-theme: oh-my-zsh/custom/themes/rafaelleru.zsh-theme
-    ~/.tmux.conf: tmux.conf
-    ~/.zshrc: zshrc
-    ~/.neomutt: neomutt
-    ~/.mbsyncrc: mbsyncrc
     ~/.config/systemd/user/mbsync.service: mbsync.service
     ~/.config/systemd/user/mbsync.timer: mbsync.timer
-
-- shell:
-  - [git clone https://github.com/VundleVim/Vundle.vim.git nvim/bundle/Vundle.vim, Cloning vim submodule]
-  - [sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --keep-zshrc --unattended, Installig oh my zsh! framework]
-  - [git clone https://github.com/cdown/clipnotify.git ~/bin/clipnotify && cd ~/bin/clipnotify && make && sudo install -D -m755 ~/bin/clipnotify/clipnotify /usr/bin/clipnotify]
-  - [git clone https://github.com/cdown/clipmenu.git ~/bin/clipmenu && cd ~/bin/clipmenu && sudo make install]
-  - [systemctl --user enable mbsync.timer; systemctl --user start mbsync.timer]
+    ~/bin/scripts: bin/scripts
+    ~/.gitconfig: gitconfig
+    ~/.mbsyncrc: mbsyncrc
+    ~/.profile: profile
+    ~/.neomutt: neomutt
+    ~/.zshrc: zshrc
+    ~/.oh-my-zsh/custom/themes/rafaelleru.zsh-theme: oh-my-zsh/custom/themes/rafaelleru.zsh-theme
+    ~/.fonts: fonts
+    ~/.tmux.conf: tmux.conf
+    ~/.xsession: xsession

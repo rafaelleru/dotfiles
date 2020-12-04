@@ -31,9 +31,12 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
+if [ -d "$HOME/.cargo" ] ; then
+	source "$HOME/.cargo/env"
+fi
+
+
 #Chromium API Keys
 export GOOGLE_API_KEY="AIzaSyDUIXvzVrt5OkVsgXhQ6NFfvWlA44by-aw"
 export GOOGLE_DEFAULT_CLIENT_ID="449907151817.apps.googleusercontent.com"
 export GOOGLE_DEFAULT_CLIENT_SECRET="miEreAep8nuvTdvLums6qyLK"
-
-~/.xinitrc

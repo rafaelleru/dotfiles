@@ -11,12 +11,3 @@
 [submodule "nvim/bundle"]
 	path = nvim/bundle
 	url = https://github.com/VundleVim/Vundle.vim.git
-[submodule "bin/clipnotify"]
-	path = bin/clipnotify
-	url = https://github.com/cdown/clipnotify
-[submodule "bin/clipmenu"]
-	path = bin/clipmenu
-	url = https://github.com/cdown/clipmenu
-[submodule "bin/earthwall"]
-	path = bin/earthwall
-	url = https://www.github.com/rafaelleru/earthwall.git
