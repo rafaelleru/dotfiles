@@ -5,21 +5,19 @@ if [[ $(id -u) != 0 ]]; then
 	exit
 fi
 
-echo "Ejecutando como root"
-exit
-
-mkdir -p $HOME/bin
-# Obtener mi copia version patcheada de dwm e instalarla en el sistema
-git clone https://github.com/rafaelleru/dwm.git $HOME/bin/dwm
+apt install git 
 
 # Necesito mis dotfiles para configurar dwm
 # TODO de momento vamos a usar dotbot, 
-git clone https://github.com/rafaelleru/dotfiles.git
-
+git clone https://github.com/rafaelleru/dotfiles.git $HOME/dotfiles
 cd $HOME/dotfiles
+bash install_deb_packages.sh
 bash install
 
-cd $HOME/dwm
+# Obtener mi copia version patcheada de dwm e instalarla en el sistema
+git clone https://github.com/rafaelleru/dwm.git $HOME/bin/dwm
+
+cd $HOME/bin/dwm
 make
 make install
 
@@ -40,7 +38,9 @@ git clone https://github.com/alacritty/alacritty.git $HOME/bin/alacritty
 cd $HOME/bin/alacritty
 
 # Instalar rust y cargo para construir alacritty https://github.com/alacritty/alacritty/blob/master/INSTALL.md#prerequisites
+# TODO: Quitar entrada manual al instalar
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+source $HOME/.cargo/env
 rustup override set stable
 rustup update stable
 
