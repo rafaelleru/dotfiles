@@ -1,5 +1,6 @@
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/.bin:/usr/local/bin:/snap/bin/:$PATH
+export PATH=$HOME/bin/scripts:$PATH
 
 # This should be done before loading plugins
 if [ -d $HOME/bin/fzf/ ]; then
