@@ -1,6 +1,7 @@
 - clean: ["~"]
 - clean: ["~/.oh-my-zsh/custom/themes/rafaelleru.zsh-theme"]
 - clean: ["~/bin/scripts"]
+- clean: ["~/bin/dwm/config.h"]
 
 - create:
   - ~/bin

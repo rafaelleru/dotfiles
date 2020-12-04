@@ -8,6 +8,10 @@
 
 sudo apt install git 
 
+# Obtener mi copia version patcheada de dwm e instalarla en el sistema
+git clone https://github.com/rafaelleru/dwm.git $HOME/bin/dwm
+
+cd $HOME/bin/dwm
 # Necesito mis dotfiles para configurar dwm
 # TODO de momento vamos a usar dotbot, 
 git clone https://github.com/rafaelleru/dotfiles.git $HOME/dotfiles
@@ -16,10 +20,7 @@ git checkout build-solid-script
 sudo bash install_deb_packages.sh
 bash install
 
-# Obtener mi copia version patcheada de dwm e instalarla en el sistema
-git clone https://github.com/rafaelleru/dwm.git $HOME/bin/dwm
-
-cd $HOME/bin/dwm
+# Build dwm
 make
 sudo make install
 
