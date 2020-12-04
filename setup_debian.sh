@@ -48,7 +48,7 @@ rustup update stable
 
 # Build alacritty
 sudo cargo build --release
-ln -s $HOME/bin/alacritty/target/release/alacritty $HOME/bin/
+ln -s $HOME/bin/alacritty_src/target/release/alacritty $HOME/bin/
 
 # Configurar vim bundle
 git clone https://github.com/VundleVim/Vundle.vim.git nvim/bundle/Vundle.vim
