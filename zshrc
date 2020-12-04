@@ -157,3 +157,5 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 if [ -d /opt/anaconda/bin ]; then
 	source /opt/anaconda/bin/activate root
 fi
+
+source $HOME/.aliases.zsh
