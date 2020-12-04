@@ -11,6 +11,7 @@ apt install git
 # TODO de momento vamos a usar dotbot, 
 git clone https://github.com/rafaelleru/dotfiles.git $HOME/dotfiles
 cd $HOME/dotfiles
+git checkout build-solid-script
 bash install_deb_packages.sh
 bash install
 
