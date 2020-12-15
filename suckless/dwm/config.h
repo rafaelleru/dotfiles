@@ -69,6 +69,7 @@ static const char *clipmenucmd[]  = { "clipmenu", NULL };
 static const char *soundupcmd[]  = { "amixer", "-q", "sset", "Master", "5%+", NULL };
 static const char *sounddowncmd[]  = { "amixer", "-q", "sset", "Master", "5%-", NULL };
 static const char *soundtogglecmd[]  = { "amixer", "-q", "sset", "Master", "toggle", NULL };
+static const char *displayselectcmd[]  = { "displayselect", NULL };
 
 
 /* defined keys */
@@ -85,6 +86,7 @@ static Key keys[] = {
 	{ 0,                       	XF86AudioLowerVolume,      spawn,          {.v = sounddowncmd } },
 	{ MODKEY,               	XK_o,      spawn,          {.v = passmenucmd } },
 	{ MODKEY,               	XK_y,      spawn,          {.v = clipmenucmd } },
+	{ MODKEY|ShiftMask,             XK_o, 	   spawn,          {.v = displayselectcmd } },
 	//{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
