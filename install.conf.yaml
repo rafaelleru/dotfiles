@@ -18,6 +18,8 @@
     ~/.config/polybar: polybar
     ~/.config/systemd/user/mbsync.service: mbsync.service
     ~/.config/systemd/user/mbsync.timer: mbsync.timer
+    ~/.config/systemd/user/notmuch.service: notmuch.service
+    ~/.config/systemd/user/notmuch.timer: notmuch.timer
     ~/bin/scripts: bin/scripts
     ~/.gitconfig: gitconfig
     ~/.mbsyncrc: mbsyncrc

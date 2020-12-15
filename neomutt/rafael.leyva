@@ -1,6 +1,6 @@
-set folder="/home/rl/.mail/4iq"
+set folder="/home/rafa/.mail/4iq"
 mailboxes ="Inbox"
-mailboxes `find ~/.mail/4iq/* -maxdepth 0 -type d | grep -v "tmp\|new\|cur" | sed 's|/home/rl/.mail/4iq/|=\"|g' | sed 's|$|\"|g' | tr '\n' ' '`
+mailboxes `find ~/.mail/4iq/* -maxdepth 0 -type d | grep -v "tmp\|new\|cur" | sed 's|/home/rafa/.mail/4iq/|=\"|g' | sed 's|$|\"|g' | tr '\n' ' '`
 set spoolfile="/home/rl/.mail/4iq/Inbox"
 set from = "rafael.leyva@4iq.com"
 set use_from = "yes"

@@ -5,8 +5,8 @@ set from = "rafaelleru95103@gmail.com"
 alternates "rafaelleru95103@correo.ugr.es"
 
 source "colors"
-source "rafaelleru"
-#source "rafael.leyva"
+#source "rafaelleru"
+source "rafael.leyva"
 set mbox_type="Maildir"
 
 set mail_check = 60

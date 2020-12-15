@@ -3,4 +3,4 @@ Description=Gmail synchronization service
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/mbsync -Va --push --pull --create
+ExecStart=/usr/bin/mbsync -Va --push --create
