@@ -11,6 +11,7 @@
 
 - link:
     ~/.config/alacritty: alacritty
+    ~/.config/kitty: kitty
     ~/bin/dwm/config.h: suckless/dwm/config.h
     ~/.config/nvim: nvim
     ~/.config/i3: i3
