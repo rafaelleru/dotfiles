@@ -35,6 +35,11 @@ if [ -d "$HOME/.cargo" ] ; then
 	source "$HOME/.cargo/env"
 fi
 
+export PATH=$HOME/.bin:/usr/local/bin:/snap/bin/:$PATH
+export PATH=$HOME/bin/scripts:$PATH
+export PATH=$HOME/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH
+
 
 #Chromium API Keys
 export GOOGLE_API_KEY="AIzaSyDUIXvzVrt5OkVsgXhQ6NFfvWlA44by-aw"

@@ -2,6 +2,7 @@
 export PATH=$HOME/.bin:/usr/local/bin:/snap/bin/:$PATH
 export PATH=$HOME/bin/scripts:$PATH
 export PATH=$HOME/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH
 
 # This should be done before loading plugins
 if [ -d $HOME/bin/fzf/ ]; then
