@@ -16,7 +16,7 @@ set termguicolors
 let mapleader = "\<Space>"
 
 set nocompatible              " required
-filetype off                  " required
+"filetype off                  " required
 
 set rtp+=~/.config/nvim/bundle/Vundle.vim
 set rtp+=~/.vim/bundle
@@ -30,7 +30,7 @@ Plugin 'vim-scripts/indentpython.vim'
 Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 Plugin 'dense-analysis/ale'
 Plugin 'nvie/vim-flake8'
-Plugin 'scrooloose/nerdtree'
+"Plugin 'scrooloose/nerdtree'
 Plugin 'vim-vdebug/vdebug'
 Plugin 'preservim/nerdcommenter'
 Plugin 'lifepillar/vim-solarized8'
@@ -61,11 +61,11 @@ syntax on
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 let g:ycm_autoclose_preview_window_after_completion=1
-map <leader>g <Plug>(coc-definition)
-map <leader>ff :FZF~<CR>
-map <leader>n :NERDTreeToggle<CR> 
+"map <leader>g <Plug>(coc-definition)
+map <leader>ff :FZF<CR>
+"map <leader>n :NERDTreeToggle<CR> 
 
-let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
+"let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 
 "
 let g:UltiSnipsExpandTrigger="<c-j>"
@@ -111,6 +111,7 @@ set statusline+=\ %F
 set statusline+=\ %M
 set statusline+=%= "Right side settings
 set statusline+=%#Search#
+set statusline+=[%{fugitive#head()}]
 set statusline+=\ %c:%l/%L
 set statusline+=\ [%p%%]
 
@@ -122,3 +123,12 @@ set undodir=$HOME/.local/vim_undo_dir
 
 " LaTeX flavor
 let g:tex_flavor = 'latex'
+
+" 
+command! MakeTags !ctags -R .
+set path+=**
+set wildignore+=*.pyc
+
+" In my head it has more sense to go to tag with '[' and go forward with ']'
+nnoremap <C-[> <C-]>
+nnoremap <C-]> <C-t>
