@@ -1,22 +1,20 @@
 set number relativenumber
-set showmode
-set showcmd
 set wildmenu
-set ruler
 set hidden
-set autoindent
-set hlsearch
+set nohlsearch
 set showmatch
-set ignorecase
 set encoding=utf-8
-set showtabline=0
 set clipboard=unnamedplus
 set termguicolors
+set undofile
+set undodir=$HOME/.local/vim_undo_dir
+set path+=**
+set wildignore+=*.pyc
+set completeopt=menuone,noinsert,noselect
+
+set colorcolumn=80
 
 let mapleader = "\<Space>"
-
-set nocompatible              " required
-"filetype off                  " required
 
 set rtp+=~/.config/nvim/bundle/Vundle.vim
 set rtp+=~/.vim/bundle
@@ -25,82 +23,52 @@ set rtp+=~/.fzf
 call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
-Plugin 'vim-scripts/indentpython.vim'
-"Plugin 'Valloric/YouCompleteMe'
-Plugin 'neoclide/coc.nvim', {'branch': 'release'}
-Plugin 'dense-analysis/ale'
-Plugin 'nvie/vim-flake8'
-"Plugin 'scrooloose/nerdtree'
-Plugin 'vim-vdebug/vdebug'
-Plugin 'preservim/nerdcommenter'
-Plugin 'lifepillar/vim-solarized8'
-Plugin 'iCyMind/NeoSolarized'
+Plugin 'morhetz/gruvbox'
 Plugin 'junegunn/fzf'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'airblade/vim-fugitive'
-" Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+nnoremap <c-p> :FZF<CR>
+
+Plugin 'neoclide/coc.nvim', {'branch': 'release'}
+nnoremap <leader>gd :
+
+Plugin 'scrooloose/nerdtree'
+nnoremap <leader>nt :NERDTreeToggleVCS<CR>
+let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
+
+Plugin 'preservim/nerdcommenter'
+filetype plugin on
+
+Plugin 'tpope/vim-fugitive'
+nnoremap <leader>gs :G<CR>
+
+Plugin 'luochen1990/indent-detector.vim'
+
+Plugin 'neovim/nvim-lspconfig'
+Plugin 'nvim-lua/completion-nvim'
+let g:completion_enable_snippet = 'UltiSnips'
+let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
+
+" TODO: This looks messy
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+imap <tab> <Plug>(completion_smart_tab)
+imap <s-tab> <Plug>(completion_smart_s_tab)
+
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
-Plugin 'alfredodeza/jacinto.vim'
-Plugin 'vimoxide/vim-cinnabar'
-Plugin 'luochen1990/indent-detector.vim'
-Plugin 'lervag/vimtex'
-Plugin 'xolox/vim-notes'
-Plugin 'xolox/vim-misc'
+
+
+" TODO: Redefine this mappings
+let g:UltiSnipsExpandTrigger=""
+let g:UltiSnipsListSnippets=""
+"let g:UltiSnipsJumpForwardTrigger          <c-j>
+"let g:UltiSnipsJumpBackwardTrigger         <c-k>
+
+" Use nvim as editor in browser
+" TODO: revisit this
+Plugin 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+
+
 call vundle#end()            " required
-
-colorscheme solarized8
-"let g:neosolarized_termtrans=1
-filetype plugin indent on    " required
-
-au BufRead, BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
-let python_highlight_all=1
-syntax on
-
-"Get the 2-space YAML as the default when hit carriage return after the colon
-autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
-
-let g:ycm_autoclose_preview_window_after_completion=1
-"map <leader>g <Plug>(coc-definition)
-map <leader>ff :FZF<CR>
-"map <leader>n :NERDTreeToggle<CR> 
-
-"let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
-
-"
-let g:UltiSnipsExpandTrigger="<c-j>"
-let g:UltiSnipsJumpForwardTrigger="<c-n>"
-let g:UltiSnipsJumpBackwardTrigger="<c-b>"
-
-" use <tab> for trigger completion and navigate to the next complete item
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
-
-inoremap <silent><expr> <Tab>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<Tab>" :
-      \ coc#refresh()
-
-let g:vdebug_options = {
-      \ 'port' : 9002,
-      \ 'server' : '',
-      \ 'path_maps': {
-        \ '/var/www/html/ws-api': '/home/rl/projects/ws-api'
-      \ }
-      \ }
-let g:vdebug_features = { 'max_children': 128 }
-
-let g:ymc_language_server =
-  \ [ 
-  \   {
-  \     'name': 'php',
-  \     'cmdline': [ 'intelephense', '--stdio' ],
-  \     'filetypes': [ 'php' ],
-  \     'project_root_files': [ '.git', 'compose.json' ]
-  \   }
-  \ ]
 
 " statusline
 set statusline=
@@ -115,20 +83,41 @@ set statusline+=[%{fugitive#head()}]
 set statusline+=\ %c:%l/%L
 set statusline+=\ [%p%%]
 
-" Keeps track of all changes done, this way if I can recover changes even in
-" a closed file
-"
-set undofile
-set undodir=$HOME/.local/vim_undo_dir
+if exists('+termguicolors')
+	let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+	let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+endif
+colorscheme gruvbox
+set background=dark    " Setting dark mode
+let g:gruvbox_contrast_dark = 'hard'
 
-" LaTeX flavor
-let g:tex_flavor = 'latex'
 
-" 
+
+nnoremap <leader>h :wincmd h<CR>
+nnoremap <leader>j :wincmd j<CR>
+nnoremap <leader>k :wincmd k<CR>
+nnoremap <leader>l :wincmd l<CR>
+
+nmap <leader>gh :diffget //3<CR>
+nmap <leader>gl :diffget //2<CR>
+
+"Python
+lua require'lspconfig'.pyls.setup{on_attach=require'completion'.on_attach}
+" PHP
+lua require'lspconfig'.intelephense.setup{on_attach=require'completion'.on_attach}
+" Go
+lua require'lspconfig'.gopls.setup{on_attach=require'completion'.on_attach}
+"C/C++
+lua require'lspconfig'.clangd.setup{ on_attach=require'completion'.on_attach }
+
+nnoremap <leader>gd :lua vim.lsp.buf.definition()<CR>
+nnoremap <leader>gi :lua vim.lsp.buf.implementation()<CR>
+nnoremap <leader>fr :lua vim.lsp.buf.references()<CR>
+nnoremap <leader>rr :lua vim.lsp.buf.rename()<CR>
+
+
 command! MakeTags !ctags -R .
-set path+=**
-set wildignore+=*.pyc
 
-" In my head it has more sense to go to tag with '[' and go forward with ']'
-nnoremap <C-[> <C-]>
-nnoremap <C-]> <C-t>
+"TODO: This does not work properly
+command! -nargs=1 Dcup docker-compose up -f ./docker-compose.yml <q-args>  
+command! Dcdown docker-compose down -f ./docker-compose.yml
