@@ -12,7 +12,7 @@ set path+=**
 set wildignore+=*.pyc
 set completeopt=menuone,noinsert,noselect
 
-set colorcolumn=80
+set colorcolumn=110
 
 let mapleader = "\<Space>"
 
