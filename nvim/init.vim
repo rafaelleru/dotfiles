@@ -12,6 +12,8 @@ set path+=**
 set wildignore+=*.pyc
 set completeopt=menuone,noinsert,noselect
 
+syntax on 
+
 set colorcolumn=110
 
 let mapleader = "\<Space>"
@@ -27,8 +29,8 @@ Plugin 'morhetz/gruvbox'
 Plugin 'junegunn/fzf'
 nnoremap <c-p> :FZF<CR>
 
-Plugin 'neoclide/coc.nvim', {'branch': 'release'}
-nnoremap <leader>gd :
+"Plugin 'neoclide/coc.nvim', {'branch': 'release'}
+"nnoremap <leader>gd :
 
 Plugin 'scrooloose/nerdtree'
 nnoremap <leader>nt :NERDTreeToggleVCS<CR>
@@ -121,3 +123,5 @@ command! MakeTags !ctags -R .
 "TODO: This does not work properly
 command! -nargs=1 Dcup docker-compose up -f ./docker-compose.yml <q-args>  
 command! Dcdown docker-compose down -f ./docker-compose.yml
+
+let $FZF_DEFAULT_COMMAND = 'rg -i --ignore-file ./.gitignore  --files'
