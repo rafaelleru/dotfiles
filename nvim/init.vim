@@ -12,6 +12,7 @@ set path+=**
 set wildignore+=*.pyc
 set completeopt=menuone,noinsert,noselect
 set noswapfile
+set list
 
 syntax on 
 
