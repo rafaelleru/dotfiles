@@ -69,6 +69,9 @@ let g:UltiSnipsListSnippets=""
 Plugin 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 
 
+Plugin 'jremmen/vim-ripgrep'
+let g:rg_command = "rg --vimgrep -S"
+
 call vundle#end()            " required
 
 " statusline
@@ -89,6 +92,7 @@ if exists('+termguicolors')
 	let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 endif
 colorscheme gruvbox
+
 set background=dark    " Setting dark mode
 let g:gruvbox_contrast_dark = 'hard'
 
