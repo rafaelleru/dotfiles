@@ -11,6 +11,7 @@ set undodir=$HOME/.local/vim_undo_dir
 set path+=**
 set wildignore+=*.pyc
 set completeopt=menuone,noinsert,noselect
+set noswapfile
 
 syntax on 
 
@@ -28,9 +29,6 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'morhetz/gruvbox'
 Plugin 'junegunn/fzf'
 nnoremap <c-p> :FZF<CR>
-
-"Plugin 'neoclide/coc.nvim', {'branch': 'release'}
-"nnoremap <leader>gd :
 
 Plugin 'scrooloose/nerdtree'
 nnoremap <leader>nt :NERDTreeToggleVCS<CR>
@@ -104,7 +102,7 @@ nmap <leader>gh :diffget //3<CR>
 nmap <leader>gl :diffget //2<CR>
 
 "Python
-lua require'lspconfig'.pyls.setup{on_attach=require'completion'.on_attach}
+lua require'lspconfig'.jedi_language_server.setup{on_attach=require'completion'.on_attach}
 " PHP
 lua require'lspconfig'.intelephense.setup{on_attach=require'completion'.on_attach}
 " Go
