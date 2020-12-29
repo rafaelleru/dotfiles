@@ -28,6 +28,7 @@ call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
 Plugin 'morhetz/gruvbox'
+
 Plugin 'junegunn/fzf'
 nnoremap <c-p> :FZF<CR>
 
@@ -56,11 +57,9 @@ imap <s-tab> <Plug>(completion_smart_s_tab)
 
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
-
-
 " TODO: Redefine this mappings
-let g:UltiSnipsExpandTrigger=""
-let g:UltiSnipsListSnippets=""
+"let g:UltiSnipsExpandTrigger=""
+"let g:UltiSnipsListSnippets=""
 "let g:UltiSnipsJumpForwardTrigger          <c-j>
 "let g:UltiSnipsJumpBackwardTrigger         <c-k>
 
@@ -68,11 +67,15 @@ let g:UltiSnipsListSnippets=""
 " TODO: revisit this
 Plugin 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 
-
 Plugin 'jremmen/vim-ripgrep'
 let g:rg_command = "rg --vimgrep -S"
 
+Plugin 'tpope/vim-sleuth' 
 call vundle#end()            " required
+
+colorscheme gruvbox
+let g:gruvbox_contrast_dark = 'hard'
+set background=dark    " Setting dark mode
 
 " statusline
 set statusline=
@@ -91,12 +94,6 @@ if exists('+termguicolors')
 	let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 	let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 endif
-colorscheme gruvbox
-
-set background=dark    " Setting dark mode
-let g:gruvbox_contrast_dark = 'hard'
-
-
 
 nnoremap <leader>h :wincmd h<CR>
 nnoremap <leader>j :wincmd j<CR>
