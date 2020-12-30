@@ -119,7 +119,7 @@ alias dwmconfig="nvim ~/dotfiles/suckless/dwm/config.h"
 alias mkdir="mkdir -p"
 alias ls="ls --color -lh"
 alias cp="cp -R"
-alias dps="docker ps"
+alias dps="docker ps | bash $HOME/bin/scripts/alternate_colors.sh"
 alias glg="git lg"
 alias tmux="TERM=xterm-256color tmux -u"
 alias py="python3"
@@ -150,8 +150,6 @@ fi
 export GOOGLE_API_KEY="AIzaSyDUIXvzVrt5OkVsgXhQ6NFfvWlA44by-aw"
 export GOOGLE_DEFAULT_CLIENT_ID="449907151817.apps.googleusercontent.com"
 export GOOGLE_DEFAULT_CLIENT_SECRET="miEreAep8nuvTdvLums6qyLK"
-
-screenfetch -E
 
 export MANPAGER='nvim +Man!'
 
