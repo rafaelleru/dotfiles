@@ -1,0 +1,6 @@
+#!/bin/bash
+# vim: filetype=bash
+
+output=$(mons | egrep "[0-9]+:" | dmenu -l 5 -p "Output: ")
+echo $output
+

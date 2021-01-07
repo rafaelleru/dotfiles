@@ -1,5 +1,6 @@
-source $HOME/.profile
-feh --bg-scale $HOME/Pictures/wallpaper.jpg
+#!/bin/bash
+source ~/.profile
+feh --bg-scale $HOME/Pictures/wallpaper
 start-pulseaudio-x11
 #compton&
 clipmenud&
