@@ -42,26 +42,21 @@ filetype plugin on
 Plugin 'tpope/vim-fugitive'
 nnoremap <leader>gs :G<CR>
 
+"Plugin 'SirVer/ultisnips'
+"Plugin 'honza/vim-snippets'
+"" TODO: Redefine this mappings
+""let g:UltiSnipsExpandTrigger=""
+""let g:UltiSnipsListSnippets=""
+""let g:UltiSnipsJumpForwardTrigger          <c-j>
+""let g:UltiSnipsJumpBackwardTrigger         <c-k>
+
+
 Plugin 'luochen1990/indent-detector.vim'
 
 Plugin 'neovim/nvim-lspconfig'
 Plugin 'nvim-lua/completion-nvim'
 let g:completion_enable_snippet = 'UltiSnips'
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
-
-" TODO: This looks messy
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-imap <tab> <Plug>(completion_smart_tab)
-imap <s-tab> <Plug>(completion_smart_s_tab)
-
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-" TODO: Redefine this mappings
-"let g:UltiSnipsExpandTrigger=""
-"let g:UltiSnipsListSnippets=""
-"let g:UltiSnipsJumpForwardTrigger          <c-j>
-"let g:UltiSnipsJumpBackwardTrigger         <c-k>
 
 " Use nvim as editor in browser
 " TODO: revisit this
@@ -116,6 +111,10 @@ nnoremap <leader>gd :lua vim.lsp.buf.definition()<CR>
 nnoremap <leader>gi :lua vim.lsp.buf.implementation()<CR>
 nnoremap <leader>fr :lua vim.lsp.buf.references()<CR>
 nnoremap <leader>rr :lua vim.lsp.buf.rename()<CR>
+
+" Make tab key cycle through completion list
+inoremap <expr> <tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <s-tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 
 command! MakeTags !ctags -R .
