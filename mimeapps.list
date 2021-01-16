@@ -1,9 +1,12 @@
 [Added Associations]
-image/jpeg=bar.desktop;baz.desktop
-video/H264=bar.desktop
+
 [Removed Associations]
-video/H264=baz.desktop
+
 [Default Applications]
-image/jpeg=foo.desktop
+image/jpeg=feh.desktop
+image/jpg=feh.desktop
+image/png=feh.desktop
+application/pdf=mupdf.desktop
+
 
 
