@@ -2,9 +2,9 @@
 - clean: ["~/.config"]
 - clean: ["~/.local/share/applications"]
 - clean: ["~/bin"]
-- clean: ["~/.oh-my-zsh/custom/themes/rafaelleru.zsh-theme"]
+- clean: ["~/.oh-my-zsh/custom/themes"]
 - clean: ["~/bin/scripts"]
-- clean: ["~/bin/dwm/config.h"]
+- clean: ["~/bin/dwm/"]
 
 - create:
   - ~/bin
@@ -24,9 +24,9 @@
     ~/.gitconfig: config/git/gitconfig
     ~/.profile: config/profile
     ~/.zshrc: config/zshrc
-    #~/.oh-my-zsh/custom/themes/rafaelleru.zsh-theme: config/oh-my-zsh/custom/themes/rafaelleru.zsh-theme
+    ~/.oh-my-zsh/custom/themes/rafaelleru.zsh-theme: config/oh-my-zsh/custom/themes/rafaelleru.zsh-theme
     ~/.fonts: fonts
     ~/.tmux.conf: config/tmux.conf
     ~/.xsession: xsession
     ~/bin/scripts: bin/scripts
-    #~/bin/dwm/config.h: config/suckless/dwm/config.h
+    ~/bin/dwm/config.h: config/suckless/dwm/config.h
