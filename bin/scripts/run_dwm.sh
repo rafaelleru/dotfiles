@@ -3,6 +3,7 @@ source ~/.profile
 feh --bg-scale $HOME/Pictures/wallpaper
 start-pulseaudio-x11
 #compton&
+picom&
 clipmenud&
 dunst&
 wmname LG3D
