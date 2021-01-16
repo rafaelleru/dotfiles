@@ -1,5 +1,6 @@
 - clean: ["~"]
 - clean: ["~/.config"]
+- clean: ["~/.local/share/applications"]
 - clean: ["~/bin"]
 - clean: ["~/.oh-my-zsh/custom/themes/rafaelleru.zsh-theme"]
 - clean: ["~/bin/scripts"]
@@ -16,6 +17,10 @@
     ~/.config/nvim: config/nvim
     ~/.config/i3: config/i3
     ~/.config/flake8: config/flake8/flake8
+    ~/.config/mimeapps.list: config/mimeapps.list
+    ~/.local/share/applications:
+      glob: true
+      path: applications/*
     ~/.gitconfig: config/git/gitconfig
     ~/.profile: config/profile
     ~/.zshrc: config/zshrc
