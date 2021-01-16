@@ -1,7 +1,10 @@
 - clean: ["~"]
-- clean: ["~/.oh-my-zsh/custom/themes/rafaelleru.zsh-theme"]
+- clean: ["~/.config"]
+- clean: ["~/.local/share/applications"]
+- clean: ["~/bin"]
+- clean: ["~/.oh-my-zsh/custom/themes"]
 - clean: ["~/bin/scripts"]
-- clean: ["~/bin/dwm/config.h"]
+- clean: ["~/bin/dwm/"]
 
 - create:
   - ~/bin
@@ -10,24 +13,20 @@
   - ~/.mail/4iq
 
 - link:
-    ~/.config/alacritty: alacritty
-    ~/.config/kitty: kitty
-    ~/bin/dwm/config.h: suckless/dwm/config.h
-    ~/.config/nvim: nvim
-    ~/.config/i3: i3
-    ~/.config/flake8: flake8
-    ~/.config/polybar: polybar
-    ~/.config/systemd/user/mbsync.service: mbsync.service
-    ~/.config/systemd/user/mbsync.timer: mbsync.timer
-    ~/.config/systemd/user/notmuch.service: notmuch.service
-    ~/.config/systemd/user/notmuch.timer: notmuch.timer
-    ~/bin/scripts: bin/scripts
-    ~/.gitconfig: gitconfig
-    ~/.mbsyncrc: mbsyncrc
-    ~/.profile: profile
-    ~/.neomutt: neomutt
-    ~/.zshrc: zshrc
-    ~/.oh-my-zsh/custom/themes/rafaelleru.zsh-theme: oh-my-zsh/custom/themes/rafaelleru.zsh-theme
+    ~/.config/kitty: config/kitty
+    ~/.config/nvim: config/nvim
+    ~/.config/i3: config/i3
+    ~/.config/flake8: config/flake8/flake8
+    ~/.config/mimeapps.list: config/mimeapps.list
+    ~/.local/share/applications:
+      glob: true
+      path: applications/*
+    ~/.gitconfig: config/git/gitconfig
+    ~/.profile: config/profile
+    ~/.zshrc: config/zshrc
+    ~/.oh-my-zsh/custom/themes/rafaelleru.zsh-theme: config/oh-my-zsh/custom/themes/rafaelleru.zsh-theme
     ~/.fonts: fonts
-    ~/.tmux.conf: tmux.conf
+    ~/.tmux.conf: config/tmux.conf
     ~/.xsession: xsession
+    ~/bin/scripts: bin/scripts
+    ~/bin/dwm/config.h: config/suckless/dwm/config.h

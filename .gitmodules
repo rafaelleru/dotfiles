@@ -8,6 +8,3 @@
 [submodule "dotbot-pacaur"]
 	path = dotbot-pacaur
 	url = https://github.com/ajlende/dotbot-pacaur
-[submodule "nvim/bundle"]
-	path = nvim/bundle
-	url = https://github.com/VundleVim/Vundle.vim.git
