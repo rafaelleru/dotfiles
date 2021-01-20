@@ -14,7 +14,7 @@ set completeopt=menuone,noinsert,noselect
 set noswapfile
 set list
 
-syntax on 
+syntax on
 
 set colorcolumn=110
 
@@ -27,6 +27,7 @@ set rtp+=~/.fzf
 call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
+Plugin 'sainnhe/gruvbox-material'
 Plugin 'morhetz/gruvbox'
 
 Plugin 'junegunn/fzf'
@@ -70,9 +71,10 @@ Plugin 'cespare/vim-toml'
 call vundle#end()            " required
 
 let g:gruvbox_contrast_dark = 'hard'
-let g:gruvbox_transparent_bg=1
+let g:gruvbox_transparent_bg=2
+let g:gruvbox_material_transparent_background=1
 set background=dark    " Setting dark mode
-colorscheme gruvbox
+colorscheme gruvbox-material
 
 " statusline
 set statusline=
