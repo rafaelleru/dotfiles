@@ -69,6 +69,7 @@ static const char *clipmenucmd[]  = { "clipmenu", NULL };
 static const char *soundupcmd[]  = { "amixer", "-q", "sset", "Master", "5%+", NULL };
 static const char *sounddowncmd[]  = { "amixer", "-q", "sset", "Master", "5%-", NULL };
 static const char *soundtogglecmd[]  = { "amixer", "-q", "sset", "Master", "toggle", NULL };
+static const char *musictogglecmd[]  = { "playerctl", "play-pause", NULL };
 static const char *displayselectcmd[]  = { "displayselect", NULL };
 
 
@@ -78,6 +79,7 @@ static const char *displayselectcmd[]  = { "displayselect", NULL };
 #define XF86AudioMute				0x1008ff12
 #define XF86AudioLowerVolume		0x1008ff11
 #define XF86AudioRaiseVolume		0x1008ff13
+#define XF86AudioPlay			0x1008ff14
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
