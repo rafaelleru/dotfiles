@@ -14,6 +14,10 @@ set completeopt=menuone,noinsert,noselect
 set noswapfile
 set list
 
+" Fix vim split default behavior
+set splitright
+set splitbelow
+
 syntax on
 
 set colorcolumn=110
