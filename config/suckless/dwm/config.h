@@ -86,6 +86,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ 0,                       	XF86AudioRaiseVolume,      spawn,          {.v = soundupcmd } },
 	{ 0,                       	XF86AudioLowerVolume,      spawn,          {.v = sounddowncmd } },
+	{ 0,                       	XF86AudioPlay,      	   spawn,          {.v = musictogglecmd } },
 	{ MODKEY,               	XK_o,      spawn,          {.v = passmenucmd } },
 	{ MODKEY,               	XK_y,      spawn,          {.v = clipmenucmd } },
 	{ MODKEY|ShiftMask,             XK_o, 	   spawn,          {.v = displayselectcmd } },
