@@ -72,6 +72,7 @@ let g:rg_command = "rg --vimgrep -S"
 
 Plugin 'tpope/vim-sleuth' 
 Plugin 'cespare/vim-toml'
+Plugin 'Yggdroot/indentLine'
 call vundle#end()            " required
 
 let g:gruvbox_contrast_dark = 'hard'
@@ -114,6 +115,7 @@ lua require'lspconfig'.intelephense.setup{on_attach=require'completion'.on_attac
 lua require'lspconfig'.gopls.setup{on_attach=require'completion'.on_attach}
 "C/C++
 lua require'lspconfig'.clangd.setup{ on_attach=require'completion'.on_attach }
+" Rust
 lua require'lspconfig'.rls.setup{ on_attach=require'completion'.on_attach }
 
 nnoremap <leader>gd :lua vim.lsp.buf.definition()<CR>
