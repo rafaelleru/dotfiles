@@ -37,6 +37,8 @@ Plugin 'morhetz/gruvbox'
 Plugin 'junegunn/fzf'
 nnoremap <c-p> :FZF<CR>
 
+Plugin 'junegunn/fzf.vim'
+
 Plugin 'scrooloose/nerdtree'
 nnoremap <leader>nt :NERDTreeToggleVCS<CR>
 let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
