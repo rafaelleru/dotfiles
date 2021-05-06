@@ -20,7 +20,7 @@ function git_info() {
 	p=$(git_prompt_info)
 
 	if [[ -n $p ]]; then
-		p="%{$reset_color%}[$p"
+		p="%{$reset_color%}[$p($(git_prompt_short_sha))"
 
 		if [[ -n $(git_commits_behind) || -n $(git_commits_ahead) ]]; then
 			p="$p $(git_commits_ahead)$(git_commits_behind)"
@@ -34,7 +34,7 @@ function git_info() {
 
 # primary prompt
 PS1='$FG[237]${(l.$(afmagic_dashes)..-.)}%{$reset_color%}
-$FG[240]%n@%m%{$reset_color%}% $FG[032] %~$(git_info)%{$reset_color%}$(hg_prompt_info) $FG[105]%(!.#.»)%{$reset_color%} '
+$FG[240]%n@%m%{$reset_color%}% $FG[032] %~$(git_info)%{$reset_color%}$(hg_prompt_info) $FG[105]%(!.#.»)%{$reset_color%} $vi_mode_prompt_info% '
 PS2='%{$fg[red]%}\ %{$reset_color%}'
 RPS1='${return_code}'
 
