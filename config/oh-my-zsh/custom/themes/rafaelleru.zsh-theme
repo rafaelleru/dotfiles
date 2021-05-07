@@ -20,7 +20,7 @@ function git_info() {
 	p=$(git_prompt_info)
 
 	if [[ -n $p ]]; then
-		p="%{$reset_color%}[$p($(git_prompt_short_sha))"
+		p="%{$reset_color%}[$FG[002]$p%{$reset_color%}{$(git_prompt_short_sha)}"
 
 		if [[ -n $(git_commits_behind) || -n $(git_commits_ahead) ]]; then
 			p="$p $(git_commits_ahead)$(git_commits_behind)"
@@ -39,7 +39,7 @@ PS2='%{$fg[red]%}\ %{$reset_color%}'
 RPS1='${return_code}'
 
 # right prompt
-(( $+functions[virtualenv_prompt_info] )) && RPS1+='$(virtualenv_prompt_info)'
+(( $+functions[virtualenv_prompt_info] )) && RPS1+='[$IDTHEFT_TESTS_TARGET]'
 
 # git settings
 ZSH_THEME_GIT_PROMPT_PREFIX=""
@@ -59,5 +59,5 @@ ZSH_THEME_HG_PROMPT_DIRTY="$my_orange*%{$reset_color%}"
 ZSH_THEME_HG_PROMPT_SUFFIX="$FG[075])%{$reset_color%}"
 
 # virtualenv settings
-ZSH_THEME_VIRTUALENV_PREFIX=" $FG[075]["
+ZSH_THEME_VIRTUALENV_PREFIX="$FG[075]["
 ZSH_THEME_VIRTUALENV_SUFFIX="]%{$reset_color%}"
