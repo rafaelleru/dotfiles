@@ -1,0 +1,4 @@
+# vim: set filetype=sh
+#!/bin/bash
+choosen=$(ga-cmd --list | dmenu -i -p "Code for:") &&
+ga-cmd $choosen | xclip -selection clipboard
