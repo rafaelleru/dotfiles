@@ -79,7 +79,7 @@ ZSH_THEME="rafaelleru"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(vi-mode git fzf)
+plugins=(git fzf vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -156,3 +156,6 @@ export MANPAGER='nvim +Man!'
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 source $HOME/.aliases.zsh
+
+# For urlview
+export BROWSER='firefox -p constella'
