@@ -14,3 +14,5 @@
 	editor = nvim
 [fetch]
   prune = true
+[rebase]
+  autosquash = true
