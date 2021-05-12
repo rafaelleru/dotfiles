@@ -164,3 +164,8 @@ command! -nargs=1 Dcup docker-compose up -f ./docker-compose.yml <q-args>
 command! Dcdown docker-compose down -f ./docker-compose.yml
 
 let $FZF_DEFAULT_COMMAND = 'rg -i --ignore-file ./.gitignore  --files'
+
+"Cicle througth tabs
+nnoremap <C-tab> :tabnext<CR>zz
+nnoremap <leader>tn :tabnext<CR>zz
+nnoremap <leader>tq :tabclose<CR>zz
