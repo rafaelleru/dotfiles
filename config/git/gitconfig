@@ -12,3 +12,5 @@
 [core]
 	excludesfile = ~/.gitignore
 	editor = nvim
+[fetch]
+  prune = true
