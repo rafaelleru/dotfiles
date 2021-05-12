@@ -169,3 +169,6 @@ let $FZF_DEFAULT_COMMAND = 'rg -i --ignore-file ./.gitignore  --files'
 nnoremap <C-tab> :tabnext<CR>zz
 nnoremap <leader>tn :tabnext<CR>zz
 nnoremap <leader>tq :tabclose<CR>zz
+
+"Quickly open a notes file
+nnoremap <leader>n :tab drop ~/notas.txt<CR>zz
