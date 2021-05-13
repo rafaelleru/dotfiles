@@ -13,6 +13,7 @@ set wildignore+=*.pyc
 set completeopt=menuone,noinsert,noselect
 set noswapfile
 set list
+set mouse=a
 
 " Fix vim split default behavior
 set splitright
