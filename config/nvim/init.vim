@@ -65,6 +65,7 @@ Plugin 'neovim/nvim-lspconfig'
 Plugin 'nvim-lua/completion-nvim'
 let g:completion_enable_snippet = 'UltiSnips'
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
+let g:completion_trigger_on_delete = 1
 
 " Use nvim as editor in browser
 " TODO: revisit this
@@ -120,6 +121,8 @@ lua require'lspconfig'.gopls.setup{on_attach=require'completion'.on_attach}
 lua require'lspconfig'.clangd.setup{ on_attach=require'completion'.on_attach }
 " Rust
 lua require'lspconfig'.rls.setup{ on_attach=require'completion'.on_attach }
+" Vim language server
+lua require'lspconfig'.vimls.setup{ on_attach=require'completion'.on_attach }
 
 nnoremap <leader>gd :lua vim.lsp.buf.definition()<CR>
 nnoremap <leader>gi :lua vim.lsp.buf.implementation()<CR>
