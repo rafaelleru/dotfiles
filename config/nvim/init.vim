@@ -24,6 +24,7 @@ syntax on
 set colorcolumn=110
 
 let mapleader = "\<Space>"
+let maplocalleader = "\,"
 
 set rtp+=~/.config/nvim/bundle/Vundle.vim
 set rtp+=~/.vim/bundle
@@ -128,7 +129,9 @@ nnoremap <leader>gd :lua vim.lsp.buf.definition()<CR>
 nnoremap <leader>gi :lua vim.lsp.buf.implementation()<CR>
 nnoremap <leader>fr :lua vim.lsp.buf.references()<CR>
 nnoremap <leader>rr :lua vim.lsp.buf.rename()<CR>
-nnoremap <leader>ee :lua vim.lsp.diagnostic.set_loclist()<CR>
+" For this I want to use local leader because error list is populated to
+" local_list
+nnoremap <localleader>ee :lua vim.lsp.diagnostic.set_loclist()<CR>
 
 
 " Make tab key cycle through completion list
@@ -165,16 +168,18 @@ endfun
 
 command! MakeTags !ctags -R .
 
-"TODO: This does not work properly
-command! -nargs=1 Dcup docker-compose up -f ./docker-compose.yml <q-args>  
-command! Dcdown docker-compose down -f ./docker-compose.yml
-
 let $FZF_DEFAULT_COMMAND = 'rg -i --ignore-file ./.gitignore  --files'
 
 "Cicle througth tabs
 nnoremap <C-tab> :tabnext<CR>zz
 nnoremap <leader>tn :tabnext<CR>zz
+nnoremap <leader>tp :tabprev<CR>zz
 nnoremap <leader>tq :tabclose<CR>zz
 
 "Quickly open a notes file
 nnoremap <leader>n :tab drop ~/notas.txt<CR>zz
+
+" close local fixlist window
+nnoremap <localleader>q :lclose<CR>zz
+nnoremap <localleader>n :lnext<CR>zz
+nnoremap <localleader>p :lprev<CR>zz
