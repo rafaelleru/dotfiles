@@ -128,6 +128,8 @@ nnoremap <leader>gd :lua vim.lsp.buf.definition()<CR>
 nnoremap <leader>gi :lua vim.lsp.buf.implementation()<CR>
 nnoremap <leader>fr :lua vim.lsp.buf.references()<CR>
 nnoremap <leader>rr :lua vim.lsp.buf.rename()<CR>
+nnoremap <leader>ee :lua vim.lsp.diagnostic.set_loclist()<CR>
+
 
 " Make tab key cycle through completion list
 inoremap <expr> <tab>   pumvisible() ? "\<C-n>" : "\<Tab>"

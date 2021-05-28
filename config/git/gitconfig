@@ -16,3 +16,9 @@
   prune = true
 [rebase]
   autosquash = true
+[rerere]
+	enabled = true
+[pull]
+  rebase = true
+[push]
+  set-upstream = true
