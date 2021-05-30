@@ -129,6 +129,7 @@ nnoremap <leader>gd :lua vim.lsp.buf.definition()<CR>
 nnoremap <leader>gi :lua vim.lsp.buf.implementation()<CR>
 nnoremap <leader>fr :lua vim.lsp.buf.references()<CR>
 nnoremap <leader>rr :lua vim.lsp.buf.rename()<CR>
+nnoremap <leader>vd :lua vim.lsp.buf.hover()<CR>
 " For this I want to use local leader because error list is populated to
 " local_list
 nnoremap <localleader>ee :lua vim.lsp.diagnostic.set_loclist()<CR>
