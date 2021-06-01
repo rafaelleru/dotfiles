@@ -9,7 +9,7 @@ set termguicolors
 set undofile
 set undodir=$HOME/.local/vim_undo_dir
 set path+=**
-set wildignore+=*.pyc
+set wildignore+=*.pyc,*~
 set completeopt=menuone,noinsert,noselect
 set noswapfile
 set list
@@ -95,7 +95,7 @@ set statusline+=\ %F
 set statusline+=\ %M
 set statusline+=%= "Right side settings
 set statusline+=%#Search#
-set statusline+=[%{fugitive#head()}]
+set statusline+=%{FugitiveStatusline()}
 set statusline+=\ %c:%l/%L
 set statusline+=\ [%p%%]
 
@@ -112,28 +112,34 @@ nnoremap <leader>l :wincmd l<CR>
 nmap <leader>gh :diffget //3<CR>
 nmap <leader>gl :diffget //2<CR>
 
-"Python
+" Python
 lua require'lspconfig'.jedi_language_server.setup{on_attach=require'completion'.on_attach}
 " PHP
 lua require'lspconfig'.intelephense.setup{on_attach=require'completion'.on_attach}
 " Go
 lua require'lspconfig'.gopls.setup{on_attach=require'completion'.on_attach}
-"C/C++
+" C/C++
 lua require'lspconfig'.clangd.setup{ on_attach=require'completion'.on_attach }
 " Rust
 lua require'lspconfig'.rls.setup{ on_attach=require'completion'.on_attach }
 " Vim language server
 lua require'lspconfig'.vimls.setup{ on_attach=require'completion'.on_attach }
 
+" go to definition
 nnoremap <leader>gd :lua vim.lsp.buf.definition()<CR>
+" go to implementation
 nnoremap <leader>gi :lua vim.lsp.buf.implementation()<CR>
+" find references
 nnoremap <leader>fr :lua vim.lsp.buf.references()<CR>
+" rename variables
 nnoremap <leader>rr :lua vim.lsp.buf.rename()<CR>
+" view documentation
 nnoremap <leader>vd :lua vim.lsp.buf.hover()<CR>
 " For this I want to use local leader because error list is populated to
 " local_list
 nnoremap <localleader>ee :lua vim.lsp.diagnostic.set_loclist()<CR>
-
+nnoremap <localleader>en :lua vim.lsp.diagnostic.goto_next()<CR>
+nnoremap <localleader>ep :lua vim.lsp.diagnostic.goto_prev()<CR>
 
 " Make tab key cycle through completion list
 inoremap <expr> <tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -172,7 +178,7 @@ command! MakeTags !ctags -R .
 let $FZF_DEFAULT_COMMAND = 'rg -i --ignore-file ./.gitignore  --files'
 
 "Cicle througth tabs
-nnoremap <C-tab> :tabnext<CR>zz
+nnoremap <c-tab> :tabnext<CR>zz
 nnoremap <leader>tn :tabnext<CR>zz
 nnoremap <leader>tp :tabprev<CR>zz
 nnoremap <leader>tq :tabclose<CR>zz
