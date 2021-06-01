@@ -179,6 +179,7 @@ let $FZF_DEFAULT_COMMAND = 'rg -i --ignore-file ./.gitignore  --files'
 
 "Cicle througth tabs
 nnoremap <c-tab> :tabnext<CR>zz
+nnoremap <leader>tt :tabnew<CR>zz
 nnoremap <leader>tn :tabnext<CR>zz
 nnoremap <leader>tp :tabprev<CR>zz
 nnoremap <leader>tq :tabclose<CR>zz
