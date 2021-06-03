@@ -145,11 +145,6 @@ nnoremap <leader>fr :lua vim.lsp.buf.references()<CR>
 nnoremap <leader>rr :lua vim.lsp.buf.rename()<CR>
 " view documentation
 nnoremap <leader>vd :lua vim.lsp.buf.hover()<CR>
-" For this I want to use local leader because error list is populated to
-" local_list
-nnoremap <localleader>ee :lua vim.lsp.diagnostic.set_loclist()<CR>
-nnoremap <localleader>en :lua vim.lsp.diagnostic.goto_next()<CR>
-nnoremap <localleader>ep :lua vim.lsp.diagnostic.goto_prev()<CR>
 
 " Make tab key cycle through completion list
 inoremap <expr> <tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
