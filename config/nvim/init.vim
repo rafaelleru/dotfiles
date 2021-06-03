@@ -114,16 +114,26 @@ nmap <leader>gl :diffget //2<CR>
 
 " Python
 lua require'lspconfig'.pyls.setup{ on_attach=require'completion'.on_attach }
+autocmd BufWrite *.py :lua vim.lsp.diagnostic.set_loclist({open_loclist = false})
 " PHP
 lua require'lspconfig'.intelephense.setup{ on_attach=require'completion'.on_attach }
+autocmd BufWrite *.py :lua vim.lsp.diagnostic.set_loclist({open_loclist = false})
 " Go
 lua require'lspconfig'.gopls.setup{ on_attach=require'completion'.on_attach }
+autocmd BufWrite *.py :lua vim.lsp.diagnostic.set_loclist({open_loclist = false})
 " C/C++
 lua require'lspconfig'.clangd.setup{ on_attach=require'completion'.on_attach }
+autocmd BufWrite *.py :lua vim.lsp.diagnostic.set_loclist({open_loclist = false})
 " Rust
 lua require'lspconfig'.rls.setup{ on_attach=require'completion'.on_attach }
+autocmd BufWrite *.py :lua vim.lsp.diagnostic.set_loclist({open_loclist = false})
 " Vim language server
 lua require'lspconfig'.vimls.setup{ on_attach=require'completion'.on_attach }
+autocmd BufWrite *.py :lua vim.lsp.diagnostic.set_loclist({open_loclist = false})
+
+" Populate locallist with lsp diagnostics automatically 
+" TODO: the previous autocmd statements should not be necessary
+autocmd User LspDiagnosticsChanged :lua vim.lsp.diagnostic.set_loclist({open_loclist = false})
 
 " go to definition
 nnoremap <leader>gd :lua vim.lsp.buf.definition()<CR>
