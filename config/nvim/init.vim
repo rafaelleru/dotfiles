@@ -113,11 +113,11 @@ nmap <leader>gh :diffget //3<CR>
 nmap <leader>gl :diffget //2<CR>
 
 " Python
-lua require'lspconfig'.jedi_language_server.setup{on_attach=require'completion'.on_attach}
+lua require'lspconfig'.pyls.setup{ on_attach=require'completion'.on_attach }
 " PHP
-lua require'lspconfig'.intelephense.setup{on_attach=require'completion'.on_attach}
+lua require'lspconfig'.intelephense.setup{ on_attach=require'completion'.on_attach }
 " Go
-lua require'lspconfig'.gopls.setup{on_attach=require'completion'.on_attach}
+lua require'lspconfig'.gopls.setup{ on_attach=require'completion'.on_attach }
 " C/C++
 lua require'lspconfig'.clangd.setup{ on_attach=require'completion'.on_attach }
 " Rust
@@ -188,9 +188,9 @@ nnoremap <leader>tq :tabclose<CR>zz
 nnoremap <leader>n :tab drop ~/notas.txt<CR>zz
 
 " close local fixlist window
-nnoremap <localleader>q :lclose<CR>zz
+nnoremap <localleader>q :call ToggleQFList(0)<CR>zz
 nnoremap <localleader>n :lnext<CR>zz
 nnoremap <localleader>p :lprev<CR>zz
 
 " As a default I want to run case insensitive searches
-nnoremap / /\c 
+nnoremap / /\c
