@@ -191,3 +191,6 @@ nnoremap <leader>n :tab drop ~/notas.txt<CR>zz
 nnoremap <localleader>q :lclose<CR>zz
 nnoremap <localleader>n :lnext<CR>zz
 nnoremap <localleader>p :lprev<CR>zz
+
+" As a default I want to run case insensitive searches
+nnoremap / /\c 
