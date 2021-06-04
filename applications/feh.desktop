@@ -4,4 +4,4 @@ Version=1.0
 Terminal=false
 Type=Application
 Name=feh
-Exec=feh
+Exec=feh -Z
