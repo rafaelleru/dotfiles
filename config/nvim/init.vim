@@ -83,19 +83,6 @@ let g:gruvbox_material_transparent_background=1
 set background=dark    " Setting dark mode
 colorscheme gruvbox-material
 
-" statusline
-set statusline=
-set statusline+=\ %y
-set statusline+=\ %r
-set statusline+=%#CursorLineNr#
-set statusline+=\ %F
-set statusline+=\ %M
-set statusline+=%= "Right side settings
-set statusline+=%#Search#
-set statusline+=%{FugitiveStatusline()}
-set statusline+=\ %c:%l/%L
-set statusline+=\ [%p%%]
-
 if exists('+termguicolors')
 	let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 	let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
