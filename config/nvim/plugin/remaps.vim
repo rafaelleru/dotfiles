@@ -1,4 +1,5 @@
 nnoremap <c-p> :FZF<CR>
+nnoremap <c-b> :Buffers<CR>
 nnoremap <leader>nt :NERDTreeToggleVCS<CR>
 nnoremap <leader>gs :G<CR>
 
