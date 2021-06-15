@@ -75,6 +75,7 @@ let g:rg_command = "rg --vimgrep -S"
 Plugin 'tpope/vim-sleuth' 
 Plugin 'cespare/vim-toml'
 Plugin 'Yggdroot/indentLine'
+Plugin 'junegunn/goyo.vim'
 call vundle#end()            " required
 
 let g:gruvbox_contrast_dark = 'hard'
@@ -100,20 +101,6 @@ lua require'lspconfig'.clangd.setup{ on_attach=require'completion'.on_attach }
 lua require'lspconfig'.rls.setup{ on_attach=require'completion'.on_attach }
 " Vim language server
 lua require'lspconfig'.vimls.setup{ on_attach=require'completion'.on_attach }
-
-augroup diagnostics_local_list
-    autocmd!
-    " Populate locallist with lsp diagnostics automatically 
-    autocmd User LspDiagnosticsChanged :lua vim.lsp.diagnostic.set_loclist({open_loclist = false})
-    " TODO: the nexts autocmd statements should not be necessary
-    autocmd BufWrite *.py :lua vim.lsp.diagnostic.set_loclist({open_loclist = false})
-    autocmd BufWrite *.php :lua vim.lsp.diagnostic.set_loclist({open_loclist = false})
-    autocmd BufWrite *.go :lua vim.lsp.diagnostic.set_loclist({open_loclist = false})
-    autocmd BufWrite *.rs :lua vim.lsp.diagnostic.set_loclist({open_loclist = false})
-    autocmd BufWrite *.cpp,*.hpp,*.h,*.c :lua vim.lsp.diagnostic.set_loclist({open_loclist = false})
-    autocmd BufWrite *.vim :lua vim.lsp.diagnostic.set_loclist({open_loclist = false})
-augroup END
-
 
 let g:the_primeagen_qf_l = 0
 let g:the_primeagen_qf_g = 0
