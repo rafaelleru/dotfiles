@@ -1,0 +1,4 @@
+# vim: set filetype=sh
+#!/bin/bash
+
+playerctl -p spotify previous
