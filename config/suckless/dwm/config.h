@@ -84,6 +84,7 @@ static const char *displayselectcmd[]  = { "displayselect", NULL };
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
+	{ 0,                       	XF86AudioMute,	           spawn,          {.v = soundtogglecmd } },
 	{ 0,                       	XF86AudioRaiseVolume,      spawn,          {.v = soundupcmd } },
 	{ 0,                       	XF86AudioLowerVolume,      spawn,          {.v = sounddowncmd } },
 	{ 0,                       	XF86AudioPlay,      	   spawn,          {.v = musictogglecmd } },
@@ -108,7 +109,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
-	{ MODKEY|ShiftMask,             XK_f,      fullscreen,     {0} },
+	//{ MODKEY|ShiftMask,             XK_f,      fullscreen,     {0} },
 	//{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	//{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
 	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
