@@ -48,13 +48,13 @@ filetype plugin on
 
 Plugin 'tpope/vim-fugitive'
 
-"Plugin 'SirVer/ultisnips'
-"Plugin 'honza/vim-snippets'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
 "" TODO: Redefine this mappings
-""let g:UltiSnipsExpandTrigger=""
 ""let g:UltiSnipsListSnippets=""
-""let g:UltiSnipsJumpForwardTrigger          <c-j>
-""let g:UltiSnipsJumpBackwardTrigger         <c-k>
+let g:UltiSnipsExpandTrigger="<C-t>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
 
 
 Plugin 'luochen1990/indent-detector.vim'
