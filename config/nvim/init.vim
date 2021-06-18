@@ -19,7 +19,7 @@ set mouse=a
 set splitright
 set splitbelow
 
-syntax on
+"syntax on
 
 set colorcolumn=110
 
@@ -76,6 +76,9 @@ Plugin 'tpope/vim-sleuth'
 Plugin 'cespare/vim-toml'
 Plugin 'Yggdroot/indentLine'
 Plugin 'junegunn/goyo.vim'
+Plugin 'blueyed/vim-diminactive'
+let g:diminactive_use_colorcolumn = 0
+let g:diminactive_use_syntax = 1
 call vundle#end()            " required
 
 let g:gruvbox_contrast_dark = 'hard'
