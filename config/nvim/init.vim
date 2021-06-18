@@ -79,6 +79,10 @@ Plugin 'junegunn/goyo.vim'
 Plugin 'blueyed/vim-diminactive'
 let g:diminactive_use_colorcolumn = 0
 let g:diminactive_use_syntax = 1
+
+Plugin 'tpope/vim-rhubarb'
+Plugin 'tommcdo/vim-fubitive'
+
 call vundle#end()            " required
 
 let g:gruvbox_contrast_dark = 'hard'
