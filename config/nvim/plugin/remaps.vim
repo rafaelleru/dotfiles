@@ -31,7 +31,7 @@ inoremap <expr> <tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <s-tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 "Quickfix lixt stuffff!!!!!!!
-nnoremap <C-q> :call ToggleQFList(g:the_primeagen_qf_g)<CR>
+nnoremap <C-q> :call ToggleQFList(1)<CR>
 nnoremap <C-k> :cnext<CR>zz
 nnoremap <C-j> :cprev<CR>zz
 
@@ -46,7 +46,7 @@ nnoremap <leader>tq :tabclose<CR>zz
 nnoremap <leader>n :tab drop ~/notas.txt<CR>zz
 
 " close local fixlist window
-nnoremap <localleader>q :call ToggleQFList(g:the_primeagen_qf_l)<CR>zz
+nnoremap <localleader>q :call ToggleQFList(0)<CR>zz
 nnoremap <localleader>n :lnext<CR>zz
 nnoremap <localleader>p :lprev<CR>zz
 

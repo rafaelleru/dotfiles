@@ -19,6 +19,9 @@ set mouse=a
 set splitright
 set splitbelow
 
+let mapleader = "\<Space>"
+let maplocalleader = "\,"
+
 "syntax on
 
 set colorcolumn=110
@@ -86,26 +89,6 @@ lua require'lspconfig'.clangd.setup{ on_attach=require'completion'.on_attach }
 lua require'lspconfig'.rls.setup{ on_attach=require'completion'.on_attach }
 " Vim language server
 lua require'lspconfig'.vimls.setup{ on_attach=require'completion'.on_attach }
-
-fun! ToggleQFList(global)
-    if a:global
-        if g:the_primeagen_qf_g == 1
-            let g:the_primeagen_qf_g = 0
-            cclose
-        else
-            let g:the_primeagen_qf_g = 1
-            copen
-        end
-    else
-        if g:the_primeagen_qf_l == 1
-            let g:the_primeagen_qf_l = 0
-            lclose
-        else
-            let g:the_primeagen_qf_l = 1
-            lopen
-        end
-    endif
-endfun
 
 command! MakeTags !ctags -R .
 
