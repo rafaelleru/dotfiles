@@ -60,7 +60,7 @@ Plugin 'nvim-lua/completion-nvim'
 " TODO: revisit this
 Plugin 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 
-Plugin 'jremmen/vim-ripgrep'
+Plugin 'mhinz/vim-grepper'
 
 Plugin 'tpope/vim-sleuth' 
 Plugin 'cespare/vim-toml'

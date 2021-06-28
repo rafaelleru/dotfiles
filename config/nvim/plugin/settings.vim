@@ -51,3 +51,5 @@ fun! ToggleQFList(global)
     endif
 endfun
 
+let g:grepper               = {}
+let g:grepper.tools         = ['rg', 'git']  "use rg since it shold be faster than git (I guess...)

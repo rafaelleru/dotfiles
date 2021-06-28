@@ -52,3 +52,5 @@ nnoremap <localleader>p :lprev<CR>zz
 
 " As a default I want to run case insensitive searches
 nnoremap / /\c
+
+nnoremap <leader>/ :Grepper<CR>
