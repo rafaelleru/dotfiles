@@ -73,7 +73,9 @@ Plugin 'tommcdo/vim-fubitive'
 
 Plugin 'tommcdo/vim-lion'
 
-Plugin 'vim-scripts/a.vim'
+Plugin 'romainl/vim-qf'
+
+Plugin 'nvim-treesitter/nvim-treesitter'
 
 call vundle#end()            " required
 
@@ -89,6 +91,14 @@ lua require'lspconfig'.clangd.setup{ on_attach=require'completion'.on_attach }
 lua require'lspconfig'.rls.setup{ on_attach=require'completion'.on_attach }
 " Vim language server
 lua require'lspconfig'.vimls.setup{ on_attach=require'completion'.on_attach }
+
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  highlight = {
+    enable = true
+    }
+}
+EOF
 
 command! MakeTags !ctags -R .
 
