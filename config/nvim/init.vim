@@ -77,6 +77,9 @@ Plugin 'romainl/vim-qf'
 
 Plugin 'nvim-treesitter/nvim-treesitter'
 
+Plugin 'nvim-lua/plenary.nvim'
+Plugin 'lewis6991/gitsigns.nvim'
+
 call vundle#end()            " required
 
 " Python
