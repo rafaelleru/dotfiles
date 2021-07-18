@@ -14,6 +14,7 @@ set completeopt=menuone,noinsert,noselect
 set noswapfile
 set list
 set mouse=a
+set cursorline
 
 " Fix vim split default behavior
 set splitright
