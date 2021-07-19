@@ -15,6 +15,7 @@ set noswapfile
 set list
 set mouse=a
 set cursorline
+set foldlevelstart=1
 
 " Fix vim split default behavior
 set splitright
