@@ -9,6 +9,7 @@
 	s = status
 	a = add
 	C = commit -am
+	d = diff
 [core]
 	excludesfile = ~/.gitignore
 	editor = nvim
@@ -22,3 +23,10 @@
   rebase = true
 [push]
   set-upstream = true
+
+[merge]
+	tool = vimdiff
+[mergetool]
+	keepBackup = false
+[mergetool "vimdiff"]
+	cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
