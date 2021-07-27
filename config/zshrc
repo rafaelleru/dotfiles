@@ -125,6 +125,7 @@ alias tmux="TERM=xterm-256color tmux -u"
 alias py="python3"
 alias y="yay"
 alias apt="sudo apt"
+alias dc="docker-compose"
 
 export PATH=$HOME/.bin:$HOME/.bin/scripts:/usr/local/bin:$PATH
 
