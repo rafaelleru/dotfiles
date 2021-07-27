@@ -105,7 +105,7 @@ font:
     #style: Italic
 
   # Point size
-  size: 9
+  size: 10
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -146,52 +146,68 @@ font:
 # If `true`, bold text is drawn using the bright color variants.
 draw_bold_text_with_bright_colors: true
 
-# Colors (Solarized Dark)
+
+# Base16 Bright 256 - alacritty color config
+# Chris Kempson (http://chriskempson.com)
 colors:
+  # Default colors
+  primary:
+    background: '0x000000'
+    foreground: '0xe0e0e0'
+
+  # Colors the cursor will use if `custom_cursor_colors` is true
+  cursor:
+    text: '0x000000'
+    cursor: '0xe0e0e0'
+
   # Normal colors
   normal:
-    black:	  '#000000'
-    red:	    '#e04128'
-    green:	  '#5da602'
-    yellow:	  '#cfad00'
-    blue:	    '#417ab3'
-    magenta:	'#88658d'
-    cyan:	    '#02aa91'
-    white:	  '#dbded8'
+    black:   '0x000000'
+    red:     '0xfb0120'
+    green:   '0xa1c659'
+    yellow:  '0xfda331'
+    blue:    '0x6fb3d2'
+    magenta: '0xd381c3'
+    cyan:    '0x76c7b7'
+    white:   '0xe0e0e0'
 
   # Bright colors
   bright:
-    black:	  '#676965'
-    red:	    '#f44135'
-    green:	  '#7cb934'
-    yellow:	  '#fcea60'
-    blue:	    '#83afd8'
-    magenta:  '#bc93b6'
-    cyan:	    '#38e7be'
-    white:	  '#f1f1ef'
-  # Dim colors
-  #
-  # If the dim colors are not set, they will be calculated automatically based
-  # on the `normal` colors.
-  #dim:
-  #  black:   '0x000000'
-  #  red:     '0x8c3336'
-  #  green:   '0x7a8530'
-  #  yellow:  '0x97822e'
-  #  blue:    '0x506d8f'
-  #  magenta: '0x80638e'
-  #  cyan:    '0x497e7a'
-  #  white:   '0x9a9a9a'
+    black:   '0xb0b0b0'
+    red:     '0xfb0120'
+    green:   '0xa1c659'
+    yellow:  '0xfda331'
+    blue:    '0x6fb3d2'
+    magenta: '0xd381c3'
+    cyan:    '0x76c7b7'
+    white:   '0xffffff'
 
-  # Indexed Colors
-  #
-  # The indexed colors include all colors from 16 to 256.
-  # When these are not set, they're filled with sensible defaults.
-  #
-  # Example:
-  #   `- { index: 16, color: '0xff00ff' }`
-  #
-  indexed_colors: []
+  indexed_colors:
+    - { index: 16, color: '0xfc6d24' }
+    - { index: 17, color: '0xbe643c' }
+    - { index: 18, color: '0x303030' }
+    - { index: 19, color: '0x505050' }
+    - { index: 20, color: '0xd0d0d0' }
+    - { index: 21, color: '0xf5f5f5' }
+
+# Dim colors
+#
+# If the dim colors are not set, they will be calculated automatically based
+# on the `normal` colors.
+#dim:
+#  black:   '0x000000'
+#  red:     '0x8c3336'
+#  green:   '0x7a8530'
+#  yellow:  '0x97822e'
+#  blue:    '0x506d8f'
+#
+# The indexed colors include all colors from 16 to 256.
+# When these are not set, they're filled with sensible defaults.
+#
+# Example:
+#   `- { index: 16, color: '0xff00ff' }`
+#
+indexed_colors: []
 
 # Visual Bell
 #
@@ -223,7 +239,7 @@ bell:
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-background_opacity: 0.95
+background_opacity: 0.8
 
 # Mouse bindings
 #
