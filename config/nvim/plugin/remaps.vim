@@ -1,5 +1,5 @@
-nnoremap <c-p> :FZF<CR>
-nnoremap <c-b> :Buffers<CR>
+nnoremap <c-p> <cmd>:FZF<CR>
+nnoremap <c-b> <cmd>:Buffers<CR>
 "nnoremap <leader>r :Rg<CR>
 nnoremap <leader>nt :NERDTreeToggleVCS<CR>
 nnoremap <leader>gs :G<CR>
@@ -53,4 +53,4 @@ nnoremap <localleader>p :lprev<CR>zz
 " As a default I want to run case insensitive searches
 nnoremap / /\c
 
-nnoremap <leader>/ :Grepper<CR>
+nnoremap <leader>/ <cmd>Rg:<CR>
