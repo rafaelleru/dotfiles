@@ -16,6 +16,7 @@ set list
 set mouse=a
 set cursorline
 set foldlevelstart=1
+set scrolloff=10
 
 " Fix vim split default behavior
 set splitright
@@ -82,6 +83,10 @@ Plugin 'nvim-treesitter/nvim-treesitter'
 Plugin 'nvim-lua/plenary.nvim'
 Plugin 'lewis6991/gitsigns.nvim'
 
+Plugin 'nvim-lua/popup.nvim'
+Plugin 'nvim-telescope/telescope.nvim'
+Plugin 'mhartington/oceanic-next'
+Plugin 'chriskempson/base16-vim'
 call vundle#end()            " required
 
 " Python
