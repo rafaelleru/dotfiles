@@ -32,14 +32,21 @@ function git_info() {
 	echo $p
 }
 
+function idti_env() {
+	if [[ -n ${IDTHEFT_TESTS_TARGET} ]]; then
+		echo "[${IDTHEFT_TESTS_TARGET}]"
+	fi
+}
+
+
 # primary prompt
 PS1='$FG[237]${(l.$(afmagic_dashes)..-.)}%{$reset_color%}
-$FG[240]%n@%m%{$reset_color%}% $FG[032] %~$(git_info)%{$reset_color%}$(hg_prompt_info) $FG[105]%(!.#.»)%{$reset_color%} $vi_mode_prompt_info% '
+$FG[240]%m @%{$reset_color%}% $FG[032] %~$(git_info)%{$reset_color%}$(hg_prompt_info)
+%n $FG[105]%(!.#.»)%{$reset_color%} '
 PS2='%{$fg[red]%}\ %{$reset_color%}'
-RPS1='${return_code}'
-
-# right prompt
-(( $+functions[virtualenv_prompt_info] )) && RPS1+='[$IDTHEFT_TESTS_TARGET]'
+RPS1+='${return_code}'
+RPS1+=' %t'
+RPS1+=' $(idti_env)'
 
 # git settings
 ZSH_THEME_GIT_PROMPT_PREFIX=""
