@@ -15,8 +15,8 @@ let g:completion_trigger_on_delete = 1
 
 let g:rg_command = "rg --vimgrep -S"
 
-let g:diminactive_use_colorcolumn = 0
-let g:diminactive_use_syntax = 1
+"let g:diminactive_use_colorcolumn = 0
+"let g:diminactive_use_syntax = 1
 
 if exists('+termguicolors')
 	let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
@@ -29,7 +29,22 @@ let g:gruvbox_material_transparent_background=1
 
 " This has to be here, otherwise  transparent background will  not work
 set background=dark    " Setting dark mode
-colorscheme gruvbox-material
+" For Neovim 0.1.3 and 0.1.4
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+
+" Or if you have Neovim >= 0.1.5
+if (has("termguicolors"))
+ set termguicolors
+endif
+
+" Theme
+syntax enable
+colorscheme base16-bright
+
+hi Normal guibg=NONE ctermbg=NONE
+hi LineNr guibg=NONE ctermbg=NONE
+hi SignColumn guibg=NONE ctermbg=NONE
+hi EndOfBuffer guibg=NONE ctermbg=NONE
 
 let g:the_primeagen_qf_l = 0
 let g:the_primeagen_qf_g = 0
