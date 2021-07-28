@@ -46,6 +46,8 @@ hi LineNr guibg=NONE ctermbg=NONE
 hi SignColumn guibg=NONE ctermbg=NONE
 hi EndOfBuffer guibg=NONE ctermbg=NONE
 
+hi Comment gui=italic cterm=italic
+
 let g:the_primeagen_qf_l = 0
 let g:the_primeagen_qf_g = 0
 
