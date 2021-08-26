@@ -32,8 +32,8 @@ inoremap <expr> <s-tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 "Quickfix lixt stuffff!!!!!!!
 nnoremap <C-q> :call ToggleQFList(1)<CR>
-nnoremap <C-k> :cnext<CR>zz
-nnoremap <C-j> :cprev<CR>zz
+nnoremap <C-k> :cprev<CR>zz
+nnoremap <C-j> :cnext<CR>zz
 
 "Cicle througth tabs
 nnoremap <c-tab> :tabnext<CR>zz
