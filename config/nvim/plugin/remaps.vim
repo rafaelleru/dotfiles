@@ -51,6 +51,7 @@ nnoremap <localleader>n :lnext<CR>zz
 nnoremap <localleader>p :lprev<CR>zz
 
 " As a default I want to run case insensitive searches
-nnoremap / /\c
+nnoremap / /\c\v
 
 nnoremap <leader>/ <cmd>Rg:<CR>
+nnoremap <leader>x :bd<CR>zz
