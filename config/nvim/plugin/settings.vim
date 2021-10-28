@@ -74,3 +74,7 @@ endfun
 
 let g:grepper               = {}
 let g:grepper.tools         = ['rg', 'git']  "use rg since it shold be faster than git (I guess...)
+
+let g:indentLine_conceallevel = 0  " This will show quotes in json files
+
+let greppgr="rg -n"
