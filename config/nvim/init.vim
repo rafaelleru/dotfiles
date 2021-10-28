@@ -87,6 +87,9 @@ Plugin 'nvim-lua/popup.nvim'
 Plugin 'nvim-telescope/telescope.nvim'
 Plugin 'mhartington/oceanic-next'
 Plugin 'chriskempson/base16-vim'
+Plugin 'ryanoasis/vim-devicons'
+Plugin 'wuelnerdotexe/vim-enfocado'
+Plugin 'pbrisbin/vim-mkdir'
 call vundle#end()            " required
 
 " Python
