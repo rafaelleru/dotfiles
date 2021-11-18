@@ -3,3 +3,6 @@ snippet parser
 
 snippet add_argument
 	parser.add_argument('--${1:argname}', '-${2:arg_short}', dest='$1', type=${3:str}, required=${5:False}, help='${6:help}')
+
+snippet printstderr
+	print >> sys.stderr, $1
