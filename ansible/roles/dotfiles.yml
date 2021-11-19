@@ -33,6 +33,13 @@
     state: link
     force: yes
 
+- name: link dwm confif file
+  file:
+    src: "{{ lookup('env', 'DOTFILESDIR') }}/config/suckless/dwm/config.h"
+    dest: "{{ lookup('env', 'HOME') }}/bin/dwm/config.h"
+    state: link
+    force: yes
+
     #~/.xsession: xsession
     #~/bin/scripts: bin/scripts
     #~/bin/dwm/config.h: config/suckless/dwm/config.h
