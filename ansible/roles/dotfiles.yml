@@ -1,0 +1,38 @@
+- name: links zshrc file in ~ dir
+  file:
+    src: "{{ lookup('env', 'DOTFILESDIR') }}/config/zshrc"
+    dest: "{{ lookup('env', 'HOME') }}/.zshrc"
+    state: link
+    force: yes
+
+- name: links tmux config file in ~/.tmux
+  file:
+    src: "{{ lookup('env', 'DOTFILESDIR') }}/config/tmux.conf"
+    dest: "{{ lookup('env', 'HOME') }}/.tmux.conf"
+    state: link
+    force: yes
+
+- name: links nvim config dir in ~/.config
+  file:
+    src: "{{ lookup('env', 'DOTFILESDIR') }}/config/nvim"
+    dest: "{{ lookup('env', 'HOME') }}/.config/nvim"
+    state: link
+    force: yes
+
+- name: links alacritty config dir in ~/.config
+  file:
+    src: "{{ lookup('env', 'DOTFILESDIR') }}/config/alacritty"
+    dest: "{{ lookup('env', 'HOME') }}/.config/alacritty"
+    state: link
+    force: yes
+
+- name: links fonts dir in ~/.fonts
+  file:
+    src: "{{ lookup('env', 'DOTFILESDIR') }}/config/fonts"
+    dest: "{{ lookup('env', 'HOME') }}/.config/fonts"
+    state: link
+    force: yes
+
+    #~/.xsession: xsession
+    #~/bin/scripts: bin/scripts
+    #~/bin/dwm/config.h: config/suckless/dwm/config.h
