@@ -1,0 +1,16 @@
+# file: dotfiles.yml
+---
+- name: Install apt packages
+  apt:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - jq
+    - curl
+    - htop
+    - python3
+    - python3-dev
+    - docker-compose
+    - docker
+    - git
+    - dmenu
