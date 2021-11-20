@@ -1,0 +1,77 @@
+---
+- name: build my dwm copy
+  make:
+    chdir: "{{ lookup('env', 'HOME') }}/bin/dwm"
+    target: install
+
+- name: clone clipnotify
+  git:
+    repo: https://github.com/cdown/clipnotify.git
+    dest: "{{ lookup('env', 'HOME') }}/bin/clipnotify"
+
+- name: build & install clipnotify
+  make:
+    chdir: "{{ lookup('env', 'HOME') }}/bin/clipnotify"
+    target: install
+
+- name: clone clipnotify
+  git:
+    repo: https://github.com/cdown/clipmenu.git
+    dest: "{{ lookup('env', 'HOME') }}/bin/clipmenu"
+
+- name: build clipmenu
+  make:
+    chdir: "{{ lookup('env', 'HOME') }}/bin/clipmenu"
+    target: install
+
+# TODO: Clonar y construir neovim (hay un problema con git)
+#- name: get neovim repository
+  #git:
+    #repo: https://github.com/neovim/neovim
+    #dest: "{{ lookup('env', 'HOME') }}/bin/neovim"
+
+#- name: make neovim
+  #make:
+    #chdir: "{{ lookup('env', 'HOME') }}/bin/neovim"
+    #jobs: 4
+    #target: install
+
+- name: get rustup script
+  get_url:
+    url: https://static.rust-lang.org/rustup/dist/x86_64-unknown-linux-gnu/rustup-init
+    dest: "{{ lookup('env', 'HOME') }}/bin/rustup.sh"
+
+- name: give rustup permissions to run
+  shell: "chmod 755 {{ lookup('env', 'HOME') }}/bin/rustup.sh"
+
+# TODO: Instalar rust
+#- name: run rustup.sh script
+  #shell: "sh -c {{ lookup('env', 'HOME') }}/bin/rustup.sh -y --quiet"
+
+#- name: enable cargo
+  #shell: source "{{ lookup('env', 'HOME') }}/.cargo/env"
+
+#- name: use stable rust
+  #shell: rustup override set stable
+
+#- name: update stable rust
+  #shell: rustup update stable
+
+#- name: clone alacritty source code
+  #git:
+    #repo: https://github.com/alacritty/alacritty.git
+    #dest: "{{ lookup('env', 'HOME') }}/bin/alacritty"
+
+#- name: build alacritty
+  #shell:
+    #chdir: "{{ lookup('env', 'HOME') }}/bin/alacritty"
+    #cmd: cargo build --release
+
+#- name: place alacritty in /usr/bin directory
+  #file:
+    #src: "{{ lookup('env', 'HOME') }}/bin/alacritty/target/release/alacritty"
+    #dest: "/usr/bin/alacritty"
+    #state: link
+    #force: yes
+
+
