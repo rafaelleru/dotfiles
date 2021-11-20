@@ -1,0 +1,29 @@
+# file: dotfiles.yml
+---
+- hosts: all
+  become: yes
+  tasks:
+
+  - name: Install apt packages
+    import_tasks: roles/apt.yml
+    when: ansible_facts['os_family'] == "Debian"
+
+  - name: Create bin directory in ~
+    file:
+      path: "{{ lookup('env', 'HOME') }}/bin"
+      state: directory
+
+  - name: clone my dwm copy
+    git:
+      repo: https://github.com/rafaelleru/dwm.git
+      dest: "{{ lookup('env', 'HOME') }}/bin/dwm"
+
+  - name: Setup personal dotfiles
+    tags: dotfiles
+    import_tasks: roles/dotfiles.yml
+
+  - name: Clone oh-my-zshrc
+    shell: sh -c $(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh) --keep-zshrc --unattended
+
+  - name: build packages
+    import_tasks: roles/build_packages.yml
