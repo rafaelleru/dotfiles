@@ -90,20 +90,24 @@ Plug 'chriskempson/base16-vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'wuelnerdotexe/vim-enfocado'
 Plug 'pbrisbin/vim-mkdir'
+
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 call plug#end()            " required
 
 " Python
-lua require'lspconfig'.pyls.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.pylsp.setup{}
 " PHP
-lua require'lspconfig'.intelephense.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.intelephense.setup{}
 " Go
-lua require'lspconfig'.gopls.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.gopls.setup{}
 " C/C++
-lua require'lspconfig'.clangd.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.clangd.setup{}
 " Rust
-lua require'lspconfig'.rls.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.rls.setup{}
 " Vim language server
-lua require'lspconfig'.vimls.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.vimls.setup{}
 
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
