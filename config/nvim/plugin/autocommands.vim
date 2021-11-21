@@ -1,14 +1,14 @@
 augroup rafaelleru
     autocmd!
     " Populate locallist with lsp diagnostics automatically 
-    autocmd User LspDiagnosticsChanged :lua vim.lsp.diagnostic.set_loclist({open_loclist = false})
+    autocmd User LspDiagnosticsChanged :lua vim.diagnostic.setloclist({open = false})
     " TODO: the nexts autocmd statements should not be necessary
-    autocmd BufWrite *.py :lua vim.lsp.diagnostic.set_loclist({open_loclist = false})
-    autocmd BufWrite *.php :lua vim.lsp.diagnostic.set_loclist({open_loclist = false})
-    autocmd BufWrite *.go :lua vim.lsp.diagnostic.set_loclist({open_loclist = false})
-    autocmd BufWrite *.rs :lua vim.lsp.diagnostic.set_loclist({open_loclist = false})
-    autocmd BufWrite *.cpp,*.hpp,*.h,*.c :lua vim.lsp.diagnostic.set_loclist({open_loclist = false})
-    autocmd BufWrite *.vim :lua vim.lsp.diagnostic.set_loclist({open_loclist = false})
+    autocmd BufWrite *.py :lua vim.diagnostic.setloclist({open = false})
+    autocmd BufWrite *.php :lua vim.diagnostic.setloclist({open = false})
+    autocmd BufWrite *.go :lua vim.diagnostic.setloclist({open = false})
+    autocmd BufWrite *.rs :lua vim.diagnostic.setloclist({open = false})
+    autocmd BufWrite *.cpp,*.hpp,*.h,*.c :lua vim.diagnostic.setloclist({open = false})
+    autocmd BufWrite *.vim :lua vim.diagnostic.setloclist({open = false})
 augroup END
 
 augroup yank_highlight
