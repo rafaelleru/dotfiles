@@ -1,45 +1,45 @@
 - name: links zshrc file in ~ dir
   file:
-    src: "{{ lookup('env', 'DOTFILESDIR') }}/config/zshrc"
+    src: "{{ lookup('env', 'HOME') }}/dotfiles/dotfiles/config/zshrc"
     dest: "{{ lookup('env', 'HOME') }}/.zshrc"
     state: link
     force: yes
 
-- name: links tmux config file in ~/.tmux
+- name: links tmux dotfiles/config file in ~/.tmux
   file:
-    src: "{{ lookup('env', 'DOTFILESDIR') }}/config/tmux.conf"
+    src: "{{ lookup('env', 'HOME') }}/dotfiles/config/tmux.conf"
     dest: "{{ lookup('env', 'HOME') }}/.tmux.conf"
     state: link
     force: yes
 
-- name: links nvim config dir in ~/.config
+- name: links nvim dotfiles/config dir in ~/.config
   file:
-    src: "{{ lookup('env', 'DOTFILESDIR') }}/config/nvim"
+    src: "{{ lookup('env', 'HOME') }}/dotfiles/config/nvim"
     dest: "{{ lookup('env', 'HOME') }}/.config/nvim"
     state: link
     force: yes
 
-- name: links alacritty config dir in ~/.config
+- name: links alacritty dotfiles/config dir in ~/.config
   file:
-    src: "{{ lookup('env', 'DOTFILESDIR') }}/config/alacritty"
+    src: "{{ lookup('env', 'HOME') }}/dotfiles/config/alacritty"
     dest: "{{ lookup('env', 'HOME') }}/.config/alacritty"
     state: link
     force: yes
 
 - name: links fonts dir in ~/.fonts
   file:
-    src: "{{ lookup('env', 'DOTFILESDIR') }}/config/fonts"
+    src: "{{ lookup('env', 'HOME') }}/dotfiles/config/fonts"
     dest: "{{ lookup('env', 'HOME') }}/.config/fonts"
     state: link
     force: yes
 
 - name: link dwm confif file
   file:
-    src: "{{ lookup('env', 'DOTFILESDIR') }}/config/suckless/dwm/config.h"
+    src: "{{ lookup('env', 'HOME') }}/dotfiles/config/suckless/dwm/config.h"
     dest: "{{ lookup('env', 'HOME') }}/bin/dwm/config.h"
     state: link
     force: yes
 
     #~/.xsession: xsession
     #~/bin/scripts: bin/scripts
-    #~/bin/dwm/config.h: config/suckless/dwm/config.h
+    #~/bin/dwm/dotfiles/config.h: config/suckless/dwm/config.h

@@ -1,0 +1,12 @@
+---
+ #TODO: Clonar y construir neovim (hay un problema con git)
+- name: get neovim repository
+  git:
+    force: yes
+    repo: https://github.com/neovim/neovim
+    dest: "{{ lookup('env', 'HOME') }}/bin/neovim"
+
+- name: make neovim
+  make:
+    chdir: "{{ lookup('env', 'HOME') }}/bin/neovim"
+    target: install

@@ -14,3 +14,18 @@
     - docker
     - git
     - dmenu
+    - make
+    - gcc
+    - ninja-build
+    - xorg 
+    - libx11-dev 
+    - libxft-dev
+    - libxinerama-dev
+    - xdm
+    - libxfixes-dev
+    - xsel
+    - cmake
+    - g++
+    - libtool-bin
+    - libblis64-pthread-dev
+    - gettext
