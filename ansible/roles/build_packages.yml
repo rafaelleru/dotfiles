@@ -24,6 +24,23 @@
     chdir: "{{ lookup('env', 'HOME') }}/bin/clipmenu"
     target: install
 
+- name: clone fzf
+  git:
+    repo: https://github.com/junegunn/fzf.git
+    dest: "{{ lookup('env', 'HOME') }}/bin/fzf"
+
+- name: install fzf
+  shell:
+   chdir: "{{ lookup('env', 'HOME') }}/bin/fzf"
+   cmd: ./install --all --xdg --no-update-rc
+
+- name: install fzf
+  file:
+   src: "{{ lookup('env', 'HOME') }}/bin/fzf/bin/fzf"
+   dest: "/usr/bin/fzf"
+   state: link
+
+
  #TODO: Clonar y construir neovim (hay un problema con git)
 #- name: get neovim repository
   #git:

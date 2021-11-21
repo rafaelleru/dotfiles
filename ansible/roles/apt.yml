@@ -29,3 +29,4 @@
     - libtool-bin
     - libblis64-pthread-dev
     - gettext
+    - ripgrep
