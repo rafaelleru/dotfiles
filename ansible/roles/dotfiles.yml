@@ -40,6 +40,11 @@
     state: link
     force: yes
 
+- name: link scripts folder to bin directory
+  file:
+    src: "{{ lookup('env', 'HOME') }}/dotfiles/bin/scripts"
+    dest: "{{ lookup('env', 'HOME') }}/bin/scripts"
+    state: link
+    force: yes
+
     #~/.xsession: xsession
-    #~/bin/scripts: bin/scripts
-    #~/bin/dwm/dotfiles/config.h: config/suckless/dwm/config.h
