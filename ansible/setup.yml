@@ -54,3 +54,7 @@
 
   - name: install vim plugins
     shell: nvim +PlugInstall +q +:q
+
+  - name: install nvim language servers
+    shell: nvim +LspInstall pylsp gopls clangd dockerls jsonls intelephense vimls +:q
+
