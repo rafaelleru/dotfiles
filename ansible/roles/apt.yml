@@ -42,3 +42,5 @@
     - libxkbcommon-dev
     - golang
     - nodejs
+    - npm
+
