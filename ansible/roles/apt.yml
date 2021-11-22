@@ -1,6 +1,7 @@
 # file: dotfiles.yml
 ---
 - name: Install apt packages
+  tags: apt
   apt:
     name: "{{ item }}"
     state: present
@@ -33,3 +34,8 @@
     - libblis64-pthread-dev
     - gettext
     - ripgrep
+    - pkg-config
+    - libfreetype6-dev
+    - libfontconfig1-dev
+    - libxcb-xfixes0-dev
+    - libxkbcommon-dev
