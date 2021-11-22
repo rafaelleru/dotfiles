@@ -39,3 +39,4 @@
     - libfontconfig1-dev
     - libxcb-xfixes0-dev
     - libxkbcommon-dev
+    - golang
