@@ -55,3 +55,8 @@ nnoremap / /\c\v
 
 nnoremap <leader>/ <cmd>Rg:<CR>
 nnoremap <leader>x :bd<CR>zz
+
+
+" after reindent a visual block I want to keep it selected
+vnoremap > >gv
+vnoremap < <gv
