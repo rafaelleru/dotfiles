@@ -57,6 +57,7 @@ Plug 'honza/vim-snippets'
 Plug 'luochen1990/indent-detector.vim'
 
 Plug 'neovim/nvim-lspconfig'
+Plug 'williamboman/nvim-lsp-installer'
 Plug 'nvim-lua/completion-nvim'
 "
 " Use nvim as editor in browser
