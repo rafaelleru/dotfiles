@@ -1,6 +1,6 @@
 - name: links zshrc file in ~ dir
   file:
-    src: "{{ lookup('env', 'HOME') }}/dotfiles/dotfiles/config/zshrc"
+    src: "{{ lookup('env', 'HOME') }}/dotfiles/config/zshrc"
     dest: "{{ lookup('env', 'HOME') }}/.zshrc"
     state: link
     force: yes
