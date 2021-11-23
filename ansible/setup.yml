@@ -8,6 +8,10 @@
     import_tasks: roles/apt.yml
     when: ansible_facts['os_family'] == "Debian"
 
+  - name: Install dnf packages
+    import_tasks: roles/dnf.yml
+    when: ansible_facts['os_family'] == "RedHat"
+
   - name: Create bin directory in ~
     file:
       path: "{{ lookup('env', 'HOME') }}/bin"
