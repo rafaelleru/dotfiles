@@ -52,9 +52,10 @@
       url: "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
       dest: "{{ lookup('env', 'HOME') }}/.local/share/nvim/site/autoload/plug.vim"
 
-  - name: install vim plugins
-    shell: nvim +PlugInstall +q +:q
+  # TODO: No funciona en la primera instalacion
+  #- name: install vim plugins
+    #shell: nvim +PlugInstall +q +:q
 
-  - name: install nvim language servers
-    shell: nvim +LspInstall pylsp gopls clangd dockerls jsonls intelephense vimls +:q
+  #- name: install nvim language servers
+    #shell: nvim +LspInstall pylsp gopls clangd dockerls jsonls intelephense vimls +:q
 
