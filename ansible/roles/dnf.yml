@@ -24,6 +24,11 @@
     - libX11
     - libXft
     - libXinerama
+    - libX11-devel
+    - libXft-devel
+    - libXinerama-devel
+    - libXrandr-devel
+    - libXfixes-devel
     - xdm
     - libXfixes
     - xsel
@@ -34,9 +39,9 @@
     - gettext
     - ripgrep
     - pkgconf-pkg-config
-    - freetype-devel 
-    - fontconfig-devel 
-    - libxcb-devel 
+    - freetype-devel-
+    - fontconfig-devel-
+    - libxcb-devel-
     - libxkbcommon-devel
     - golang
     - nodejs
