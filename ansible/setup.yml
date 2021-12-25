@@ -12,6 +12,10 @@
     import_tasks: roles/dnf.yml
     when: ansible_facts['os_family'] == "RedHat"
 
+  - name: Install pacman packages
+    import_tasks: roles/pacman.yml
+    when: ansible_facts['os_family'] == "Archlinux"
+
   - name: Create bin directory in ~
     file:
       path: "{{ lookup('env', 'HOME') }}/bin"

@@ -1,0 +1,49 @@
+# file: dotfiles.yml
+---
+- name: Install pacman packages
+  tags: pacman
+  pacman:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - jq
+    - curl
+    - htop
+    - python3
+    - python-pip
+    - python-wheel
+    - python-neovim
+    - docker-compose
+    - docker # docker engine open source in fedora
+    - git
+    - dmenu
+    - make
+    - gcc
+    - ninja
+    - xorg-server
+    - libx11
+    - libxft
+    - libxinerama
+    - libxrandr
+    - libxfixes
+    - xorg-xdm
+    - libxfixes
+    - xsel
+    - cmake
+    - libtool
+    - gettext
+    - ripgrep
+    - freetype2
+    - fontconfig
+    - libxcb
+    - libxkbcommon
+    - go
+    - nodejs
+    - npm
+    - wget
+    - pkgconf
+    - libuv
+    - unzip
+    - base-devel
+    - tree-sitter
+
