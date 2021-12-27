@@ -38,8 +38,3 @@ augroup fixlist
     autocmd BufCreate quickfix call SetQFControlVariable()
     autocmd BufWinLeave * call UnsetQFControlVariable()
 augroup END
-
-augroup foldong
-    autocmd!
-    autocmd BufWinEnter,WinNew *.py :set foldmethod=indent
-augroup END

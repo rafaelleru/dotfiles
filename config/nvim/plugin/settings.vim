@@ -75,3 +75,8 @@ let g:grepper.tools         = ['rg', 'git']  "use rg since it shold be faster th
 let g:indentLine_conceallevel = 0  " This will show quotes in json files
 
 let greppgr="rg -n"
+
+
+" Use treesiter to provide folding settings.
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
