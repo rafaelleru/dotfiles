@@ -17,6 +17,7 @@ set mouse=a
 set cursorline
 set foldlevelstart=1
 set scrolloff=10
+set nocompatible
 
 " Fix vim split default behavior
 set splitright
@@ -92,9 +93,13 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'wuelnerdotexe/vim-enfocado'
 Plug 'pbrisbin/vim-mkdir'
 
-Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
 Plug 'quangnguyen30192/cmp-nvim-ultisnips'
+Plug 'sbdchd/neoformat'
 call plug#end()            " required
 
 " Python
