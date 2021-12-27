@@ -3,15 +3,12 @@ let maplocalleader = "\,"
 
 let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 
-"" TODO: Redefine this mappings
-""let g:UltiSnipsListSnippets=""
-let g:UltiSnipsExpandTrigger="<C-t>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
+let g:UltiSnipsExpandTrigger = '<Plug>(ultisnips_expand)'      
+let g:UltiSnipsJumpForwardTrigger = '<Plug>(ultisnips_jump_forward)'
+let g:UltiSnipsJumpBackwardTrigger = '<Plug>(ultisnips_jump_backward)'
+let g:UltiSnipsListSnippets = '<c-x><c-s>'
+let g:UltiSnipsRemoveSelectModeMappings = 0
 
-let g:completion_enable_snippet = 'UltiSnips'
-let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
-let g:completion_trigger_on_delete = 1
 
 let g:rg_command = "rg --vimgrep -S"
 
