@@ -18,6 +18,7 @@ set cursorline
 set foldlevelstart=1
 set scrolloff=10
 set nocompatible
+set tabstop=4 "I prefer more small tabs when opening files
 
 " Fix vim split default behavior
 set splitright
