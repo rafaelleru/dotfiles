@@ -102,6 +102,7 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 Plug 'sbdchd/neoformat'
 Plug 'unblevable/quick-scope' " highlight relevant characters in the current line to quickly jump to words using f,F,t,T
+Plug 'caenrique/nvim-maximize-window-toggle' " Toggle the nvim current window to be maximized or not
 call plug#end()            " required
 
 " Python
