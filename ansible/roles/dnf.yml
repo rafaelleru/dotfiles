@@ -1,0 +1,50 @@
+# file: dotfiles.yml
+---
+- name: Install apt packages
+  tags: dnf
+  dnf:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - jq
+    - curl
+    - htop
+    - python3
+    - python3-pip
+    - python3-wheel
+    - python3-neovim
+    - docker-compose
+    - moby-engine # docker engine open source in fedora
+    - git
+    - dmenu
+    - make
+    - gcc
+    - ninja-build
+    - xorg-x11-server-Xorg
+    - libX11
+    - libXft
+    - libXinerama
+    - libX11-devel
+    - libXft-devel
+    - libXinerama-devel
+    - libXrandr-devel
+    - libXfixes-devel
+    - xdm
+    - libXfixes
+    - xsel
+    - cmake
+    - g++
+    - libtool
+    - blis-threads64
+    - gettext
+    - ripgrep
+    - pkgconf-pkg-config
+    - freetype-devel-
+    - fontconfig-devel-
+    - libxcb-devel-
+    - libxkbcommon-devel
+    - golang
+    - nodejs
+    - npm
+    - wget
+

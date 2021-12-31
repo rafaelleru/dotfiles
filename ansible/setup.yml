@@ -1,0 +1,69 @@
+# file: dotfiles.yml
+---
+- hosts: all
+  become: yes
+  tasks:
+
+  - name: Install apt packages
+    import_tasks: roles/apt.yml
+    when: ansible_facts['os_family'] == "Debian"
+
+  - name: Install dnf packages
+    import_tasks: roles/dnf.yml
+    when: ansible_facts['os_family'] == "RedHat"
+
+  - name: Install pacman packages
+    import_tasks: roles/pacman.yml
+    when: ansible_facts['os_family'] == "Archlinux"
+
+  - name: Create bin directory in ~
+    file:
+      path: "{{ lookup('env', 'HOME') }}/bin"
+      state: directory
+
+  - name: Create .config directory in ~
+    file:
+      path: "{{ lookup('env', 'HOME') }}/.config"
+      state: directory
+
+  - name: clone my dwm copy
+    git:
+      repo: https://github.com/rafaelleru/dwm.git
+      dest: "{{ lookup('env', 'HOME') }}/bin/dwm"
+
+  - name: clone my dotfiles copy
+    git:
+      repo: https://github.com/rafaelleru/dotfiles.git
+      dest: "{{ lookup('env', 'HOME') }}/dotfiles"
+      version: ansible
+
+  - name: Setup personal dotfiles
+    tags: dotfiles
+    import_tasks: roles/dotfiles.yml
+
+  - name: Clone oh-my-zshrc
+    shell: sh -c $(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh) --keep-zshrc --unattended
+
+  - name: Install latest version of neovim
+    import_tasks: roles/neovim.yml
+
+  - name: build packages
+    import_tasks: roles/build_packages.yml
+
+  - name: create ~/.local/share directory
+    file:
+      path: "{{ lookup('env', 'HOME') }}/.local/share/nvim/site/autoload/"
+      state: directory
+
+  - name: install vim plug
+    get_url:
+      url: "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+      dest: "{{ lookup('env', 'HOME') }}/.local/share/nvim/site/autoload/plug.vim"
+
+  # TODO: No funciona en la primera instalacion
+  #- name: install vim plugins
+    #shell: nvim +PlugInstall +q +:q
+
+  #- name: install nvim language servers
+    #shell: nvim +LspInstall pylsp gopls clangd dockerls jsonls intelephense vimls +:q
+

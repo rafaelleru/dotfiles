@@ -1,10 +1,6 @@
 [submodule "dwm"]
 	path = dwm
 	url = git@github.com:rafaelleru/dwm.git
-[submodule "dotbot"]
-	path = dotbot
-	url = https://github.com/anishathalye/dotbot
-	ignore = dirty
 [submodule "dotbot-pacaur"]
 	path = dotbot-pacaur
 	url = https://github.com/ajlende/dotbot-pacaur

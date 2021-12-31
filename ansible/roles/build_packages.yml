@@ -1,0 +1,83 @@
+---
+- name: build my dwm copy
+  make:
+    chdir: "{{ lookup('env', 'HOME') }}/bin/dwm"
+    target: install
+
+- name: clone clipnotify
+  git:
+    repo: https://github.com/cdown/clipnotify.git
+    dest: "{{ lookup('env', 'HOME') }}/bin/clipnotify"
+
+- name: build & install clipnotify
+  make:
+    chdir: "{{ lookup('env', 'HOME') }}/bin/clipnotify"
+    target: install
+
+- name: clone clipnotify
+  git:
+    repo: https://github.com/cdown/clipmenu.git
+    dest: "{{ lookup('env', 'HOME') }}/bin/clipmenu"
+
+- name: build clipmenu
+  make:
+    chdir: "{{ lookup('env', 'HOME') }}/bin/clipmenu"
+    target: install
+
+- name: clone fzf
+  git:
+    repo: https://github.com/junegunn/fzf.git
+    dest: "{{ lookup('env', 'HOME') }}/bin/fzf"
+
+- name: install fzf
+  shell:
+   chdir: "{{ lookup('env', 'HOME') }}/bin/fzf"
+   cmd: ./install --all --xdg --no-update-rc
+
+- name: install fzf
+  file:
+   src: "{{ lookup('env', 'HOME') }}/bin/fzf/bin/fzf"
+   dest: "/usr/bin/fzf"
+   state: link
+
+- name: get rustup script
+  tags: alacritty
+  get_url:
+    url: https://static.rust-lang.org/rustup/dist/x86_64-unknown-linux-gnu/rustup-init
+    dest: "{{ lookup('env', 'HOME') }}/bin/rustup-init.sh"
+
+- name: give rustup permissions to run
+  tags: alacritty
+  shell: "chmod 755 {{ lookup('env', 'HOME') }}/bin/rustup-init.sh"
+
+# TODO: Instalar rust
+- name: run rustup.sh script
+  tags: alacritty
+  shell: "{{ lookup('env', 'HOME') }}/bin/rustup-init.sh -y"
+
+
+- name: clone alacritty source code
+  tags: alacritty
+  git:
+    repo: https://github.com/alacritty/alacritty.git
+    dest: "{{ lookup('env', 'HOME') }}/bin/alacritty"
+
+- name: enable cargo
+  tags: alacritty
+  shell:
+    chdir: "{{ lookup('env', 'HOME') }}/bin/alacritty"
+    cmd: "source {{ lookup('env', 'HOME') }}/.cargo/env
+       && rustup override set stable
+       && rustup update stable
+       && cargo build --release"
+    executable: /bin/bash
+
+- name: place alacritty in /usr/bin directory
+  tags: alacritty
+  file:
+    src: "{{ lookup('env', 'HOME') }}/bin/alacritty/target/release/alacritty"
+    dest: "/usr/bin/alacritty"
+    state: link
+    force: yes
+
+

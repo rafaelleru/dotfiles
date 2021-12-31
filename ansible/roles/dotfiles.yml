@@ -1,0 +1,50 @@
+- name: links zshrc file in ~ dir
+  file:
+    src: "{{ lookup('env', 'HOME') }}/dotfiles/config/zshrc"
+    dest: "{{ lookup('env', 'HOME') }}/.zshrc"
+    state: link
+    force: yes
+
+- name: links tmux dotfiles/config file in ~/.tmux
+  file:
+    src: "{{ lookup('env', 'HOME') }}/dotfiles/config/tmux.conf"
+    dest: "{{ lookup('env', 'HOME') }}/.tmux.conf"
+    state: link
+    force: yes
+
+- name: links nvim dotfiles/config dir in ~/.config
+  file:
+    src: "{{ lookup('env', 'HOME') }}/dotfiles/config/nvim"
+    dest: "{{ lookup('env', 'HOME') }}/.config/nvim"
+    state: link
+    force: yes
+
+- name: links alacritty dotfiles/config dir in ~/.config
+  file:
+    src: "{{ lookup('env', 'HOME') }}/dotfiles/config/alacritty"
+    dest: "{{ lookup('env', 'HOME') }}/.config/alacritty"
+    state: link
+    force: yes
+
+- name: links fonts dir in ~/.fonts
+  file:
+    src: "{{ lookup('env', 'HOME') }}/dotfiles/config/fonts"
+    dest: "{{ lookup('env', 'HOME') }}/.config/fonts"
+    state: link
+    force: yes
+
+- name: link dwm confif file
+  file:
+    src: "{{ lookup('env', 'HOME') }}/dotfiles/config/suckless/dwm/config.h"
+    dest: "{{ lookup('env', 'HOME') }}/bin/dwm/config.h"
+    state: link
+    force: yes
+
+- name: link scripts folder to bin directory
+  file:
+    src: "{{ lookup('env', 'HOME') }}/dotfiles/bin/scripts"
+    dest: "{{ lookup('env', 'HOME') }}/bin/scripts"
+    state: link
+    force: yes
+
+    #~/.xsession: xsession

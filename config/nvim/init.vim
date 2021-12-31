@@ -17,6 +17,8 @@ set mouse=a
 set cursorline
 set foldlevelstart=1
 set scrolloff=10
+set nocompatible
+set tabstop=4 "I prefer more small tabs when opening files
 
 " Fix vim split default behavior
 set splitright
@@ -33,77 +35,88 @@ set rtp+=~/.config/nvim/bundle/Vundle.vim
 set rtp+=~/.vim/bundle
 set rtp+=~/.fzf
 
-call vundle#begin()
+call plug#begin('~/.vim/plugged')
 
-Plugin 'gmarik/Vundle.vim'
-Plugin 'sainnhe/gruvbox-material'
-Plugin 'morhetz/gruvbox'
+Plug 'gmarik/Vundle.vim'
+Plug 'sainnhe/gruvbox-material'
+Plug 'morhetz/gruvbox'
 
-Plugin 'junegunn/fzf'
+Plug 'junegunn/fzf'
 
-Plugin 'junegunn/fzf.vim'
+Plug 'junegunn/fzf.vim'
 
-Plugin 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree'
 
-Plugin 'preservim/nerdcommenter'
+Plug 'preservim/nerdcommenter'
 filetype plugin on
 
-Plugin 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
 
-Plugin 'luochen1990/indent-detector.vim'
+Plug 'luochen1990/indent-detector.vim'
 
-Plugin 'neovim/nvim-lspconfig'
-Plugin 'nvim-lua/completion-nvim'
+Plug 'neovim/nvim-lspconfig'
+Plug 'williamboman/nvim-lsp-installer'
+Plug 'nvim-lua/completion-nvim'
 "
 " Use nvim as editor in browser
 " TODO: revisit this
-Plugin 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 
-Plugin 'mhinz/vim-grepper'
+Plug 'mhinz/vim-grepper'
 
-Plugin 'tpope/vim-sleuth' 
-Plugin 'cespare/vim-toml'
-Plugin 'Yggdroot/indentLine'
-Plugin 'junegunn/goyo.vim'
-Plugin 'blueyed/vim-diminactive'
+Plug 'tpope/vim-sleuth' 
+Plug 'cespare/vim-toml'
+Plug 'Yggdroot/indentLine'
+Plug 'junegunn/goyo.vim'
+Plug 'blueyed/vim-diminactive'
 
-Plugin 'tpope/vim-rhubarb'
-Plugin 'tommcdo/vim-fubitive'
+Plug 'tpope/vim-rhubarb'
+Plug 'tommcdo/vim-fubitive'
 
-Plugin 'tommcdo/vim-lion'
+Plug 'tommcdo/vim-lion'
 
-Plugin 'romainl/vim-qf'
+Plug 'romainl/vim-qf'
 
-Plugin 'nvim-treesitter/nvim-treesitter'
+Plug 'nvim-treesitter/nvim-treesitter'
 
-Plugin 'nvim-lua/plenary.nvim'
-Plugin 'lewis6991/gitsigns.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'lewis6991/gitsigns.nvim'
 
-Plugin 'nvim-lua/popup.nvim'
-Plugin 'nvim-telescope/telescope.nvim'
-Plugin 'mhartington/oceanic-next'
-Plugin 'chriskempson/base16-vim'
-Plugin 'ryanoasis/vim-devicons'
-Plugin 'wuelnerdotexe/vim-enfocado'
-Plugin 'pbrisbin/vim-mkdir'
-call vundle#end()            " required
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'mhartington/oceanic-next'
+Plug 'chriskempson/base16-vim'
+Plug 'ryanoasis/vim-devicons'
+Plug 'wuelnerdotexe/vim-enfocado'
+Plug 'pbrisbin/vim-mkdir'
+
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'quangnguyen30192/cmp-nvim-ultisnips'
+Plug 'sbdchd/neoformat'
+Plug 'unblevable/quick-scope' " highlight relevant characters in the current line to quickly jump to words using f,F,t,T
+Plug 'caenrique/nvim-maximize-window-toggle' " Toggle the nvim current window to be maximized or not
+call plug#end()            " required
 
 " Python
-lua require'lspconfig'.pyls.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.pylsp.setup{}
 " PHP
-lua require'lspconfig'.intelephense.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.intelephense.setup{}
 " Go
-lua require'lspconfig'.gopls.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.gopls.setup{}
 " C/C++
-lua require'lspconfig'.clangd.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.clangd.setup{}
 " Rust
-lua require'lspconfig'.rls.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.rls.setup{}
 " Vim language server
-lua require'lspconfig'.vimls.setup{ on_attach=require'completion'.on_attach }
+lua require'lspconfig'.vimls.setup{}
 
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
