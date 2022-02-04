@@ -47,4 +47,11 @@
     state: link
     force: yes
 
+- name: links editorconfig root file to ~ directory
+  file:
+    src: "{{ lookup('env', 'HOME') }}/dotfiles/config/editorconfig"
+    dest: "{{ lookup('env', 'HOME') }}/.editorconfig"
+    state: link
+    force: yes
+
     #~/.xsession: xsession
