@@ -1,7 +1,6 @@
-nnoremap <c-p> <cmd>:FZF<CR>
-nnoremap <c-b> <cmd>:Buffers<CR>
+nnoremap <c-p> <cmd>Telescope find_files<cr>
+nnoremap <c-b> <cmd>Telescope buffers<cr>
 "nnoremap <leader>r :Rg<CR>
-nnoremap <leader>nt :NERDTreeToggleVCS<CR>
 nnoremap <leader>gs :G<CR>
 
 nnoremap <leader>h :wincmd h<CR>
@@ -9,7 +8,7 @@ nnoremap <leader>j :wincmd j<CR>
 nnoremap <leader>k :wincmd k<CR>
 nnoremap <leader>l :wincmd l<CR>
 
-nnoremap  <leader>% :vsplit<CR>
+nnoremap  <leader>% :vnew<CR>
 nnoremap  <leader>" :split<CR>
 
 nmap <leader>gh :diffget //3<CR>
@@ -53,7 +52,7 @@ nnoremap <localleader>p :lprev<CR>zz
 " As a default I want to run case insensitive searches
 nnoremap / /\c\v
 
-nnoremap <leader>/ <cmd>Rg:<CR>
+nnoremap <leader>/ <cmd>Telescope live_grep<cr>
 nnoremap <leader>x :bd<CR>zz
 
 

@@ -46,8 +46,6 @@ Plug 'junegunn/fzf'
 
 Plug 'junegunn/fzf.vim'
 
-Plug 'scrooloose/nerdtree'
-
 Plug 'preservim/nerdcommenter'
 filetype plugin on
 
