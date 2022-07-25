@@ -3,9 +3,9 @@ let maplocalleader = "\,"
 
 let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 
-let g:UltiSnipsExpandTrigger = '<Plug>(ultisnips_expand)'      
-let g:UltiSnipsJumpForwardTrigger = '<Plug>(ultisnips_jump_forward)'
-let g:UltiSnipsJumpBackwardTrigger = '<Plug>(ultisnips_jump_backward)'
+let g:UltiSnipsExpandTrigger = '<Plug>(ultisnips_expand)'
+let g:UltiSnipsJumpForwardTrigger = '<Tab>' 
+let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'
 let g:UltiSnipsListSnippets = '<c-x><c-s>'
 let g:UltiSnipsRemoveSelectModeMappings = 0
 
@@ -36,7 +36,7 @@ endif
 
 " Theme
 syntax enable
-colorscheme base16-bright
+colorscheme tokyonight
 
 hi Normal guibg=NONE ctermbg=NONE
 hi LineNr guibg=NONE ctermbg=NONE
@@ -80,3 +80,5 @@ let greppgr="rg -n"
 " Use treesiter to provide folding settings.
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
+
+let g:snips_author='Rafael Leyva'

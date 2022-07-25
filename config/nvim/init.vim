@@ -38,8 +38,9 @@ set rtp+=~/.fzf
 call plug#begin('~/.vim/plugged')
 
 Plug 'gmarik/Vundle.vim'
-Plug 'sainnhe/gruvbox-material'
-Plug 'morhetz/gruvbox'
+"Plug 'sainnhe/gruvbox-material'
+"Plug 'morhetz/gruvbox'
+Plug 'folke/tokyonight.nvim'
 
 Plug 'junegunn/fzf'
 
@@ -103,6 +104,9 @@ Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 Plug 'sbdchd/neoformat'
 Plug 'unblevable/quick-scope' " highlight relevant characters in the current line to quickly jump to words using f,F,t,T
 Plug 'caenrique/nvim-maximize-window-toggle' " Toggle the nvim current window to be maximized or not
+Plug 'editorconfig/editorconfig-vim'
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+Plug 'mfussenegger/nvim-dap'
 call plug#end()            " required
 
 " Python
@@ -117,6 +121,7 @@ lua require'lspconfig'.clangd.setup{}
 lua require'lspconfig'.rls.setup{}
 " Vim language server
 lua require'lspconfig'.vimls.setup{}
+lua require'lspconfig'.metals.setup{}
 
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
@@ -129,3 +134,6 @@ EOF
 command! MakeTags !ctags -R .
 
 let $FZF_DEFAULT_COMMAND = 'rg -i --ignore-file ./.gitignore  --files'
+lua << EOF
+require('telescope').load_extension('fzf')
+EOF
