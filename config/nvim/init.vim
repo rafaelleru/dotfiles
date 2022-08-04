@@ -10,7 +10,6 @@ set undofile
 set undodir=$HOME/.local/vim_undo_dir
 set path+=**
 set wildignore+=*.pyc,*~
-set completeopt=menuone,noinsert,noselect
 set noswapfile
 set list
 set mouse=a
@@ -105,6 +104,7 @@ Plug 'caenrique/nvim-maximize-window-toggle' " Toggle the nvim current window to
 Plug 'editorconfig/editorconfig-vim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'mfussenegger/nvim-dap'
+Plug 'hrsh7th/nvim-compe'
 call plug#end()            " required
 
 " Python
@@ -116,7 +116,7 @@ lua require'lspconfig'.gopls.setup{}
 " C/C++
 lua require'lspconfig'.clangd.setup{}
 " Rust
-lua require'lspconfig'.rls.setup{}
+lua require'lspconfig'.rust_analyzer.setup{}
 " Vim language server
 lua require'lspconfig'.vimls.setup{}
 lua require'lspconfig'.metals.setup{}
