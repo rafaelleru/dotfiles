@@ -6,3 +6,15 @@ snippet add_argument
 
 snippet printstderr
 	print >> sys.stderr, $1
+
+snippet DAG
+	from airflow import DAG
+
+	with DAG(${1:dag}, schedule_interval=${2:schedule_interval}, default_args=default_args, catchup=False) as dag:
+		$3
+
+snippet airflow_operator
+	$1 = ${2:DummyOperator}(
+		task_id='${1:step_name}',
+		$3
+	)
