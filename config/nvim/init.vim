@@ -105,6 +105,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'mfussenegger/nvim-dap'
 Plug 'hrsh7th/nvim-compe'
+Plug 'evansalter/vim-checklist'
 call plug#end()            " required
 
 " Python
