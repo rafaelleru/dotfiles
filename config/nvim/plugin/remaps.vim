@@ -26,8 +26,8 @@ nnoremap <leader>rr :lua vim.lsp.buf.rename()<CR>
 nnoremap <leader>vd :lua vim.lsp.buf.hover()<CR>
 
 " Make tab key cycle through completion list
-inoremap <expr> <tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <s-tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+"inoremap <expr> <tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+"inoremap <expr> <s-tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 "Quickfix lixt stuffff!!!!!!!
 nnoremap <C-q> :call ToggleQFList(1)<CR>
@@ -53,10 +53,13 @@ nnoremap <localleader>p :lprev<CR>zz
 nnoremap / /\c\v
 
 nnoremap <leader>/ <cmd>Telescope live_grep<cr>
-nnoremap <leader>x :bd<CR>zz
 
 
 " after reindent a visual block I want to keep it selected
 vnoremap > >gv
 vnoremap < <gv
 nnoremap <leader>o :ToggleOnly<CR>
+
+" Save file with space+w
+nnoremap <leader>w :w<CR>
+nnoremap <leader>x :ChecklistToggleCheckbox<CR>zz
