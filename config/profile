@@ -45,3 +45,9 @@ export PATH=$HOME/.local/bin:$PATH
 export GOOGLE_API_KEY="AIzaSyDUIXvzVrt5OkVsgXhQ6NFfvWlA44by-aw"
 export GOOGLE_DEFAULT_CLIENT_ID="449907151817.apps.googleusercontent.com"
 export GOOGLE_DEFAULT_CLIENT_SECRET="miEreAep8nuvTdvLums6qyLK"
+
+export TERM='xterm'
+
+# >>> coursier install directory (scala package manager) >>>
+export PATH="$PATH:/home/rafa/.local/share/coursier/bin"
+# <<< coursier install directory <<<
