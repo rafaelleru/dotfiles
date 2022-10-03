@@ -109,7 +109,19 @@ Plug 'evansalter/vim-checklist'
 call plug#end()            " required
 
 " Python
-lua require'lspconfig'.pylsp.setup{}
+lua << EOF
+require'lspconfig'.pylsp.setup{
+  settings = {
+    pylsp = {
+      plugins = {
+        jedi = {
+          extra_paths = {'/home/rafa/breach-engine/airflow'}
+        }
+      }
+    }
+  }
+}
+EOF
 " PHP
 lua require'lspconfig'.intelephense.setup{}
 " Go
