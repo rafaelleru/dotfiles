@@ -1,11 +1,12 @@
 # file: dotfiles.yml
 ---
 - hosts: all
-  become: yes
+  become: no
   tasks:
 
   - name: Install apt packages
     import_tasks: roles/apt.yml
+    become: yes
     when: ansible_facts['os_family'] == "Debian"
 
   - name: Install dnf packages
@@ -31,18 +32,20 @@
       repo: https://github.com/rafaelleru/dwm.git
       dest: "{{ lookup('env', 'HOME') }}/bin/dwm"
 
-  - name: clone my dotfiles copy
-    git:
-      repo: https://github.com/rafaelleru/dotfiles.git
-      dest: "{{ lookup('env', 'HOME') }}/dotfiles"
-      version: ansible
+  - name: Get oh-my-zshrc
+    get_url:
+      url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+      dest: "/tmp/install-oh-my-zsh.sh"
 
-  - name: Setup personal dotfiles
-    tags: dotfiles
-    import_tasks: roles/dotfiles.yml
+  - name: Give oh-my-zsh scritp permissions
+    shell: "chmod 755 /tmp/install-oh-my-zsh.sh"
 
-  - name: Clone oh-my-zshrc
-    shell: sh -c $(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh) --keep-zshrc --unattended
+  - name: Install oh-my-zshrc
+    shell: sh -c /tmp/install-oh-my-zsh.sh --keep-zshrc --unattended
+
+  - name: Install  zsh-autosuggestions
+    shell: "git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
+
 
   - name: Install latest version of neovim
     import_tasks: roles/neovim.yml
@@ -59,6 +62,19 @@
     get_url:
       url: "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
       dest: "{{ lookup('env', 'HOME') }}/.local/share/nvim/site/autoload/plug.vim"
+
+  - name: Setup personal dotfiles
+    tags: dotfiles
+    import_tasks: roles/dotfiles.yml
+
+  - name: links zshrc file in ~ dir
+    file:
+      src: "{{ lookup('env', 'HOME') }}/dotfiles.bk/config/xsessions/dwm.desktop"
+      dest: "/usr/share/xsessions/dwm.desktop"
+      state: link
+      force: yes
+    become: yes
+
 
   # TODO: No funciona en la primera instalacion
   #- name: install vim plugins
