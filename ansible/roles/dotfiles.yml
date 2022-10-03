@@ -5,6 +5,13 @@
     state: link
     force: yes
 
+- name: links zshrc file in ~ dir
+  file:
+    src: "{{ lookup('env', 'HOME') }}/dotfiles/config/oh-my-zsh/custom/themes/rafaelleru.zsh-theme"
+    dest: "{{ lookup('env', 'HOME') }}/.oh-my-zsh/custom/themes/rafaelleru.zsh-theme"
+    state: link
+    force: yes
+
 - name: links tmux dotfiles/config file in ~/.tmux
   file:
     src: "{{ lookup('env', 'HOME') }}/dotfiles/config/tmux.conf"
