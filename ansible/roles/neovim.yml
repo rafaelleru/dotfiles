@@ -10,3 +10,4 @@
   make:
     chdir: "{{ lookup('env', 'HOME') }}/bin/neovim"
     target: install
+  become: yes
