@@ -44,4 +44,12 @@
     - nodejs
     - npm
     - wget
-
+    - zsh
+    - autojump
+    - openvpn
+    - picom
+    - dunst
+    - feh
+    - tmux
+    - fuse 
+    - libfuse2
