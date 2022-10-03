@@ -9,8 +9,8 @@ static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display 
 static const int showsystray        = 1;     /* 0 means no systray */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Source Code Pro:size=10", "SauceCodePro Nerd Font:style=Regular:size=13", "FontAwesome:pixelsize=12", "Font Awesome 5 Free:pixelsize=12", "Jam\-icons:style=Regular:pixelsize=12" };
-static const char dmenufont[]       = "Source Code Pro:size=10";
+static const char *fonts[]          = { "Iosevka Nerd Font:size=10", "Iosevka Nerd Font:style=Regular:size=13", "FontAwesome:pixelsize=12", "Font Awesome 5 Free:pixelsize=12", "Jam\-icons:style=Regular:pixelsize=12" };
+static const char dmenufont[]       = "Iosevka Nerd Font:size=10";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
