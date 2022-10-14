@@ -1,13 +1,37 @@
+set number relativenumber
+set wildmenu
+set hidden
+set nohlsearch
+set showmatch
+set encoding=utf-8
+set clipboard=unnamedplus
+set termguicolors
+set undofile
+set undodir=$HOME/.local/vim_undo_dir
+set path+=**
+set wildignore+=*.pyc,*~
+set noswapfile
+set list
+set mouse=nv
+set cursorline
+set foldlevelstart=1
+set scrolloff=10
+set nocompatible
+set tabstop=4 "I prefer more small tabs when opening files
+
+" Fix vim split default behavior
+set splitright
+set splitbelow
 let mapleader = "\<Space>"
 let maplocalleader = "\,"
 
 let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 
-let g:UltiSnipsExpandTrigger = '<Plug>(ultisnips_expand)'
-let g:UltiSnipsJumpForwardTrigger = '<Tab>' 
-let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'
-let g:UltiSnipsListSnippets = '<c-x><c-s>'
-let g:UltiSnipsRemoveSelectModeMappings = 0
+"let g:UltiSnipsExpandTrigger = '<Plug>(ultisnips_expand)'
+"let g:UltiSnipsJumpForwardTrigger = '<Tab>' 
+"let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'
+"let g:UltiSnipsListSnippets = '<c-x><c-s>'
+"let g:UltiSnipsRemoveSelectModeMappings = 0
 
 
 let g:rg_command = "rg --vimgrep -S"
@@ -82,3 +106,5 @@ set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
 
 let g:snips_author='Rafael Leyva'
+
+set fileformats=unix

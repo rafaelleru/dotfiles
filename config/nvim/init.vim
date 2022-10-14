@@ -1,28 +1,3 @@
-set number relativenumber
-set wildmenu
-set hidden
-set nohlsearch
-set showmatch
-set encoding=utf-8
-set clipboard=unnamedplus
-set termguicolors
-set undofile
-set undodir=$HOME/.local/vim_undo_dir
-set path+=**
-set wildignore+=*.pyc,*~
-set noswapfile
-set list
-set mouse=a
-set cursorline
-set foldlevelstart=1
-set scrolloff=10
-set nocompatible
-set tabstop=4 "I prefer more small tabs when opening files
-
-" Fix vim split default behavior
-set splitright
-set splitbelow
-
 let mapleader = "\<Space>"
 let maplocalleader = "\,"
 
