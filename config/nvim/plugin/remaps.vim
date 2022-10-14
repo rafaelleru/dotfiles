@@ -52,7 +52,8 @@ nnoremap <localleader>p :lprev<CR>zz
 " As a default I want to run case insensitive searches
 nnoremap / /\c\v
 
-nnoremap <leader>/ <cmd>Telescope live_grep<cr>
+
+nnoremap <leader>/ :lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>
 
 
 " after reindent a visual block I want to keep it selected
