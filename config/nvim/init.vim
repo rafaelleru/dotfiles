@@ -75,7 +75,20 @@ Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'mfussenegger/nvim-dap'
 Plug 'hrsh7th/nvim-compe'
 Plug 'evansalter/vim-checklist'
+
+Plug 'williamboman/mason.nvim'
+Plug 'williamboman/mason-lspconfig.nvim'
+Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-telescope/telescope-live-grep-args.nvim'
 call plug#end()            " required
+
+lua << EOF
+require("mason").setup()
+require("mason-lspconfig").setup({
+    ensure_installed = { "pylsp", "rust_analyzer", "clangd", "vimls" },
+    automatic_installation = true
+})
+EOF
 
 " Python
 lua << EOF
@@ -83,16 +96,17 @@ require'lspconfig'.pylsp.setup{
   settings = {
     pylsp = {
       plugins = {
-        jedi = {
-          extra_paths = {'/home/rafa/breach-engine/airflow'}
+        pycodestyle = {
+          maxLineLength = 120
         }
       }
     }
   }
 }
 EOF
+
 " PHP
-lua require'lspconfig'.intelephense.setup{}
+"lua require'lspconfig'.intelephense.setup{}
 " Go
 lua require'lspconfig'.gopls.setup{}
 " C/C++
