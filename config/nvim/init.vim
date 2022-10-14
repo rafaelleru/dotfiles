@@ -25,14 +25,9 @@ filetype plugin on
 
 Plug 'tpope/vim-fugitive'
 
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-
-
 Plug 'luochen1990/indent-detector.vim'
 
 Plug 'neovim/nvim-lspconfig'
-Plug 'williamboman/nvim-lsp-installer'
 Plug 'nvim-lua/completion-nvim'
 "
 " Use nvim as editor in browser
@@ -48,7 +43,7 @@ Plug 'junegunn/goyo.vim'
 Plug 'blueyed/vim-diminactive'
 
 Plug 'tpope/vim-rhubarb'
-Plug 'tommcdo/vim-fubitive'
+"Plug 'tommcdo/vim-fubitive'
 
 Plug 'tommcdo/vim-lion'
 
@@ -72,7 +67,6 @@ Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
-Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 Plug 'sbdchd/neoformat'
 Plug 'unblevable/quick-scope' " highlight relevant characters in the current line to quickly jump to words using f,F,t,T
 Plug 'caenrique/nvim-maximize-window-toggle' " Toggle the nvim current window to be maximized or not
