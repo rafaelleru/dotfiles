@@ -186,3 +186,5 @@ export BROWSER='firefox -p constella'
 
 bindkey '^t' autosuggest-accept
 bindkey '^f' fzf-file-widget
+
+eval "$(direnv hook zsh)"
