@@ -130,4 +130,5 @@ command! MakeTags !ctags -R .
 let $FZF_DEFAULT_COMMAND = 'rg -i --ignore-file ./.gitignore  --files'
 lua << EOF
 require('telescope').load_extension('fzf')
+require("telescope").load_extension("live_grep_args")
 EOF
