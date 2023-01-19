@@ -84,6 +84,14 @@ Plug 'williamboman/mason.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-telescope/telescope-live-grep-args.nvim'
+
+Plug 'rafamadriz/friendly-snippets'
+Plug 'tpope/vim-repeat'
+Plug 'pappasam/nvim-repl'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+
+Plug 'kevinhwang91/promise-async'
+Plug 'kevinhwang91/nvim-ufo',
 call plug#end()            " required
 
 lua << EOF
