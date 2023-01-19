@@ -64,3 +64,7 @@ nnoremap <leader>o :ToggleOnly<CR>
 " Save file with space+w
 nnoremap <leader>w :w<CR>
 nnoremap <leader>x :ChecklistToggleCheckbox<CR>zz
+
+nnoremap <leader><leader>e :ReplToggle<CR>
+nmap <leader>e <Plug>ReplSendLine
+vmap <leader>e <Plug>ReplSendVisual

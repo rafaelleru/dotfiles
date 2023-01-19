@@ -128,11 +128,21 @@ lua require'lspconfig'.rust_analyzer.setup{}
 " Vim language server
 lua require'lspconfig'.vimls.setup{}
 lua require'lspconfig'.metals.setup{}
+lua require'lspconfig'.solargraph.setup{}
 
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
   highlight = {
     enable = true
+    },
+    incremental_selection = {
+      enable = true,
+      keymaps = {
+        init_selection = " vv",
+        node_incremental = "nu",
+        --scope_incremental = "U",
+        node_decremental = "nd",
+      },
     }
 }
 EOF
@@ -144,3 +154,15 @@ lua << EOF
 require('telescope').load_extension('fzf')
 require("telescope").load_extension("live_grep_args")
 EOF
+
+lua << EOF
+require('maximize').setup()
+EOF
+
+let g:repl_filetype_commands = {
+    \ 'javascript': 'node',
+    \ 'python': 'ipython',
+    \ }
+let g:repl_split = 'bottom'
+
+
