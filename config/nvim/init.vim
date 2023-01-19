@@ -74,7 +74,7 @@ Plug 'hrsh7th/cmp-nvim-lsp-signature-help' " show function help while editing co
 
 Plug 'sbdchd/neoformat'
 Plug 'unblevable/quick-scope' " highlight relevant characters in the current line to quickly jump to words using f,F,t,T
-Plug 'caenrique/nvim-maximize-window-toggle' " Toggle the nvim current window to be maximized or not
+Plug 'declancm/maximize.nvim' " Toggle the nvim current window to be maximized or not
 Plug 'editorconfig/editorconfig-vim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'mfussenegger/nvim-dap'
