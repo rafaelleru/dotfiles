@@ -62,18 +62,22 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'wuelnerdotexe/vim-enfocado'
 Plug 'pbrisbin/vim-mkdir'
 
+" Completion stuff
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
+Plug 'L3MON4D3/LuaSnip', {'tag': 'v1.*'}
+Plug 'saadparwaiz1/cmp_luasnip'
+Plug 'hrsh7th/cmp-nvim-lsp-signature-help' " show function help while editing code
+
 Plug 'sbdchd/neoformat'
 Plug 'unblevable/quick-scope' " highlight relevant characters in the current line to quickly jump to words using f,F,t,T
 Plug 'caenrique/nvim-maximize-window-toggle' " Toggle the nvim current window to be maximized or not
 Plug 'editorconfig/editorconfig-vim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'mfussenegger/nvim-dap'
-Plug 'hrsh7th/nvim-compe'
 Plug 'evansalter/vim-checklist'
 
 Plug 'williamboman/mason.nvim'
