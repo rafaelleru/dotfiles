@@ -4,6 +4,7 @@ augroup rafaelleru
     autocmd User LspDiagnosticsChanged :lua vim.diagnostic.setloclist({open = false})
     " TODO: the nexts autocmd statements should not be necessary
     autocmd BufWrite *.py :lua vim.diagnostic.setloclist({open = false})
+    autocmd BufEnter *.py :lua vim.diagnostic.setloclist({open = false})
     autocmd BufWrite *.php :lua vim.diagnostic.setloclist({open = false})
     autocmd BufWrite *.go :lua vim.diagnostic.setloclist({open = false})
     autocmd BufWrite *.rs :lua vim.diagnostic.setloclist({open = false})
@@ -37,4 +38,9 @@ augroup fixlist
     autocmd BufWinEnter quickfix call SetQFControlVariable()
     autocmd BufCreate quickfix call SetQFControlVariable()
     autocmd BufWinLeave * call UnsetQFControlVariable()
+augroup END
+
+augroup last_position
+    autocmd!
+    au BufEnter * silent! exe "normal! g'\""
 augroup END
