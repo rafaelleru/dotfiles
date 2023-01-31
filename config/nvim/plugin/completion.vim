@@ -37,8 +37,10 @@ cmp.setup({
 
     mapping = cmp.mapping.preset.insert({
       ['<C-Space>'] = cmp.mapping.complete(),
-      ['<CR>'] = cmp.mapping.confirm({ select = true }),
-      -- ... Your other mappings ...
+      ['<C-CR>'] = cmp.mapping.confirm({ select = true }),
+      -- Scroll values are inverted
+      ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+      ['<C-d>'] = cmp.mapping.scroll_docs(4),
 
       ["<Tab>"] = cmp.mapping(function(fallback)
         if luasnip.expand_or_jumpable() then
