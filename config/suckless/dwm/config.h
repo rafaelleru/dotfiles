@@ -35,7 +35,8 @@ static const Rule rules[] = {
 	{ "Thunderbird", NULL,       NULL,       1 << 8,       0,           -1 },
 	{ "Slack", 	 NULL,       NULL,       1 << 7,       0,           -1 },
 	{ "Postmman", 	 NULL,       NULL,       1 << 4,       0,           -1 },
-	{ "spotify", 	 NULL,       NULL,       1 << 9,       0,           -1 }
+	{ "spotify", 	 NULL,       NULL,       1 << 9,       0,           -1 },
+	{ "org.gnome.Nautilus",NULL, NULL,       1 << 7,       0,           -1 }
 };
 
 /* layout(s) */
@@ -74,6 +75,7 @@ static const char *sounddowncmd[]  = { "amixer", "-q", "sset", "Master", "5%-", 
 static const char *soundtogglecmd[]  = { "amixer", "-q", "sset", "Master", "toggle", NULL };
 static const char *musictogglecmd[]  = { "playerctl", "play-pause", NULL };
 static const char *displayselectcmd[]  = { "displayselect", NULL };
+static const char *screencapturecmd[]  = { "flameshot", "gui", NULL };
 
 
 /* defined keys */
@@ -83,6 +85,7 @@ static const char *displayselectcmd[]  = { "displayselect", NULL };
 #define XF86AudioLowerVolume		0x1008ff11
 #define XF86AudioRaiseVolume		0x1008ff13
 #define XF86AudioPlay			0x1008ff14
+#define XF86ScreenCapture		0xff61
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -91,6 +94,7 @@ static Key keys[] = {
 	{ 0,                       	XF86AudioRaiseVolume,      spawn,          {.v = soundupcmd } },
 	{ 0,                       	XF86AudioLowerVolume,      spawn,          {.v = sounddowncmd } },
 	{ 0,                       	XF86AudioPlay,      	   spawn,          {.v = musictogglecmd } },
+	{ 0,                       	XF86ScreenCapture,         spawn,          {.v = screencapturecmd } },
 	{ MODKEY,               	XK_o,      spawn,          {.v = passmenucmd } },
 	{ MODKEY,               	XK_y,      spawn,          {.v = clipmenucmd } },
 	{ MODKEY|ShiftMask,             XK_o, 	   spawn,          {.v = displayselectcmd } },
