@@ -91,78 +91,22 @@ Plug 'pappasam/nvim-repl'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 
 Plug 'kevinhwang91/promise-async'
-Plug 'kevinhwang91/nvim-ufo',
+Plug 'kevinhwang91/nvim-ufo'
+Plug 'nvim-treesitter/nvim-treesitter-context' " To show current function signature always on top
+Plug 'stevearc/aerial.nvim'  "This create a list with all the deffinitions in a file.
+
+Plug 'MunifTanjim/nui.nvim'
+Plug  'nvim-lua/plenary.nvim'
+Plug  'folke/trouble.nvim'
+Plug  'nvim-telescope/telescope.nvim'
+Plug 'jackMort/ChatGPT.nvim'
+Plug 'nvim-lualine/lualine.nvim'
+" If you want to have icons in your statusline choose one of these
+Plug 'nvim-tree/nvim-web-devicons'
 call plug#end()            " required
-
-lua << EOF
-require("mason").setup()
-require("mason-lspconfig").setup({
-    ensure_installed = { "pylsp", "rust_analyzer", "clangd", "vimls" },
-    automatic_installation = true
-})
-EOF
-
-" Python
-lua << EOF
-require'lspconfig'.pylsp.setup{
-  settings = {
-    pylsp = {
-      plugins = {
-        pycodestyle = {
-          maxLineLength = 120
-        }
-      }
-    }
-  }
-}
-EOF
-
-" PHP
-"lua require'lspconfig'.intelephense.setup{}
-" Go
-lua require'lspconfig'.gopls.setup{}
-" C/C++
-lua require'lspconfig'.clangd.setup{}
-" Rust
-lua require'lspconfig'.rust_analyzer.setup{}
-" Vim language server
-lua require'lspconfig'.vimls.setup{}
-lua require'lspconfig'.metals.setup{}
-lua require'lspconfig'.solargraph.setup{}
-
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-  highlight = {
-    enable = true
-    },
-    incremental_selection = {
-      enable = true,
-      keymaps = {
-        init_selection = " vv",
-        node_incremental = "nu",
-        --scope_incremental = "U",
-        node_decremental = "nd",
-      },
-    }
-}
-EOF
-
-command! MakeTags !ctags -R .
-
-let $FZF_DEFAULT_COMMAND = 'rg -i --ignore-file ./.gitignore  --files'
-lua << EOF
-require('telescope').load_extension('fzf')
-require("telescope").load_extension("live_grep_args")
-EOF
-
-lua << EOF
-require('maximize').setup()
-EOF
 
 let g:repl_filetype_commands = {
     \ 'javascript': 'node',
     \ 'python': 'ipython',
     \ }
 let g:repl_split = 'bottom'
-
-
