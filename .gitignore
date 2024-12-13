@@ -5,3 +5,4 @@ nvim/.netrwhist
 neomutt/hcache
 neomutt/cache
 config/nvim/bundle*
+lazy-lock.json
