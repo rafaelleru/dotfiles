@@ -19,7 +19,7 @@ compinit
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="rafaelleru"
+#ZSH_THEME="rafaelleru"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -79,10 +79,11 @@ ZSH_THEME="rafaelleru"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(docker git fzf vi-mode zsh-autosuggestions taskwarrior)
+plugins=(docker git fzf vi-mode zsh-autosuggestions taskwarrior kubetail)
 
 source $ZSH/oh-my-zsh.sh
 
+setopt HIST_IGNORE_ALL_DUPS
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -117,7 +118,6 @@ alias vimconfig="nvim ~/.config/nvim/"
 alias i3config="nvim ~/.config/i3/config"
 alias dwmconfig="nvim ~/dotfiles/suckless/dwm/config.h"
 alias mkdir="mkdir -p"
-alias ls="ls --color -lh"
 alias cp="cp -R"
 alias dps="docker ps | bash $HOME/bin/scripts/alternate_colors.sh"
 alias glg="git lg"
@@ -127,8 +127,11 @@ alias y="yay"
 alias apt="sudo apt"
 alias dc="docker-compose"
 alias note="nvim ~/notes/$(date +%Y%m%d_%H%M%S).md"
-alias cat="batcat"
-alias ls="exa -lh --color=auto --git"
+#alias cat="batcat"
+alias ls="exa -lh --color=auto --git --icons"
+alias tree="exa -lh --tree --level=2 --color=auto --git --icons"
+alias k="kubectl"
+alias cl="clear"
 
 # run docker exec in a container selected using fzf
 function fdex() {
@@ -188,3 +191,66 @@ bindkey '^t' autosuggest-accept
 bindkey '^f' fzf-file-widget
 
 eval "$(direnv hook zsh)"
+# START: Added by Updated Airflow Breeze autocomplete setup
+source /home/rafa/g/airflow/dev/breeze/autocomplete/breeze-complete-zsh.sh
+# END: Added by Updated Airflow Breeze autocomplete setup
+#
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
+function ssh_prod() {
+	aws ec2 describe-instances --filter 'Name=tag:Name,Values=*'$1'*' 'Name=tag:Environment,Values=pro' --query "Reservations[].Instances[].[PrivateIpAddress]" --output text | export AWSIP=$(head -n1) && ssh $AWSIP
+}
+
+function ssh_pre() {
+	aws ec2 describe-instances --filter 'Name=tag:Name,Values=*'$1'*' 'Name=tag:Environment,Values=preprod' --query "Reservations[].Instances[].[PrivateIpAddress]" --output text | export AWSIP=$(head -n1) && ssh $AWSIP
+}
+
+function ssh_nito() {
+	aws ec2 describe-instances --filter 'Name=tag:Name,Values=*'$1'*' 'Name=tag:Environment,Values=nito' --query "Reservations[].Instances[].[PrivateIpAddress]" --output text | export AWSIP=$(head -n1) && sshpass -f ~/myssh ssh $AWSIP
+}
+
+
+function get_aws_ip() {
+	AWS_PAGER="" aws ec2 describe-instances --filter 'Name=tag:Name,Values=*'$1'*' 'Name=tag:Environment,Values='$2'' --query "Reservations[].Instances[].[PrivateIpAddress]" --output text
+}
+
+function tag_major() {
+	declare -i MAJOR=$(git tag --sort=-creatordate | head -n1 | awk -F '.' '{print $1}')
+
+	NEW_MAJOR=$((MAJOR + 1))
+	NEW_TAG="$NEW_MAJOR.0.0"
+	git tag -a "$NEW_TAG" -m "NEW_TAG"
+
+	echo "Tagged new major version $NEW_TAG"
+}
+
+function tag_version() {
+	declare -i MINOR=$(git tag --sort=-creatordate | head -n1 | awk -F '.' '{print $2}')
+	declare -i MAJOR=$(git tag --sort=-creatordate | head -n1 | awk -F '.' '{print $1}')
+
+	NEW_MINOR=$((MINOR + 1))
+	NEW_TAG="$MAJOR.$NEW_MINOR.0"
+	git tag -a "$NEW_TAG" -m "NEW_TAG"
+
+	echo "Tagged new minor version $NEW_TAG"
+}
+
+function tag_hotfix() {
+	declare -i HOTFIX=$(git tag --sort=-creatordate | head -n1 | awk -F '.' '{print $3}')
+	declare -i MINOR=$(git tag --sort=-creatordate | head -n1 | awk -F '.' '{print $2}')
+	declare -i MAJOR=$(git tag --sort=-creatordate | head -n1 | awk -F '.' '{print $1}')
+
+	NEW_HOTFIX=$((HOTFIX + 1))
+	NEW_TAG="$MAJOR.$MINOR.$NEW_HOTFIX"
+	git tag -a "$NEW_TAG" -m "NEW_TAG"
+
+	echo "Tagged new hotfix version $NEW_TAG"
+}
+
+eval "$(starship init zsh)"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
