@@ -38,3 +38,5 @@ require('lspconfig').phpactor.setup{}
 
 -- Docker Compose
 require('lspconfig').docker_compose_language_service.setup{}
+
+require('lspconfig').terraformls.setup{}

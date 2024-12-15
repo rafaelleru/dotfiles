@@ -5,7 +5,7 @@ vim.env.FZF_DEFAULT_COMMAND = 'rg -i --ignore-file ./.gitignore --files'
 
 require('telescope').setup{
   defaults = {
-    file_ignore_patterns = { "lambda/" }
+    file_ignore_patterns = { "^lambda/" }
   }
 }
 require('telescope').load_extension('fzf')

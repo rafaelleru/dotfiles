@@ -50,8 +50,11 @@ vim.opt.background = "dark"
 vim.env.NVIM_TUI_ENABLE_TRUE_COLOR = 1
 
 -- Tema
+require("catppuccin").setup({
+    flavor = 'macchiato'
+})
 vim.cmd("syntax enable")
-vim.cmd("colorscheme tokyonight")
+vim.cmd("colorscheme catppuccin")
 
 -- Configuración de colores
 vim.cmd("hi Normal guibg=NONE ctermbg=NONE")
@@ -59,30 +62,6 @@ vim.cmd("hi LineNr guibg=NONE ctermbg=NONE")
 vim.cmd("hi SignColumn guibg=NONE ctermbg=NONE")
 vim.cmd("hi EndOfBuffer guibg=NONE ctermbg=NONE")
 vim.cmd("hi Comment gui=italic cterm=italic")
-
-vim.g.the_primeagen_qf_l = 0
-vim.g.the_primeagen_qf_g = 0
-
--- Función ToggleQFList
-function ToggleQFList(global)
-    if global then
-        if vim.g.the_primeagen_qf_g == 1 then
-            vim.g.the_primeagen_qf_g = 0
-            vim.cmd("cclose")
-        else
-            vim.g.the_primeagen_qf_g = 1
-            vim.cmd("copen")
-        end
-    else
-        if vim.g.the_primeagen_qf_l == 1 then
-            vim.g.the_primeagen_qf_l = 0
-            vim.cmd("lclose")
-        else
-            vim.g.the_primeagen_qf_l = 1
-            vim.cmd("lopen")
-        end
-    end
-end
 
 -- Configuración de grepper
 -- vim.g.grepper = {}

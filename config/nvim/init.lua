@@ -95,6 +95,17 @@ require('lazy').setup({
   { 'jackMort/ChatGPT.nvim' },
   { 'nvim-lualine/lualine.nvim' },
   { 'nvim-tree/nvim-web-devicons' },
+  { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+  {
+    "ThePrimeagen/harpoon",
+    branch = "harpoon2",
+    dependencies = { "nvim-lua/plenary.nvim" }
+  },
+  {
+    "m4xshen/hardtime.nvim",
+    dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
+    opts = {}
+  },
 })
 
 -- Configuración adicional

@@ -1,4 +1,5 @@
 -- remaps.lua
+--local functions = require('plugins.functions')
 
 -- Función para mapear teclas de forma más sencilla
 local function map(mode, lhs, rhs, opts)
@@ -78,3 +79,6 @@ vim.api.nvim_set_keymap('v', '<leader>e', '<Plug>ReplSendVisual', { silent = tru
 map('n', '<C-n>', ':tabnew<CR>zz')
 map('n', '<C-w>', ':tabclose<CR>zz')
 map('n', '<leader><tab>', ':echo "hola"<CR>zz')
+
+map('n', '<leader>ha', 'function() harpoon:list():add() end')
+map('n', '<leader>H', 'function() harpoon.ui:toggle_quick_menu(harpoon:list()) end')
