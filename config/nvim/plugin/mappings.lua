@@ -30,3 +30,8 @@ vim.keymap.set('n', '<leader>l', ":wincmd l<CR>")
 
 vim.keymap.set('v', '>', '>gv')
 vim.keymap.set('v', '<', '<gv')
+
+
+-- aerial nvim
+vim.keymap.set("n", "<leader>a", "<cmd>AerialToggle!<CR>")
+vim.keymap.set("n", "<leader>gs", "<cmd>call aerial#fzf()<CR>") -- Stands for go to symbol
