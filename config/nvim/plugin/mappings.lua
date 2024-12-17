@@ -1,11 +1,10 @@
 vim.keymap.set('n', '<leader>w', ":w<CR>")
 vim.keymap.set('n', '<leader>x', ":x<CR>")
 
--- Telescope 
+-- Telescope
 local builtin = require('telescope.builtin')
-local telescope = require('telescope')
-vim.keymap.set('n', '<c-p>', builtin.find_files, { desc = 'Telescope find files' })
-vim.keymap.set('n', '<leader>ff', builtin.git_files, { desc = 'Telescope find files' })
+local rafaelleru = require('rafaelleru_functions')
+vim.keymap.set('n', '<c-p>', rafaelleru.get_telescope_picker(), { desc = 'Telescope find files' })
 vim.keymap.set('n', '<leader>/', builtin.live_grep, { desc = 'Telescope live grep' })
 vim.keymap.set('n', '<c-/>', builtin.live_grep, { desc = 'Telescope live grep' })
 vim.keymap.set('n', '<c-b>', builtin.buffers, { desc = 'Telescope buffers' })
