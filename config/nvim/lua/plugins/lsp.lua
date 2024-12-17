@@ -22,5 +22,15 @@ return {
 			}
 			require('lspconfig').terraformls.setup{}
 		end
+	},
+	{
+		'folke/lazydev.nvim',
+		config = function ()
+			require('lazydev').setup()
+		end
+	},
+	{
+		'folke/trouble.nvim',
+		cmd = "Trouble"
 	}
 }
