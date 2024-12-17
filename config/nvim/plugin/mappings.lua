@@ -35,3 +35,6 @@ vim.keymap.set('v', '<', '<gv')
 -- aerial nvim
 vim.keymap.set("n", "<leader>a", "<cmd>AerialToggle!<CR>")
 vim.keymap.set("n", "<leader>gs", "<cmd>call aerial#fzf()<CR>") -- Stands for go to symbol
+
+-- default to case insensitive search
+vim.keymap.set("n", "/", "/\\c\\v")
